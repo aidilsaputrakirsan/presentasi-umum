@@ -35,13 +35,17 @@ Kampus teknologi yang unggul di wilayah Tengah dan Timur Indonesia, berlokasi di
 
 <br>
 
+<v-clicks>
+
 - **Status:** Perguruan Tinggi Negeri (PTN)
 - **Akreditasi:** B (BAN-PT)
 - **Fokus Riset:** Energi, Smart City, Kemaritiman, Teknologi Pangan
 
+</v-clicks>
+
 ::right::
 
-<div class="mt-12 ml-8 p-6 bg-blue-50/50 rounded-xl border-l-4 border-blue-600 shadow-sm">
+<div class="mt-12 ml-8 p-6 bg-blue-50/50 rounded-xl border-l-4 border-blue-600 shadow-sm" v-click>
 <b>Visi ITK:</b>
 <p class="mt-4 text-sm text-gray-700 leading-relaxed">
 Menjadi perguruan tinggi unggul dan berperan aktif dalam pembangunan nasional melalui pemberdayaan potensi daerah Kalimantan.
@@ -55,13 +59,13 @@ layout: center
 # 3. Profil Peserta & Jabatan
 
 <div class="grid grid-cols-2 gap-8 mt-8 text-left">
-  <div class="bg-white/60 p-6 rounded-xl shadow-md border border-gray-100">
+  <div class="bg-white/60 p-6 rounded-xl shadow-md border border-gray-100" v-click>
     <div class="text-blue-600 mb-2"><i class="fas fa-user-circle text-2xl"></i></div>
     <div class="font-bold text-lg mb-1">Aidil Saputra Kirsan, S.ST., M.Tr.Kom</div>
     <div class="text-sm text-gray-500">NIP. 199403172025061004</div>
   </div>
   
-  <div class="bg-white/60 p-6 rounded-xl shadow-md border border-gray-100">
+  <div class="bg-white/60 p-6 rounded-xl shadow-md border border-gray-100" v-click>
     <div class="text-blue-600 mb-2"><i class="fas fa-briefcase text-2xl"></i></div>
     <div class="font-bold text-lg mb-1">Dosen Asisten Ahli</div>
     <div class="text-sm text-gray-500">Kepala Lab Inovasi Digital<br/>Prodi Sistem Informasi, FSTI ITK</div>
@@ -122,34 +126,35 @@ layout: default
 Isu terpilih sangat erat kaitannya dengan peran dan kedudukan PNS dalam mewujudkan **Smart Governance**:
 
 <div class="grid grid-cols-2 gap-6 mt-8">
-  <div class="bg-blue-50 p-6 rounded-lg border border-blue-100">
+  <div class="bg-blue-50 p-6 rounded-lg border border-blue-100" v-click>
     <h3 class="text-blue-800 font-bold border-b border-blue-200 pb-2 mb-3">Smart ASN</h3>
     <p class="text-sm text-gray-700">Pengelolaan data yang manual mencerminkan kesenjangan <i>digital skill</i>. Solusi digital (SINTA Intel) mengatasi hal ini dengan pemanfaatan teknologi Machine Learning dan Web Development.</p>
   </div>
   
-  <div class="bg-green-50 p-6 rounded-lg border border-green-100">
+  <div class="bg-green-50 p-6 rounded-lg border border-green-100" v-click>
     <h3 class="text-green-800 font-bold border-b border-green-200 pb-2 mb-3">Manajemen ASN</h3>
     <p class="text-sm text-gray-700">Secara akuntabilitas, ASN Dosen wajib membuktikan kinerja Tridharma secara terukur. Ketiadaan sistem terpusat menghambat hal ini. Solusinya memberikan data transparan dan terverifikasi.</p>
   </div>
 </div>
 
 ---
-layout: center
+layout: image-right
+image: ./fishbone.png
 ---
 
-# 8. Analisis Akar Masalah (Fishbone)
+# 8. Akar Masalah (Fishbone)
 
 Akar masalah dari Data Riset yang tidak terkelola:
 
-<div class="text-left bg-white p-6 rounded-xl shadow-sm border border-gray-200 mt-6">
-  <ul class="space-y-3">
-    <li><b class="text-blue-600">Manusia:</b> Tidak ada PIC khusus pengelolaan data riset.</li>
-    <li><b class="text-blue-600">Metode:</b> Tidak ada sistem/SOP deteksi tren, kolaborasi, dan data akreditasi siap pakai.</li>
-    <li><b class="text-blue-600">Mesin/Teknologi:</b> Tidak ada <i>tools</i> otomasi integrasi SINTA.</li>
-    <li><b class="text-blue-600">Material/Data:</b> Data tercecer di banyak platform (SINTA, Scopus, Google Scholar).</li>
-    <li><b class="text-blue-600">Lingkungan:</b> Belum terbentuknya kebijakan pengelolaan data riset prodi yang holistik.</li>
-  </ul>
-</div>
+<v-clicks>
+
+- <b class="text-blue-600">Manusia:</b> Tidak ada PIC khusus pengelolaan data riset.
+- <b class="text-blue-600">Metode:</b> Tidak ada sistem/SOP deteksi tren kolaborasi, dan data akreditasi siap pakai.
+- <b class="text-blue-600">Mesin/Teknologi:</b> Tidak ada <i>tools</i> otomasi integrasi SINTA.
+- <b class="text-blue-600">Material/Data:</b> Data tercecer di banyak platform.
+- <b class="text-blue-600">Lingkungan:</b> Belum terbentuknya kebijakan prodi yang holistik.
+
+</v-clicks>
 
 ---
 layout: default
@@ -158,7 +163,7 @@ layout: default
 # 9. Tujuan, Manfaat, & Ruang Lingkup
 
 <div class="grid grid-cols-3 gap-4 mt-6">
-  <div class="bg-white/80 p-4 rounded-lg shadow-sm">
+  <div class="bg-white/80 p-4 rounded-lg shadow-sm" v-click>
     <h3 class="font-bold text-blue-700 mb-2">Tujuan</h3>
     <ul class="text-xs space-y-2 text-gray-600 list-disc ml-4">
       <li>Membangun SINTA Intel (Dashboard Analitik).</li>
@@ -168,7 +173,7 @@ layout: default
     </ul>
   </div>
   
-  <div class="bg-white/80 p-4 rounded-lg shadow-sm">
+  <div class="bg-white/80 p-4 rounded-lg shadow-sm" v-click>
     <h3 class="font-bold text-green-700 mb-2">Manfaat</h3>
     <ul class="text-xs space-y-2 text-gray-600 list-disc ml-4">
       <li><b>Penulis:</b> Aktualisasi teknis & BerAKHLAK.</li>
@@ -178,7 +183,7 @@ layout: default
     </ul>
   </div>
   
-  <div class="bg-white/80 p-4 rounded-lg shadow-sm">
+  <div class="bg-white/80 p-4 rounded-lg shadow-sm" v-click>
     <h3 class="font-bold text-purple-700 mb-2">Ruang Lingkup</h3>
     <ul class="text-xs space-y-2 text-gray-600 list-disc ml-4">
       <li><b>Sasaran:</b> Dosen Prodi SI & Bisnis Digital, pimpinan FSTI ITK.</li>
@@ -198,11 +203,15 @@ Terdapat 5 Kegiatan Utama yang dilandasi nilai Smart ASN & Manajemen ASN:
 
 <br>
 
+<v-clicks>
+
 1. **Pemetaan & Pengumpulan Data Dosen** *(Manajemen ASN: Akuntabilitas Data)*
 2. **Pengembangan Pipeline Scraper Otomatis** *(Smart ASN: Literasi Digital & Inovasi)*
 3. **Implementasi Fitur Analytics & Dashboard AI** *(Smart ASN & Manajemen ASN)*
 4. **Implementasi Dashboard Akreditasi & Funding** *(Manajemen ASN: Kinerja Institusi)*
 5. **Deployment, Sosialisasi & Evaluasi Sistem** *(Smart ASN & Manajemen ASN)*
+
+</v-clicks>
 
 ---
 layout: center

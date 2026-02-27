@@ -102,7 +102,8 @@
             grid.innerHTML = '<div class="col-span-full flex flex-col items-center justify-center text-gray-400 py-20"><i class="fa-solid fa-circle-notch fa-spin text-4xl mb-4 text-blue-400"></i><p class="text-lg">Membaca isi direktori otomatis...</p></div>';
 
             try {
-                const res = await fetch('/api/presentations');
+                // Fetch dari file JSON statis agar jalan di GitHub Pages
+                const res = await fetch('presentations.json');
                 const data = await res.json();
 
                 if (data.length === 0) {
@@ -146,14 +147,22 @@
         }
 
         async function runSlidev(id) {
+            // Jika di-hosting di GitHub Pages (bukan localhost)
+            const host = window.location.hostname;
+            if (host !== 'localhost' && host !== '127.0.0.1') {
+                let basePath = window.location.pathname;
+                if (!basePath.endsWith('/')) basePath += '/';
+                window.open(`${basePath}${id}/`, '_blank');
+                return;
+            }
+
+            // Jika di localhost, pakai node server
             document.getElementById('loading').style.display = 'flex';
             try {
-                // Panggil server untuk jalankan npx slidev
                 const res = await fetch(`/api/run/${id}`, { method: 'POST' });
                 const data = await res.json();
 
                 if (data.success) {
-                    // Otomatis buka tab baru ke presentasi
                     window.open(data.url, '_blank');
                 } else {
                     alert('Error: ' + data.error);

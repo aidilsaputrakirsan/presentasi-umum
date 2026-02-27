@@ -37,10 +37,14 @@ jobs:
       - name: Build CPNS
         run: npm run build:cpns --if-present
 
+      - name: Create static presentation list
+        run: node generate-list.js
+
       - name: Copy Dashboard assets
-        # Menyalin index.html dan folder public ke folder dist/ agar Dashboard utama juga ter-deploy
+        # Menyalin index.html, presentations.json, dan folder public ke folder dist/ 
         run: |
-          cp public/index.html ../dist/index.html || cp public/index.html dist/index.html || echo "Dashboard index.html not found, skipping."
+          cp public/index.html dist/index.html || echo "Dashboard index.html not found, skipping."
+          cp public/presentations.json dist/presentations.json || echo "presentations.json not found, skipping."
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
