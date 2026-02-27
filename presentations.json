@@ -1,0 +1,26 @@
+[
+  {
+    "id": "Bisnis",
+    "name": "Bisnis"
+  },
+  {
+    "id": "CPNS",
+    "name": "CPNS"
+  },
+  {
+    "id": "Komputasi-Awan",
+    "name": "Komputasi Awan"
+  },
+  {
+    "id": "Laporan",
+    "name": "Laporan"
+  },
+  {
+    "id": "Penjualan",
+    "name": "Penjualan"
+  },
+  {
+    "id": "Struktur-Data",
+    "name": "Struktur Data"
+  }
+]
