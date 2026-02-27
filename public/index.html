@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Materi Pembelajaran</title>
+    <!-- Tailwind CSS untuk styling cepat dan modern -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome untuk Icon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #0f172a;
+            background-image:
+                radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+                radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
+            color: white;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background-attachment: fixed;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(5px);
+            z-index: 50;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body class="p-8">
+    <!-- Loading Screen saat membuka presentasi -->
+    <div id="loading" class="loading-overlay">
+        <i class="fa-solid fa-circle-notch fa-spin text-5xl text-blue-500 mb-6"></i>
+        <h2 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+            Menyiapkan Mesin Slidev...</h2>
+        <p class="text-gray-400 text-sm mt-2">Ini hanya butuh beberapa detik. Jendela baru akan otomatis terbuka.</p>
+    </div>
+
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <header
+            class="mb-12 text-center md:text-left flex flex-col md:flex-row justify-between items-center bg-black/20 p-8 rounded-3xl border border-white/5 shadow-2xl">
+            <div>
+                <h1
+                    class="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 mb-3 tracking-tight">
+                    <i class="fa-solid fa-layer-group text-blue-400 mr-3"></i>Workspace Presentasi
+                </h1>
+                <p class="text-gray-400 text-lg">Sistem terpusat untuk mengelola seluruh materi Slidev Anda.</p>
+            </div>
+            <button onclick="fetchPresentations()"
+                class="mt-6 md:mt-0 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/10 rounded-xl transition-all flex items-center font-semibold shadow-lg backdrop-blur-sm">
+                <i class="fa-solid fa-rotate-right mr-2 text-blue-400"></i> Refresh Folder
+            </button>
+        </header>
+
+        <!-- Main Content (Grid) -->
+        <main>
+            <div id="grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Cards will be injected by JavaScript -->
+            </div>
+        </main>
+
+        <footer class="mt-16 text-center text-gray-400 text-sm">
+            <p><i class="fa-regular fa-lightbulb text-yellow-500 mr-2"></i><strong>Tips:</strong> Buat folder baru
+                dengan nama apapun dan isi dengan file <code>slides.md</code>, lalu klik tombol Refresh pada dashboard
+                ini.</p>
+        </footer>
+    </div>
+
+    <!-- Script Logika Dashboard -->
+    <script>
+        async function fetchPresentations() {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = '<div class="col-span-full flex flex-col items-center justify-center text-gray-400 py-20"><i class="fa-solid fa-circle-notch fa-spin text-4xl mb-4 text-blue-400"></i><p class="text-lg">Membaca isi direktori otomatis...</p></div>';
+
+            try {
+                const res = await fetch('/api/presentations');
+                const data = await res.json();
+
+                if (data.length === 0) {
+                    grid.innerHTML = `
+                    <div class="col-span-full flex flex-col items-center justify-center text-gray-400 py-20 bg-white/5 rounded-3xl border border-white/10">
+                        <i class="fa-regular fa-folder-open text-6xl mb-4 text-white/20"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">Belum ada presentasi ditemukan</h3>
+                        <p>Silakan buat folder baru berisikan file <code>slides.md</code></p>
+                    </div>`;
+                    return;
+                }
+
+                grid.innerHTML = data.map((item, index) => `
+                    <div class="glass-card rounded-3xl p-8 flex flex-col h-full cursor-pointer relative overflow-hidden group" style="animation: fade-in 0.5s ease-out ${index * 0.1}s forwards; opacity: 0; transform: translateY(20px);">
+                        <!-- Efek Hover Garis Atas -->
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                        
+                        <!-- Header Card -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 text-xl group-hover:scale-110 transition-transform group-hover:bg-blue-500/30">
+                                <i class="fa-solid fa-chalkboard-user"></i>
+                            </div>
+                            <span class="text-xs font-bold px-3 py-1 bg-white/5 border border-white/10 text-gray-300 rounded-full backdrop-blur-sm">Materi</span>
+                        </div>
+                        
+                        <!-- Konten Card -->
+                        <h2 class="text-2xl font-extrabold mb-3 capitalize text-white group-hover:text-blue-300 transition-colors">${item.name}</h2>
+                        <div class="mt-auto pt-6">
+                            <p class="text-gray-500 text-xs mb-4 flex items-center">
+                                <i class="fa-regular fa-folder mr-2"></i> ${item.id}/slides.md
+                            </p>
+                            <button onclick="runSlidev('${item.id}')" class="w-full py-3.5 bg-white/10 hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 border border-white/10 hover:border-transparent rounded-xl font-bold transition-all transform active:scale-95 shadow-lg group-hover:shadow-blue-500/25 flex justify-center items-center">
+                                <i class="fa-solid fa-play mr-2"></i> Buka Materi
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (err) {
+                grid.innerHTML = `<div class="col-span-full text-center text-red-400 py-12 bg-red-500/10 rounded-3xl border border-red-500/20"><i class="fa-solid fa-triangle-exclamation text-4xl mb-4"></i><br>Gagal memuat: ${err.message}</div>`;
+            }
+        }
+
+        async function runSlidev(id) {
+            document.getElementById('loading').style.display = 'flex';
+            try {
+                // Panggil server untuk jalankan npx slidev
+                const res = await fetch(`/api/run/${id}`, { method: 'POST' });
+                const data = await res.json();
+
+                if (data.success) {
+                    // Otomatis buka tab baru ke presentasi
+                    window.open(data.url, '_blank');
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (err) {
+                alert('Terkendala koneksi: ' + err.message);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        // Jalankan saat pertama kali buka
+        fetchPresentations();
+    </script>
+    <style>
+        @keyframes fade-in {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</body>
+
+</html>
