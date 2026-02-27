@@ -1,0 +1,50 @@
+name: Deploy Presentations to GitHub Pages
+
+on:
+  # Jalankan script ini setiap kali ada push ke branch `main`
+  push:
+    branches:
+      - main
+  # Memungkinkan jalankan manual dari tab Actions
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Komputasi Awan
+        # Memanggil script dari package.json (menambahkan base URL agar aset di GitHub Pages terbaca)
+        run: npm run build:komputasiawan --if-present
+
+      - name: Build Struktur Data
+        run: npm run build:strukturdata --if-present
+
+      - name: Build CPNS
+        run: npm run build:cpns --if-present
+
+      - name: Copy Dashboard assets
+        # Menyalin index.html dan folder public ke folder dist/ agar Dashboard utama juga ter-deploy
+        run: |
+          cp public/index.html ../dist/index.html || cp public/index.html dist/index.html || echo "Dashboard index.html not found, skipping."
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          # Folder 'dist' adalah tujuan output dari hasil build slidev
