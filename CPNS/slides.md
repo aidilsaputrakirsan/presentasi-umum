@@ -1,6 +1,6 @@
 ---
 theme: seriph
-background: https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=1920&auto=format&fit=crop
+background: https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1920&auto=format&fit=crop
 class: text-center
 highlighter: shiki
 lineNumbers: false
@@ -15,14 +15,13 @@ title: Rancangan Aktualisasi CPNS 2026
 # Rancangan Aktualisasi
 **Pelatihan Dasar CPNS Angkatan VI Tahun 2026**
 
-<div class="mt-8 text-xl font-semibold text-blue-900 bg-white/80 p-6 rounded-xl shadow-lg border border-white/40 backdrop-blur-sm">
+<div class="mt-8 text-xl font-semibold text-blue-900 bg-white/95 p-6 rounded-xl shadow-2xl border border-white/50 backdrop-blur-md inline-block">
 Pengembangan Sistem Dashboard Analitik Tridharma Berbasis SINTA (SINTA Intel)<br/>
 pada Lab Inovasi Digital Prodi SI FSTI ITK
 </div>
 
-<div class="mt-12 text-sm text-gray-700">
-Disusun Oleh:<br/>
-<b>Aidil Saputra Kirsan, S.ST., M.Tr.Kom</b>
+<div class="mt-12 text-sm text-gray-900 bg-white/80 inline-block px-6 py-3 rounded-full shadow-md font-medium border border-white/50 backdrop-blur-sm">
+Disusun Oleh: <b class="text-blue-800">Aidil Saputra Kirsan, S.ST., M.Tr.Kom</b>
 </div>
 
 ---
