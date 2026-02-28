@@ -156,22 +156,11 @@ transition: slide-up
 
 # 8. Analisis Akar Masalah (Fishbone)
 
-<h3 class="text-sm text-gray-500 mb-2">Penyebab Data Riset & Publikasi Tidak Terkelola Terpusat:</h3>
-
 <div v-motion
   :initial="{ opacity: 0, scale: 0.9 }"
   :enter="{ opacity: 1, scale: 1, transition: { duration: 600 } }"
-  class="flex justify-center">
-  <img src="./fishbone.png" alt="Fishbone Diagram" class="w-full max-h-[60vh] object-contain drop-shadow-lg rounded-xl" />
-</div>
-
-<!-- Menampilkan ringkasan elemen fishbone yang akurat sesuai gambar -->
-<div class="grid grid-cols-5 gap-2 mt-4 text-[10px] leading-tight text-center">
-  <div v-click class="bg-blue-50 p-2 rounded border border-blue-200 shadow-sm"><b class="text-blue-700 block mb-1">Manusia</b>Tdk ada PIC & pimpinan kesulitan akses agregat data cepat</div>
-  <div v-click class="bg-teal-50 p-2 rounded border border-teal-200 shadow-sm"><b class="text-teal-700 block mb-1">Metode</b>Belum ada prosedur deteksi kolaborasi & monitoring masih ad hoc</div>
-  <div v-click class="bg-green-50 p-2 rounded border border-green-200 shadow-sm"><b class="text-green-700 block mb-1">Teknologi</b>Ketiadaan tools otomasi multi-platform & sistem terpadu internal</div>
-  <div v-click class="bg-yellow-50 p-2 rounded border border-yellow-200 shadow-sm"><b class="text-yellow-700 block mb-1">Data/Material</b>Data riset tersebar lintas platform & format penyimpanan tak standar</div>
-  <div v-click class="bg-red-50 p-2 rounded border border-red-200 shadow-sm"><b class="text-red-700 block mb-1">Lingkungan</b>Belum terbentuk kebijakan holistik prodi & prioritas admin rutin lebih tinggi</div>
+  class="flex justify-center mt-6">
+  <img src="./fishbone.png" alt="Fishbone Diagram" class="w-full h-[70vh] object-contain drop-shadow-xl rounded-xl" />
 </div>
 
 ---
