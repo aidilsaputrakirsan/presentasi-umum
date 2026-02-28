@@ -156,3 +156,20 @@ onMounted(() => {
   pointer-events: auto; /* allows interaction with canvas */
 }
 </style>
+
+<style>
+/* CSS Global untuk menimpa warna dasar background theme 'seriph' agar tidak menjadi pink saat di Export ke PDF */
+:root {
+  --slidev-theme-background: #eff6ff !important; /* Tailwind bg-blue-50 */
+}
+.dark {
+  --slidev-theme-background: #0f172a !important; /* Tailwind bg-slate-900 */
+}
+@media print {
+  .slidev-layout {
+    background-color: #eff6ff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+</style>
