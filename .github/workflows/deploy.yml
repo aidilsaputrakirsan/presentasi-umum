@@ -41,10 +41,11 @@ jobs:
         run: node generate-list.js
 
       - name: Copy Dashboard assets
-        # Menyalin index.html, presentations.json, dan folder public ke folder dist/ 
+        # Menyalin index.html, presentations.json, favicon, dan folder public ke folder dist/ 
         run: |
           cp public/index.html dist/index.html || echo "Dashboard index.html not found, skipping."
           cp public/presentations.json dist/presentations.json || echo "presentations.json not found, skipping."
+          cp public/favicon.svg dist/favicon.svg || echo "favicon not found, skipping."
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
