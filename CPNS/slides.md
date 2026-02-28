@@ -15,12 +15,18 @@ title: Rancangan Aktualisasi CPNS 2026
 # Rancangan Aktualisasi
 **Pelatihan Dasar CPNS Angkatan VI Tahun 2026**
 
-<div class="mt-8 text-xl font-semibold text-blue-900 bg-white/95 p-6 rounded-xl shadow-2xl border border-white/50 backdrop-blur-md inline-block">
+<div v-motion
+  :initial="{ y: 50, opacity: 0 }"
+  :enter="{ y: 0, opacity: 1, transition: { duration: 800, delay: 200 } }"
+  class="mt-8 text-xl font-semibold text-blue-900 bg-white/95 p-6 rounded-xl shadow-2xl border border-white/50 backdrop-blur-md inline-block">
 Pengembangan Sistem Dashboard Analitik Tridharma Berbasis SINTA (SINTA Intel)<br/>
 pada Lab Inovasi Digital Prodi SI FSTI ITK
 </div>
 
-<div class="mt-12 text-sm text-gray-900 bg-white/80 inline-block px-6 py-3 rounded-full shadow-md font-medium border border-white/50 backdrop-blur-sm">
+<div v-motion
+  :initial="{ scale: 0.8, opacity: 0 }"
+  :enter="{ scale: 1, opacity: 1, transition: { duration: 500, delay: 800 } }"
+  class="mt-12 text-sm text-gray-900 bg-white/80 inline-block px-6 py-3 rounded-full shadow-md font-medium border border-white/50 backdrop-blur-sm">
 Disusun Oleh: <b class="text-blue-800">Aidil Saputra Kirsan, S.ST., M.Tr.Kom</b>
 </div>
 
@@ -59,14 +65,20 @@ layout: center
 # 3. Profil Peserta & Jabatan
 
 <div class="grid grid-cols-2 gap-8 mt-8 text-left">
-  <div class="bg-white/60 p-6 rounded-xl shadow-md border border-gray-100" v-click>
-    <div class="text-blue-600 mb-2"><i class="fas fa-user-circle text-2xl"></i></div>
+  <div v-motion
+    :initial="{ x: -50, opacity: 0 }"
+    :enter="{ x: 0, opacity: 1, transition: { duration: 500 } }"
+    class="bg-white/60 p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all">
+    <div class="text-blue-600 mb-2"><i class="fas fa-user-circle text-2xl animate-pulse"></i></div>
     <div class="font-bold text-lg mb-1">Aidil Saputra Kirsan, S.ST., M.Tr.Kom</div>
     <div class="text-sm text-gray-500">NIP. 199403172025061004</div>
   </div>
   
-  <div class="bg-white/60 p-6 rounded-xl shadow-md border border-gray-100" v-click>
-    <div class="text-blue-600 mb-2"><i class="fas fa-briefcase text-2xl"></i></div>
+  <div v-motion
+    :initial="{ x: 50, opacity: 0 }"
+    :enter="{ x: 0, opacity: 1, transition: { duration: 500, delay: 200 } }"
+    class="bg-white/60 p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all">
+    <div class="text-blue-600 mb-2"><i class="fas fa-briefcase text-2xl animate-bounce"></i></div>
     <div class="font-bold text-lg mb-1">Dosen Asisten Ahli</div>
     <div class="text-sm text-gray-500">Kepala Lab Inovasi Digital<br/>Prodi Sistem Informasi, FSTI ITK</div>
   </div>
@@ -138,23 +150,29 @@ Isu terpilih sangat erat kaitannya dengan peran dan kedudukan PNS dalam mewujudk
 </div>
 
 ---
-layout: image-right
-image: ./fishbone.png
+layout: default
+transition: slide-up
 ---
 
-# 8. Akar Masalah (Fishbone)
+# 8. Analisis Akar Masalah (Fishbone)
 
-Akar masalah dari Data Riset yang tidak terkelola:
+<h3 class="text-sm text-gray-500 mb-2">Penyebab Data Riset & Publikasi Tidak Terkelola Terpusat:</h3>
 
-<v-clicks>
+<div v-motion
+  :initial="{ opacity: 0, scale: 0.9 }"
+  :enter="{ opacity: 1, scale: 1, transition: { duration: 600 } }"
+  class="flex justify-center">
+  <img src="./fishbone.png" alt="Fishbone Diagram" class="w-full max-h-[60vh] object-contain drop-shadow-lg rounded-xl" />
+</div>
 
-- <b class="text-blue-600">Manusia:</b> Tidak ada PIC khusus pengelolaan data riset.
-- <b class="text-blue-600">Metode:</b> Tidak ada sistem/SOP deteksi tren kolaborasi, dan data akreditasi siap pakai.
-- <b class="text-blue-600">Mesin/Teknologi:</b> Tidak ada <i>tools</i> otomasi integrasi SINTA.
-- <b class="text-blue-600">Material/Data:</b> Data tercecer di banyak platform.
-- <b class="text-blue-600">Lingkungan:</b> Belum terbentuknya kebijakan prodi yang holistik.
-
-</v-clicks>
+<!-- Menampilkan ringkasan elemen fishbone yang akurat sesuai gambar -->
+<div class="grid grid-cols-5 gap-2 mt-4 text-[10px] leading-tight text-center">
+  <div v-click class="bg-blue-50 p-2 rounded border border-blue-200 shadow-sm"><b class="text-blue-700 block mb-1">Manusia</b>Tdk ada PIC & pimpinan kesulitan akses agregat data cepat</div>
+  <div v-click class="bg-teal-50 p-2 rounded border border-teal-200 shadow-sm"><b class="text-teal-700 block mb-1">Metode</b>Belum ada prosedur deteksi kolaborasi & monitoring masih ad hoc</div>
+  <div v-click class="bg-green-50 p-2 rounded border border-green-200 shadow-sm"><b class="text-green-700 block mb-1">Teknologi</b>Ketiadaan tools otomasi multi-platform & sistem terpadu internal</div>
+  <div v-click class="bg-yellow-50 p-2 rounded border border-yellow-200 shadow-sm"><b class="text-yellow-700 block mb-1">Data/Material</b>Data riset tersebar lintas platform & format penyimpanan tak standar</div>
+  <div v-click class="bg-red-50 p-2 rounded border border-red-200 shadow-sm"><b class="text-red-700 block mb-1">Lingkungan</b>Belum terbentuk kebijakan holistik prodi & prioritas admin rutin lebih tinggi</div>
+</div>
 
 ---
 layout: default
@@ -163,19 +181,19 @@ layout: default
 # 9. Tujuan, Manfaat, & Ruang Lingkup
 
 <div class="grid grid-cols-3 gap-4 mt-6">
-  <div class="bg-white/80 p-4 rounded-lg shadow-sm" v-click>
-    <h3 class="font-bold text-blue-700 mb-2">Tujuan</h3>
-    <ul class="text-xs space-y-2 text-gray-600 list-disc ml-4">
+  <div v-motion :initial="{ y: 50, opacity: 0 }" :enter="{ y: 0, opacity: 1, transition: { delay: 100 } }" class="bg-white/90 p-5 border-t-4 border-blue-500 rounded-lg shadow-md hover:-translate-y-2 transition-transform duration-300">
+    <h3 class="font-bold text-blue-700 mb-2 flex items-center gap-2"><i class="fas fa-bullseye text-blue-400"></i> Tujuan</h3>
+    <ul class="text-xs space-y-2 text-gray-700 list-disc ml-4">
       <li>Membangun SINTA Intel (Dashboard Analitik).</li>
       <li>Menyediakan pemetaan riset & deteksi kolaborasi via AI.</li>
       <li>Monitoring dana riset (Funding Dashboard).</li>
-      <li>Menyediakan data rasio DTPS otomatis untuk Akreditasi BAN-PT.</li>
+      <li>Menyediakan data rasio DTPS otomatis untuk Akreditasi.</li>
     </ul>
   </div>
   
-  <div class="bg-white/80 p-4 rounded-lg shadow-sm" v-click>
-    <h3 class="font-bold text-green-700 mb-2">Manfaat</h3>
-    <ul class="text-xs space-y-2 text-gray-600 list-disc ml-4">
+  <div v-motion :initial="{ y: 50, opacity: 0 }" :enter="{ y: 0, opacity: 1, transition: { delay: 300 } }" class="bg-white/90 p-5 border-t-4 border-green-500 rounded-lg shadow-md hover:-translate-y-2 transition-transform duration-300">
+    <h3 class="font-bold text-green-700 mb-2 flex items-center gap-2"><i class="fas fa-gift text-green-400"></i> Manfaat</h3>
+    <ul class="text-xs space-y-2 text-gray-700 list-disc ml-4">
       <li><b>Penulis:</b> Aktualisasi teknis & BerAKHLAK.</li>
       <li><b>Prodi:</b> Efisiensi data & kesiapan akreditasi akurat.</li>
       <li><b>ITK:</b> Akuntabilitas kinerja Tridharma terbukti.</li>
@@ -183,10 +201,10 @@ layout: default
     </ul>
   </div>
   
-  <div class="bg-white/80 p-4 rounded-lg shadow-sm" v-click>
-    <h3 class="font-bold text-purple-700 mb-2">Ruang Lingkup</h3>
-    <ul class="text-xs space-y-2 text-gray-600 list-disc ml-4">
-      <li><b>Sasaran:</b> Dosen Prodi SI & Bisnis Digital, pimpinan FSTI ITK.</li>
+  <div v-motion :initial="{ y: 50, opacity: 0 }" :enter="{ y: 0, opacity: 1, transition: { delay: 500 } }" class="bg-white/90 p-5 border-t-4 border-purple-500 rounded-lg shadow-md hover:-translate-y-2 transition-transform duration-300">
+    <h3 class="font-bold text-purple-700 mb-2 flex items-center gap-2"><i class="fas fa-expand-arrows-alt text-purple-400"></i> Ruang Lingkup</h3>
+    <ul class="text-xs space-y-2 text-gray-700 list-disc ml-4">
+      <li><b>Sasaran:</b> Dosen Prodi SI & Bisnis Digital.</li>
       <li><b>Lokasi:</b> Lab Inovasi Digital ITK.</li>
       <li><b>Sumber Data:</b> Data SINTA Kemdiktisaintek & Hibah BIMA.</li>
     </ul>
