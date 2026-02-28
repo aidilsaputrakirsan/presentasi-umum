@@ -6,9 +6,9 @@
   "scripts": {
     "predev": "node generate-list.js",
     "dev": "node server.js",
-    "build:komputasiawan": "slidev build Komputasi-Awan/slides.md --base /Komputasi-Awan/ --out ../dist/Komputasi-Awan",
-    "build:strukturdata": "slidev build Struktur-Data/slides.md --base /Struktur-Data/ --out ../dist/Struktur-Data",
-    "build:cpns": "slidev build CPNS/slides.md --base /CPNS/ --out ../dist/CPNS"
+    "build:komputasiawan": "slidev build Komputasi-Awan/slides.md --base /presentasi-umum/Komputasi-Awan/ --out ../dist/Komputasi-Awan",
+    "build:strukturdata": "slidev build Struktur-Data/slides.md --base /presentasi-umum/Struktur-Data/ --out ../dist/Struktur-Data",
+    "build:cpns": "slidev build CPNS/slides.md --base /presentasi-umum/CPNS/ --out ../dist/CPNS"
   },
   "dependencies": {
     "@slidev/cli": "^0.49.0",
