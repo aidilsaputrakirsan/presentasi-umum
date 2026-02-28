@@ -121,11 +121,49 @@ layout: center
 
 Penetapan Isu menggunakan metode **Urgency, Seriousness, Growth (USG)**:
 
-| Isu Aktual | U | S | G | Total | Prioritas |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| Belum Ada Sistem Digital Pengelolaan TA (SIM TA) | 4 | 4 | 3 | 11 | II |
-| **Data Riset & Publikasi Dosen Tidak Terkelola Terpusat** | **5** | **5** | **4** | **14** | **I** |
-| Belum Ada Sistem Evaluasi Kepuasan Layanan Digital | 3 | 3 | 3 | 9 | III |
+<div v-motion
+  :initial="{ opacity: 0, y: 30 }"
+  :enter="{ opacity: 1, y: 0, transition: { duration: 600 } }"
+  class="overflow-hidden rounded-xl shadow-lg mt-6 border border-gray-200">
+  <table class="w-full text-sm text-left">
+    <thead class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white font-bold animate-pulse">
+      <tr>
+        <th class="px-4 py-3 border-b border-indigo-500 rounded-tl-xl text-center">Isu Aktual</th>
+        <th class="px-2 py-3 border-b border-indigo-500 text-center">U</th>
+        <th class="px-2 py-3 border-b border-indigo-500 text-center">S</th>
+        <th class="px-2 py-3 border-b border-indigo-500 text-center">G</th>
+        <th class="px-2 py-3 border-b border-indigo-500 text-center">Total</th>
+        <th class="px-3 py-3 border-b border-indigo-500 rounded-tr-xl text-center">Prioritas</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white">
+      <tr class="hover:bg-blue-50 transition-colors border-b">
+        <td class="px-4 py-3">Belum Ada Sistem Digital Pengelolaan TA (SIM TA)</td>
+        <td class="px-2 py-3 text-center text-gray-600">4</td>
+        <td class="px-2 py-3 text-center text-gray-600">4</td>
+        <td class="px-2 py-3 text-center text-gray-600">3</td>
+        <td class="px-2 py-3 text-center font-bold">11</td>
+        <td class="px-3 py-3 text-center text-gray-600">II</td>
+      </tr>
+      <tr class="bg-blue-100/50 hover:bg-blue-100 transition-colors border-b font-semibold">
+        <td class="px-4 py-3 text-blue-900 border-l-4 border-blue-600">Data Riset & Publikasi Dosen Tidak Terkelola Terpusat</td>
+        <td class="px-2 py-3 text-center text-blue-800">5</td>
+        <td class="px-2 py-3 text-center text-blue-800">5</td>
+        <td class="px-2 py-3 text-center text-blue-800">4</td>
+        <td class="px-2 py-3 text-center text-blue-900 font-bold text-base">14</td>
+        <td class="px-3 py-3 text-center text-white bg-blue-600 rounded-full mx-auto inline-block mt-2 px-3">I</td>
+      </tr>
+      <tr class="hover:bg-blue-50 transition-colors">
+        <td class="px-4 py-3">Belum Ada Sistem Evaluasi Kepuasan Layanan Digital</td>
+        <td class="px-2 py-3 text-center text-gray-600">3</td>
+        <td class="px-2 py-3 text-center text-gray-600">3</td>
+        <td class="px-2 py-3 text-center text-gray-600">3</td>
+        <td class="px-2 py-3 text-center font-bold">9</td>
+        <td class="px-3 py-3 text-center text-gray-600">III</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 *Alasan Isu Terpilih:* Sangat mendesak karena jadwal akreditasi semakin dekat, sangat berdampak pada nilai akreditasi prodi, dan akan semakin rumit seiring bertambahnya volume publikasi.
 
@@ -245,20 +283,96 @@ Nilai-nilai dasar **BerAKHLAK** diimplementasikan pada setiap tahapan:
 layout: default
 ---
 
-# 12. Jadwal Pelaksanaan (12 Minggu)
+# 12. Jadwal Pelaksanaan (7 Minggu)
 
-Pelaksanaan aktualisasi (24 Februari 2026 s.d. 24 Mei 2026):
+Pelaksanaan aktualisasi (Maret - April 2026):
 
-<div class="mt-6 text-sm">
+<div v-motion
+  :initial="{ opacity: 0, scale: 0.95 }"
+  :enter="{ opacity: 1, scale: 1, transition: { duration: 700 } }"
+  class="mt-6 overflow-hidden rounded-xl shadow-xl border border-gray-200">
+  
+  <table class="w-full text-xs text-left">
+    <thead>
+      <!-- Animasi Gradient Berjalan pada Header Bulan -->
+      <tr class="bg-[linear-gradient(45deg,#1e3a8a,#0284c7,#1e3a8a)] bg-[length:400%_400%] animate-[gradient_3s_ease_infinite] text-white font-bold text-center">
+        <th rowspan="2" class="px-2 py-2 w-8 border border-white/20">No</th>
+        <th rowspan="2" class="px-3 py-2 border border-white/20">Kegiatan</th>
+        <th colspan="3" class="px-2 py-2 border border-white/20 bg-blue-800/50">Maret 2026</th>
+        <th colspan="4" class="px-2 py-2 border border-white/20 bg-teal-700/50">April 2026</th>
+      </tr>
+      <tr class="bg-slate-800 text-white text-[10px] text-center border-b border-white/20">
+        <th class="py-1 w-[8%] border border-white/20">M1<br/>07-13</th>
+        <th class="py-1 w-[8%] border border-white/20">M2<br/>14-20</th>
+        <th class="py-1 w-[8%] border border-white/20">M3<br/>21-27</th>
+        <th class="py-1 w-[8%] border border-white/20">M4<br/>28-03</th>
+        <th class="py-1 w-[8%] border border-white/20">M5<br/>04-10</th>
+        <th class="py-1 w-[8%] border border-white/20">M6<br/>11-17</th>
+        <th class="py-1 w-[8%] border border-white/20">M7<br/>18-22</th>
+      </tr>
+    </thead>
+    <tbody class="bg-gray-50 text-center text-gray-800">
+      
+      <tr class="border-b border-gray-200 hover:bg-blue-50 transition-colors">
+        <td class="py-2 border-r border-gray-200">1</td>
+        <td class="px-3 py-2 text-left border-r border-gray-200">Pemetaan & Pengumpulan Data Dosen</td>
+        <td class="bg-blue-500 border border-white shadow-inner animate-[pulse_2s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+        <td class="bg-blue-500 border border-white shadow-inner animate-[pulse_2s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+        <td class="border-r border-gray-200"></td>
+        <td></td><td></td><td></td><td></td>
+      </tr>
+      
+      <tr class="border-b border-gray-200 hover:bg-blue-50 transition-colors">
+        <td class="py-2 border-r border-gray-200">2</td>
+        <td class="px-3 py-2 text-left border-r border-gray-200">Pengembangan Pipeline Scraper SINTA</td>
+        <td class="border-r border-gray-200"></td>
+        <td class="bg-blue-600 border border-white shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+        <td class="bg-blue-600 border border-white shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+        <td></td><td></td><td></td><td></td>
+      </tr>
 
-| Kegiatan Utama | Bulan 1 (M1-M4) | Bulan 2 (M5-M8) | Bulan 3 (M9-M12) |
-| :--- | :--- | :--- | :--- |
-| **1. Pemetaan & Pengumpulan Data** | Minggu 1 - 2 | | |
-| **2. Pipeline Scraper Otomatis** | Minggu 2 - 4 | | |
-| **3. Implementasi Analytics & Dashboard** | | Minggu 4 - 8 | |
-| **4. Fitur Akreditasi (DTPS & Funding)** | | Minggu 7 - 8 | Minggu 9 - 10 |
-| **5. Deployment, Sosialisasi, Evaluasi** | | | Minggu 10 - 12 |
+      <tr class="border-b border-gray-200 hover:bg-blue-50 transition-colors">
+        <td class="py-2 border-r border-gray-200">3</td>
+        <td class="px-3 py-2 text-left border-r border-gray-200">Implementasi Analytics & Dashboard</td>
+        <td class="border-r border-gray-200"></td>
+        <td class="border-r border-gray-200"></td>
+        <td class="bg-blue-700 border border-white shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+        <td class="bg-blue-700 border border-white shadow-inner animate-[pulse_3s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+        <td class="bg-blue-700 border border-white shadow-inner animate-[pulse_3s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+        <td></td><td></td>
+      </tr>
+      
+      <tr class="border-b border-gray-200 hover:bg-blue-50 transition-colors">
+        <td class="py-2 border-r border-gray-200">4</td>
+        <td class="px-3 py-2 text-left border-r border-gray-200">Dashboard Akreditasi (DTPS & Funding)</td>
+        <td class="border-r border-gray-200"></td>
+        <td class="border-r border-gray-200"></td>
+        <td class="border-r border-gray-200"></td>
+        <td class="bg-indigo-600 border border-white shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+        <td class="bg-indigo-600 border border-white shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+        <td class="bg-indigo-600 border border-white shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+        <td></td>
+      </tr>
 
+      <tr class="hover:bg-blue-50 transition-colors">
+        <td class="py-2 border-r border-gray-200">5</td>
+        <td class="px-3 py-2 text-left border-r border-gray-200">Deployment, Sosialisasi & Evaluasi</td>
+        <td class="border-r border-gray-200"></td>
+        <td class="border-r border-gray-200"></td>
+        <td class="border-r border-gray-200"></td>
+        <td class="border-r border-gray-200"></td>
+        <td class="border-r border-gray-200"></td>
+        <td class="bg-indigo-700 border border-white shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+        <td class="bg-indigo-700 border border-white shadow-inner animate-[pulse_2s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+      </tr>
+
+    </tbody>
+  </table>
+  
+  <div class="bg-white p-3 text-[10px] text-gray-500 border-t border-gray-200 flex justify-between">
+    <div class="flex items-center gap-2"><div class="w-3 h-3 bg-blue-500 border shadow-sm"></div> = Minggu aktif kegiatan berlangsung</div>
+    <div><i>*M1–M3 = Maret 2026 | M4–M7 = April 2026</i></div>
+  </div>
 </div>
 
 <div class="mt-12 text-center text-gray-500 italic">
