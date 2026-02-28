@@ -166,8 +166,12 @@ onMounted(() => {
   --slidev-theme-background: #0f172a !important; /* Tailwind bg-slate-900 */
 }
 @media print {
-  .slidev-layout {
+  .slidev-layout, 
+  .slidev-layout.cover, 
+  .slidev-layout.intro, 
+  .slidev-layout.center {
     background-color: #eff6ff !important;
+    background-image: none !important;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
