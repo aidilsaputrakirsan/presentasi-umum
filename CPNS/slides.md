@@ -1,6 +1,5 @@
 ---
 theme: seriph
-background: https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=1920&auto=format&fit=crop
 class: text-center
 highlighter: shiki
 lineNumbers: false
@@ -18,7 +17,7 @@ title: Rancangan Aktualisasi CPNS 2026
 <div v-motion
   :initial="{ y: 50, opacity: 0 }"
   :enter="{ y: 0, opacity: 1, transition: { duration: 800, delay: 200 } }"
-  class="mt-8 text-xl font-semibold text-blue-900 bg-white/95 p-6 rounded-xl shadow-2xl border border-white/50 backdrop-blur-md inline-block">
+  class="mt-8 text-xl font-semibold text-blue-900 dark:text-blue-100 bg-white/95 dark:bg-slate-900/90 p-6 rounded-xl shadow-2xl border border-white/50 dark:border-slate-700 backdrop-blur-md inline-block">
 Pengembangan Sistem Dashboard Analitik Tridharma Berbasis SINTA (SINTA Intel)<br/>
 pada Lab Inovasi Digital Prodi SI FSTI ITK
 </div>
@@ -26,8 +25,8 @@ pada Lab Inovasi Digital Prodi SI FSTI ITK
 <div v-motion
   :initial="{ scale: 0.8, opacity: 0 }"
   :enter="{ scale: 1, opacity: 1, transition: { duration: 500, delay: 800 } }"
-  class="mt-12 text-sm text-gray-900 bg-white/80 inline-block px-6 py-3 rounded-full shadow-md font-medium border border-white/50 backdrop-blur-sm">
-Disusun Oleh: <b class="text-blue-800">Aidil Saputra Kirsan, S.ST., M.Tr.Kom</b>
+  class="mt-12 text-sm text-gray-900 dark:text-gray-100 bg-white/80 dark:bg-slate-800/80 inline-block px-6 py-3 rounded-full shadow-md font-medium border border-white/50 dark:border-slate-700 backdrop-blur-sm">
+Disusun Oleh: <b class="text-blue-800 dark:text-blue-400">Aidil Saputra Kirsan, S.ST., M.Tr.Kom</b>
 </div>
 
 ---
@@ -51,9 +50,9 @@ Kampus teknologi yang unggul di wilayah Tengah dan Timur Indonesia, berlokasi di
 
 ::right::
 
-<div class="mt-12 ml-8 p-6 bg-blue-50/50 rounded-xl border-l-4 border-blue-600 shadow-sm" v-click>
+<div class="mt-12 ml-8 p-6 bg-blue-50/80 dark:bg-blue-900/40 rounded-xl border-l-4 border-blue-600 shadow-sm" v-click>
 <b>Visi ITK:</b>
-<p class="mt-4 text-sm text-gray-700 leading-relaxed">
+<p class="mt-4 text-sm text-gray-700 dark:text-gray-200 leading-relaxed">
 Menjadi perguruan tinggi unggul dan berperan aktif dalam pembangunan nasional melalui pemberdayaan potensi daerah Kalimantan.
 </p>
 </div>
@@ -68,19 +67,19 @@ layout: center
   <div v-motion
     :initial="{ x: -50, opacity: 0 }"
     :enter="{ x: 0, opacity: 1, transition: { duration: 500 } }"
-    class="bg-white/60 p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all">
-    <div class="text-blue-600 mb-2"><i class="fas fa-user-circle text-2xl animate-pulse"></i></div>
-    <div class="font-bold text-lg mb-1">Aidil Saputra Kirsan, S.ST., M.Tr.Kom</div>
-    <div class="text-sm text-gray-500">NIP. 199403172025061004</div>
+    class="bg-white/60 dark:bg-slate-800/80 p-6 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all">
+    <div class="text-blue-600 dark:text-blue-400 mb-2"><i class="fas fa-user-circle text-2xl animate-pulse"></i></div>
+    <div class="font-bold text-lg mb-1 dark:text-gray-100">Aidil Saputra Kirsan, S.ST., M.Tr.Kom</div>
+    <div class="text-sm text-gray-500 dark:text-gray-400">NIP. 199403172025061004</div>
   </div>
   
   <div v-motion
     :initial="{ x: 50, opacity: 0 }"
     :enter="{ x: 0, opacity: 1, transition: { duration: 500, delay: 200 } }"
-    class="bg-white/60 p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all">
-    <div class="text-blue-600 mb-2"><i class="fas fa-briefcase text-2xl animate-bounce"></i></div>
-    <div class="font-bold text-lg mb-1">Dosen Asisten Ahli</div>
-    <div class="text-sm text-gray-500">Kepala Lab Inovasi Digital<br/>Prodi Sistem Informasi, FSTI ITK</div>
+    class="bg-white/60 dark:bg-slate-800/80 p-6 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all">
+    <div class="text-blue-600 dark:text-blue-400 mb-2"><i class="fas fa-briefcase text-2xl animate-bounce"></i></div>
+    <div class="font-bold text-lg mb-1 dark:text-gray-100">Dosen Asisten Ahli</div>
+    <div class="text-sm text-gray-500 dark:text-gray-400">Kepala Lab Inovasi Digital<br/>Prodi Sistem Informasi, FSTI ITK</div>
   </div>
 </div>
 
@@ -124,7 +123,7 @@ Penetapan Isu menggunakan metode **Urgency, Seriousness, Growth (USG)**:
 <div v-motion
   :initial="{ opacity: 0, y: 30 }"
   :enter="{ opacity: 1, y: 0, transition: { duration: 600 } }"
-  class="overflow-hidden rounded-xl shadow-lg mt-6 border border-gray-200">
+  class="overflow-hidden rounded-xl shadow-lg mt-6 border border-gray-200 dark:border-slate-700">
   <table class="w-full text-sm text-left">
     <thead class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white font-bold animate-pulse">
       <tr>
@@ -136,30 +135,30 @@ Penetapan Isu menggunakan metode **Urgency, Seriousness, Growth (USG)**:
         <th class="px-3 py-3 border-b border-indigo-500 rounded-tr-xl text-center">Prioritas</th>
       </tr>
     </thead>
-    <tbody class="bg-white">
-      <tr class="hover:bg-blue-50 transition-colors border-b">
+    <tbody class="bg-white dark:bg-slate-900 border-b dark:border-slate-700">
+      <tr class="hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors border-b dark:border-slate-700 dark:text-gray-200">
         <td class="px-4 py-3">Belum Ada Sistem Digital Pengelolaan TA (SIM TA)</td>
-        <td class="px-2 py-3 text-center text-gray-600">4</td>
-        <td class="px-2 py-3 text-center text-gray-600">4</td>
-        <td class="px-2 py-3 text-center text-gray-600">3</td>
+        <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">4</td>
+        <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">4</td>
+        <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">3</td>
         <td class="px-2 py-3 text-center font-bold">11</td>
-        <td class="px-3 py-3 text-center text-gray-600">II</td>
+        <td class="px-3 py-3 text-center text-gray-600 dark:text-gray-400">II</td>
       </tr>
-      <tr class="bg-blue-100/50 hover:bg-blue-100 transition-colors border-b font-semibold">
-        <td class="px-4 py-3 text-blue-900 border-l-4 border-blue-600">Data Riset & Publikasi Dosen Tidak Terkelola Terpusat</td>
-        <td class="px-2 py-3 text-center text-blue-800">5</td>
-        <td class="px-2 py-3 text-center text-blue-800">5</td>
-        <td class="px-2 py-3 text-center text-blue-800">4</td>
-        <td class="px-2 py-3 text-center text-blue-900 font-bold text-base">14</td>
-        <td class="px-3 py-3 text-center text-white bg-blue-600 rounded-full mx-auto inline-block mt-2 px-3">I</td>
+      <tr class="bg-blue-100/50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors border-b dark:border-slate-700 font-semibold dark:text-gray-100">
+        <td class="px-4 py-3 text-blue-900 dark:text-blue-300 border-l-4 border-blue-600 dark:border-blue-400">Data Riset & Publikasi Dosen Tidak Terkelola Terpusat</td>
+        <td class="px-2 py-3 text-center text-blue-800 dark:text-blue-400">5</td>
+        <td class="px-2 py-3 text-center text-blue-800 dark:text-blue-400">5</td>
+        <td class="px-2 py-3 text-center text-blue-800 dark:text-blue-400">4</td>
+        <td class="px-2 py-3 text-center text-blue-900 dark:text-blue-300 font-bold text-base">14</td>
+        <td class="px-3 py-3 align-middle"><div class="text-white bg-blue-600 dark:bg-blue-500 rounded-full w-8 h-8 flex items-center justify-center mx-auto shadow-md">I</div></td>
       </tr>
-      <tr class="hover:bg-blue-50 transition-colors">
+      <tr class="hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors dark:text-gray-200">
         <td class="px-4 py-3">Belum Ada Sistem Evaluasi Kepuasan Layanan Digital</td>
-        <td class="px-2 py-3 text-center text-gray-600">3</td>
-        <td class="px-2 py-3 text-center text-gray-600">3</td>
-        <td class="px-2 py-3 text-center text-gray-600">3</td>
+        <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">3</td>
+        <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">3</td>
+        <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">3</td>
         <td class="px-2 py-3 text-center font-bold">9</td>
-        <td class="px-3 py-3 text-center text-gray-600">III</td>
+        <td class="px-3 py-3 text-center text-gray-600 dark:text-gray-400">III</td>
       </tr>
     </tbody>
   </table>
@@ -176,14 +175,14 @@ layout: default
 Isu terpilih sangat erat kaitannya dengan peran dan kedudukan PNS dalam mewujudkan **Smart Governance**:
 
 <div class="grid grid-cols-2 gap-6 mt-8">
-  <div class="bg-blue-50 p-6 rounded-lg border border-blue-100" v-click>
-    <h3 class="text-blue-800 font-bold border-b border-blue-200 pb-2 mb-3">Smart ASN</h3>
-    <p class="text-sm text-gray-700">Pengelolaan data yang manual mencerminkan kesenjangan <i>digital skill</i>. Solusi digital (SINTA Intel) mengatasi hal ini dengan pemanfaatan teknologi Machine Learning dan Web Development.</p>
+  <div class="bg-blue-50 dark:bg-slate-800 p-6 rounded-lg border border-blue-100 dark:border-slate-700" v-click>
+    <h3 class="text-blue-800 dark:text-blue-400 font-bold border-b border-blue-200 dark:border-slate-600 pb-2 mb-3">Smart ASN</h3>
+    <p class="text-sm text-gray-700 dark:text-gray-300">Pengelolaan data yang manual mencerminkan kesenjangan <i>digital skill</i>. Solusi digital (SINTA Intel) mengatasi hal ini dengan pemanfaatan teknologi Machine Learning dan Web Development.</p>
   </div>
   
-  <div class="bg-green-50 p-6 rounded-lg border border-green-100" v-click>
-    <h3 class="text-green-800 font-bold border-b border-green-200 pb-2 mb-3">Manajemen ASN</h3>
-    <p class="text-sm text-gray-700">Secara akuntabilitas, ASN Dosen wajib membuktikan kinerja Tridharma secara terukur. Ketiadaan sistem terpusat menghambat hal ini. Solusinya memberikan data transparan dan terverifikasi.</p>
+  <div class="bg-green-50 dark:bg-emerald-900/30 p-6 rounded-lg border border-green-100 dark:border-slate-700" v-click>
+    <h3 class="text-green-800 dark:text-emerald-400 font-bold border-b border-green-200 dark:border-slate-600 pb-2 mb-3">Manajemen ASN</h3>
+    <p class="text-sm text-gray-700 dark:text-gray-300">Secara akuntabilitas, ASN Dosen wajib membuktikan kinerja Tridharma secara terukur. Ketiadaan sistem terpusat menghambat hal ini. Solusinya memberikan data transparan dan terverifikasi.</p>
   </div>
 </div>
 
@@ -198,7 +197,7 @@ transition: slide-up
   :initial="{ opacity: 0, scale: 0.9 }"
   :enter="{ opacity: 1, scale: 1, transition: { duration: 600 } }"
   class="flex justify-center mt-6">
-  <img src="./fishbone.png" alt="Fishbone Diagram" class="w-full h-[70vh] object-contain drop-shadow-xl rounded-xl" />
+  <img src="./fishbone.png" alt="Fishbone Diagram" class="w-full max-h-[55vh] object-contain drop-shadow-xl rounded-xl" />
 </div>
 
 ---
@@ -208,9 +207,9 @@ layout: default
 # 9. Tujuan, Manfaat, & Ruang Lingkup
 
 <div class="grid grid-cols-3 gap-4 mt-6">
-  <div v-motion :initial="{ y: 50, opacity: 0 }" :enter="{ y: 0, opacity: 1, transition: { delay: 100 } }" class="bg-white/90 p-5 border-t-4 border-blue-500 rounded-lg shadow-md hover:-translate-y-2 transition-transform duration-300">
-    <h3 class="font-bold text-blue-700 mb-2 flex items-center gap-2"><i class="fas fa-bullseye text-blue-400"></i> Tujuan</h3>
-    <ul class="text-xs space-y-2 text-gray-700 list-disc ml-4">
+  <div v-motion :initial="{ y: 50, opacity: 0 }" :enter="{ y: 0, opacity: 1, transition: { delay: 100 } }" class="bg-white/90 dark:bg-slate-800/90 p-5 border-t-4 border-blue-500 rounded-lg shadow-md hover:-translate-y-2 transition-transform duration-300">
+    <h3 class="font-bold text-blue-700 dark:text-blue-400 mb-2 flex items-center gap-2"><i class="fas fa-bullseye text-blue-400"></i> Tujuan</h3>
+    <ul class="text-xs space-y-2 text-gray-700 dark:text-gray-300 list-disc ml-4">
       <li>Membangun SINTA Intel (Dashboard Analitik).</li>
       <li>Menyediakan pemetaan riset & deteksi kolaborasi via AI.</li>
       <li>Monitoring dana riset (Funding Dashboard).</li>
@@ -218,9 +217,9 @@ layout: default
     </ul>
   </div>
   
-  <div v-motion :initial="{ y: 50, opacity: 0 }" :enter="{ y: 0, opacity: 1, transition: { delay: 300 } }" class="bg-white/90 p-5 border-t-4 border-green-500 rounded-lg shadow-md hover:-translate-y-2 transition-transform duration-300">
-    <h3 class="font-bold text-green-700 mb-2 flex items-center gap-2"><i class="fas fa-gift text-green-400"></i> Manfaat</h3>
-    <ul class="text-xs space-y-2 text-gray-700 list-disc ml-4">
+  <div v-motion :initial="{ y: 50, opacity: 0 }" :enter="{ y: 0, opacity: 1, transition: { delay: 300 } }" class="bg-white/90 dark:bg-slate-800/90 p-5 border-t-4 border-green-500 rounded-lg shadow-md hover:-translate-y-2 transition-transform duration-300">
+    <h3 class="font-bold text-green-700 dark:text-emerald-400 mb-2 flex items-center gap-2"><i class="fas fa-gift text-green-400"></i> Manfaat</h3>
+    <ul class="text-xs space-y-2 text-gray-700 dark:text-gray-300 list-disc ml-4">
       <li><b>Penulis:</b> Aktualisasi teknis & BerAKHLAK.</li>
       <li><b>Prodi:</b> Efisiensi data & kesiapan akreditasi akurat.</li>
       <li><b>ITK:</b> Akuntabilitas kinerja Tridharma terbukti.</li>
@@ -228,9 +227,9 @@ layout: default
     </ul>
   </div>
   
-  <div v-motion :initial="{ y: 50, opacity: 0 }" :enter="{ y: 0, opacity: 1, transition: { delay: 500 } }" class="bg-white/90 p-5 border-t-4 border-purple-500 rounded-lg shadow-md hover:-translate-y-2 transition-transform duration-300">
-    <h3 class="font-bold text-purple-700 mb-2 flex items-center gap-2"><i class="fas fa-expand-arrows-alt text-purple-400"></i> Ruang Lingkup</h3>
-    <ul class="text-xs space-y-2 text-gray-700 list-disc ml-4">
+  <div v-motion :initial="{ y: 50, opacity: 0 }" :enter="{ y: 0, opacity: 1, transition: { delay: 500 } }" class="bg-white/90 dark:bg-slate-800/90 p-5 border-t-4 border-purple-500 rounded-lg shadow-md hover:-translate-y-2 transition-transform duration-300">
+    <h3 class="font-bold text-purple-700 dark:text-purple-400 mb-2 flex items-center gap-2"><i class="fas fa-expand-arrows-alt text-purple-400"></i> Ruang Lingkup</h3>
+    <ul class="text-xs space-y-2 text-gray-700 dark:text-gray-300 list-disc ml-4">
       <li><b>Sasaran:</b> Dosen Prodi SI & Bisnis Digital.</li>
       <li><b>Lokasi:</b> Lab Inovasi Digital ITK.</li>
       <li><b>Sumber Data:</b> Data SINTA Kemdiktisaintek & Hibah BIMA.</li>
@@ -266,9 +265,9 @@ layout: center
 
 Nilai-nilai dasar **BerAKHLAK** diimplementasikan pada setiap tahapan:
 
-<div class="text-sm bg-gray-50 p-6 rounded-xl border mt-6">
+<div class="text-sm bg-gray-50 dark:bg-slate-800 p-6 rounded-xl border dark:border-slate-700 mt-6 dark:text-gray-200">
   <b>Kegiatan Inti: Pengembangan Modul SINTA Intel</b>
-  <ul class="mt-3 space-y-2 list-disc ml-6 text-gray-700">
+  <ul class="mt-3 space-y-2 list-disc ml-6 text-gray-700 dark:text-gray-300">
     <li><b>Berorientasi Pelayanan:</b> Otomasi data mempercepat pimpinan mendapat laporan.</li>
     <li><b>Akuntabel:</b> Algoritma scraping & AI Clustering dapat diverifikasi dan diaudit.</li>
     <li><b>Kompeten:</b> Penggunaan Python, React/Vue, & Machine Learning (TF-IDF/K-Means).</li>
@@ -311,66 +310,60 @@ Pelaksanaan aktualisasi (Maret - April 2026):
         <th class="py-1 w-[8%] border border-white/20">M7<br/>18-22</th>
       </tr>
     </thead>
-    <tbody class="bg-gray-50 text-center text-gray-800">
-      
-      <tr class="border-b border-gray-200 hover:bg-blue-50 transition-colors">
-        <td class="py-2 border-r border-gray-200">1</td>
-        <td class="px-3 py-2 text-left border-r border-gray-200">Pemetaan & Pengumpulan Data Dosen</td>
-        <td class="bg-blue-500 border border-white shadow-inner animate-[pulse_2s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-        <td class="bg-blue-500 border border-white shadow-inner animate-[pulse_2s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-        <td class="border-r border-gray-200"></td>
-        <td></td><td></td><td></td><td></td>
-      </tr>
-      
-      <tr class="border-b border-gray-200 hover:bg-blue-50 transition-colors">
-        <td class="py-2 border-r border-gray-200">2</td>
-        <td class="px-3 py-2 text-left border-r border-gray-200">Pengembangan Pipeline Scraper SINTA</td>
-        <td class="border-r border-gray-200"></td>
-        <td class="bg-blue-600 border border-white shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-        <td class="bg-blue-600 border border-white shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-        <td></td><td></td><td></td><td></td>
-      </tr>
-
-      <tr class="border-b border-gray-200 hover:bg-blue-50 transition-colors">
-        <td class="py-2 border-r border-gray-200">3</td>
-        <td class="px-3 py-2 text-left border-r border-gray-200">Implementasi Analytics & Dashboard</td>
-        <td class="border-r border-gray-200"></td>
-        <td class="border-r border-gray-200"></td>
-        <td class="bg-blue-700 border border-white shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-        <td class="bg-blue-700 border border-white shadow-inner animate-[pulse_3s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-        <td class="bg-blue-700 border border-white shadow-inner animate-[pulse_3s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-        <td></td><td></td>
-      </tr>
-      
-      <tr class="border-b border-gray-200 hover:bg-blue-50 transition-colors">
-        <td class="py-2 border-r border-gray-200">4</td>
-        <td class="px-3 py-2 text-left border-r border-gray-200">Dashboard Akreditasi (DTPS & Funding)</td>
-        <td class="border-r border-gray-200"></td>
-        <td class="border-r border-gray-200"></td>
-        <td class="border-r border-gray-200"></td>
-        <td class="bg-indigo-600 border border-white shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-        <td class="bg-indigo-600 border border-white shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-        <td class="bg-indigo-600 border border-white shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-        <td></td>
-      </tr>
-
-      <tr class="hover:bg-blue-50 transition-colors">
-        <td class="py-2 border-r border-gray-200">5</td>
-        <td class="px-3 py-2 text-left border-r border-gray-200">Deployment, Sosialisasi & Evaluasi</td>
-        <td class="border-r border-gray-200"></td>
-        <td class="border-r border-gray-200"></td>
-        <td class="border-r border-gray-200"></td>
-        <td class="border-r border-gray-200"></td>
-        <td class="border-r border-gray-200"></td>
-        <td class="bg-indigo-700 border border-white shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-        <td class="bg-indigo-700 border border-white shadow-inner animate-[pulse_2s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-      </tr>
-
+    <tbody class="bg-gray-50 dark:bg-slate-900 text-center text-gray-800 dark:text-gray-200">
+<tr class="border-b border-gray-200 dark:border-slate-700 hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors">
+<td class="py-2 border-r border-gray-200 dark:border-slate-700">1</td>
+<td class="px-3 py-2 text-left border-r border-gray-200 dark:border-slate-700">Pemetaan & Pengumpulan Data Dosen</td>
+<td class="bg-blue-500 border border-white dark:border-slate-900 shadow-inner animate-[pulse_2s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td class="bg-blue-500 border border-white dark:border-slate-900 shadow-inner animate-[pulse_2s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td class="border-r border-gray-200 dark:border-slate-700"></td>
+<td></td><td></td><td></td><td></td>
+</tr>
+<tr class="border-b border-gray-200 dark:border-slate-700 hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors">
+<td class="py-2 border-r border-gray-200 dark:border-slate-700">2</td>
+<td class="px-3 py-2 text-left border-r border-gray-200 dark:border-slate-700">Pengembangan Pipeline Scraper SINTA</td>
+<td class="border-r border-gray-200 dark:border-slate-700"></td>
+<td class="bg-blue-600 border border-white dark:border-slate-900 shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td class="bg-blue-600 border border-white dark:border-slate-900 shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td></td><td></td><td></td><td></td>
+</tr>
+<tr class="border-b border-gray-200 dark:border-slate-700 hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors">
+<td class="py-2 border-r border-gray-200 dark:border-slate-700">3</td>
+<td class="px-3 py-2 text-left border-r border-gray-200 dark:border-slate-700">Implementasi Analytics & Dashboard</td>
+<td class="border-r border-gray-200 dark:border-slate-700"></td>
+<td class="border-r border-gray-200 dark:border-slate-700"></td>
+<td class="bg-blue-700 border border-white dark:border-slate-900 shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td class="bg-blue-700 border border-white dark:border-slate-900 shadow-inner animate-[pulse_3s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td class="bg-blue-700 border border-white dark:border-slate-900 shadow-inner animate-[pulse_3s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td></td><td></td>
+</tr>
+<tr class="border-b border-gray-200 dark:border-slate-700 hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors">
+<td class="py-2 border-r border-gray-200 dark:border-slate-700">4</td>
+<td class="px-3 py-2 text-left border-r border-gray-200 dark:border-slate-700">Dashboard Akreditasi (DTPS & Funding)</td>
+<td class="border-r border-gray-200 dark:border-slate-700"></td>
+<td class="border-r border-gray-200 dark:border-slate-700"></td>
+<td class="border-r border-gray-200 dark:border-slate-700"></td>
+<td class="bg-indigo-600 border border-white dark:border-slate-900 shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td class="bg-indigo-600 border border-white dark:border-slate-900 shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td class="bg-indigo-600 border border-white dark:border-slate-900 shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td></td>
+</tr>
+<tr class="hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors">
+<td class="py-2 border-r border-gray-200 dark:border-slate-700">5</td>
+<td class="px-3 py-2 text-left border-r border-gray-200 dark:border-slate-700">Deployment, Sosialisasi & Evaluasi</td>
+<td class="border-r border-gray-200 dark:border-slate-700"></td>
+<td class="border-r border-gray-200 dark:border-slate-700"></td>
+<td class="border-r border-gray-200 dark:border-slate-700"></td>
+<td class="border-r border-gray-200 dark:border-slate-700"></td>
+<td class="border-r border-gray-200 dark:border-slate-700"></td>
+<td class="bg-indigo-700 border border-white dark:border-slate-900 shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td class="bg-indigo-700 border border-white dark:border-slate-900 shadow-inner animate-[pulse_2s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+</tr>
     </tbody>
   </table>
   
-  <div class="bg-white p-3 text-[10px] text-gray-500 border-t border-gray-200 flex justify-between">
-    <div class="flex items-center gap-2"><div class="w-3 h-3 bg-blue-500 border shadow-sm"></div> = Minggu aktif kegiatan berlangsung</div>
+  <div class="bg-white dark:bg-slate-800 p-3 text-[10px] text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-slate-700 flex justify-between">
+    <div class="flex items-center gap-2"><div class="w-3 h-3 bg-blue-500 border shadow-sm dark:border-slate-600"></div> = Minggu aktif kegiatan berlangsung</div>
     <div><i>*M1–M3 = Maret 2026 | M4–M7 = April 2026</i></div>
   </div>
 </div>
