@@ -197,7 +197,7 @@ transition: slide-up
   :initial="{ opacity: 0, scale: 0.9 }"
   :enter="{ opacity: 1, scale: 1, transition: { duration: 600 } }"
   class="flex justify-center mt-6">
-  <img src="./fishbone.png" alt="Fishbone Diagram" class="w-full max-h-[55vh] object-contain drop-shadow-xl rounded-xl" />
+  <img src="./fishbone.png" alt="Fishbone Diagram" class="max-w-[80%] max-h-[40vh] object-contain drop-shadow-xl rounded-xl mx-auto" />
 </div>
 
 ---
