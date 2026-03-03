@@ -1,0 +1,3457 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rancangan Aktualisasi – SINTA Intel | Aidil Saputra Kirsan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="print.css" media="print">
+    <style>
+        :root {
+            --navy: #003366;
+            --gold: #C8922A;
+            --gold-light: #F5C842;
+            --blue-mid: #1a5276;
+            --blue-light: #d6eaf8;
+            --accent: #e74c3c;
+            --green: #1a7a4a;
+            --white: #ffffff;
+            --gray-light: #f4f6f9;
+            --gray: #7f8c8d;
+            --dark: #1a1a2e;
+            --text: #2c3e50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f3f7;
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* ======= NAVIGATION ======= */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            height: 56px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        nav .nav-brand {
+            color: var(--gold-light);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        nav .nav-links {
+            display: flex;
+            gap: 0.3rem;
+            list-style: none;
+        }
+
+        nav .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.72rem;
+            font-weight: 600;
+            padding: 0.4rem 0.7rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        nav .nav-links a:hover {
+            background: var(--gold);
+            color: white;
+        }
+
+        /* ======= COVER PAGE ======= */
+        #cover {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #001f4d 0%, #003050 40%, #0a5a9c 70%, #1a6eb0 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding-top: 56px;
+        }
+
+        #cover::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(200, 146, 42, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        #cover::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(26, 90, 156, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cover-header {
+            background: #ffffff;
+            border-bottom: 4px solid var(--gold);
+            padding: 0.8rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .cover-header-left,
+        .cover-header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .cover-header img {
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .cover-header-text h3 {
+            color: var(--navy);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+        }
+
+        .cover-header-text p {
+            color: var(--text);
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+
+        .cover-badge {
+            background: var(--gold);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .cover-body {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover-main {
+            padding: 3rem 3rem 2rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cover-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(200, 146, 42, 0.2);
+            border: 1px solid var(--gold);
+            color: var(--gold-light);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .cover-label::before {
+            content: '◆';
+            font-size: 0.5rem;
+        }
+
+        .cover-title {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: 2.4rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .cover-title span {
+            color: var(--gold-light);
+        }
+
+        .cover-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            font-style: italic;
+            margin-bottom: 2.5rem;
+            border-left: 3px solid var(--gold);
+            padding-left: 1rem;
+        }
+
+        .cover-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .cover-stat {
+            text-align: center;
+        }
+
+        .cover-stat .num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gold-light);
+            display: block;
+        }
+
+        .cover-stat .lbl {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cover-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            margin: 0.5rem auto;
+        }
+
+        .cover-sidebar {
+            background: #002244;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem 1.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .photo-placeholder {
+            width: 110px;
+            height: 140px;
+            background: none;
+            border: none;
+            border: 3px solid var(--gold);
+            border-radius: 12px;
+            margin: 0 auto 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-placeholder::before {
+            content: '\f007';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 2.5rem;
+            opacity: 0.6;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Sembunyikan placeholder icon jika sudah ada foto asli */
+        .photo-placeholder:has(img)::before {
+            display: none;
+        }
+
+        .photo-placeholder .photo-label {
+            font-size: 0.6rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            position: absolute;
+            bottom: 8px;
+            padding: 0 4px;
+            line-height: 1.2;
+        }
+
+        .profile-name {
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .profile-role {
+            color: var(--gold-light);
+            font-size: 0.72rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .profile-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.35rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 0.68rem;
+        }
+
+        .profile-info-row .lbl {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .profile-info-row .val {
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+            text-align: right;
+            max-width: 60%;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+        }
+
+        .info-card h4 {
+            color: var(--gold-light);
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.7rem;
+            font-weight: 700;
+        }
+
+        .info-card p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.73rem;
+            line-height: 1.6;
+        }
+
+        .info-row {
+            display: flex;
+            gap: 0.6rem;
+            align-items: flex-start;
+            padding: 0.35rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.7rem;
+        }
+
+        .info-row .lbl {
+            color: rgba(255, 255, 255, 0.45);
+            min-width: 70px;
+            flex-shrink: 0;
+        }
+
+        .info-row .val {
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+        }
+
+        .cover-footer {
+            background: rgba(0, 0, 0, 0.25);
+            border-top: 2px solid var(--gold);
+            padding: 0.9rem 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cover-footer p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.7rem;
+            letter-spacing: 0.5px;
+        }
+
+        .cover-footer strong {
+            color: var(--gold-light);
+        }
+
+        /* ======= SECTIONS ======= */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* ======= CHAPTER HEADER ======= */
+        .chapter-header {
+            position: relative;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue-mid) 100%);
+            padding: 2.5rem 4rem;
+            margin-bottom: 0;
+            overflow: hidden;
+        }
+
+        .chapter-header::before {
+            content: '';
+            position: absolute;
+            right: -50px;
+            top: -50px;
+            width: 200px;
+            height: 200px;
+            border: 30px solid rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .chapter-header::after {
+            content: '';
+            position: absolute;
+            right: 50px;
+            bottom: -70px;
+            width: 180px;
+            height: 180px;
+            border: 25px solid rgba(200, 146, 42, 0.1);
+            border-radius: 50%;
+        }
+
+        .chapter-number {
+            color: rgba(255, 255, 255, 0.12);
+            font-family: 'Playfair Display', serif;
+            font-size: 7rem;
+            font-weight: 900;
+            position: absolute;
+            right: 4rem;
+            top: -1.5rem;
+            line-height: 1;
+        }
+
+        .chapter-tag {
+            display: inline-block;
+            background: var(--gold);
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.3rem 0.9rem;
+            border-radius: 3px;
+            margin-bottom: 0.7rem;
+        }
+
+        .chapter-title {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0.4rem;
+        }
+
+        .chapter-desc {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.82rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ======= SECTION CONTENT ======= */
+        .content-area {
+            background: white;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .content-inner {
+            padding: 3rem 4rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 5px;
+            height: 1.4rem;
+            background: var(--gold);
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .section-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--blue-mid);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--blue-light);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        /* ======= INFO GRID ======= */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-box {
+            background: var(--gray-light);
+            border: 1px solid #e0e8f0;
+            border-radius: 12px;
+            padding: 1.3rem 1.5rem;
+            border-left: 4px solid var(--navy);
+        }
+
+        .info-box.gold {
+            border-left-color: var(--gold);
+        }
+
+        .info-box.green {
+            border-left-color: var(--green);
+        }
+
+        .info-box.red {
+            border-left-color: var(--accent);
+        }
+
+        .info-box h4 {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #4a5568;
+        }
+
+        /* ======= STYLED TABLE ======= */
+        .mag-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.82rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .mag-table thead tr {
+            background: linear-gradient(135deg, var(--navy), var(--blue-mid));
+            color: white;
+        }
+
+        .mag-table thead th {
+            padding: 0.9rem 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .mag-table tbody tr:nth-child(even) {
+            background: #f0f5fb;
+        }
+
+        .mag-table tbody tr:nth-child(odd) {
+            background: white;
+        }
+
+        .mag-table tbody tr:hover {
+            background: #e8f0fa;
+        }
+
+        .mag-table td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #e8ecf0;
+            vertical-align: top;
+            line-height: 1.6;
+        }
+
+        .mag-table td strong {
+            color: var(--navy);
+        }
+
+        .mag-table .highlight-row td {
+            background: linear-gradient(135deg, #fff8e1, #fffde7) !important;
+            border-left: 4px solid var(--gold);
+            font-weight: 600;
+        }
+
+        /* ======= BERAKHLAK CARDS ======= */
+        .berakhlak-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .berakhlak-card {
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .berakhlak-card::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .berakhlak-card .letter {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.25);
+            position: absolute;
+            top: -0.2rem;
+            right: 0.5rem;
+            line-height: 1;
+        }
+
+        .berakhlak-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .berakhlak-card p {
+            font-size: 0.68rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin: 0;
+            position: relative;
+            z-index: 1;
+            line-height: 1.5;
+        }
+
+        .bc-1 {
+            background: linear-gradient(135deg, #1565c0, #1976d2);
+        }
+
+        .bc-2 {
+            background: linear-gradient(135deg, #283593, #3949ab);
+        }
+
+        .bc-3 {
+            background: linear-gradient(135deg, #00695c, #00897b);
+        }
+
+        .bc-4 {
+            background: linear-gradient(135deg, #4527a0, #5e35b1);
+        }
+
+        .bc-5 {
+            background: linear-gradient(135deg, #ad1457, #c2185b);
+        }
+
+        .bc-6 {
+            background: linear-gradient(135deg, #e65100, #f57c00);
+        }
+
+        .bc-7 {
+            background: linear-gradient(135deg, #2e7d32, #388e3c);
+        }
+
+        /* ======= USG TABLE ======= */
+        .usg-row-winner td {
+            background: linear-gradient(135deg, #e8f5e9, #f1f8e9) !important;
+            font-weight: 700;
+            color: var(--green) !important;
+        }
+
+        .score-badge {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 800;
+            font-size: 0.85rem;
+        }
+
+        .score-5 {
+            background: var(--accent);
+            color: white;
+        }
+
+        .score-4 {
+            background: var(--gold);
+            color: white;
+        }
+
+        .score-3 {
+            background: #3498db;
+            color: white;
+        }
+
+        /* ======= HIGHLIGHT BOX ======= */
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd, #fff8e1);
+            border: 2px solid var(--gold);
+            border-radius: 14px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '\f005';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 1.5rem;
+            top: 0.8rem;
+            font-size: 3rem;
+            color: rgba(200, 146, 42, 0.15);
+        }
+
+        .highlight-box h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--navy);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.7rem;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #5d4037;
+            line-height: 1.7;
+        }
+
+        .alert-box {
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            font-size: 0.83rem;
+        }
+
+        .alert-blue {
+            background: #e3f2fd;
+            border-left: 4px solid #1565c0;
+        }
+
+        .alert-gold {
+            background: #fff8e1;
+            border-left: 4px solid var(--gold);
+        }
+
+        .alert-green {
+            background: #e8f5e9;
+            border-left: 4px solid #2e7d32;
+        }
+
+        .alert-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .alert-box p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* ======= FEATURE CARDS ======= */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 1.3rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card .f-num {
+            position: absolute;
+            top: -0.5rem;
+            right: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: rgba(0, 51, 102, 0.06);
+            line-height: 1;
+        }
+
+        .feature-card .f-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-card h4 {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.4rem;
+        }
+
+        .feature-card p {
+            font-size: 0.73rem;
+            color: #6b7280;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .fc-blue .f-icon {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .fc-teal .f-icon {
+            background: #ccfbf1;
+            color: #0f766e;
+        }
+
+        .fc-purple .f-icon {
+            background: #ede9fe;
+            color: #7c3aed;
+        }
+
+        .fc-orange .f-icon {
+            background: #ffedd5;
+            color: #c2410c;
+        }
+
+        .fc-green .f-icon {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .fc-red .f-icon {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .fc-gold .f-icon {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        /* ======= KEGIATAN CARDS ======= */
+        .kegiatan-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .kegiatan-header {
+            background: linear-gradient(135deg, var(--navy), var(--blue-mid));
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .kegiatan-num {
+            background: var(--gold);
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .kegiatan-header h3 {
+            color: white;
+            font-size: 0.92rem;
+            font-weight: 700;
+            flex: 1;
+        }
+
+        .kegiatan-header .period {
+            background: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .kegiatan-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0;
+        }
+
+        .kegiatan-col {
+            padding: 1.2rem 1.5rem;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .kegiatan-col:last-child {
+            border-right: none;
+        }
+
+        .kegiatan-col h5 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 0.7rem;
+        }
+
+        .kegiatan-col ul {
+            list-style: none;
+            font-size: 0.75rem;
+            color: #4a5568;
+        }
+
+        .kegiatan-col ul li {
+            padding: 0.25rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+        }
+
+        .kegiatan-col ul li::before {
+            content: '›';
+            color: var(--navy);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 0.05rem;
+        }
+
+        .output-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+            border-radius: 6px;
+            padding: 0.4rem 0.7rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            margin: 0.3rem 0;
+        }
+
+        /* ======= JADWAL ======= */
+        .jadwal-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .jadwal-table th {
+            background: var(--navy);
+            color: white;
+            padding: 0.7rem 0.5rem;
+            text-align: center;
+            font-size: 0.72rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .jadwal-table td {
+            padding: 0.65rem 0.8rem;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            font-size: 0.75rem;
+        }
+
+        .jadwal-table tr:nth-child(even) td:first-child {
+            background: #f5f8fc;
+        }
+
+        .jadwal-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: var(--navy);
+            background: #f8fafd;
+        }
+
+        .jadwal-active {
+            background: var(--navy) !important;
+            border-radius: 4px;
+            color: white !important;
+            font-weight: 700 !important;
+        }
+
+        .jadwal-table .month-header th {
+            background: linear-gradient(135deg, var(--gold), #e8a820);
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+        }
+
+        /* ======= LEMBAR FORMAL ======= */
+        .formal-page {
+            background: white;
+            border: none;
+            border-radius: 0;
+            padding: 3rem 4rem;
+            margin: 1.5rem 0;
+            position: relative;
+            box-shadow: none;
+        }
+
+        .formal-page::before {
+            display: none;
+        }
+
+        .formal-page .mag-table {
+            box-shadow: none;
+            border: none;
+            border-radius: 0;
+        }
+
+        .formal-page .mag-table tbody tr:nth-child(even),
+        .formal-page .mag-table tbody tr:nth-child(odd) {
+            background: transparent;
+        }
+
+        .formal-page .mag-table tbody tr:hover {
+            background: transparent;
+        }
+
+        .formal-page .mag-table td {
+            border-bottom: 1px solid #eee;
+            padding: 0.7rem 1rem;
+        }
+
+        .formal-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .formal-divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--navy), transparent);
+            margin: 0.8rem auto 2rem;
+            width: 80%;
+        }
+
+        .ttd-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .ttd-box .role {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.3rem;
+        }
+
+        .ttd-box .line {
+            border-bottom: 2px solid var(--navy);
+            margin: 3.5rem 1rem 0.4rem;
+        }
+
+        .ttd-box .name {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .ttd-box .nip {
+            font-size: 0.72rem;
+            color: var(--gray);
+        }
+
+        /* ======= KONSULTASI TABLE ======= */
+        .konsultasi-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        .konsultasi-table th {
+            background: var(--navy);
+            color: white;
+            padding: 0.8rem 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        .konsultasi-table td {
+            padding: 1rem;
+            border: 1px solid #e0e8f0;
+            vertical-align: middle;
+        }
+
+        .konsultasi-table tr:nth-child(even) {
+            background: #f5f8fc;
+        }
+
+        /* ======= KATA PENGANTAR ======= */
+        .kata-pengantar {
+            background: linear-gradient(135deg, #f8f9fa, #fff);
+            border-left: 6px solid var(--navy);
+            padding: 2rem 2.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1.5rem 0;
+        }
+
+        .kata-pengantar p {
+            line-height: 1.9;
+            color: #374151;
+        }
+
+        /* ======= IDENTITAS ======= */
+        .identitas-layout {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2.5rem;
+            align-items: start;
+            margin: 1.5rem 0;
+        }
+
+        .identitas-photo {
+            text-align: center;
+        }
+
+        .photo-frame {
+            width: 160px;
+            height: 200px;
+            border: 3px solid var(--navy);
+            border-radius: 10px;
+            background: linear-gradient(135deg, #e8f0fa, #dbeafe);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.7rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .photo-frame .photo-icon {
+            font-size: 3.5rem;
+            opacity: 0.35;
+        }
+
+        .photo-frame .photo-insert-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--navy);
+            color: white;
+            font-size: 0.62rem;
+            padding: 0.4rem;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .identitas-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.83rem;
+        }
+
+        .identitas-table tr:nth-child(even) {
+            background: #f5f8fc;
+        }
+
+        .identitas-table td {
+            padding: 0.6rem 0.9rem;
+            border-bottom: 1px solid #e8ecf0;
+            vertical-align: top;
+        }
+
+        .identitas-table td:first-child {
+            font-weight: 700;
+            color: var(--navy);
+            min-width: 160px;
+            white-space: nowrap;
+        }
+
+        .identitas-table td:nth-child(2) {
+            color: #555;
+            min-width: 10px;
+            padding: 0.6rem 0.3rem;
+        }
+
+        /* ======= INSTANSI GRID ======= */
+        .instansi-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .instansi-item {
+            display: flex;
+            flex-direction: column;
+            background: #f8fafd;
+            border: 1px solid #dbeafe;
+            border-radius: 10px;
+            padding: 1rem 1.3rem;
+        }
+
+        .instansi-item .key {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .instansi-item .value {
+            font-size: 0.85rem;
+            color: var(--dark);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* ======= PENUTUP ======= */
+        #penutup {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue-mid) 100%);
+            padding: 5rem 4rem;
+            text-align: center;
+            color: white;
+        }
+
+        #penutup .closing-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+            line-height: 1.4;
+        }
+
+        #penutup .closing-quote span {
+            color: var(--gold-light);
+        }
+
+        #penutup p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .sig-box {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            padding: 1.5rem 2.5rem;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .sig-box p {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .sig-box strong {
+            color: white;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .sig-box small {
+            color: var(--gold-light);
+            font-size: 0.75rem;
+            display: block;
+            margin-top: 0.2rem;
+        }
+
+        /* ======= DIVIDERS ======= */
+        .section-sep {
+            height: 6px;
+            background: linear-gradient(90deg, var(--navy), var(--gold), var(--navy));
+            margin: 0;
+        }
+
+
+        @media (max-width: 768px) {
+            .cover-body {
+                grid-template-columns: 1fr;
+            }
+
+            .cover-sidebar {
+                display: none;
+            }
+
+            .berakhlak-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .kegiatan-body {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .identitas-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .content-inner {
+                padding: 2rem 1.5rem;
+            }
+
+            nav .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-brand"><i class="fa-solid fa-bolt" style="color:var(--gold-light); margin-right:4px;"></i> SINTA
+            INTEL · ITK</div>
+        <ul class="nav-links">
+            <li><a href="#cover">Cover</a></li>
+            <li><a href="#lembar-formal">Lembar</a></li>
+            <li><a href="#bab1">Bab I</a></li>
+            <li><a href="#bab2">Bab II</a></li>
+            <li><a href="#bab3">Bab III</a></li>
+            <li><a href="#bab4">Bab IV</a></li>
+            <li><a href="#penutup">Penutup</a></li>
+        </ul>
+    </nav>
+
+    <!-- ============================================================ -->
+    <!--  COVER                                                        -->
+    <!-- ============================================================ -->
+    <section id="cover">
+        <div class="cover-header">
+            <div class="cover-header-left">
+                <img src="logoitk.png" alt="Logo ITK">
+                <img src="logo-fsti.webp" alt="Logo FSTI">
+            </div>
+            <div class="cover-header-right">
+                <img src="Logo_LAN_RI.png" alt="LAN RI" style="height:60px;">
+            </div>
+        </div>
+
+        <div class="cover-body">
+            <div class="cover-main">
+                <div class="cover-label">Rancangan Aktualisasi</div>
+                <h1 class="cover-title">
+                    Pengembangan Sistem<br>
+                    Dashboard Analitik Tridharma<br>
+                    Berbasis <span>SINTA</span>
+                </h1>
+                <p class="cover-subtitle">SINTA Intel — Lab Inovasi Digital, Prodi Sistem Informasi, FSTI ITK</p>
+                <div class="cover-stats">
+                    <div class="cover-stat">
+                        <span class="num">5</span>
+                        <div class="cover-divider"></div>
+                        <span class="lbl">Kegiatan</span>
+                    </div>
+                    <div class="cover-stat">
+                        <span class="num">7</span>
+                        <div class="cover-divider"></div>
+                        <span class="lbl">Fitur Utama</span>
+                    </div>
+                    <div class="cover-stat">
+                        <span class="num">7</span>
+                        <div class="cover-divider"></div>
+                        <span class="lbl">Minggu</span>
+                    </div>
+                    <div class="cover-stat">
+                        <span class="num">14</span>
+                        <div class="cover-divider"></div>
+                        <span class="lbl">Skor USG</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cover-sidebar">
+                <div class="profile-card">
+                    <div class="photo-placeholder" style="background: none; border: none; padding: 0;">
+                        <img src="fotoku.png" alt="Aidil Saputra Kirsan"
+                            style="width:100%; height:100%; object-fit:cover; border-radius:12px; border: 3px solid var(--gold);">
+
+                    </div>
+                    <div class="profile-name">Aidil Saputra Kirsan</div>
+                    <div class="profile-role">S.ST., M.Tr.Kom</div>
+                    <div class="profile-info-row">
+                        <span class="lbl">NIP</span>
+                        <span class="val">199403172025061004</span>
+                    </div>
+                    <div class="profile-info-row">
+                        <span class="lbl">Jabatan</span>
+                        <span class="val">Dosen Asisten Ahli / Ka. Lab</span>
+                    </div>
+                    <div class="profile-info-row">
+                        <span class="lbl">Pangkat</span>
+                        <span class="val">Penata Muda Tk.I / III-b</span>
+                    </div>
+                    <div class="profile-info-row">
+                        <span class="lbl">Unit Kerja</span>
+                        <span class="val">Lab Inovasi Digital, FSTI ITK</span>
+                    </div>
+                    <div class="profile-info-row">
+                        <span class="lbl">Angkatan</span>
+                        <span class="val">VI / 2026</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h4><i class="fa-solid fa-clipboard-list" style="margin-right:8px;"></i> Pembimbing</h4>
+                    <div class="info-row"><span class="lbl">Mentor</span><span class="val">Irma Fitria, S.Si.,
+                            M.Si</span></div>
+                    <div class="info-row"><span class="lbl">Coach</span><span class="val">Mustari Kurniawati, S.IP.,
+                            MPA</span></div>
+                    <div class="info-row"><span class="lbl">Penyelenggara</span><span class="val">Puslat &amp;
+                            Pengembangan – LAN RI</span></div>
+                </div>
+
+                <div class="info-card">
+                    <h4><i class="fa-regular fa-calendar-alt" style="margin-right:8px;"></i> Jadwal Habituasi</h4>
+                    <p>7 Maret – 22 April 2026<br>Off Campus · 7 Minggu</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cover-footer">
+            <p><strong>PELATIHAN DASAR CPNS</strong> · Angkatan VI · Tahun 2026</p>
+            <p>Pusat Pelatihan dan Pengembangan · <strong>LAN RI</strong></p>
+        </div>
+    </section>
+
+    <div class="section-sep"></div>
+
+    <!-- ============================================================ -->
+    <!--  LEMBAR FORMAL                                                -->
+    <!-- ============================================================ -->
+    <section id="lembar-formal">
+        <div class="chapter-header">
+            <div class="chapter-number">L</div>
+            <div class="chapter-tag">Lembar Administrasi</div>
+            <h2 class="chapter-title">Persetujuan, Pengesahan & Konsultasi</h2>
+            <p class="chapter-desc">Lembar formal yang menjadi dasar legalitas Rancangan Aktualisasi ini</p>
+        </div>
+        <div class="content-area">
+            <div class="content-inner">
+
+                <!-- Lembar Persetujuan -->
+                <div>
+                    <div class="formal-title">Lembar Persetujuan</div>
+                    <div class="formal-divider"></div>
+                    <p style="margin-bottom:1.5rem;">Rancangan Aktualisasi ini diajukan oleh:</p>
+                    <table class="mag-table">
+                        <tbody>
+                            <tr>
+                                <td style="width:200px"><strong>Nama</strong></td>
+                                <td>Aidil Saputra Kirsan, S.ST., M.Tr.Kom</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NIP</strong></td>
+                                <td>199403172025061004</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Jabatan</strong></td>
+                                <td>Dosen Asisten Ahli / Kepala Lab Inovasi Digital</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Unit Kerja</strong></td>
+                                <td>Prodi Sistem Informasi, FSTI – Institut Teknologi Kalimantan</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Judul Rancangan</strong></td>
+                                <td>Pengembangan Sistem Dashboard Analitik Tridharma Berbasis SINTA (SINTA Intel) pada
+                                    Lab Inovasi Digital FSTI ITK</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top:1.2rem;">Telah diseminarkan dan mendapat persetujuan untuk dilaksanakan sebagai
+                        kegiatan Aktualisasi Pelatihan Dasar CPNS Angkatan VI Tahun 2026.</p>
+                    <div class="ttd-grid">
+                        <div class="ttd-box">
+                            <div class="role">Menyetujui, Coach</div>
+                            <br><br><br><br>
+                            <div class="name">Mustari Kurniawati, S.IP., MPA</div>
+                            <div class="nip">NIP. 197712232005012001</div>
+                        </div>
+                        <div class="ttd-box">
+                            <div class="role">Mengetahui, Mentor</div>
+                            <br><br><br><br>
+                            <div class="name">Irma Fitria, S.Si., M.Si</div>
+                            <div class="nip">NIP. 199303232022032016</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lembar Pengesahan -->
+                <div class="pdf-page-break"></div>
+
+                <div>
+                    <br><br>
+                    <div class="formal-title">Lembar Pengesahan</div>
+                    <div class="formal-divider"></div>
+                    <p style="margin-bottom:1.5rem;">Rancangan Aktualisasi ini telah diseminarkan di hadapan penguji dan
+                        dinyatakan layak untuk dilaksanakan.</p>
+                    <table class="mag-table">
+                        <tbody>
+                            <tr>
+                                <td style="width:200px"><strong>Nama</strong></td>
+                                <td>Aidil Saputra Kirsan, S.ST., M.Tr.Kom</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NIP</strong></td>
+                                <td>199403172025061004</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Jabatan</strong></td>
+                                <td>Dosen Asisten Ahli / Kepala Lab Inovasi Digital</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Unit Kerja</strong></td>
+                                <td>Prodi Sistem Informasi, FSTI – Institut Teknologi Kalimantan</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tanggal Seminar</strong></td>
+                                <td>06 Maret 2026</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tempat</strong></td>
+                                <td>Online</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="ttd-grid" style="grid-template-columns:1fr 1fr 1fr">
+                        <div class="ttd-box">
+                            <div class="role">Penguji</div>
+                            <br><br><br><br>
+                            <div class="name" style="color:#888"><em>__________________</em></div>
+                            <div class="nip">NIP. __________________</div>
+                        </div>
+                        <div class="ttd-box">
+                            <div class="role">Coach</div>
+                            <br><br><br><br>
+                            <div class="name">Mustari Kurniawati, S.IP., MPA</div>
+                            <div class="nip">NIP. 197712232005012001</div>
+                        </div>
+                        <div class="ttd-box">
+                            <div class="role">Mentor</div>
+                            <br><br><br><br>
+                            <div class="name">Irma Fitria, S.Si., M.Si</div>
+                            <div class="nip">NIP. 199303232022032016</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pdf-page-break"></div>
+                <!-- Lembar Konsultasi Mentor -->
+                <div class="section-subtitle"><i class="fa-solid fa-file-signature" style="margin-right:8px;"></i>
+                    Lembar Konsultasi Mentor</div>
+                <div class="alert-box alert-blue">
+                    <div class="alert-icon"><i class="fa-solid fa-circle-info"></i></div>
+                    <div>
+                        <strong>Mentor:</strong> Irma Fitria, S.Si., M.Si &nbsp;·&nbsp; NIP. 199303232022032016
+                        &nbsp;·&nbsp; <em>Wakil Dekan Bidang Akademik dan Kemahasiswaan FSTI ITK</em>
+                    </div>
+                </div>
+                <table class="konsultasi-table">
+                    <thead>
+                        <tr>
+                            <th style="width:50px">No</th>
+                            <th style="width:120px">Tanggal</th>
+                            <th>Uraian Konsultasi / Catatan</th>
+                            <th style="width:120px">Paraf Mentor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center">1</td>
+                            <td></td>
+                            <td style="height:50px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">2</td>
+                            <td></td>
+                            <td style="height:50px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">3</td>
+                            <td></td>
+                            <td style="height:50px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">4</td>
+                            <td></td>
+                            <td style="height:50px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">5</td>
+                            <td></td>
+                            <td style="height:50px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">6</td>
+                            <td></td>
+                            <td style="height:50px"></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="pdf-page-break"></div>
+
+                <!-- Lembar Konsultasi Coach -->
+                <div class="section-subtitle" style="margin-top:2rem"><i class="fa-solid fa-file-signature"
+                        style="margin-right:8px;"></i> Lembar Konsultasi Coach</div>
+                <div class="alert-box alert-gold">
+                    <div class="alert-icon"><i class="fa-solid fa-circle-info"></i></div>
+                    <div>
+                        <strong>Coach:</strong> Mustari Kurniawati, S.IP., MPA &nbsp;·&nbsp; NIP. 197712232005012001
+                    </div>
+                </div>
+                <table class="konsultasi-table">
+                    <thead>
+                        <tr>
+                            <th style="width:50px">No</th>
+                            <th style="width:120px">Tanggal</th>
+                            <th>Uraian Konsultasi / Catatan</th>
+                            <th style="width:120px">Paraf Coach</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center">1</td>
+                            <td></td>
+                            <td style="height:50px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">2</td>
+                            <td></td>
+                            <td style="height:50px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">3</td>
+                            <td></td>
+                            <td style="height:50px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">4</td>
+                            <td></td>
+                            <td style="height:50px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">5</td>
+                            <td></td>
+                            <td style="height:50px"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">6</td>
+                            <td></td>
+                            <td style="height:50px"></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="pdf-page-break"></div>
+                <!-- Kata Pengantar -->
+                <div class="section-subtitle" style="margin-top:2.5rem"><i class="fa-solid fa-pen-nib"
+                        style="margin-right:8px;"></i> Kata Pengantar</div>
+                <div class="kata-pengantar">
+                    <p>Puji syukur penulis panjatkan kepada Tuhan Yang Maha Esa atas limpahan rahmat dan karunia-Nya
+                        sehingga penulis dapat menyelesaikan penyusunan Rancangan Aktualisasi ini dalam rangka
+                        <strong>Pelatihan Dasar CPNS Angkatan VI Tahun 2026</strong> Institut Teknologi Kalimantan.
+                    </p>
+                    <p>Rancangan Aktualisasi berjudul <strong>"Pengembangan Sistem Dashboard Analitik Tridharma Berbasis
+                            SINTA (SINTA Intel) pada Lab Inovasi Digital Prodi Sistem Informasi FSTI Institut Teknologi
+                            Kalimantan"</strong> ini disusun sebagai wujud internalisasi dan implementasi nilai-nilai
+                        dasar ASN <strong>BerAKHLAK</strong> serta peran dan kedudukan PNS dalam mendukung Smart
+                        Governance.</p>
+                    <p>Penulis mengucapkan terima kasih kepada: (1) Rektor ITK atas kesempatan mengikuti Latsar CPNS;
+                        (2) Coach atas bimbingan dan arahan; (3) Mentor atas dukungan dari lingkungan unit kerja; (4)
+                        Pimpinan FSTI ITK atas dukungan institusional; (5) Seluruh rekan peserta Latsar CPNS Angkatan VI
+                        Tahun 2026.</p>
+                    <p>Semoga rancangan aktualisasi ini dapat memberikan manfaat nyata bagi peningkatan kinerja dan
+                        kualitas layanan Lab Inovasi Digital serta Program Studi Sistem Informasi FSTI ITK.</p>
+                    <p style="margin-bottom:0"><em>Balikpapan, 04 Maret 2026</em><br><br><strong>Aidil Saputra
+                            Kirsan, S.ST., M.Tr.Kom</strong></p>
+                </div>
+
+                <div class="pdf-page-break"></div>
+                <!-- Daftar Isi -->
+                <div class="section-subtitle" style="margin-top:2.5rem"><i class="fa-solid fa-list"
+                        style="margin-right:8px;"></i> Daftar Isi</div>
+                <div style="padding:1rem 0;">
+                    <style>
+                        .toc-list {
+                            list-style: none;
+                            padding: 0;
+                            margin: 0;
+                            font-size: 0.88rem;
+                        }
+
+                        .toc-list li {
+                            display: flex;
+                            align-items: baseline;
+                            padding: 0.35rem 0;
+                            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+                        }
+
+                        .toc-list li.toc-chapter {
+                            font-weight: 700;
+                            color: var(--navy);
+                            font-size: 0.9rem;
+                            margin-top: 0.8rem;
+                            padding: 0.5rem 0;
+                            border-bottom: 2px solid var(--blue-light);
+                        }
+
+                        .toc-list li.toc-chapter:first-child {
+                            margin-top: 0;
+                        }
+
+                        .toc-list li.toc-sub {
+                            padding-left: 1.8rem;
+                            color: #4a5568;
+                            font-size: 0.83rem;
+                        }
+
+                        .toc-list .toc-title {
+                            flex-shrink: 0;
+                        }
+
+                        .toc-list .toc-dots {
+                            flex: 1;
+                            border-bottom: 1px dotted #ccc;
+                            margin: 0 0.5rem;
+                            min-width: 20px;
+                            align-self: flex-end;
+                            margin-bottom: 4px;
+                        }
+
+                        .toc-list .toc-chapter .toc-num {
+                            display: inline-block;
+                            background: var(--navy);
+                            color: white;
+                            width: 22px;
+                            height: 22px;
+                            border-radius: 4px;
+                            text-align: center;
+                            line-height: 22px;
+                            font-size: 0.7rem;
+                            font-weight: 800;
+                            margin-right: 0.6rem;
+                            flex-shrink: 0;
+                        }
+                    </style>
+
+                    <ul class="toc-list">
+                        <li class="toc-chapter">
+                            <span class="toc-title">Kata Pengantar</span>
+                            <span class="toc-dots"></span>
+                        </li>
+                        <li class="toc-chapter">
+                            <span class="toc-title">Daftar Isi</span>
+                            <span class="toc-dots"></span>
+                        </li>
+                        <li class="toc-chapter">
+                            <span class="toc-title">Identitas Peserta</span>
+                            <span class="toc-dots"></span>
+                        </li>
+
+                        <!-- Bab I -->
+                        <li class="toc-chapter">
+                            <span class="toc-num">I</span>
+                            <span class="toc-title">Pendahuluan</span>
+                            <span class="toc-dots"></span>
+                        </li>
+                        <li class="toc-sub">
+                            <span class="toc-title">1.1 Profil Instansi</span>
+                            <span class="toc-dots"></span>
+                        </li>
+                        <li class="toc-sub">
+                            <span class="toc-title">1.2 Profil Jabatan</span>
+                            <span class="toc-dots"></span>
+                        </li>
+
+                        <!-- Bab II -->
+                        <li class="toc-chapter">
+                            <span class="toc-num">II</span>
+                            <span class="toc-title">Review Pembelajaran Latsar CPNS</span>
+                            <span class="toc-dots"></span>
+                        </li>
+                        <li class="toc-sub">
+                            <span class="toc-title">2.1 Agenda 1 — Sikap Perilaku Bela Negara</span>
+                            <span class="toc-dots"></span>
+                        </li>
+                        <li class="toc-sub">
+                            <span class="toc-title">2.2 Agenda 2 — Nilai-Nilai Dasar ASN BerAKHLAK</span>
+                            <span class="toc-dots"></span>
+                        </li>
+                        <li class="toc-sub">
+                            <span class="toc-title">2.3 Agenda 3 — Kedudukan dan Peran PNS (Smart Governance)</span>
+                            <span class="toc-dots"></span>
+                        </li>
+
+                        <!-- Bab III -->
+                        <li class="toc-chapter">
+                            <span class="toc-num">III</span>
+                            <span class="toc-title">Isu Aktualisasi</span>
+                            <span class="toc-dots"></span>
+                        </li>
+                        <li class="toc-sub">
+                            <span class="toc-title">A. Identifikasi & Penetapan Isu Terpilih</span>
+                            <span class="toc-dots"></span>
+                        </li>
+                        <li class="toc-sub">
+                            <span class="toc-title">B. Tujuan Aktualisasi</span>
+                            <span class="toc-dots"></span>
+                        </li>
+                        <li class="toc-sub">
+                            <span class="toc-title">C. Manfaat Aktualisasi</span>
+                            <span class="toc-dots"></span>
+                        </li>
+                        <li class="toc-sub">
+                            <span class="toc-title">D. Ruang Lingkup & Batasan</span>
+                            <span class="toc-dots"></span>
+                        </li>
+
+                        <!-- Bab IV -->
+                        <li class="toc-chapter">
+                            <span class="toc-num">IV</span>
+                            <span class="toc-title">Rencana Kegiatan Aktualisasi</span>
+                            <span class="toc-dots"></span>
+                        </li>
+                        <li class="toc-sub">
+                            <span class="toc-title">4.1 Fitur-Fitur Utama SINTA Intel</span>
+                            <span class="toc-dots"></span>
+                        </li>
+                        <li class="toc-sub">
+                            <span class="toc-title">4.2 Matriks Kegiatan Aktualisasi</span>
+                            <span class="toc-dots"></span>
+                        </li>
+                        <li class="toc-sub">
+                            <span class="toc-title">4.3 Jadwal Rencana Kegiatan</span>
+                            <span class="toc-dots"></span>
+                        </li>
+
+                        <!-- Penutup -->
+                        <li class="toc-chapter">
+                            <span class="toc-title">Penutup</span>
+                            <span class="toc-dots"></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="pdf-page-break"></div>
+                <!-- Identitas Peserta -->
+                <div class="section-subtitle" style="margin-top:2.5rem"><i class="fa-solid fa-id-card"
+                        style="margin-right:8px;"></i> Identitas Peserta</div>
+                <div class="identitas-layout">
+                    <div class="identitas-photo">
+                        <div class="photo-frame" style="background: none; border: none; padding: 0;">
+                            <img src="fotoku.png" alt="Aidil Saputra Kirsan"
+                                style="width:100%; height:100%; object-fit:cover; border-radius:10px; border: 3px solid var(--navy);">
+
+
+                        </div>
+                        <small style="color:#888;font-size:0.7rem;">Foto Peserta Latsar CPNS</small>
+                    </div>
+                    <div>
+                        <table class="identitas-table">
+                            <tr>
+                                <td>Nama Lengkap</td>
+                                <td>:</td>
+                                <td>Aidil Saputra Kirsan, S.ST., M.Tr.Kom</td>
+                            </tr>
+                            <tr>
+                                <td>NIP</td>
+                                <td>:</td>
+                                <td>199403172025061004</td>
+                            </tr>
+                            <tr>
+                                <td>Tempat, Tgl Lahir</td>
+                                <td>:</td>
+                                <td>Ujung Pandang, 17 Maret 1994</td>
+                            </tr>
+                            <tr>
+                                <td>Jenis Kelamin</td>
+                                <td>:</td>
+                                <td>Laki-laki</td>
+                            </tr>
+                            <tr>
+                                <td>Agama</td>
+                                <td>:</td>
+                                <td>Islam</td>
+                            </tr>
+                            <tr>
+                                <td>Pendidikan Terakhir</td>
+                                <td>:</td>
+                                <td>Magister Terapan Komputer (M.Tr.Kom)</td>
+                            </tr>
+                            <tr>
+                                <td>Program Studi</td>
+                                <td>:</td>
+                                <td>Sistem Informasi</td>
+                            </tr>
+                            <tr>
+                                <td>Jabatan</td>
+                                <td>:</td>
+                                <td>Dosen Asisten Ahli / Kepala Lab Inovasi Digital</td>
+                            </tr>
+                            <tr>
+                                <td>Pangkat/Golongan</td>
+                                <td>:</td>
+                                <td>Penata Muda Tk.I / III-b</td>
+                            </tr>
+                            <tr>
+                                <td>Unit Kerja</td>
+                                <td>:</td>
+                                <td>Lab Inovasi Digital, Prodi Sistem Informasi, FSTI ITK</td>
+                            </tr>
+                            <tr>
+                                <td>Instansi</td>
+                                <td>:</td>
+                                <td>Institut Teknologi Kalimantan</td>
+                            </tr>
+                            <tr>
+                                <td>Alamat Instansi</td>
+                                <td>:</td>
+                                <td>Jl. Soekarno-Hatta KM 15, Balikpapan, Kaltim 76127</td>
+                            </tr>
+                            <tr>
+                                <td>Nama Mentor</td>
+                                <td>:</td>
+                                <td>Irma Fitria, S.Si., M.Si</td>
+                            </tr>
+                            <tr>
+                                <td>Nama Coach</td>
+                                <td>:</td>
+                                <td>Mustari Kurniawati, S.IP., MPA</td>
+                            </tr>
+                            <tr>
+                                <td>Angkatan/Kelompok</td>
+                                <td>:</td>
+                                <td>Angkatan VI / Kelompok I</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="section-sep"></div>
+
+    <!-- ============================================================ -->
+    <!--  BAB I                                                        -->
+    <!-- ============================================================ -->
+    <section id="bab1">
+        <div class="chapter-header">
+            <div class="chapter-number">I</div>
+            <div class="chapter-tag">Bab I</div>
+            <h2 class="chapter-title">Pendahuluan</h2>
+            <p class="chapter-desc">Profil Instansi dan Profil Jabatan Penulis di Institut Teknologi Kalimantan</p>
+        </div>
+        <div class="content-area">
+            <div class="content-inner">
+
+                <div class="section-title">1.1 Profil Instansi</div>
+                <p><strong>Institut Teknologi Kalimantan (ITK)</strong> adalah perguruan tinggi negeri berbasis
+                    teknologi yang merupakan satu-satunya Institut Teknologi Negeri di wilayah Tengah dan Timur
+                    Indonesia. ITK didirikan berdasarkan <strong>Peraturan Presiden Nomor 125 Tahun 2014</strong> dan
+                    diresmikan pada tanggal <strong>6 Oktober 2014</strong>. Kampus ITK berlokasi di Jalan
+                    Soekarno-Hatta KM 15, Kelurahan Karang Joang, Kota Balikpapan, Kalimantan Timur, di atas lahan
+                    seluas <strong>300 hektare</strong>.</p>
+                <p>ITK saat ini dipimpin oleh Rektor <strong>Prof. Dr. rer. nat. Agus Rubiyanto, M.Eng.Sc.</strong>
+                    (periode 2022–2026) dan telah mendapatkan <strong>akreditasi B dari BAN-PT</strong>. Tugas pokok dan
+                    fungsi ITK diatur dalam Peraturan Menteri Riset, Teknologi dan Pendidikan Tinggi RI Nomor 40 Tahun
+                    2015.</p>
+
+                <div class="instansi-grid">
+                    <div class="instansi-item">
+                        <div class="key">Nama</div>
+                        <div class="value">Institut Teknologi Kalimantan (ITK)</div>
+                    </div>
+                    <div class="instansi-item">
+                        <div class="key">Status</div>
+                        <div class="value">Perguruan Tinggi Negeri (PTN)</div>
+                    </div>
+                    <div class="instansi-item">
+                        <div class="key">Dasar Hukum</div>
+                        <div class="value">Perpres No. 125 Tahun 2014</div>
+                    </div>
+                    <div class="instansi-item">
+                        <div class="key">Akreditasi</div>
+                        <div class="value">B (BAN-PT)</div>
+                    </div>
+                    <div class="instansi-item">
+                        <div class="key">Visi</div>
+                        <div class="value">Menjadi perguruan tinggi unggul dan berperan aktif dalam pembangunan nasional
+                            melalui pemberdayaan potensi daerah Kalimantan</div>
+                    </div>
+                    <div class="instansi-item">
+                        <div class="key">Misi</div>
+                        <div class="value">Menyelenggarakan Tridharma PT bermutu; Menghasilkan lulusan unggul; Membangun
+                            kerja sama dengan pemangku kepentingan</div>
+                    </div>
+                    <div class="instansi-item">
+                        <div class="key">Fokus Riset</div>
+                        <div class="value">Energi, Smart City, Kemaritiman, Teknologi Pangan</div>
+                    </div>
+                    <div class="instansi-item">
+                        <div class="key">Lokasi</div>
+                        <div class="value">Jl. Soekarno-Hatta KM 15, Balikpapan, Kaltim 76127</div>
+                    </div>
+                </div>
+
+                <div class="pdf-page-break"></div>
+                <div class="section-title" style="margin-top:2.5rem">1.2 Profil Jabatan</div>
+                <p>Penulis saat ini bertugas sebagai <strong>Dosen Program Studi Sistem Informasi</strong> sekaligus
+                    <strong>Kepala Laboratorium Inovasi Digital</strong> di Fakultas Sains dan Teknologi Informasi
+                    (FSTI) Institut Teknologi Kalimantan. Laboratorium Inovasi Digital merupakan unit penunjang akademik
+                    yang bertanggung jawab atas pengelolaan fasilitas laboratorium, dukungan kegiatan praktikum, serta
+                    pengembangan inovasi berbasis teknologi informasi.
+                </p>
+
+                <table class="mag-table">
+                    <thead>
+                        <tr>
+                            <th>Aspek</th>
+                            <th>Keterangan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Jabatan Fungsional</strong></td>
+                            <td>Dosen Asisten Ahli</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Jabatan Tambahan</strong></td>
+                            <td>Kepala Laboratorium Inovasi Digital</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Unit Kerja</strong></td>
+                            <td>Prodi Sistem Informasi, FSTI ITK</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tugas Utama (Dosen)</strong></td>
+                            <td>Melaksanakan Tridharma PT: Pendidikan, Penelitian, Pengabdian</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tugas Utama (Ka. Lab)</strong></td>
+                            <td>Mengelola operasional Lab Inovasi Digital, inventaris, penjadwalan, & inovasi digital
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sistem yang Dikelola</strong></td>
+                            <td>SINTA Intel – Dashboard Analitik Tridharma Dosen</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="section-sep"></div>
+
+    <!-- ============================================================ -->
+    <!--  BAB II                                                       -->
+    <!-- ============================================================ -->
+    <section id="bab2">
+        <div class="chapter-header">
+            <div class="chapter-number">II</div>
+            <div class="chapter-tag">Bab II</div>
+            <h2 class="chapter-title">Review Pembelajaran Latsar CPNS</h2>
+            <p class="chapter-desc">Internalisasi tiga agenda utama: Bela Negara, BerAKHLAK, dan Smart Governance</p>
+        </div>
+        <div class="content-area">
+            <div class="content-inner">
+
+                <p>Pelatihan Dasar CPNS (Latsar) Angkatan VI Tahun 2026 diselenggarakan untuk membentuk ASN yang
+                    profesional, berkarakter, dan berdedikasi tinggi. Kurikulum Latsar mencakup tiga agenda utama:
+                    <strong>Agenda Bela Negara</strong>, <strong>Agenda BerAKHLAK</strong>, dan <strong>Agenda Smart
+                        Governance</strong>.
+                </p>
+
+                <div class="section-title">2.1 Agenda 1 — Sikap Perilaku Bela Negara</div>
+                <p>Bela Negara bukan sekadar urusan militer, melainkan tekad, sikap, dan perilaku warga negara yang
+                    dijiwai kecintaan terhadap NKRI. Lima nilai dasar Bela Negara menjadi acuan:</p>
+
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h4><i class="fa-solid fa-flag" style="margin-right:8px;"></i> Cinta Tanah Air</h4>
+                        <p>Kebanggaan mengabdi sebagai ASN Dosen di institusi negeri yang berperan memajukan pendidikan
+                            di Kalimantan</p>
+                    </div>
+                    <div class="info-box gold">
+                        <h4><i class="fa-solid fa-handshake" style="margin-right:8px;"></i> Sadar Berbangsa & Bernegara
+                        </h4>
+                        <p>Menghormati keberagaman dan berkontribusi aktif pada pembangunan nasional melalui pendidikan
+                            tinggi</p>
+                    </div>
+                    <div class="info-box green">
+                        <h4><i class="fa-solid fa-star" style="margin-right:8px;"></i> Setia kepada Pancasila</h4>
+                        <p>Menjadikan nilai-nilai Pancasila sebagai landasan dalam setiap pengambilan keputusan dan
+                            perilaku sehari-hari</p>
+                    </div>
+                    <div class="info-box red">
+                        <h4><i class="fa-solid fa-shield-heart" style="margin-right:8px;"></i> Rela Berkorban &
+                            Kemampuan Bela Negara</h4>
+                        <p>Bersedia meluangkan waktu demi sistem yang bermanfaat; Memiliki kompetensi TI yang siap
+                            dioptimalkan untuk bangsa</p>
+                    </div>
+                </div>
+
+                <div class="pdf-page-break"></div>
+
+                <div class="section-title" style="margin-top:2.5rem">2.2 Agenda 2 — Nilai BerAKHLAK</div>
+                <p>Nilai-nilai dasar PNS terangkum dalam akronim <strong>BerAKHLAK</strong> yang menjadi pondasi sikap
+                    dan perilaku setiap ASN:</p>
+
+                <div class="berakhlak-grid">
+                    <div class="berakhlak-card bc-1">
+                        <div class="letter">B</div>
+                        <h4>Berorientasi Pelayanan</h4>
+                        <p>SINTA Intel memudahkan pimpinan & dosen mengakses data Tridharma secara real-time dan akurat
+                        </p>
+                    </div>
+                    <div class="berakhlak-card bc-2">
+                        <div class="letter">A</div>
+                        <h4>Akuntabel</h4>
+                        <p>Kalkulasi rasio DTPS secara otomatis dan terverifikasi adalah bentuk akuntabilitas kinerja
+                            berbasis data</p>
+                    </div>
+                    <div class="berakhlak-card bc-3">
+                        <div class="letter">K</div>
+                        <h4>Kompeten</h4>
+                        <p>Pengembangan menggunakan ML (TF-IDF, K-Means), Python, dan Vue.js sebagai aktualisasi
+                            keahlian teknis</p>
+                    </div>
+                    <div class="berakhlak-card bc-4">
+                        <div class="letter">H</div>
+                        <h4>Harmonis</h4>
+                        <p>Dikembangkan secara kolaboratif dengan Kaprodi, pimpinan FSTI, dan dosen melalui konsultasi
+                            bersama</p>
+                    </div>
+                    <div class="berakhlak-card bc-5">
+                        <div class="letter">L</div>
+                        <h4>Loyal</h4>
+                        <p>Kontribusi nyata untuk kemajuan ITK dalam mendukung akreditasi dan peningkatan mutu institusi
+                        </p>
+                    </div>
+                    <div class="berakhlak-card bc-6">
+                        <div class="letter">A</div>
+                        <h4>Adaptif</h4>
+                        <p>Pemanfaatan teknologi SINTA, AI/ML, dan arsitektur modern (Vue.js, Python) untuk transformasi
+                            digital</p>
+                    </div>
+                    <div class="berakhlak-card bc-7">
+                        <div class="letter">K</div>
+                        <h4>Kolaboratif</h4>
+                        <p>Mengintegrasikan data SINTA, dikembangkan Lab Inovasi Digital, digunakan seluruh civitas
+                            akademika</p>
+                    </div>
+                </div>
+
+                <div class="section-title" style="margin-top:2.5rem">2.3 Agenda 3 — Kedudukan dan Peran PNS (Smart
+                    Governance)</div>
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h4><i class="fa-solid fa-chart-line"></i> Manajemen ASN</h4>
+                        <p>SINTA Intel mendukung implementasi Manajemen ASN yang akuntabel, transparan, dan berbasis
+                            data dalam pembuktian kinerja Tridharma dosen.</p>
+                    </div>
+                    <div class="info-box gold">
+                        <h4><i class="fa-solid fa-robot"></i> Smart ASN</h4>
+                        <p>Penulis tidak sekadar menggunakan teknologi, melainkan <em>menciptakan</em> solusi digital
+                            inovatif berbasis ML dan data engineering — manifestasi nyata profil Smart ASN.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="section-sep"></div>
+
+    <!-- ============================================================ -->
+    <!--  BAB III                                                      -->
+    <!-- ============================================================ -->
+    <section id="bab3">
+        <div class="chapter-header">
+            <div class="chapter-number">III</div>
+            <div class="chapter-tag">Bab III</div>
+            <h2 class="chapter-title">Isu Aktualisasi</h2>
+            <p class="chapter-desc">Identifikasi, analisis USG, akar masalah Fishbone, dan penetapan isu terpilih</p>
+        </div>
+        <div class="content-area">
+            <div class="content-inner">
+
+                <div class="section-title">A. Identifikasi & Penetapan Isu Terpilih</div>
+                <p>Identifikasi isu dilakukan melalui <strong>wawancara langsung</strong> dengan Kepala Prodi SI dan
+                    pimpinan FSTI ITK. Ditemukan <strong>tiga isu aktual</strong> yang berpotensi menghambat kualitas
+                    layanan dan tata kelola akademik.</p>
+
+                <div class="section-subtitle">1. Latar Belakang Isu</div>
+                <p>Lab Inovasi Digital melayani dua program studi: <strong>Sistem Informasi (SI)</strong> dan
+                    <strong>Bisnis Digital (BD)</strong>. Meskipun dosen-dosen memiliki rekam jejak riset yang produktif
+                    di SINTA, <strong>data tersebut tidak pernah diagregasi dan dianalisis secara terpusat di tingkat
+                        prodi</strong>. Pimpinan tidak memiliki akses cepat terhadap peta riset, distribusi topik,
+                    potensi kolaborasi, maupun aliran dana hibah.
+                </p>
+
+                <div class="section-subtitle">2. Tiga Isu Aktual yang Teridentifikasi</div>
+                <table class="mag-table">
+                    <thead>
+                        <tr>
+                            <th style="width:40px">No</th>
+                            <th>Isu Aktual</th>
+                            <th>Kondisi Saat Ini</th>
+                            <th>Dampak jika Tidak Ditangani</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center">1</td>
+                            <td>Pengelolaan Tugas Akhir/Skripsi Mahasiswa FSTI ITK Belum Efektif dan Terstandar</td>
+                            <td>Proses manual via berkas fisik dan komunikasi informal</td>
+                            <td>Dokumen TA rawan hilang; admin kerepotan mengelola jadwal sidang</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td style="text-align:center">2 ✓</td>
+                            <td><strong>Pengelolaan Data Riset dan Pengabdian Dosen di Lab Inovasi Digital Belum
+                                    Terpusat dan Teranalisis</strong><br><em>(ISU TERPILIH)</em></td>
+                            <td>Data tersebar di SINTA, Scopus, GScholar tanpa sistem agregasi terpusat</td>
+                            <td>Peta riset tidak terbaca; nilai akreditasi BAN-PT terdampak langsung</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">3</td>
+                            <td>Umpan Balik Mahasiswa terhadap Layanan Akademik Belum Terkumpul Secara Sistematis</td>
+                            <td>Pengumpulan sporadis via kuesioner kertas yang tidak terintegrasi</td>
+                            <td>Pimpinan tidak punya data kepuasan layanan yang valid untuk akreditasi</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <br><br><br>
+                <div class="section-subtitle">3. Analisis USG</div>
+                <table class="mag-table">
+                    <thead>
+                        <tr>
+                            <th style="width:40px">No</th>
+                            <th>Isu</th>
+                            <th style="width:60px; text-align:center">U</th>
+                            <th style="width:60px; text-align:center">S</th>
+                            <th style="width:60px; text-align:center">G</th>
+                            <th style="width:70px; text-align:center">Total</th>
+                            <th style="width:80px; text-align:center">Prioritas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center">1</td>
+                            <td>Pengelolaan Tugas Akhir/Skripsi Mahasiswa FSTI ITK</td>
+                            <td style="text-align:center"><span class="score-badge score-4">4</span></td>
+                            <td style="text-align:center"><span class="score-badge score-4">4</span></td>
+                            <td style="text-align:center"><span class="score-badge score-3">3</span></td>
+                            <td style="text-align:center"><strong>11</strong></td>
+                            <td style="text-align:center">II</td>
+                        </tr>
+                        <tr class="usg-row-winner">
+                            <td style="text-align:center">2 ✓</td>
+                            <td><strong>Pengelolaan Data Riset dan Pengabdian Dosen di Lab Inovasi Digital</strong></td>
+                            <td style="text-align:center"><span class="score-badge score-5">5</span></td>
+                            <td style="text-align:center"><span class="score-badge score-5">5</span></td>
+                            <td style="text-align:center"><span class="score-badge score-4">4</span></td>
+                            <td style="text-align:center"><strong style="font-size:1.1rem">14</strong></td>
+                            <td style="text-align:center"><i class="fa-solid fa-trophy"
+                                    style="margin-right:8px; color:var(--gold);"></i> I</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">3</td>
+                            <td>Umpan Balik Mahasiswa terhadap Layanan Akademik</td>
+                            <td style="text-align:center"><span class="score-badge score-3">3</span></td>
+                            <td style="text-align:center"><span class="score-badge score-3">3</span></td>
+                            <td style="text-align:center"><span class="score-badge score-3">3</span></td>
+                            <td style="text-align:center"><strong>9</strong></td>
+                            <td style="text-align:center">III</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="highlight-box">
+                    <h3><i class="fa-solid fa-trophy" style="margin-right:8px; color:var(--gold);"></i> Isu Terpilih —
+                        Skor USG Tertinggi: 14</h3>
+                    <p><strong>Pengelolaan Data Riset dan Pengabdian Dosen di Lab Inovasi Digital Belum Terpusat dan
+                            Teranalisis</strong></p>
+                    <p style="margin-top:0.8rem;"><strong>Alasan:</strong> U=5 (jadwal akreditasi semakin dekat) · S=5
+                        (memengaruhi nilai akreditasi dan reputasi prodi langsung) · G=4 (cepat memburuk — jumlah dosen
+                        dan publikasi terus bertambah namun sistem pengelolaan data belum ada)</p>
+                </div>
+
+                <div class="pdf-page-break"></div>
+                <div class="section-title" style="margin-top:2.5rem">B. Tujuan Aktualisasi</div>
+                <table class="mag-table">
+                    <thead>
+                        <tr>
+                            <th style="width:40px">No</th>
+                            <th>Tujuan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Membangun sistem dashboard analitik terpusat (SINTA Intel) yang mengintegrasikan data
+                                riset dan publikasi seluruh dosen Prodi SI secara otomatis dari SINTA Kemdiktisaintek
+                                melalui pipeline scraper Python</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Menyediakan fitur pemetaan & visualisasi riset prodi, deteksi potensi kolaborasi lintas
+                                prodi berbasis AI (TF-IDF + K-Means), dan roadmap tren riset (Sankey Timeline) yang
+                                dapat diakses real-time</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Mengembangkan fitur monitoring dana riset dan hibah (Funding Dashboard) yang memetakan
+                                sumber pendanaan internal maupun eksternal (BIMA) per dosen secara transparan</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Menyediakan fitur DTPS Akreditasi yang menghitung otomatis Rasio Penelitian/DTPS, Rasio
+                                Pengabdian/DTPS, dan Total Dana/DTPS sesuai standar LKPS BAN-PT</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Membangun SOP dan ekosistem pengelolaan data riset berbasis data di Prodi SI FSTI ITK
+                                melalui sosialisasi, pelatihan pengguna, dan dokumentasi sistem</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="section-title" style="margin-top:2rem">C. Manfaat Aktualisasi</div>
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h4><i class="fa-solid fa-user-tie" style="margin-right:8px;"></i> Penulis (ASN Dosen)</h4>
+                        <p>Mengembangkan kompetensi teknis (Python, ML, Vue.js) dan manajerial; mengaktualisasikan
+                            BerAKHLAK secara nyata; meningkatkan kapasitas sebagai Smart ASN yang menciptakan solusi
+                            teknologi.</p>
+                    </div>
+                    <div class="info-box gold">
+                        <h4><i class="fa-solid fa-building-columns" style="margin-right:8px;"></i> Unit Kerja (Lab &
+                            Prodi SI)</h4>
+                        <p>Tersedianya sistem pengelolaan data riset terpusat; pimpinan dapat membuat keputusan berbasis
+                            data akurat; persiapan akreditasi BAN-PT lebih mudah dengan data DTPS otomatis.</p>
+                    </div>
+                    <div class="info-box green">
+                        <h4><i class="fa-solid fa-landmark" style="margin-right:8px;"></i> Institusi (ITK)</h4>
+                        <p>Akuntabilitas kinerja penelitian dosen yang dapat dibuktikan secara data; penguatan
+                            akreditasi; SINTA Intel berpotensi menjadi model best practice yang dapat direplikasi ke
+                            prodi lain di ITK.</p>
+                    </div>
+                    <div class="info-box red">
+                        <h4><i class="fa-solid fa-earth-asia" style="margin-right:8px;"></i> Ekosistem Riset</h4>
+                        <p>Terdeteksinya peluang kolaborasi riset lintas prodi; terbentuknya peta riset ITK; peningkatan
+                            produktivitas penelitian dan pengabdian dosen secara kolektif.</p>
+                    </div>
+                </div>
+
+                <div class="pdf-page-break"></div>
+                <div class="section-title" style="margin-top:2rem">D. Ruang Lingkup & Batasan</div>
+                <div class="alert-box alert-blue">
+                    <div class="alert-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div>
+                        <strong>Lokasi:</strong> Laboratorium Inovasi Digital, Prodi Sistem Informasi, FSTI ITK — Jl.
+                        Soekarno-Hatta KM 15, Balikpapan, Kaltim &nbsp;·&nbsp;
+                        <strong>Waktu:</strong> 7 Maret – 22 April 2026 (7 minggu habituasi off campus)
+                    </div>
+                </div>
+                <div class="alert-box alert-gold">
+                    <div class="alert-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div>
+                        <strong>Batasan:</strong> Sistem SINTA Intel pada tahap ini hanya mencakup data dosen aktif
+                        Prodi SI dan Bisdig (belum prodi lain) · Sumber data terbatas SINTA Kemdiktisaintek publik dan
+                        BIMA · Belum
+                        mencakup SISTER/SIMPEG/SIAKAD · Evaluasi internal (belum penetration testing)
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="section-sep"></div>
+
+    <!-- ============================================================ -->
+    <!--  BAB IV                                                       -->
+    <!-- ============================================================ -->
+    <section id="bab4">
+        <div class="chapter-header">
+            <div class="chapter-number">IV</div>
+            <div class="chapter-tag">Bab IV</div>
+            <h2 class="chapter-title">Rencana Kegiatan Aktualisasi</h2>
+            <p class="chapter-desc">Matriks 5 kegiatan, 7 fitur utama SINTA Intel, dan jadwal habituasi 7 minggu</p>
+        </div>
+        <div class="content-area">
+            <div class="content-inner">
+
+                <div class="section-title">4.1 Fitur-Fitur Utama SINTA Intel</div>
+                <p>SINTA Intel adalah dashboard analitik berbasis web yang mengintegrasikan dan menganalisis data riset,
+                    publikasi, dan pengabdian seluruh dosen Prodi SI dan Prodi Bisnis Digital FSTI ITK.</p>
+
+                <div class="feature-grid">
+                    <div class="feature-card fc-blue">
+                        <div class="f-num">F1</div>
+                        <div class="f-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <h4>Dashboard SINTA Utama</h4>
+                        <p>Visualisasi metrik Tridharma: publikasi, penelitian, pengabdian, HKI, H-Index per dosen (2
+                            prodi)</p>
+                    </div>
+                    <div class="feature-card fc-teal">
+                        <div class="f-num">F2</div>
+                        <div class="f-icon"><i class="fa-solid fa-folder-open"></i></div>
+                        <h4>Research Gallery</h4>
+                        <p>Galeri 6 kategori karya akademik: publikasi, penelitian, pengabdian, buku, HKI, dan lainnya
+                        </p>
+                    </div>
+                    <div class="feature-card fc-purple">
+                        <div class="f-num">F3</div>
+                        <div class="f-icon"><i class="fa-solid fa-robot"></i></div>
+                        <h4>AI Clustering</h4>
+                        <p>ML berbasis TF-IDF + K-Means: deteksi topik dan potensi kolaborasi riset & pengabdian lintas
+                            prodi</p>
+                    </div>
+                    <div class="feature-card fc-orange">
+                        <div class="f-num">F4</div>
+                        <div class="f-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                        <h4>Sankey Timeline</h4>
+                        <p>Visualisasi evolusi topik riset dan pengabdian 2
+                            018–sekarang secara historis dalam satu alur visual interaktif</p>
+                    </div>
+                    <div class="feature-card fc-green">
+                        <div class="f-num">F5</div>
+                        <div class="f-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                        <h4>Funding Dashboard</h4>
+                        <p>Monitoring aliran dana penelitian & hibah per dosen; memetakan sumber pendanaan internal dan
+                            BIMA</p>
+                    </div>
+                    <div class="feature-card fc-red">
+                        <div class="f-num">F6</div>
+                        <div class="f-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <h4>DTPS Akreditasi</h4>
+                        <p>Kalkulasi otomatis Rasio Penelitian/DTPS, Pengabdian/DTPS, Dana/DTPS sesuai standar LKPS
+                            BAN-PT</p>
+                    </div>
+                    <div class="feature-card fc-gold">
+                        <div class="f-num">F7</div>
+                        <div class="f-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                        <h4>Expertise Finder</h4>
+                        <p>Matchmaking pakar berbasis TF-IDF Scoring untuk memudahkan pencarian mitra riset & pengabdian
+                        </p>
+                    </div>
+                </div>
+
+                <div class="pdf-page-break"></div>
+                <!-- MATRIKS KEGIATAN -->
+                <div class="section-title" style="margin-top:2.5rem">4.2 Matriks Kegiatan Aktualisasi</div>
+                <p>Lima kegiatan utama dirancang secara sistematis, masing-masing memuat seluruh 7 nilai BerAKHLAK dan
+                    berkontribusi langsung pada penyelesaian isu terpilih:</p>
+
+                <!-- Kegiatan 1 -->
+                <div class="kegiatan-card">
+                    <div class="kegiatan-header">
+                        <div class="kegiatan-num">1</div>
+                        <h3>Pemetaan & Pengumpulan Data Dosen Prodi SI & Bisnis Digital</h3>
+                        <span class="period"><i class="fa-regular fa-calendar" style="color:#888;"></i> 07–20 Mar 2026 ·
+                            M1–M2</span>
+                    </div>
+                    <div class="kegiatan-body">
+                        <div class="kegiatan-col">
+                            <h5>📌 Tahapan Kegiatan</h5>
+                            <ul>
+                                <li>Koordinasi dengan Kaprodi SI dan Kaprodi Bisnis Digital</li>
+                                <li>Pengumpulan data SINTA ID seluruh dosen aktif</li>
+                                <li>Verifikasi data melalui profil SINTA resmi</li>
+                                <li>Penyusunan file <code>lecturers.json</code> terstruktur</li>
+                                <li>Validasi bersama Mentor dan Kaprodi</li>
+                            </ul>
+                        </div>
+                        <div class="kegiatan-col">
+                            <h5>📦 Output & Bukti</h5>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> File lecturers.json terverifikasi</span><br>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Daftar SINTA ID 2 prodi</span><br>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Notulensi koordinasi</span><br>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Lembar validasi Kaprodi</span><br>
+                            <span class="output-badge"
+                                style="background:#fff3e0; border:1px dashed var(--gold); padding:0.3rem 0.6rem; border-radius:6px; margin-top:0.3rem; display:inline-block;">
+                                <i class="fa-solid fa-video" style="color:var(--gold); margin-right:6px;"></i> Video
+                                dokumentasi proses pemetaan & verifikasi data SINTA dosen (screen recording + narasi)
+                            </span>
+                        </div>
+                        <div class="kegiatan-col">
+                            <h5>💎 Nilai BerAKHLAK</h5>
+                            <ul>
+                                <li><strong>B:</strong> Data valid sebagai dasar layanan prima</li>
+                                <li><strong>A:</strong> Pengumpulan data transparan & terdokumentasi</li>
+                                <li><strong>K:</strong> Pendekatan sistematis & terstandar</li>
+                                <li><strong>H:</strong> Koordinasi aktif lintas prodi</li>
+                                <li><strong>L:</strong> Mendukung kepentingan institusi</li>
+                                <li><strong>A:</strong> Menyesuaikan metode kondisi lapangan</li>
+                                <li><strong>K:</strong> Melibatkan seluruh pemangku kepentingan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pdf-page-break"></div>
+                <br><br>
+                <!-- Kegiatan 2 -->
+                <div class="kegiatan-card">
+                    <div class="kegiatan-header">
+                        <div class="kegiatan-num">2</div>
+                        <h3>Pengembangan Pipeline Scraper Data SINTA Otomatis</h3>
+                        <span class="period"><i class="fa-regular fa-calendar" style="color:#888;"></i> 14–27 Mar 2026 ·
+                            M2–M3</span>
+                    </div>
+                    <div class="kegiatan-body">
+                        <div class="kegiatan-col">
+                            <h5>📌 Tahapan Kegiatan</h5>
+                            <ul>
+                                <li>Analisis struktur halaman SINTA Kemdiktisaintek</li>
+                                <li>Pengembangan scraper Python + BeautifulSoup4</li>
+                                <li>Implementasi scheduler otomatis (cron job)</li>
+                                <li>Pengujian pipeline dengan data 2 prodi</li>
+                                <li>Dokumentasi kode dan README pipeline</li>
+                            </ul>
+                        </div>
+                        <div class="kegiatan-col">
+                            <h5>📦 Output & Bukti</h5>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Pipeline scraper Python</span><br>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> File sinta_data.json terstruktur</span><br>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Scheduler otomatis aktif</span><br>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Dokumentasi teknis pipeline</span><br>
+                            <span class="output-badge"
+                                style="background:#fff3e0; border:1px dashed var(--gold); padding:0.3rem 0.6rem; border-radius:6px; margin-top:0.3rem; display:inline-block;">
+                                <i class="fa-solid fa-video" style="color:var(--gold); margin-right:6px;"></i> Video
+                                demo pipeline scraper SINTA berjalan otomatis & output JSON (screen recording + narasi)
+                            </span>
+                        </div>
+                        <div class="kegiatan-col">
+                            <h5>💎 Nilai BerAKHLAK</h5>
+                            <ul>
+                                <li><strong>B:</strong> Otomasi mempercepat akses informasi riset</li>
+                                <li><strong>A:</strong> Kode pipeline terdokumentasi lengkap</li>
+                                <li><strong>K:</strong> Keahlian teknis Python & web scraping</li>
+                                <li><strong>H:</strong> Mempertimbangkan kebutuhan 2 prodi</li>
+                                <li><strong>L:</strong> Infrastruktur data jangka panjang ITK</li>
+                                <li><strong>A:</strong> Teknologi terkini & best practice</li>
+                                <li><strong>K:</strong> Diskusi kebutuhan data bersama Kaprodi</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kegiatan 3 -->
+                <div class="kegiatan-card">
+                    <div class="kegiatan-header">
+                        <div class="kegiatan-num">3</div>
+                        <h3>Implementasi Fitur Analytics & Dashboard SINTA Intel</h3>
+                        <span class="period"><i class="fa-regular fa-calendar" style="color:#888;"></i> 21 Mar–10 Apr
+                            2026 · M3–M5</span>
+                    </div>
+                    <div class="kegiatan-body">
+                        <div class="kegiatan-col">
+                            <h5>📌 Tahapan Kegiatan</h5>
+                            <ul>
+                                <li>Implementasi AI Clustering (TF-IDF + K-Means)</li>
+                                <li>Pengembangan Sankey Timeline riset</li>
+                                <li>Pembangunan Research Gallery (6 kategori)</li>
+                                <li>Integrasi frontend Vue.js dengan backend Python</li>
+                                <li>Unit testing seluruh modul analitik</li>
+                            </ul>
+                        </div>
+                        <div class="kegiatan-col">
+                            <h5>📦 Output & Bukti</h5>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Modul AI Clustering aktif</span><br>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Sankey Timeline terpasang</span><br>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Research Gallery 6 kategori</span><br>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Laporan hasil unit testing</span><br>
+                            <span class="output-badge"
+                                style="background:#fff3e0; border:1px dashed var(--gold); padding:0.3rem 0.6rem; border-radius:6px; margin-top:0.3rem; display:inline-block;">
+                                <i class="fa-solid fa-video" style="color:var(--gold); margin-right:6px;"></i> Video
+                                walkthrough fitur Analytics Dashboard: Clustering, Sankey Timeline, Research Gallery
+                                (screen recording + narasi)
+                            </span>
+                        </div>
+                        <div class="kegiatan-col">
+                            <h5>💎 Nilai BerAKHLAK</h5>
+                            <ul>
+                                <li><strong>B:</strong> Dashboard mudah dipahami pimpinan</li>
+                                <li><strong>A:</strong> Algoritma ML dapat divalidasi ulang</li>
+                                <li><strong>K:</strong> Machine Learning TF-IDF + K-Means</li>
+                                <li><strong>H:</strong> Fitur memenuhi kebutuhan 2 prodi</li>
+                                <li><strong>L:</strong> Meningkatkan kapasitas analitik ITK</li>
+                                <li><strong>A:</strong> Pendekatan AI/NLP terkini</li>
+                                <li><strong>K:</strong> Koordinasi dengan Kaprodi & dosen</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pdf-page-break"></div>
+                <br><br>
+                <!-- Kegiatan 4 -->
+                <div class="kegiatan-card">
+                    <div class="kegiatan-header">
+                        <div class="kegiatan-num">4</div>
+                        <h3>Implementasi Dashboard Akreditasi — DTPS & Funding</h3>
+                        <span class="period"><i class="fa-regular fa-calendar" style="color:#888;"></i> 28 Mar–17 Apr
+                            2026 · M4–M6</span>
+                    </div>
+                    <div class="kegiatan-body">
+                        <div class="kegiatan-col">
+                            <h5>📌 Tahapan Kegiatan</h5>
+                            <ul>
+                                <li>Analisis standar LKPS BAN-PT terbaru</li>
+                                <li>Implementasi kalkulasi otomatis Rasio DTPS</li>
+                                <li>Pengembangan Funding Dashboard (BIMA)</li>
+                                <li>Integrasi data hibah eksternal dan internal</li>
+                                <li>Validasi output DTPS dengan Wakil Dekan</li>
+                            </ul>
+                        </div>
+                        <div class="kegiatan-col">
+                            <h5>📦 Output & Bukti</h5>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Fitur DTPS otomatis aktif</span><br>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Funding Dashboard terpasang</span><br>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Data hibah BIMA terintegrasi</span><br>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Berita acara validasi WD Akademik</span><br>
+                            <span class="output-badge"
+                                style="background:#fff3e0; border:1px dashed var(--gold); padding:0.3rem 0.6rem; border-radius:6px; margin-top:0.3rem; display:inline-block;">
+                                <i class="fa-solid fa-video" style="color:var(--gold); margin-right:6px;"></i> Video
+                                demo Dashboard Akreditasi DTPS & Funding dengan kalkulasi otomatis (screen recording +
+                                narasi)
+                            </span>
+                        </div>
+                        <div class="kegiatan-col">
+                            <h5>💎 Nilai BerAKHLAK</h5>
+                            <ul>
+                                <li><strong>B:</strong> Memudahkan tim akreditasi BAN-PT</li>
+                                <li><strong>A:</strong> Kalkulasi rasio DTPS transparan</li>
+                                <li><strong>K:</strong> Menguasai standar LKPS BAN-PT</li>
+                                <li><strong>H:</strong> Sesuai kebutuhan 2 prodi</li>
+                                <li><strong>L:</strong> Mendukung kepentingan strategis ITK</li>
+                                <li><strong>A:</strong> Sistem kalkulasi fleksibel & updatable</li>
+                                <li><strong>K:</strong> Validasi bersama Wakil Dekan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Kegiatan 5 -->
+                <div class="kegiatan-card">
+                    <div class="kegiatan-header">
+                        <div class="kegiatan-num">5</div>
+                        <h3>Deployment, Sosialisasi & Evaluasi Sistem SINTA Intel</h3>
+                        <span class="period"><i class="fa-regular fa-calendar" style="color:#888;"></i> 11–22 Apr 2026 ·
+                            M6–M7</span>
+                    </div>
+                    <div class="kegiatan-body">
+                        <div class="kegiatan-col">
+                            <h5>📌 Tahapan Kegiatan</h5>
+                            <ul>
+                                <li>Deployment ke server Lab Inovasi Digital</li>
+                                <li>Penyusunan User Guide & SOP pengelolaan data</li>
+                                <li>Sosialisasi dan pelatihan pengguna (dosen, kaprodi, laboran)</li>
+                                <li>Pengumpulan feedback & evaluasi sistem</li>
+                                <li>Penyusunan laporan aktualisasi akhir</li>
+                            </ul>
+                        </div>
+                        <div class="kegiatan-col">
+                            <h5>📦 Output & Bukti</h5>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Sistem SINTA Intel live & online</span><br>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> User Guide & SOP tersusun</span><br>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Daftar hadir sosialisasi</span><br>
+                            <span class="output-badge"><i class="fa-solid fa-circle-check"
+                                    style="color:var(--green);"></i> Laporan evaluasi & feedback</span><br>
+                            <span class="output-badge"
+                                style="background:#fff3e0; border:1px dashed var(--gold); padding:0.3rem 0.6rem; border-radius:6px; margin-top:0.3rem; display:inline-block;">
+                                <i class="fa-solid fa-video" style="color:var(--gold); margin-right:6px;"></i> Video
+                                dokumentasi sosialisasi & pelatihan pengguna sistem SINTA Intel (rekaman kegiatan +
+                                screen recording)
+                            </span>
+                        </div>
+                        <div class="kegiatan-col">
+                            <h5>💎 Nilai BerAKHLAK</h5>
+                            <ul>
+                                <li><strong>B:</strong> Sistem mudah digunakan semua pengguna</li>
+                                <li><strong>A:</strong> Laporan evaluasi terdokumentasi</li>
+                                <li><strong>K:</strong> Deployment & pelatihan profesional</li>
+                                <li><strong>H:</strong> Sosialisasi melibatkan 2 prodi</li>
+                                <li><strong>L:</strong> Kontribusi nyata kemajuan institusi</li>
+                                <li><strong>A:</strong> Perbaikan iteratif berdasarkan feedback</li>
+                                <li><strong>K:</strong> Melibatkan WD, Kaprodi, laboran</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pdf-page-break"></div>
+                <!-- JADWAL -->
+                <div class="section-title" style="margin-top:2.5rem">4.3 Jadwal Rencana Kegiatan</div>
+                <div class="alert-box alert-green">
+                    <div class="alert-icon"><i class="fa-regular fa-calendar" style="color:#888;"></i></div>
+                    <div>Seluruh kegiatan dilaksanakan dalam masa <strong>Habituasi Off Campus selama 7 Minggu</strong>
+                        — 7 Maret s.d. 22 April 2026</div>
+                </div>
+
+                <table class="jadwal-table">
+                    <thead>
+                        <tr class="month-header">
+                            <th style="text-align:left; width:220px">Kegiatan</th>
+                            <th colspan="3" style="background:linear-gradient(135deg,#1a5276,#2980b9)">MARET 2026</th>
+                            <th colspan="4" style="background:linear-gradient(135deg,#C8922A,#e8a820)">APRIL 2026</th>
+                        </tr>
+                        <tr>
+                            <th style="text-align:left">Kegiatan</th>
+                            <th>M1<br><small>07–13</small></th>
+                            <th>M2<br><small>14–20</small></th>
+                            <th>M3<br><small>21–27</small></th>
+                            <th>M4<br><small>28–03</small></th>
+                            <th>M5<br><small>04–10</small></th>
+                            <th>M6<br><small>11–17</small></th>
+                            <th>M7<br><small>18–22</small></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1. Pemetaan & Pengumpulan Data Dosen</td>
+                            <td class="jadwal-active">■</td>
+                            <td class="jadwal-active">■</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2. Pipeline Scraper Data SINTA</td>
+                            <td></td>
+                            <td class="jadwal-active">■</td>
+                            <td class="jadwal-active">■</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3. Fitur Analytics & Dashboard</td>
+                            <td></td>
+                            <td></td>
+                            <td class="jadwal-active">■</td>
+                            <td class="jadwal-active">■</td>
+                            <td class="jadwal-active">■</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>4. Dashboard Akreditasi DTPS & Funding</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="jadwal-active">■</td>
+                            <td class="jadwal-active">■</td>
+                            <td class="jadwal-active">■</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5. Deployment, Sosialisasi & Evaluasi</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="jadwal-active">■</td>
+                            <td class="jadwal-active">■</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="font-size:0.75rem;color:#888;margin-top:0.5rem">■ = Minggu aktif kegiatan berlangsung
+                    &nbsp;·&nbsp; M1–M3 = Maret 2026 &nbsp;·&nbsp; M4–M7 = April 2026</p>
+
+            </div>
+        </div>
+    </section>
+
+    <div style="height:6px;background:linear-gradient(90deg,var(--navy),var(--gold),var(--navy))"></div>
+
+    <!-- ============================================================ -->
+    <!--  PENUTUP                                                      -->
+    <!-- ============================================================ -->
+    <section id="penutup"
+        style="background:linear-gradient(135deg,#001f4d 0%,#003366 40%,#0a5a9c 100%);padding:5rem 4rem;text-align:center;color:white;">
+        <div style="max-width:750px;margin:0 auto;">
+            <div
+                style="display:inline-block;background:rgba(200,146,42,0.2);border:1px solid var(--gold);color:var(--gold-light);padding:0.4rem 1.2rem;border-radius:30px;font-size:0.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.5rem;">
+                Penutup</div>
+
+            <div
+                style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;line-height:1.4;margin-bottom:1.5rem;">
+                Inovasi Digital untuk <span style="color:var(--gold-light)">Tata Kelola Akademik</span> yang Lebih Baik
+            </div>
+
+            <p style="color:rgba(255,255,255,0.75);font-size:0.9rem;line-height:1.9;margin-bottom:1.5rem;">
+                Rancangan Aktualisasi ini merupakan komitmen penulis untuk mengimplementasikan nilai-nilai <strong
+                    style="color:white">BerAKHLAK</strong> dan prinsip <strong style="color:white">Smart ASN</strong>
+                dalam menjalankan tugas sebagai Dosen dan Kepala Laboratorium Inovasi Digital FSTI ITK. Pengembangan
+                <strong style="color:var(--gold-light)">sistem SINTA Intel</strong> diharapkan menjadi solusi konkret
+                atas permasalahan pengelolaan data riset dan pengabdian dosen yang selama ini belum terkelola secara
+                terpusat.
+            </p>
+            <p style="color:rgba(255,255,255,0.75);font-size:0.9rem;line-height:1.9;margin-bottom:2.5rem;">
+                Melalui 5 kegiatan aktualisasi yang dirancang secara sistematis, penulis berharap dapat memberikan
+                kontribusi nyata bagi peningkatan <strong style="color:white">akuntabilitas kinerja Tridharma</strong>,
+                <strong style="color:white">kesiapan akreditasi BAN-PT</strong>, serta <strong
+                    style="color:white">transformasi digital tata kelola akademik</strong> di lingkungan FSTI Institut
+                Teknologi Kalimantan.
+            </p>
+
+            <!-- Stat summary -->
+            <div style="display:flex;justify-content:center;gap:2.5rem;margin-bottom:2.5rem;flex-wrap:wrap;">
+                <div style="text-align:center;">
+                    <div
+                        style="font-family:'Montserrat',sans-serif;font-size:2.5rem;font-weight:900;color:var(--gold-light);">
+                        5</div>
+                    <div style="width:40px;height:3px;background:var(--gold);margin:0.3rem auto;"></div>
+                    <div
+                        style="color:rgba(255,255,255,0.6);font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">
+                        Kegiatan</div>
+                </div>
+                <div style="text-align:center;">
+                    <div
+                        style="font-family:'Montserrat',sans-serif;font-size:2.5rem;font-weight:900;color:var(--gold-light);">
+                        7</div>
+                    <div style="width:40px;height:3px;background:var(--gold);margin:0.3rem auto;"></div>
+                    <div
+                        style="color:rgba(255,255,255,0.6);font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">
+                        Fitur Utama</div>
+                </div>
+                <div style="text-align:center;">
+                    <div
+                        style="font-family:'Montserrat',sans-serif;font-size:2.5rem;font-weight:900;color:var(--gold-light);">
+                        7</div>
+                    <div style="width:40px;height:3px;background:var(--gold);margin:0.3rem auto;"></div>
+                    <div
+                        style="color:rgba(255,255,255,0.6);font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">
+                        Nilai BerAKHLAK</div>
+                </div>
+                <div style="text-align:center;">
+                    <div
+                        style="font-family:'Montserrat',sans-serif;font-size:2.5rem;font-weight:900;color:var(--gold-light);">
+                        7</div>
+                    <div style="width:40px;height:3px;background:var(--gold);margin:0.3rem auto;"></div>
+                    <div
+                        style="color:rgba(255,255,255,0.6);font-size:0.65rem;text-transform:uppercase;letter-spacing:1px;">
+                        Minggu Habituasi</div>
+                </div>
+            </div>
+
+            <!-- Signature -->
+            <div
+                style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:2rem 3rem;display:inline-block;margin-top:0.5rem;">
+                <p style="color:rgba(255,255,255,0.6);font-size:0.82rem;margin-bottom:0.3rem;font-style:italic;">
+                    Balikpapan, 04 Maret 2026</p>
+                <p style="color:rgba(255,255,255,0.6);font-size:0.8rem;margin-bottom:1.2rem;">Penyusun,</p>
+                <strong style="color:white;font-size:1.05rem;font-family:'Montserrat',sans-serif;display:block;">Aidil
+                    Saputra Kirsan, S.ST., M.Tr.Kom</strong>
+                <small style="color:var(--gold-light);font-size:0.78rem;display:block;margin-top:0.3rem;">Dosen Asisten
+                    Ahli / Kepala Lab Inovasi Digital</small>
+                <small style="color:rgba(255,255,255,0.5);font-size:0.73rem;">Prodi Sistem Informasi – FSTI, Institut
+                    Teknologi Kalimantan</small>
+            </div>
+        </div>
+    </section>
+
+    <!-- NAVIGATION BOTTOM -->
+    <nav>
+        <div class="nav-brand"><i class="fa-solid fa-bolt" style="color:var(--gold-light); margin-right:4px;"></i> SINTA
+            INTEL · ITK</div>
+        <ul class="nav-links">
+            <li><a href="#cover">Cover</a></li>
+            <li><a href="#lembar-formal">Lembar</a></li>
+            <li><a href="#bab1">Bab I</a></li>
+            <li><a href="#bab2">Bab II</a></li>
+            <li><a href="#bab3">Bab III</a></li>
+            <li><a href="#bab4">Bab IV</a></li>
+            <li><a href="#penutup">Penutup</a></li>
+        </ul>
+    </nav>
+
+    <!-- STYLES (carried from part 1 — must be included for standalone render) -->
+    <style>
+        .section-sep {
+            height: 6px;
+            background: linear-gradient(90deg, var(--navy), var(--gold), var(--navy));
+            margin: 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 5px;
+            height: 1.4rem;
+            background: var(--gold);
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .section-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--blue-mid);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--blue-light);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .content-area {
+            background: white;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .content-inner {
+            padding: 3rem 4rem;
+        }
+
+        .chapter-header {
+            position: relative;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--blue-mid) 100%);
+            padding: 2.5rem 4rem;
+            margin-bottom: 0;
+            overflow: hidden;
+        }
+
+        .chapter-header::before {
+            content: '';
+            position: absolute;
+            right: -50px;
+            top: -50px;
+            width: 200px;
+            height: 200px;
+            border: 30px solid rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+
+        .chapter-number {
+            color: rgba(255, 255, 255, 0.12);
+            font-family: 'Playfair Display', serif;
+            font-size: 7rem;
+            font-weight: 900;
+            position: absolute;
+            right: 4rem;
+            top: -1.5rem;
+            line-height: 1;
+        }
+
+        .chapter-tag {
+            display: inline-block;
+            background: var(--gold);
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 0.3rem 0.9rem;
+            border-radius: 3px;
+            margin-bottom: 0.7rem;
+        }
+
+        .chapter-title {
+            color: white;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0.4rem;
+        }
+
+        .chapter-desc {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.82rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 1.3rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card .f-num {
+            position: absolute;
+            top: -0.5rem;
+            right: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: rgba(0, 51, 102, 0.06);
+            line-height: 1;
+        }
+
+        .feature-card .f-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-card h4 {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.4rem;
+        }
+
+        .feature-card p {
+            font-size: 0.73rem;
+            color: #6b7280;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .fc-blue .f-icon {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .fc-teal .f-icon {
+            background: #ccfbf1;
+            color: #0f766e;
+        }
+
+        .fc-purple .f-icon {
+            background: #ede9fe;
+            color: #7c3aed;
+        }
+
+        .fc-orange .f-icon {
+            background: #ffedd5;
+            color: #c2410c;
+        }
+
+        .fc-green .f-icon {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .fc-red .f-icon {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .fc-gold .f-icon {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .kegiatan-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .kegiatan-header {
+            background: linear-gradient(135deg, var(--navy), var(--blue-mid));
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .kegiatan-num {
+            background: var(--gold);
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .kegiatan-header h3 {
+            color: white;
+            font-size: 0.92rem;
+            font-weight: 700;
+            flex: 1;
+        }
+
+        .kegiatan-header .period {
+            background: rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .kegiatan-body {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0;
+        }
+
+        .kegiatan-col {
+            padding: 1.2rem 1.5rem;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .kegiatan-col:last-child {
+            border-right: none;
+        }
+
+        .kegiatan-col h5 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 0.7rem;
+        }
+
+        .kegiatan-col ul {
+            list-style: none;
+            font-size: 0.75rem;
+            color: #4a5568;
+        }
+
+        .kegiatan-col ul li {
+            padding: 0.25rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.4rem;
+        }
+
+        .kegiatan-col ul li::before {
+            content: '›';
+            color: var(--navy);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 0.05rem;
+        }
+
+        .output-badge {
+            display: inline-block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+            border-radius: 6px;
+            padding: 0.4rem 0.7rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            margin: 0.3rem 0;
+        }
+
+        .jadwal-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.8rem;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .jadwal-table th {
+            background: var(--navy);
+            color: white;
+            padding: 0.7rem 0.5rem;
+            text-align: center;
+            font-size: 0.72rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .jadwal-table td {
+            padding: 0.65rem 0.8rem;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            font-size: 0.75rem;
+        }
+
+        .jadwal-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: var(--navy);
+            background: #f8fafd;
+        }
+
+        .jadwal-active {
+            background: var(--navy) !important;
+            border-radius: 4px;
+            color: white !important;
+            font-weight: 700 !important;
+        }
+
+        .jadwal-table .month-header th {
+            font-size: 0.72rem;
+            letter-spacing: 1px;
+        }
+
+        .alert-box {
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            margin: 1.2rem 0;
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            font-size: 0.83rem;
+        }
+
+        .alert-green {
+            background: #e8f5e9;
+            border-left: 4px solid #2e7d32;
+        }
+
+        .alert-icon {
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .alert-box p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        @media (max-width:768px) {
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .kegiatan-body {
+                grid-template-columns: 1fr;
+            }
+
+            .content-inner {
+                padding: 2rem 1.5rem;
+            }
+
+            nav .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</body>
+
+</html>

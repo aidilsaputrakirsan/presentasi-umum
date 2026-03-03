@@ -33,18 +33,19 @@ Disusun Oleh: <b class="text-blue-800 dark:text-blue-400">Aidil Saputra Kirsan, 
 layout: two-cols
 ---
 
-# 2. Profil Instansi
+# Profil Instansi
 **Institut Teknologi Kalimantan (ITK)**
 
-Kampus teknologi yang unggul di wilayah Tengah dan Timur Indonesia, berlokasi di Balikpapan, Kalimantan Timur.
+Satu-satunya Institut Teknologi Negeri di wilayah Tengah dan Timur Indonesia, berlokasi di Balikpapan, Kalimantan Timur.
 
 <br>
 
 <v-clicks>
 
-- **Status:** Perguruan Tinggi Negeri (PTN)
+- **Dasar Hukum:** Perpres No. 125 Tahun 2014
 - **Akreditasi:** B (BAN-PT)
-- **Fokus Riset:** Energi, Smart City, Kemaritiman, Teknologi Pangan
+- **Fokus Riset:** Energi, Smart City, Kemaritiman, Tek. Pangan
+- **Rektor:** Prof. Dr. rer. nat. Agus Rubiyanto, M.Eng.Sc.
 
 </v-clicks>
 
@@ -57,29 +58,52 @@ Menjadi perguruan tinggi unggul dan berperan aktif dalam pembangunan nasional me
 </p>
 </div>
 
+<div class="mt-4 ml-8 p-6 bg-green-50/80 dark:bg-emerald-900/30 rounded-xl border-l-4 border-green-600 shadow-sm" v-click>
+<b>Misi:</b>
+<p class="mt-2 text-sm text-gray-700 dark:text-gray-200 leading-relaxed">
+Menyelenggarakan Tridharma PT bermutu · Menghasilkan lulusan unggul · Membangun kerja sama dengan pemangku kepentingan.
+</p>
+</div>
+
 ---
 layout: center
 ---
 
-# 3. Profil Peserta & Jabatan
+# Profil Peserta & Jabatan
 
 <div class="grid grid-cols-2 gap-8 mt-8 text-left">
   <div v-motion
     :initial="{ x: -50, opacity: 0 }"
     :enter="{ x: 0, opacity: 1, transition: { duration: 500 } }"
-    class="bg-white/60 dark:bg-slate-800/80 p-6 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all">
-    <div class="text-blue-600 dark:text-blue-400 mb-2"><i class="fas fa-user-circle text-2xl animate-pulse"></i></div>
+    class="bg-white/60 dark:bg-slate-800/80 p-6 rounded-xl shadow-md border border-gray-100 dark:border-slate-700">
+    <div class="text-blue-600 dark:text-blue-400 mb-2"><i class="fas fa-user-circle text-2xl"></i></div>
     <div class="font-bold text-lg mb-1 dark:text-gray-100">Aidil Saputra Kirsan, S.ST., M.Tr.Kom</div>
     <div class="text-sm text-gray-500 dark:text-gray-400">NIP. 199403172025061004</div>
+    <div class="text-xs text-gray-400 dark:text-gray-500 mt-2">Penata Muda Tk.I / III-b</div>
   </div>
   
   <div v-motion
     :initial="{ x: 50, opacity: 0 }"
     :enter="{ x: 0, opacity: 1, transition: { duration: 500, delay: 200 } }"
-    class="bg-white/60 dark:bg-slate-800/80 p-6 rounded-xl shadow-md border border-gray-100 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all">
-    <div class="text-blue-600 dark:text-blue-400 mb-2"><i class="fas fa-briefcase text-2xl animate-bounce"></i></div>
-    <div class="font-bold text-lg mb-1 dark:text-gray-100">Dosen Asisten Ahli</div>
-    <div class="text-sm text-gray-500 dark:text-gray-400">Kepala Lab Inovasi Digital<br/>Prodi Sistem Informasi, FSTI ITK</div>
+    class="bg-white/60 dark:bg-slate-800/80 p-6 rounded-xl shadow-md border border-gray-100 dark:border-slate-700">
+    <div class="text-blue-600 dark:text-blue-400 mb-2"><i class="fas fa-briefcase text-2xl"></i></div>
+    <div class="font-bold text-lg mb-1 dark:text-gray-100">Dosen Asisten Ahli / Ka. Lab</div>
+    <div class="text-sm text-gray-500 dark:text-gray-400">Lab Inovasi Digital<br/>Prodi Sistem Informasi, FSTI ITK</div>
+  </div>
+</div>
+
+<div class="mt-6 grid grid-cols-3 gap-4 text-center text-sm" v-click>
+  <div class="bg-blue-50/80 dark:bg-slate-800 p-3 rounded-lg border dark:border-slate-700">
+    <div class="font-bold text-blue-700 dark:text-blue-400">Mentor</div>
+    <div class="text-gray-600 dark:text-gray-400 text-xs mt-1">Irma Fitria, S.Si., M.Si</div>
+  </div>
+  <div class="bg-blue-50/80 dark:bg-slate-800 p-3 rounded-lg border dark:border-slate-700">
+    <div class="font-bold text-blue-700 dark:text-blue-400">Coach</div>
+    <div class="text-gray-600 dark:text-gray-400 text-xs mt-1">Mustari Kurniawati, S.IP., MPA</div>
+  </div>
+  <div class="bg-blue-50/80 dark:bg-slate-800 p-3 rounded-lg border dark:border-slate-700">
+    <div class="font-bold text-blue-700 dark:text-blue-400">Habituasi</div>
+    <div class="text-gray-600 dark:text-gray-400 text-xs mt-1">7 Maret – 22 April 2026 · 7 Minggu</div>
   </div>
 </div>
 
@@ -87,20 +111,122 @@ layout: center
 layout: default
 ---
 
-# 4. Identifikasi Isu
+# Agenda 1 — Sikap Perilaku Bela Negara
 
-Berdasarkan analisis situasi di unit kerja, ditemukan 3 isu utama:
+Bela Negara bukan sekadar urusan militer, melainkan **tekad, sikap, dan perilaku warga negara** yang dijiwai kecintaan terhadap NKRI.
+
+<div class="grid grid-cols-3 gap-3 mt-6">
+  <div class="bg-white/90 dark:bg-slate-800/90 p-4 rounded-lg border-t-3 border-blue-500 shadow-sm text-center" v-click>
+    <div class="text-2xl mb-2">🇮🇩</div>
+    <div class="font-bold text-sm text-blue-700 dark:text-blue-400 mb-1">Cinta Tanah Air</div>
+    <p class="text-xs text-gray-600 dark:text-gray-400">Kebanggaan mengabdi sebagai ASN Dosen di PTN yang memajukan pendidikan di Kalimantan</p>
+  </div>
+  <div class="bg-white/90 dark:bg-slate-800/90 p-4 rounded-lg border-t-3 border-green-500 shadow-sm text-center" v-click>
+    <div class="text-2xl mb-2">🤝</div>
+    <div class="font-bold text-sm text-green-700 dark:text-emerald-400 mb-1">Sadar Berbangsa & Bernegara</div>
+    <p class="text-xs text-gray-600 dark:text-gray-400">Menghormati keberagaman dan berkontribusi aktif pada pembangunan nasional</p>
+  </div>
+  <div class="bg-white/90 dark:bg-slate-800/90 p-4 rounded-lg border-t-3 border-purple-500 shadow-sm text-center" v-click>
+    <div class="text-2xl mb-2">⭐</div>
+    <div class="font-bold text-sm text-purple-700 dark:text-purple-400 mb-1">Setia Kepada Pancasila</div>
+    <p class="text-xs text-gray-600 dark:text-gray-400">Menjadikan Pancasila sebagai landasan dalam setiap keputusan</p>
+  </div>
+</div>
+
+<div class="grid grid-cols-2 gap-3 mt-3">
+  <div class="bg-white/90 dark:bg-slate-800/90 p-4 rounded-lg border-t-3 border-red-500 shadow-sm text-center" v-click>
+    <div class="text-2xl mb-2">🛡️</div>
+    <div class="font-bold text-sm text-red-700 dark:text-red-400 mb-1">Rela Berkorban</div>
+    <p class="text-xs text-gray-600 dark:text-gray-400">Mendahulukan kepentingan institusi; membangun SINTA Intel melebihi tugas pokok</p>
+  </div>
+  <div class="bg-white/90 dark:bg-slate-800/90 p-4 rounded-lg border-t-3 border-amber-500 shadow-sm text-center" v-click>
+    <div class="text-2xl mb-2">💪</div>
+    <div class="font-bold text-sm text-amber-700 dark:text-amber-400 mb-1">Kemampuan Bela Negara</div>
+    <p class="text-xs text-gray-600 dark:text-gray-400">Menggunakan keahlian IT untuk transformasi layanan publik</p>
+  </div>
+</div>
+
+---
+layout: default
+---
+
+# Agenda 2 — Nilai Dasar ASN BerAKHLAK
+
+Tujuh nilai inti ASN yang diimplementasikan dalam aktualisasi:
+
+<div class="grid grid-cols-4 gap-2 mt-6 text-center">
+  <div class="bg-blue-600 text-white p-3 rounded-lg shadow-md" v-click>
+    <div class="text-2xl font-bold opacity-30 absolute -top-1 right-2">B</div>
+    <div class="font-bold text-xs">Berorientasi Pelayanan</div>
+    <p class="text-[10px] mt-1 opacity-80">SINTA Intel mempercepat akses data Tridharma bagi pimpinan</p>
+  </div>
+  <div class="bg-indigo-700 text-white p-3 rounded-lg shadow-md" v-click>
+    <div class="font-bold text-xs">Akuntabel</div>
+    <p class="text-[10px] mt-1 opacity-80">Kalkulasi rasio DTPS otomatis & terverifikasi</p>
+  </div>
+  <div class="bg-teal-600 text-white p-3 rounded-lg shadow-md" v-click>
+    <div class="font-bold text-xs">Kompeten</div>
+    <p class="text-[10px] mt-1 opacity-80">Penggunaan Python, Vue.js & ML (TF-IDF/K-Means)</p>
+  </div>
+  <div class="bg-purple-600 text-white p-3 rounded-lg shadow-md" v-click>
+    <div class="font-bold text-xs">Harmonis</div>
+    <p class="text-[10px] mt-1 opacity-80">Mengakomodasi kebutuhan 2 prodi (SI & Bisnis Digital)</p>
+  </div>
+</div>
+
+<div class="grid grid-cols-3 gap-2 mt-2 text-center">
+  <div class="bg-pink-600 text-white p-3 rounded-lg shadow-md" v-click>
+    <div class="font-bold text-xs">Loyal</div>
+    <p class="text-[10px] mt-1 opacity-80">Berkontribusi langsung pada nilai akreditasi BAN-PT institusi</p>
+  </div>
+  <div class="bg-orange-600 text-white p-3 rounded-lg shadow-md" v-click>
+    <div class="font-bold text-xs">Adaptif</div>
+    <p class="text-[10px] mt-1 opacity-80">Memanfaatkan AI/NLP dan data engineering untuk menyelesaikan masalah</p>
+  </div>
+  <div class="bg-green-600 text-white p-3 rounded-lg shadow-md" v-click>
+    <div class="font-bold text-xs">Kolaboratif</div>
+    <p class="text-[10px] mt-1 opacity-80">Kerja sama dengan Kaprodi, Wakil Dekan, Tim Mutu FSTI</p>
+  </div>
+</div>
+
+---
+layout: default
+---
+
+# Agenda 3 — Smart Governance & Manajemen ASN
+
+Isu terpilih sangat erat kaitannya dengan peran dan kedudukan PNS dalam mewujudkan **Smart Governance**:
+
+<div class="grid grid-cols-2 gap-6 mt-8">
+  <div class="bg-blue-50 dark:bg-slate-800 p-6 rounded-lg border border-blue-100 dark:border-slate-700" v-click>
+    <h3 class="text-blue-800 dark:text-blue-400 font-bold border-b border-blue-200 dark:border-slate-600 pb-2 mb-3"><i class="fas fa-microchip mr-2"></i>Smart ASN</h3>
+    <p class="text-sm text-gray-700 dark:text-gray-300">Penulis tidak sekadar menggunakan teknologi, melainkan <i>menciptakan</i> solusi digital inovatif berbasis ML dan data engineering — manifestasi nyata profil Smart ASN.</p>
+  </div>
+  
+  <div class="bg-green-50 dark:bg-emerald-900/30 p-6 rounded-lg border border-green-100 dark:border-slate-700" v-click>
+    <h3 class="text-green-800 dark:text-emerald-400 font-bold border-b border-green-200 dark:border-slate-600 pb-2 mb-3"><i class="fas fa-chart-bar mr-2"></i>Manajemen ASN</h3>
+    <p class="text-sm text-gray-700 dark:text-gray-300">ASN Dosen wajib membuktikan kinerja Tridharma secara terukur. SINTA Intel mendukung implementasi Manajemen ASN yang akuntabel, transparan, dan berbasis data.</p>
+  </div>
+</div>
+
+---
+layout: default
+---
+
+# Identifikasi Isu
+
+Berdasarkan analisis situasi di unit kerja, ditemukan **3 isu aktual**:
 
 <v-clicks>
 
-1. **Belum Ada Sistem Digital Pengelolaan Tugas Akhir/Skripsi Mahasiswa (SIM TA)**
-   <div class="text-sm text-gray-500 ml-6 mb-4">Proses masih manual, rawan kehilangan data, dan pemantauan progres sulit dilakukan.</div>
+1. **Pengelolaan Tugas Akhir/Skripsi Mahasiswa FSTI ITK Belum Efektif**
+   <div class="text-sm text-gray-500 ml-6 mb-4">Proses manual via berkas fisik; dokumen TA rawan hilang; admin kerepotan mengelola jadwal sidang.</div>
 
-2. <span class="text-red-600 font-bold">Data Riset & Publikasi Dosen Tidak Terkelola Terpusat</span>
-   <div class="text-sm text-gray-500 ml-6 mb-4">Data tersebar di berbagai platform tanpa agregasi, menyulitkan pemetaan riset dan persiapan akreditasi BAN-PT.</div>
+2. <span class="text-red-600 font-bold">Pengelolaan Data Riset & Pengabdian Dosen Belum Terpusat dan Teranalisis</span>
+   <div class="text-sm text-gray-500 ml-6 mb-4">Data tersebar di SINTA, Scopus, GScholar tanpa agregasi. Peta riset tidak terbaca; nilai akreditasi BAN-PT terdampak langsung.</div>
 
-3. **Belum Ada Sistem Evaluasi Kepuasan Layanan Akademik Mahasiswa Secara Digital**
-   <div class="text-sm text-gray-500 ml-6">Pengumpulan umpan balik masih sporadis, data sulit dianalisis pimpinan untuk tindak lanjut.</div>
+3. **Umpan Balik Mahasiswa terhadap Layanan Akademik Belum Digital**
+   <div class="text-sm text-gray-500 ml-6">Pengumpulan sporadis via kuesioner kertas yang tidak terintegrasi.</div>
 
 </v-clicks>
 
@@ -108,82 +234,64 @@ Berdasarkan analisis situasi di unit kerja, ditemukan 3 isu utama:
 layout: statement
 ---
 
-# 5. Isu Terpilih
+# Isu Terpilih
 
-Data Riset & Publikasi Dosen<br/>Tidak Terkelola Terpusat
+Pengelolaan Data Riset & Pengabdian Dosen<br/>di Lab Inovasi Digital Belum Terpusat<br/>dan Teranalisis
 
 ---
 layout: center
 ---
 
-# 6. Analisis Isu (USG)
+# Analisis Isu — Metode USG
 
-Penetapan Isu menggunakan metode **Urgency, Seriousness, Growth (USG)**:
+Penetapan isu menggunakan metode **Urgency, Seriousness, Growth (USG)**:
 
 <div v-motion
   :initial="{ opacity: 0, y: 30 }"
   :enter="{ opacity: 1, y: 0, transition: { duration: 600 } }"
   class="overflow-hidden rounded-xl shadow-lg mt-6 border border-gray-200 dark:border-slate-700">
   <table class="w-full text-sm text-left">
-    <thead class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white font-bold animate-pulse">
+    <thead class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white font-bold">
       <tr>
-        <th class="px-4 py-3 border-b border-indigo-500 rounded-tl-xl text-center">Isu Aktual</th>
+        <th class="px-4 py-3 border-b border-indigo-500 text-center">Isu Aktual</th>
         <th class="px-2 py-3 border-b border-indigo-500 text-center">U</th>
         <th class="px-2 py-3 border-b border-indigo-500 text-center">S</th>
         <th class="px-2 py-3 border-b border-indigo-500 text-center">G</th>
         <th class="px-2 py-3 border-b border-indigo-500 text-center">Total</th>
-        <th class="px-3 py-3 border-b border-indigo-500 rounded-tr-xl text-center">Prioritas</th>
+        <th class="px-3 py-3 border-b border-indigo-500 text-center">Prioritas</th>
       </tr>
     </thead>
     <tbody class="bg-white dark:bg-slate-900 border-b dark:border-slate-700">
       <tr class="hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors border-b dark:border-slate-700 dark:text-gray-200">
-        <td class="px-4 py-3">Belum Ada Sistem Digital Pengelolaan TA (SIM TA)</td>
-        <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">4</td>
-        <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">4</td>
-        <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">3</td>
+        <td class="px-4 py-3">Pengelolaan TA/Skripsi Mahasiswa</td>
+        <td class="px-2 py-3 text-center">4</td>
+        <td class="px-2 py-3 text-center">4</td>
+        <td class="px-2 py-3 text-center">3</td>
         <td class="px-2 py-3 text-center font-bold">11</td>
-        <td class="px-3 py-3 text-center text-gray-600 dark:text-gray-400">II</td>
+        <td class="px-3 py-3 text-center">II</td>
       </tr>
-      <tr class="bg-blue-100/50 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors border-b dark:border-slate-700 font-semibold dark:text-gray-100">
-        <td class="px-4 py-3 text-blue-900 dark:text-blue-300 border-l-4 border-blue-600 dark:border-blue-400">Data Riset & Publikasi Dosen Tidak Terkelola Terpusat</td>
+      <tr class="bg-blue-100/50 dark:bg-blue-900/30 border-b dark:border-slate-700 font-semibold dark:text-gray-100">
+        <td class="px-4 py-3 text-blue-900 dark:text-blue-300 border-l-4 border-blue-600">Data Riset & Pengabdian Dosen Tidak Terpusat</td>
         <td class="px-2 py-3 text-center text-blue-800 dark:text-blue-400">5</td>
         <td class="px-2 py-3 text-center text-blue-800 dark:text-blue-400">5</td>
         <td class="px-2 py-3 text-center text-blue-800 dark:text-blue-400">4</td>
         <td class="px-2 py-3 text-center text-blue-900 dark:text-blue-300 font-bold text-base">14</td>
-        <td class="px-3 py-3 align-middle"><div class="text-white bg-blue-600 dark:bg-blue-500 rounded-full w-8 h-8 flex items-center justify-center mx-auto shadow-md">I</div></td>
+        <td class="px-3 py-3 align-middle"><div class="text-white bg-blue-600 rounded-full w-8 h-8 flex items-center justify-center mx-auto shadow-md">I</div></td>
       </tr>
       <tr class="hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors dark:text-gray-200">
-        <td class="px-4 py-3">Belum Ada Sistem Evaluasi Kepuasan Layanan Digital</td>
-        <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">3</td>
-        <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">3</td>
-        <td class="px-2 py-3 text-center text-gray-600 dark:text-gray-400">3</td>
+        <td class="px-4 py-3">Umpan Balik Kepuasan Layanan Digital</td>
+        <td class="px-2 py-3 text-center">3</td>
+        <td class="px-2 py-3 text-center">3</td>
+        <td class="px-2 py-3 text-center">3</td>
         <td class="px-2 py-3 text-center font-bold">9</td>
-        <td class="px-3 py-3 text-center text-gray-600 dark:text-gray-400">III</td>
+        <td class="px-3 py-3 text-center">III</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-*Alasan Isu Terpilih:* Sangat mendesak karena jadwal akreditasi semakin dekat, sangat berdampak pada nilai akreditasi prodi, dan akan semakin rumit seiring bertambahnya volume publikasi.
-
----
-layout: default
----
-
-# 7. Keterkaitan Isu dengan Agenda III
-
-Isu terpilih sangat erat kaitannya dengan peran dan kedudukan PNS dalam mewujudkan **Smart Governance**:
-
-<div class="grid grid-cols-2 gap-6 mt-8">
-  <div class="bg-blue-50 dark:bg-slate-800 p-6 rounded-lg border border-blue-100 dark:border-slate-700" v-click>
-    <h3 class="text-blue-800 dark:text-blue-400 font-bold border-b border-blue-200 dark:border-slate-600 pb-2 mb-3">Smart ASN</h3>
-    <p class="text-sm text-gray-700 dark:text-gray-300">Pengelolaan data yang manual mencerminkan kesenjangan <i>digital skill</i>. Solusi digital (SINTA Intel) mengatasi hal ini dengan pemanfaatan teknologi Machine Learning dan Web Development.</p>
-  </div>
-  
-  <div class="bg-green-50 dark:bg-emerald-900/30 p-6 rounded-lg border border-green-100 dark:border-slate-700" v-click>
-    <h3 class="text-green-800 dark:text-emerald-400 font-bold border-b border-green-200 dark:border-slate-600 pb-2 mb-3">Manajemen ASN</h3>
-    <p class="text-sm text-gray-700 dark:text-gray-300">Secara akuntabilitas, ASN Dosen wajib membuktikan kinerja Tridharma secara terukur. Ketiadaan sistem terpusat menghambat hal ini. Solusinya memberikan data transparan dan terverifikasi.</p>
-  </div>
+<div class="mt-4 text-sm bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg border border-amber-200 dark:border-amber-800" v-click>
+<b>Alasan Isu #2 Terpilih:</b> U=5 (jadwal akreditasi semakin dekat) · S=5 (memengaruhi nilai akreditasi langsung) · G=4 (volume publikasi terus bertambah tanpa sistem pengelolaan)
 </div>
 
 ---
@@ -191,7 +299,7 @@ layout: default
 transition: slide-up
 ---
 
-# 8. Analisis Akar Masalah (Fishbone)
+# Analisis Akar Masalah — Fishbone
 
 <div v-motion
   :initial="{ opacity: 0, scale: 0.9 }"
@@ -204,36 +312,28 @@ transition: slide-up
 layout: default
 ---
 
-# 9. Tujuan, Manfaat, & Ruang Lingkup
+# Tujuan Aktualisasi
 
-<div class="grid grid-cols-3 gap-4 mt-6">
-  <div v-motion :initial="{ y: 50, opacity: 0 }" :enter="{ y: 0, opacity: 1, transition: { delay: 100 } }" class="bg-white/90 dark:bg-slate-800/90 p-5 border-t-4 border-blue-500 rounded-lg shadow-md hover:-translate-y-2 transition-transform duration-300">
-    <h3 class="font-bold text-blue-700 dark:text-blue-400 mb-2 flex items-center gap-2"><i class="fas fa-bullseye text-blue-400"></i> Tujuan</h3>
-    <ul class="text-xs space-y-2 text-gray-700 dark:text-gray-300 list-disc ml-4">
-      <li>Membangun SINTA Intel (Dashboard Analitik).</li>
-      <li>Menyediakan pemetaan riset & deteksi kolaborasi via AI.</li>
-      <li>Monitoring dana riset (Funding Dashboard).</li>
-      <li>Menyediakan data rasio DTPS otomatis untuk Akreditasi.</li>
-    </ul>
+<div class="mt-2 space-y-1">
+  <div class="flex gap-2 items-start bg-white/80 dark:bg-slate-800/80 p-2 rounded-lg border dark:border-slate-700 shadow-sm" v-click>
+    <div class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 font-bold text-xs">1</div>
+    <p class="text-xs">Membangun sistem dashboard analitik terpusat (<b>SINTA Intel</b>) yang mengintegrasikan data riset seluruh dosen Prodi SI secara otomatis dari SINTA melalui pipeline scraper Python</p>
   </div>
-  
-  <div v-motion :initial="{ y: 50, opacity: 0 }" :enter="{ y: 0, opacity: 1, transition: { delay: 300 } }" class="bg-white/90 dark:bg-slate-800/90 p-5 border-t-4 border-green-500 rounded-lg shadow-md hover:-translate-y-2 transition-transform duration-300">
-    <h3 class="font-bold text-green-700 dark:text-emerald-400 mb-2 flex items-center gap-2"><i class="fas fa-gift text-green-400"></i> Manfaat</h3>
-    <ul class="text-xs space-y-2 text-gray-700 dark:text-gray-300 list-disc ml-4">
-      <li><b>Penulis:</b> Aktualisasi teknis & BerAKHLAK.</li>
-      <li><b>Prodi:</b> Efisiensi data & kesiapan akreditasi akurat.</li>
-      <li><b>ITK:</b> Akuntabilitas kinerja Tridharma terbukti.</li>
-      <li><b>Ekosistem:</b> Mendorong kolaborasi riset interdisipliner.</li>
-    </ul>
+  <div class="flex gap-2 items-start bg-white/80 dark:bg-slate-800/80 p-2 rounded-lg border dark:border-slate-700 shadow-sm" v-click>
+    <div class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 font-bold text-xs">2</div>
+    <p class="text-xs">Menyediakan <b>pemetaan riset & deteksi kolaborasi</b> berbasis AI (TF-IDF + K-Means) dan <b>Sankey Timeline</b> tren riset</p>
   </div>
-  
-  <div v-motion :initial="{ y: 50, opacity: 0 }" :enter="{ y: 0, opacity: 1, transition: { delay: 500 } }" class="bg-white/90 dark:bg-slate-800/90 p-5 border-t-4 border-purple-500 rounded-lg shadow-md hover:-translate-y-2 transition-transform duration-300">
-    <h3 class="font-bold text-purple-700 dark:text-purple-400 mb-2 flex items-center gap-2"><i class="fas fa-expand-arrows-alt text-purple-400"></i> Ruang Lingkup</h3>
-    <ul class="text-xs space-y-2 text-gray-700 dark:text-gray-300 list-disc ml-4">
-      <li><b>Sasaran:</b> Dosen Prodi SI & Bisnis Digital.</li>
-      <li><b>Lokasi:</b> Lab Inovasi Digital ITK.</li>
-      <li><b>Sumber Data:</b> Data SINTA Kemdiktisaintek & Hibah BIMA.</li>
-    </ul>
+  <div class="flex gap-2 items-start bg-white/80 dark:bg-slate-800/80 p-2 rounded-lg border dark:border-slate-700 shadow-sm" v-click>
+    <div class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 font-bold text-xs">3</div>
+    <p class="text-xs">Mengembangkan <b>Funding Dashboard</b> untuk monitoring dana riset & hibah (BIMA) per dosen secara transparan</p>
+  </div>
+  <div class="flex gap-2 items-start bg-white/80 dark:bg-slate-800/80 p-2 rounded-lg border dark:border-slate-700 shadow-sm" v-click>
+    <div class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 font-bold text-xs">4</div>
+    <p class="text-xs">Menyediakan fitur <b>DTPS Akreditasi</b> — menghitung otomatis Rasio Penelitian/DTPS, Pengabdian/DTPS, Dana/DTPS sesuai LKPS BAN-PT</p>
+  </div>
+  <div class="flex gap-2 items-start bg-white/80 dark:bg-slate-800/80 p-2 rounded-lg border dark:border-slate-700 shadow-sm" v-click>
+    <div class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 font-bold text-xs">5</div>
+    <p class="text-xs">Membangun <b>SOP & ekosistem pengelolaan data riset</b> melalui sosialisasi, pelatihan, dan dokumentasi</p>
   </div>
 </div>
 
@@ -241,40 +341,235 @@ layout: default
 layout: default
 ---
 
-# 10. Kegiatan Aktualisasi (Kaitan Agenda III)
+# Manfaat & Ruang Lingkup
 
-Terdapat 5 Kegiatan Utama yang dilandasi nilai Smart ASN & Manajemen ASN:
+<div class="grid grid-cols-2 gap-4 mt-4">
+  <div v-motion :initial="{ y: 30, opacity: 0 }" :enter="{ y: 0, opacity: 1, transition: { delay: 100 } }" class="bg-white/90 dark:bg-slate-800/90 p-4 border-t-4 border-blue-500 rounded-lg shadow-md">
+    <h3 class="font-bold text-blue-700 dark:text-blue-400 mb-2 text-sm"><i class="fas fa-user-tie mr-1"></i> ASN Dosen</h3>
+    <p class="text-xs text-gray-700 dark:text-gray-300">Mengembangkan kompetensi teknis (Python, ML, Vue.js) & mengaktualisasikan BerAKHLAK secara nyata sebagai Smart ASN</p>
+  </div>
+  <div v-motion :initial="{ y: 30, opacity: 0 }" :enter="{ y: 0, opacity: 1, transition: { delay: 200 } }" class="bg-white/90 dark:bg-slate-800/90 p-4 border-t-4 border-amber-500 rounded-lg shadow-md">
+    <h3 class="font-bold text-amber-700 dark:text-amber-400 mb-2 text-sm"><i class="fas fa-building-columns mr-1"></i> Unit Kerja</h3>
+    <p class="text-xs text-gray-700 dark:text-gray-300">Tersedia sistem terpusat; keputusan pimpinan berbasis data akurat; persiapan akreditasi BAN-PT lebih mudah</p>
+  </div>
+  <div v-motion :initial="{ y: 30, opacity: 0 }" :enter="{ y: 0, opacity: 1, transition: { delay: 300 } }" class="bg-white/90 dark:bg-slate-800/90 p-4 border-t-4 border-green-500 rounded-lg shadow-md">
+    <h3 class="font-bold text-green-700 dark:text-emerald-400 mb-2 text-sm"><i class="fas fa-landmark mr-1"></i> Institusi (ITK)</h3>
+    <p class="text-xs text-gray-700 dark:text-gray-300">Akuntabilitas kinerja terbukti; potensi model <i>best practice</i> yang dapat direplikasi ke prodi lain</p>
+  </div>
+  <div v-motion :initial="{ y: 30, opacity: 0 }" :enter="{ y: 0, opacity: 1, transition: { delay: 400 } }" class="bg-white/90 dark:bg-slate-800/90 p-4 border-t-4 border-red-500 rounded-lg shadow-md">
+    <h3 class="font-bold text-red-700 dark:text-red-400 mb-2 text-sm"><i class="fas fa-earth-asia mr-1"></i> Ekosistem</h3>
+    <p class="text-xs text-gray-700 dark:text-gray-300">Terdeteksi peluang kolaborasi riset lintas prodi; terbentuk peta riset ITK; produktivitas meningkat kolektif</p>
+  </div>
+</div>
+
+<div class="mt-4 bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg border border-purple-200 dark:border-purple-800 text-sm" v-click>
+  <b class="text-purple-700 dark:text-purple-400"><i class="fas fa-expand-arrows-alt mr-1"></i> Ruang Lingkup:</b>
+  <span class="text-gray-700 dark:text-gray-300">Dosen Prodi SI & Bisdig · Lab Inovasi Digital · Sumber: SINTA Kemdiktisaintek & BIMA · Waktu: 7 Maret – 22 April 2026 (7 minggu)</span>
+</div>
+
+---
+layout: default
+---
+
+# 7 Fitur Utama SINTA Intel
+
+<div class="grid grid-cols-4 gap-2 mt-4">
+  <div class="bg-white/90 dark:bg-slate-800/90 p-3 rounded-lg border dark:border-slate-700 shadow-sm" v-click>
+    <div class="text-blue-600 text-lg mb-1"><i class="fas fa-chart-line"></i></div>
+    <div class="font-bold text-xs text-blue-900 dark:text-blue-300">F1 · Dashboard SINTA</div>
+    <p class="text-[10px] text-gray-500 mt-1">Visualisasi metrik Tridharma: publikasi, penelitian, pengabdian, HKI, H-Index per dosen</p>
+  </div>
+  <div class="bg-white/90 dark:bg-slate-800/90 p-3 rounded-lg border dark:border-slate-700 shadow-sm" v-click>
+    <div class="text-teal-600 text-lg mb-1"><i class="fas fa-folder-open"></i></div>
+    <div class="font-bold text-xs text-teal-900 dark:text-teal-300">F2 · Research Gallery</div>
+    <p class="text-[10px] text-gray-500 mt-1">Galeri 6 kategori karya: publikasi, penelitian, pengabdian, buku, HKI, lainnya</p>
+  </div>
+  <div class="bg-white/90 dark:bg-slate-800/90 p-3 rounded-lg border dark:border-slate-700 shadow-sm" v-click>
+    <div class="text-purple-600 text-lg mb-1"><i class="fas fa-robot"></i></div>
+    <div class="font-bold text-xs text-purple-900 dark:text-purple-300">F3 · AI Clustering</div>
+    <p class="text-[10px] text-gray-500 mt-1">ML: TF-IDF + K-Means untuk deteksi topik & potensi kolaborasi riset lintas prodi</p>
+  </div>
+  <div class="bg-white/90 dark:bg-slate-800/90 p-3 rounded-lg border dark:border-slate-700 shadow-sm" v-click>
+    <div class="text-orange-600 text-lg mb-1"><i class="fas fa-arrow-trend-up"></i></div>
+    <div class="font-bold text-xs text-orange-900 dark:text-orange-300">F4 · Sankey Timeline</div>
+    <p class="text-[10px] text-gray-500 mt-1">Evolusi topik riset 2018–sekarang dalam alur visual interaktif</p>
+  </div>
+</div>
+
+<div class="grid grid-cols-3 gap-2 mt-2">
+  <div class="bg-white/90 dark:bg-slate-800/90 p-3 rounded-lg border dark:border-slate-700 shadow-sm" v-click>
+    <div class="text-green-600 text-lg mb-1"><i class="fas fa-sack-dollar"></i></div>
+    <div class="font-bold text-xs text-green-900 dark:text-green-300">F5 · Funding Dashboard</div>
+    <p class="text-[10px] text-gray-500 mt-1">Monitoring aliran dana riset & hibah per dosen; sumber pendanaan internal dan BIMA</p>
+  </div>
+  <div class="bg-white/90 dark:bg-slate-800/90 p-3 rounded-lg border dark:border-slate-700 shadow-sm" v-click>
+    <div class="text-red-600 text-lg mb-1"><i class="fas fa-graduation-cap"></i></div>
+    <div class="font-bold text-xs text-red-900 dark:text-red-300">F6 · DTPS Akreditasi</div>
+    <p class="text-[10px] text-gray-500 mt-1">Kalkulasi otomatis Rasio Penelitian/DTPS, Pengabdian/DTPS, Dana/DTPS sesuai LKPS BAN-PT</p>
+  </div>
+  <div class="bg-white/90 dark:bg-slate-800/90 p-3 rounded-lg border dark:border-slate-700 shadow-sm" v-click>
+    <div class="text-amber-600 text-lg mb-1"><i class="fas fa-magnifying-glass"></i></div>
+    <div class="font-bold text-xs text-amber-900 dark:text-amber-300">F7 · Expertise Finder</div>
+    <p class="text-[10px] text-gray-500 mt-1">Matchmaking pakar berbasis TF-IDF Scoring untuk mitra riset & pengabdian</p>
+  </div>
+</div>
+
+---
+layout: default
+---
+
+# 5 Kegiatan Aktualisasi
+
+Setiap kegiatan dilandasi nilai **BerAKHLAK** dan keterkaitan **Smart ASN & Manajemen ASN**:
 
 <br>
 
 <v-clicks>
 
-1. **Pemetaan & Pengumpulan Data Dosen** *(Manajemen ASN: Akuntabilitas Data)*
-2. **Pengembangan Pipeline Scraper Otomatis** *(Smart ASN: Literasi Digital & Inovasi)*
-3. **Implementasi Fitur Analytics & Dashboard AI** *(Smart ASN & Manajemen ASN)*
-4. **Implementasi Dashboard Akreditasi & Funding** *(Manajemen ASN: Kinerja Institusi)*
-5. **Deployment, Sosialisasi & Evaluasi Sistem** *(Smart ASN & Manajemen ASN)*
+1. **Pemetaan & Pengumpulan Data Dosen** *(Minggu 1–2)*
+   <div class="text-xs text-gray-500 ml-6 mb-3">Inventarisasi data dosen SI & Bisdig dari SINTA · Koordinasi dengan Kaprodi & Wakil Dekan Akademik</div>
+
+2. **Pengembangan Pipeline Scraper Otomatis** *(Minggu 2–3)*
+   <div class="text-xs text-gray-500 ml-6 mb-3">Membangun scraper Python yang mengambil data dari SINTA API secara otomatis & terjadwal</div>
+
+3. **Implementasi Fitur Analytics & Dashboard AI** *(Minggu 3–5)*
+   <div class="text-xs text-gray-500 ml-6 mb-3">AI Clustering (TF-IDF + K-Means), Sankey Timeline, Research Gallery, Expertise Finder</div>
+
+4. **Implementasi Dashboard Akreditasi & Funding** *(Minggu 4–6)*
+   <div class="text-xs text-gray-500 ml-6 mb-3">Fitur DTPS Akreditasi (BAN-PT) dan Funding Dashboard (monitoring hibah BIMA)</div>
+
+5. **Deployment, Sosialisasi & Evaluasi Sistem** *(Minggu 6–7)*
+   <div class="text-xs text-gray-500 ml-6">Deploy ke server ITK · Pelatihan pengguna · Evaluasi & dokumentasi</div>
 
 </v-clicks>
+
+---
+layout: default
+---
+
+# Kegiatan 1–2: Data & Pipeline
+
+<div class="grid grid-cols-2 gap-4 mt-4">
+  <div class="bg-white/90 dark:bg-slate-800/90 p-4 rounded-xl shadow-md border-l-4 border-blue-500">
+    <h3 class="font-bold text-blue-700 dark:text-blue-400 text-sm mb-3"><i class="fas fa-database mr-2"></i>Kegiatan 1: Pemetaan Data</h3>
+    <div class="text-xs space-y-2 text-gray-700 dark:text-gray-300">
+      <div><b>Tahapan:</b></div>
+      <ul class="list-disc ml-4 space-y-1">
+        <li>Inventarisasi data dosen dari SINTA per prodi</li>
+        <li>Koordinasi kebutuhan data dengan pimpinan</li>
+        <li>Validasi kelengkapan profil dosen</li>
+      </ul>
+      <div class="mt-2 bg-blue-50 dark:bg-blue-900/30 p-2 rounded text-[10px]">
+        <b>Output:</b> Dokumen inventarisasi data dosen (2 prodi)
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-white/90 dark:bg-slate-800/90 p-4 rounded-xl shadow-md border-l-4 border-indigo-500">
+    <h3 class="font-bold text-indigo-700 dark:text-indigo-400 text-sm mb-3"><i class="fas fa-code mr-2"></i>Kegiatan 2: Pipeline Scraper</h3>
+    <div class="text-xs space-y-2 text-gray-700 dark:text-gray-300">
+      <div><b>Tahapan:</b></div>
+      <ul class="list-disc ml-4 space-y-1">
+        <li>Develop scraper Python (SINTA API)</li>
+        <li>Automasi pipeline data berkala</li>
+        <li>Data cleaning & normalisasi</li>
+      </ul>
+      <div class="mt-2 bg-indigo-50 dark:bg-indigo-900/30 p-2 rounded text-[10px]">
+        <b>Output:</b> Pipeline scraper otomatis & dataset dosen terstruktur
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-4 text-center text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-slate-800 p-2 rounded-lg" v-click>
+  <b>Nilai BerAKHLAK:</b> Berorientasi Pelayanan (menyediakan data) · Akuntabel (data terverifikasi) · Kompeten (Python/scraping) · Kolaboratif (koordinasi Kaprodi)
+</div>
+
+---
+layout: default
+---
+
+# Kegiatan 3: Analytics & Dashboard AI
+
+Inti dari SINTA Intel — implementasi 4 fitur utama berbasis Machine Learning:
+
+<div class="grid grid-cols-2 gap-3 mt-4">
+  <div class="bg-purple-50/80 dark:bg-purple-900/20 p-3 rounded-lg border border-purple-200 dark:border-purple-800" v-click>
+    <div class="font-bold text-sm text-purple-700 dark:text-purple-400 mb-1"><i class="fas fa-robot mr-1"></i> AI Clustering</div>
+    <p class="text-xs text-gray-600 dark:text-gray-400">TF-IDF + K-Means mendeteksi cluster topik riset & potensi kolaborasi lintas prodi secara otomatis</p>
+  </div>
+  <div class="bg-orange-50/80 dark:bg-orange-900/20 p-3 rounded-lg border border-orange-200 dark:border-orange-800" v-click>
+    <div class="font-bold text-sm text-orange-700 dark:text-orange-400 mb-1"><i class="fas fa-arrow-trend-up mr-1"></i> Sankey Timeline</div>
+    <p class="text-xs text-gray-600 dark:text-gray-400">Visualisasi evolusi topik riset & pengabdian 2018–sekarang dalam alur interaktif</p>
+  </div>
+  <div class="bg-teal-50/80 dark:bg-teal-900/20 p-3 rounded-lg border border-teal-200 dark:border-teal-800" v-click>
+    <div class="font-bold text-sm text-teal-700 dark:text-teal-400 mb-1"><i class="fas fa-folder-open mr-1"></i> Research Gallery</div>
+    <p class="text-xs text-gray-600 dark:text-gray-400">Galeri 6 kategori karya akademik: publikasi, penelitian, pengabdian, buku, HKI, lainnya</p>
+  </div>
+  <div class="bg-amber-50/80 dark:bg-amber-900/20 p-3 rounded-lg border border-amber-200 dark:border-amber-800" v-click>
+    <div class="font-bold text-sm text-amber-700 dark:text-amber-400 mb-1"><i class="fas fa-magnifying-glass mr-1"></i> Expertise Finder</div>
+    <p class="text-xs text-gray-600 dark:text-gray-400">Matchmaking pakar berbasis TF-IDF Scoring untuk pelacakan mitra riset & pengabdian</p>
+  </div>
+</div>
+
+<div class="mt-4 bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg border border-blue-200 dark:border-blue-800 text-xs" v-click>
+  <b class="text-blue-700 dark:text-blue-400">Output:</b> Dashboard analitik berfungsi penuh dengan 4 fitur AI/ML terintegrasi
+</div>
+
+---
+layout: default
+---
+
+# Kegiatan 4–5: Akreditasi & Deployment
+
+<div class="grid grid-cols-2 gap-4 mt-4">
+  <div class="bg-white/90 dark:bg-slate-800/90 p-4 rounded-xl shadow-md border-l-4 border-green-500">
+    <h3 class="font-bold text-green-700 dark:text-emerald-400 text-sm mb-3"><i class="fas fa-graduation-cap mr-2"></i>Kegiatan 4: Akreditasi & Funding</h3>
+    <div class="text-xs space-y-2 text-gray-700 dark:text-gray-300">
+      <ul class="list-disc ml-4 space-y-1">
+        <li>DTPS Akreditasi: Rasio Penelitian/DTPS, Pengabdian/DTPS, Dana/DTPS otomatis</li>
+        <li>Funding Dashboard: aliran hibah BIMA per dosen</li>
+        <li>Dashboard SINTA utama + visualisasi metrik</li>
+      </ul>
+      <div class="mt-2 bg-green-50 dark:bg-green-900/30 p-2 rounded text-[10px]">
+        <b>Output:</b> Fitur akreditasi & funding dashboard siap pakai
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-white/90 dark:bg-slate-800/90 p-4 rounded-xl shadow-md border-l-4 border-amber-500">
+    <h3 class="font-bold text-amber-700 dark:text-amber-400 text-sm mb-3"><i class="fas fa-rocket mr-2"></i>Kegiatan 5: Deploy & Sosialisasi</h3>
+    <div class="text-xs space-y-2 text-gray-700 dark:text-gray-300">
+      <ul class="list-disc ml-4 space-y-1">
+        <li>Deployment ke server ITK</li>
+        <li>Pelatihan pengguna (dosen & pimpinan)</li>
+        <li>Evaluasi penggunaan & pengumpulan feedback</li>
+        <li>Dokumentasi teknis & SOP pengelolaan</li>
+      </ul>
+      <div class="mt-2 bg-amber-50 dark:bg-amber-900/30 p-2 rounded text-[10px]">
+        <b>Output:</b> Sistem live · Manual pengguna · SOP · Laporan evaluasi
+      </div>
+    </div>
+  </div>
+</div>
 
 ---
 layout: center
 ---
 
-# 11. Matrik Kegiatan & Nilai Dasar (Ringkasan)
+# Matriks BerAKHLAK & Kegiatan
 
-Nilai-nilai dasar **BerAKHLAK** diimplementasikan pada setiap tahapan:
+Nilai-nilai dasar **BerAKHLAK** diimplementasikan pada setiap kegiatan:
 
-<div class="text-sm bg-gray-50 dark:bg-slate-800 p-6 rounded-xl border dark:border-slate-700 mt-6 dark:text-gray-200">
-  <b>Kegiatan Inti: Pengembangan Modul SINTA Intel</b>
-  <ul class="mt-3 space-y-2 list-disc ml-6 text-gray-700 dark:text-gray-300">
-    <li><b>Berorientasi Pelayanan:</b> Otomasi data mempercepat pimpinan mendapat laporan.</li>
-    <li><b>Akuntabel:</b> Algoritma scraping & AI Clustering dapat diverifikasi dan diaudit.</li>
-    <li><b>Kompeten:</b> Penggunaan Python, React/Vue, & Machine Learning (TF-IDF/K-Means).</li>
-    <li><b>Harmonis:</b> Solusi mengakomodasi kebutuhan lintas prodi (SI & Bisnis Digital).</li>
-    <li><b>Loyal:</b> Berkontribusi langsung pada nilai akreditasi institusi ITK.</li>
-    <li><b>Adaptif:</b> Memanfaatkan AI/NLP untuk menyelesaikan masalah pendataan.</li>
-    <li><b>Kolaboratif:</b> Bekerja sama dengan Kaprodi, Wakil Dekan, dan Tim Mutu FSTI.</li>
+<div class="text-sm bg-gray-50 dark:bg-slate-800 p-5 rounded-xl border dark:border-slate-700 mt-6 dark:text-gray-200">
+  <ul class="space-y-2 list-disc ml-6 text-gray-700 dark:text-gray-300">
+    <li><b>Berorientasi Pelayanan:</b> Otomasi data mempercepat pimpinan mendapat laporan akurat & real-time</li>
+    <li><b>Akuntabel:</b> Algoritma scraping & AI clustering dapat diverifikasi, diaudit, dan direproduksi</li>
+    <li><b>Kompeten:</b> Penggunaan Python, Vue.js & Machine Learning (TF-IDF, K-Means)</li>
+    <li><b>Harmonis:</b> Solusi mengakomodasi kebutuhan 2 prodi (SI & Bisnis Digital) secara adil</li>
+    <li><b>Loyal:</b> Berkontribusi langsung pada nilai akreditasi BAN-PT institusi ITK</li>
+    <li><b>Adaptif:</b> Memanfaatkan AI/NLP untuk menyelesaikan masalah pendataan yang kompleks</li>
+    <li><b>Kolaboratif:</b> Bekerja sama dengan Kaprodi, Wakil Dekan, dan Tim Mutu FSTI</li>
   </ul>
 </div>
 
@@ -282,19 +577,18 @@ Nilai-nilai dasar **BerAKHLAK** diimplementasikan pada setiap tahapan:
 layout: default
 ---
 
-# 12. Jadwal Pelaksanaan (7 Minggu)
+# Jadwal Pelaksanaan (7 Minggu)
 
-Pelaksanaan aktualisasi (Maret - April 2026):
+Pelaksanaan aktualisasi: **7 Maret – 22 April 2026** (Habituasi Off Campus)
 
 <div v-motion
   :initial="{ opacity: 0, scale: 0.95 }"
   :enter="{ opacity: 1, scale: 1, transition: { duration: 700 } }"
-  class="mt-6 overflow-hidden rounded-xl shadow-xl border border-gray-200">
+  class="mt-4 overflow-hidden rounded-xl shadow-xl border border-gray-200">
   
   <table class="w-full text-xs text-left">
     <thead>
-      <!-- Animasi Gradient Berjalan pada Header Bulan -->
-      <tr class="bg-[linear-gradient(45deg,#1e3a8a,#0284c7,#1e3a8a)] bg-[length:400%_400%] animate-[gradient_3s_ease_infinite] text-white font-bold text-center">
+      <tr class="bg-gradient-to-r from-blue-700 to-indigo-800 text-white font-bold text-center">
         <th rowspan="2" class="px-2 py-2 w-8 border border-white/20">No</th>
         <th rowspan="2" class="px-3 py-2 border border-white/20">Kegiatan</th>
         <th colspan="3" class="px-2 py-2 border border-white/20 bg-blue-800/50">Maret 2026</th>
@@ -311,65 +605,102 @@ Pelaksanaan aktualisasi (Maret - April 2026):
       </tr>
     </thead>
     <tbody class="bg-gray-50 dark:bg-slate-900 text-center text-gray-800 dark:text-gray-200">
-<tr class="border-b border-gray-200 dark:border-slate-700 hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors">
-<td class="py-2 border-r border-gray-200 dark:border-slate-700">1</td>
-<td class="px-3 py-2 text-left border-r border-gray-200 dark:border-slate-700">Pemetaan & Pengumpulan Data Dosen</td>
-<td class="bg-blue-500 border border-white dark:border-slate-900 shadow-inner animate-[pulse_2s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-<td class="bg-blue-500 border border-white dark:border-slate-900 shadow-inner animate-[pulse_2s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-<td class="border-r border-gray-200 dark:border-slate-700"></td>
+<tr class="border-b border-gray-200 dark:border-slate-700">
+<td class="py-2 border-r border-gray-200">1</td>
+<td class="px-3 py-2 text-left border-r border-gray-200">Pemetaan & Pengumpulan Data</td>
+<td class="bg-blue-500 border border-white"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td class="bg-blue-500 border border-white"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td class="border-r border-gray-200"></td>
 <td></td><td></td><td></td><td></td>
 </tr>
-<tr class="border-b border-gray-200 dark:border-slate-700 hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors">
-<td class="py-2 border-r border-gray-200 dark:border-slate-700">2</td>
-<td class="px-3 py-2 text-left border-r border-gray-200 dark:border-slate-700">Pengembangan Pipeline Scraper SINTA</td>
-<td class="border-r border-gray-200 dark:border-slate-700"></td>
-<td class="bg-blue-600 border border-white dark:border-slate-900 shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-<td class="bg-blue-600 border border-white dark:border-slate-900 shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<tr class="border-b border-gray-200 dark:border-slate-700">
+<td class="py-2 border-r border-gray-200">2</td>
+<td class="px-3 py-2 text-left border-r border-gray-200">Pipeline Scraper SINTA</td>
+<td class="border-r border-gray-200"></td>
+<td class="bg-blue-600 border border-white"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td class="bg-blue-600 border border-white"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
 <td></td><td></td><td></td><td></td>
 </tr>
-<tr class="border-b border-gray-200 dark:border-slate-700 hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors">
-<td class="py-2 border-r border-gray-200 dark:border-slate-700">3</td>
-<td class="px-3 py-2 text-left border-r border-gray-200 dark:border-slate-700">Implementasi Analytics & Dashboard</td>
-<td class="border-r border-gray-200 dark:border-slate-700"></td>
-<td class="border-r border-gray-200 dark:border-slate-700"></td>
-<td class="bg-blue-700 border border-white dark:border-slate-900 shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-<td class="bg-blue-700 border border-white dark:border-slate-900 shadow-inner animate-[pulse_3s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-<td class="bg-blue-700 border border-white dark:border-slate-900 shadow-inner animate-[pulse_3s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<tr class="border-b border-gray-200 dark:border-slate-700">
+<td class="py-2 border-r border-gray-200">3</td>
+<td class="px-3 py-2 text-left border-r border-gray-200">Analytics & Dashboard AI</td>
+<td class="border-r border-gray-200"></td>
+<td class="border-r border-gray-200"></td>
+<td class="bg-blue-700 border border-white"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td class="bg-blue-700 border border-white"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td class="bg-blue-700 border border-white"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
 <td></td><td></td>
 </tr>
-<tr class="border-b border-gray-200 dark:border-slate-700 hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors">
-<td class="py-2 border-r border-gray-200 dark:border-slate-700">4</td>
-<td class="px-3 py-2 text-left border-r border-gray-200 dark:border-slate-700">Dashboard Akreditasi (DTPS & Funding)</td>
-<td class="border-r border-gray-200 dark:border-slate-700"></td>
-<td class="border-r border-gray-200 dark:border-slate-700"></td>
-<td class="border-r border-gray-200 dark:border-slate-700"></td>
-<td class="bg-indigo-600 border border-white dark:border-slate-900 shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-<td class="bg-indigo-600 border border-white dark:border-slate-900 shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-<td class="bg-indigo-600 border border-white dark:border-slate-900 shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<tr class="border-b border-gray-200 dark:border-slate-700">
+<td class="py-2 border-r border-gray-200">4</td>
+<td class="px-3 py-2 text-left border-r border-gray-200">Dashboard Akreditasi & Funding</td>
+<td class="border-r border-gray-200"></td>
+<td class="border-r border-gray-200"></td>
+<td class="border-r border-gray-200"></td>
+<td class="bg-indigo-600 border border-white"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td class="bg-indigo-600 border border-white"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td class="bg-indigo-600 border border-white"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
 <td></td>
 </tr>
-<tr class="hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors">
-<td class="py-2 border-r border-gray-200 dark:border-slate-700">5</td>
-<td class="px-3 py-2 text-left border-r border-gray-200 dark:border-slate-700">Deployment, Sosialisasi & Evaluasi</td>
-<td class="border-r border-gray-200 dark:border-slate-700"></td>
-<td class="border-r border-gray-200 dark:border-slate-700"></td>
-<td class="border-r border-gray-200 dark:border-slate-700"></td>
-<td class="border-r border-gray-200 dark:border-slate-700"></td>
-<td class="border-r border-gray-200 dark:border-slate-700"></td>
-<td class="bg-indigo-700 border border-white dark:border-slate-900 shadow-inner"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
-<td class="bg-indigo-700 border border-white dark:border-slate-900 shadow-inner animate-[pulse_2s_infinite]"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<tr class="">
+<td class="py-2 border-r border-gray-200">5</td>
+<td class="px-3 py-2 text-left border-r border-gray-200">Deploy, Sosialisasi & Evaluasi</td>
+<td class="border-r border-gray-200"></td>
+<td class="border-r border-gray-200"></td>
+<td class="border-r border-gray-200"></td>
+<td class="border-r border-gray-200"></td>
+<td class="border-r border-gray-200"></td>
+<td class="bg-indigo-700 border border-white"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
+<td class="bg-indigo-700 border border-white"><div class="w-2 h-2 bg-white rounded-full mx-auto"></div></td>
 </tr>
     </tbody>
   </table>
   
-  <div class="bg-white dark:bg-slate-800 p-3 text-[10px] text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-slate-700 flex justify-between">
-    <div class="flex items-center gap-2"><div class="w-3 h-3 bg-blue-500 border shadow-sm dark:border-slate-600"></div> = Minggu aktif kegiatan berlangsung</div>
+  <div class="bg-white dark:bg-slate-800 p-3 text-[10px] text-gray-500 dark:text-gray-400 border-t border-gray-200 flex justify-between">
+    <div class="flex items-center gap-2"><div class="w-3 h-3 bg-blue-500 border shadow-sm"></div> = Minggu aktif kegiatan berlangsung</div>
     <div><i>*M1–M3 = Maret 2026 | M4–M7 = April 2026</i></div>
   </div>
 </div>
 
-<div class="mt-12 text-center text-gray-500 italic">
-"Transformasi Digital untuk Akuntabilitas Tridharma Perguruan Tinggi"
+---
+layout: default
+---
+
+# Rencana Output & Deliverables
+
+<div class="grid grid-cols-2 gap-3 mt-4">
+  <div class="bg-white/90 dark:bg-slate-800/90 p-3 rounded-lg border dark:border-slate-700 shadow-sm flex gap-3 items-start" v-click>
+    <div class="bg-blue-100 dark:bg-blue-900/50 rounded-lg p-2 text-blue-600"><i class="fas fa-globe text-lg"></i></div>
+    <div>
+      <div class="font-bold text-xs">Sistem SINTA Intel</div>
+      <p class="text-[10px] text-gray-500 mt-1">Dashboard web analitik live di server ITK dengan 7 fitur utama terintegrasi</p>
+    </div>
+  </div>
+  <div class="bg-white/90 dark:bg-slate-800/90 p-3 rounded-lg border dark:border-slate-700 shadow-sm flex gap-3 items-start" v-click>
+    <div class="bg-green-100 dark:bg-green-900/50 rounded-lg p-2 text-green-600"><i class="fas fa-database text-lg"></i></div>
+    <div>
+      <div class="font-bold text-xs">Pipeline Scraper Otomatis</div>
+      <p class="text-[10px] text-gray-500 mt-1">Script Python yang mengambil data SINTA secara terjadwal & otomatis</p>
+    </div>
+  </div>
+  <div class="bg-white/90 dark:bg-slate-800/90 p-3 rounded-lg border dark:border-slate-700 shadow-sm flex gap-3 items-start" v-click>
+    <div class="bg-purple-100 dark:bg-purple-900/50 rounded-lg p-2 text-purple-600"><i class="fas fa-file-alt text-lg"></i></div>
+    <div>
+      <div class="font-bold text-xs">Dokumentasi & SOP</div>
+      <p class="text-[10px] text-gray-500 mt-1">Manual pengguna, dokumentasi teknis, dan SOP pengelolaan data riset</p>
+    </div>
+  </div>
+  <div class="bg-white/90 dark:bg-slate-800/90 p-3 rounded-lg border dark:border-slate-700 shadow-sm flex gap-3 items-start" v-click>
+    <div class="bg-amber-100 dark:bg-amber-900/50 rounded-lg p-2 text-amber-600"><i class="fas fa-chart-pie text-lg"></i></div>
+    <div>
+      <div class="font-bold text-xs">Laporan Evaluasi</div>
+      <p class="text-[10px] text-gray-500 mt-1">Hasil evaluasi penggunaan, feedback pengguna, dan rekomendasi pengembangan</p>
+    </div>
+  </div>
+</div>
+
+<div class="mt-4 bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg border border-blue-200 dark:border-blue-800 text-center text-sm" v-click>
+  <b>"Transformasi Digital untuk Akuntabilitas Tridharma Perguruan Tinggi"</b>
 </div>
 
 ---
@@ -379,3 +710,9 @@ class: text-center
 
 # Terima Kasih
 **Mohon Arahan dan Masukannya**
+
+<div class="mt-8 text-sm text-gray-500 dark:text-gray-400">
+  <p>Aidil Saputra Kirsan, S.ST., M.Tr.Kom</p>
+  <p class="text-xs">Dosen Asisten Ahli / Kepala Lab Inovasi Digital</p>
+  <p class="text-xs">Prodi Sistem Informasi · FSTI · Institut Teknologi Kalimantan</p>
+</div>

@@ -1,0 +1,187 @@
+/* =============================================
+   PRINT STYLES — Rancangan Aktualisasi SINTA
+   File terpisah agar rapi, di-link dengan media="print"
+   ============================================= */
+
+/* ---------- Global Print Reset ---------- */
+* {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+}
+
+body {
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 12px !important;
+}
+
+/* ---------- Sembunyikan Elemen Non-Print ---------- */
+nav {
+    display: none !important;
+}
+
+/* ---------- Hapus Efek Interaktif ---------- */
+*,
+*::before,
+*::after {
+    transition: none !important;
+    animation: none !important;
+    box-shadow: none !important;
+}
+
+/* ---------- COVER PAGE ---------- */
+#cover {
+    min-height: 297mm !important;
+    height: 297mm !important;
+    padding-top: 0 !important;
+    overflow: visible !important;
+    page-break-after: always !important;
+    break-after: page !important;
+}
+
+#cover::before,
+#cover::after {
+    display: none !important;
+}
+
+/* Foto profil: sembunyikan pseudo-element placeholder jika ada <img> */
+.photo-placeholder::before {
+    display: none !important;
+}
+
+.cover-header {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.cover-body {
+    grid-template-columns: 1fr 340px !important;
+}
+
+.cover-sidebar {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* ---------- CHAPTER HEADERS ---------- */
+.chapter-header {
+    margin-top: 0 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+}
+
+/* ---------- PAGE BREAKS ---------- */
+.pdf-page-break {
+    page-break-before: always !important;
+    break-before: page !important;
+    display: block !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+}
+
+section[id^="bab"],
+#penutup {
+    page-break-before: always !important;
+    break-before: page !important;
+}
+
+.formal-page {
+    page-break-before: always !important;
+    break-before: page !important;
+    border: 1px solid #ccc !important;
+    padding: 1rem 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* ---------- Hindari Potongan Konten ---------- */
+.content-area,
+.content-inner {
+    box-shadow: none !important;
+}
+
+.info-box,
+.highlight-box,
+.alert-box,
+.feature-card,
+.berakhlak-card,
+.kegiatan-card,
+.info-card,
+.profile-card,
+.sig-box,
+.kata-pengantar,
+.instansi-item,
+.identitas-layout {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+}
+
+/* Tabel: hindari header terpotong dari body */
+.mag-table,
+.jadwal-table,
+.konsultasi-table,
+.identitas-table {
+    page-break-inside: auto !important;
+}
+
+.mag-table thead,
+.jadwal-table thead,
+.konsultasi-table thead {
+    display: table-header-group !important;
+}
+
+.mag-table tr,
+.jadwal-table tr,
+.konsultasi-table tr,
+.identitas-table tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+}
+
+/* ---------- Section Separator ---------- */
+.section-sep {
+    display: none !important;
+}
+
+/* ---------- PENUTUP ---------- */
+#penutup {
+    min-height: 297mm !important;
+    height: 297mm !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+/* ---------- Hover Effects Off ---------- */
+.feature-card:hover {
+    transform: none !important;
+}
+
+nav .nav-links a:hover {
+    background: none !important;
+}
+
+/* ---------- Grid Responsif untuk Print ---------- */
+.berakhlak-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+}
+
+.feature-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.kegiatan-body {
+    grid-template-columns: 1fr 1fr 1fr !important;
+}
+
+/* ---------- Link URL tampil di print ---------- */
+/* Uncomment baris di bawah jika ingin URL muncul di print:
+a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.6rem;
+    color: #666;
+}
+*/
