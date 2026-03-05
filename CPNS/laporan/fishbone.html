@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fishbone Diagram</title>
+    <!-- CSS is embedded for easy capture -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .canvas {
+            width: 1200px;
+            height: 800px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            position: relative;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            color: #1e3a8a;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .header p {
+            color: #64748b;
+            font-size: 15px;
+            font-style: italic;
+        }
+
+        /* DIAGRAM AREA */
+        .diagram {
+            position: relative;
+            flex: 1;
+            width: 100%;
+            height: 600px;
+        }
+
+        /* ABSOLUTE BOXES */
+        .effect-box {
+            position: absolute;
+            background-color: #1e3b60;
+            color: white;
+            padding: 18px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            width: 220px;
+            font-size: 15px;
+            line-height: 1.5;
+            z-index: 20;
+            box-shadow: 0 8px 15px rgba(30, 59, 96, 0.25);
+            /* Position injected inline */
+        }
+
+        .cat-box {
+            position: absolute;
+            color: white;
+            padding: 8px 0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            width: 130px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 15;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .reason-box {
+            position: absolute;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            line-height: 1.4;
+            color: #334155;
+            width: 220px;
+            text-align: center;
+            z-index: 30;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Colors for categories */
+        .bg-manusia {
+            background-color: #2b74b3;
+        }
+
+        .bg-metode {
+            background-color: #14808c;
+        }
+
+        .bg-teknologi {
+            background-color: #3b5a2f;
+        }
+
+        .bg-material {
+            background-color: #a37c00;
+        }
+
+        .bg-lingkungan {
+            background-color: #b50917;
+        }
+
+        /* Colors for reasons */
+        .r-manusia {
+            background-color: #e8f4fe;
+            border: 1px solid #bae0fb;
+        }
+
+        .r-metode {
+            background-color: #e6f6f7;
+            border: 1px solid #a8e4ea;
+        }
+
+        .r-teknologi {
+            background-color: #eff6eb;
+            border: 1px solid #d1eac6;
+        }
+
+        .r-material {
+            background-color: #fdf8e6;
+            border: 1px solid #faeab3;
+        }
+
+        .r-lingkungan {
+            background-color: #fcebeb;
+            border: 1px solid #f6baba;
+        }
+
+        /* FOOTER / LEGEND */
+        .footer {
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+        }
+
+        .dot.blue {
+            background-color: #2b74b3;
+        }
+
+        .dot.teal {
+            background-color: #14808c;
+        }
+
+        .dot.green {
+            background-color: #3b5a2f;
+        }
+
+        .dot.ochre {
+            background-color: #a37c00;
+        }
+
+        .dot.red {
+            background-color: #b50917;
+        }
+
+        .author {
+            font-size: 13px;
+            color: #94a3b8;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="canvas">
+        <div class="header">
+            <h1>Diagram Fishbone (Ishikawa) — Analisis Akar Permasalahan</h1>
+            <p>Isu Terpilih: Data Riset & Publikasi Dosen Tidak Terkelola Terpusat | Prodi Sistem Informasi FSTI ITK</p>
+        </div>
+
+        <div class="diagram">
+            <!-- SVG DIAGRAM LINES -->
+            <svg width="100%" height="100%" style="position:absolute; top:0; left:0; z-index:1;">
+                <defs>
+                    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                        <path d="M0,0 L0,8 L8,4 z" fill="#1e3b60" />
+                    </marker>
+                </defs>
+                <!-- Spine -->
+                <line x1="20" y1="310" x2="870" y2="310" stroke="#1e3b60" stroke-width="5" marker-end="url(#arrow)" />
+
+                <!-- Branches -->
+                <line x1="290" y1="70" x2="410" y2="310" stroke="#2b74b3" stroke-width="4" />
+                <line x1="520" y1="70" x2="640" y2="310" stroke="#14808c" stroke-width="4" />
+                <line x1="750" y1="70" x2="870" y2="310" stroke="#3b5a2f" stroke-width="4" />
+
+                <line x1="440" y1="550" x2="560" y2="310" stroke="#a37c00" stroke-width="4" />
+                <line x1="670" y1="550" x2="790" y2="310" stroke="#b50917" stroke-width="4" />
+
+                <!-- Connectors Manusia -->
+                <line x1="300" y1="110" x2="310" y2="110" stroke="#2b74b3" stroke-width="2" />
+                <line x1="330" y1="170" x2="340" y2="170" stroke="#2b74b3" stroke-width="2" />
+                <line x1="360" y1="230" x2="370" y2="230" stroke="#2b74b3" stroke-width="2" />
+
+                <!-- Connectors Metode -->
+                <line x1="530" y1="110" x2="540" y2="110" stroke="#14808c" stroke-width="2" />
+                <line x1="560" y1="170" x2="570" y2="170" stroke="#14808c" stroke-width="2" />
+                <line x1="590" y1="230" x2="600" y2="230" stroke="#14808c" stroke-width="2" />
+
+                <!-- Connectors Teknologi -->
+                <line x1="760" y1="110" x2="770" y2="110" stroke="#3b5a2f" stroke-width="2" />
+                <line x1="790" y1="170" x2="800" y2="170" stroke="#3b5a2f" stroke-width="2" />
+                <line x1="820" y1="230" x2="830" y2="230" stroke="#3b5a2f" stroke-width="2" />
+
+                <!-- Connectors Material -->
+                <line x1="510" y1="390" x2="520" y2="390" stroke="#a37c00" stroke-width="2" />
+                <line x1="480" y1="450" x2="490" y2="450" stroke="#a37c00" stroke-width="2" />
+                <line x1="450" y1="510" x2="460" y2="510" stroke="#a37c00" stroke-width="2" />
+
+                <!-- Connectors Lingkungan -->
+                <line x1="740" y1="390" x2="750" y2="390" stroke="#b50917" stroke-width="2" />
+                <line x1="710" y1="450" x2="720" y2="450" stroke="#b50917" stroke-width="2" />
+                <line x1="680" y1="510" x2="690" y2="510" stroke="#b50917" stroke-width="2" />
+            </svg>
+
+            <!-- EFFECT BOX (HEAD) -->
+            <div class="effect-box" style="left:880px; top:260px;">
+                Data Riset & Publikasi Dosen<br>Tidak Terkelola Terpusat
+            </div>
+
+            <!-- CATEGORIES (TOP) -->
+            <div class="cat-box bg-manusia" style="left: 225px; top: 53px;">Manusia</div>
+            <div class="cat-box bg-metode" style="left: 455px; top: 53px;">Metode</div>
+            <div class="cat-box bg-teknologi" style="left: 685px; top: 53px;">Teknologi</div>
+
+            <!-- CATEGORIES (BOTTOM) -->
+            <div class="cat-box bg-material" style="left: 375px; top: 533px;">Material / Data</div>
+            <div class="cat-box bg-lingkungan" style="left: 605px; top: 533px;">Lingkungan</div>
+
+            <!-- REASONS MANUSIA -->
+            <div class="reason-box r-manusia" style="left: 80px; top: 90px; height: 40px;">Pimpinan tidak punya akses
+                agregat data cepat</div>
+            <div class="reason-box r-manusia" style="left: 110px; top: 150px; height: 40px;">Tidak ada PIC / penanggung
+                jawab data riset</div>
+            <div class="reason-box r-manusia" style="left: 140px; top: 210px; height: 40px;">Dosen tidak konsisten
+                memperbarui profil SINTA</div>
+
+            <!-- REASONS METODE -->
+            <div class="reason-box r-metode" style="left: 310px; top: 90px; height: 40px;">Tidak ada prosedur deteksi
+                kolaborasi & tren riset</div>
+            <div class="reason-box r-metode" style="left: 340px; top: 150px; height: 40px;">Monitoring kinerja riset
+                masih manual & adhoc</div>
+            <div class="reason-box r-metode" style="left: 370px; top: 210px; height: 40px;">Tidak ada SOP standar
+                pelaporan data riset prodi</div>
+
+            <!-- REASONS TEKNOLOGI -->
+            <div class="reason-box r-teknologi" style="left: 540px; top: 90px; height: 40px;">Tidak ada tools otomasi
+                pengumpulan data multi-platform</div>
+            <div class="reason-box r-teknologi" style="left: 570px; top: 150px; height: 40px;">SINTA tidak terintegrasi
+                dengan sistem internal ITK</div>
+            <div class="reason-box r-teknologi" style="left: 600px; top: 210px; height: 40px;">Tidak ada sistem terpadu
+                agregasi data riset prodi</div>
+
+            <!-- REASONS MATERIAL -->
+            <div class="reason-box r-material" style="left: 290px; top: 370px; height: 40px;">Data tersebar di SINTA,
+                Scopus, GScholar, WoS</div>
+            <div class="reason-box r-material" style="left: 260px; top: 430px; height: 40px;">Tidak ada format standar
+                penyimpanan data riset</div>
+            <div class="reason-box r-material" style="left: 230px; top: 490px; height: 40px;">Data historis riset tidak
+                terarsipkan terstruktur</div>
+
+            <!-- REASONS LINGKUNGAN -->
+            <div class="reason-box r-lingkungan" style="left: 520px; top: 370px; height: 40px;">Belum ada kebijakan
+                pengelolaan data riset prodi</div>
+            <div class="reason-box r-lingkungan" style="left: 490px; top: 430px; height: 40px;">Prioritas administrasi
+                rutin lebih tinggi dari data riset</div>
+            <div class="reason-box r-lingkungan" style="left: 460px; top: 490px; height: 40px;">Tidak ada insentif
+                pemutakhiran data SINTA</div>
+        </div>
+
+        <div class="footer">
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="dot blue"></div>Manusia
+                </div>
+                <div class="legend-item">
+                    <div class="dot teal"></div>Metode
+                </div>
+                <div class="legend-item">
+                    <div class="dot green"></div>Teknologi
+                </div>
+                <div class="legend-item">
+                    <div class="dot ochre"></div>Material / Data
+                </div>
+                <div class="legend-item">
+                    <div class="dot red"></div>Lingkungan
+                </div>
+            </div>
+            <div class="author">Aidil Saputra Kirsan · Dosen / Kepala Lab Inovasi Digital</div>
+        </div>
+    </div>
+
+</body>
+
+</html>
