@@ -604,12 +604,11 @@ layout: default
 </div>
 
 ---
-layout: image
-image: ./matriksberakhlak-kegiatan.png
-backgroundSize: contain
-class: 'bg-white'
+layout: center
+class: 'p-0 overflow-hidden'
 ---
 
+<img src="./matriksberakhlak-kegiatan.png" alt="Matriks BerAKHLAK & Kegiatan" class="w-full h-full object-contain" style="max-height:100vh; max-width:100vw;" />
 
 ---
 layout: default
