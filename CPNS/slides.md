@@ -605,10 +605,9 @@ layout: default
 
 ---
 layout: center
-class: 'p-0 overflow-hidden'
 ---
 
-<img src="./matriksberakhlak-kegiatan.png" alt="Matriks BerAKHLAK & Kegiatan" class="w-full h-full object-contain" style="max-height:100vh; max-width:100vw;" />
+<img src="./matriksberakhlak-kegiatan.png" alt="Matriks BerAKHLAK & Kegiatan" style="width:92%; max-height:82vh; object-fit:contain; border-radius:12px; box-shadow:0 4px 24px rgba(0,0,0,0.13);" />
 
 ---
 layout: default
