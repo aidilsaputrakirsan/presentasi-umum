@@ -30,6 +30,56 @@ Disusun Oleh: <b class="text-blue-800 dark:text-blue-400">Aidil Saputra Kirsan, 
 </div>
 
 ---
+layout: center
+---
+
+# Outline Presentasi
+
+<div class="grid grid-cols-2 gap-4 mt-8 text-left">
+
+  <div v-click class="bg-white/80 dark:bg-slate-800/80 p-4 rounded-xl border-l-4 border-blue-500 shadow-md flex gap-4 items-start">
+    <div class="bg-blue-100 dark:bg-blue-900/50 rounded-lg p-2 text-blue-600 dark:text-blue-400 flex-shrink-0">
+      <i class="fas fa-user-shield text-xl"></i>
+    </div>
+    <div>
+      <div class="font-bold text-blue-800 dark:text-blue-300 text-sm mb-1">Agenda 1–3 · Nilai Dasar ASN</div>
+      <p class="text-xs text-gray-600 dark:text-gray-400">Bela Negara, BerAKHLAK, Smart Governance & Manajemen ASN</p>
+    </div>
+  </div>
+
+  <div v-click class="bg-white/80 dark:bg-slate-800/80 p-4 rounded-xl border-l-4 border-amber-500 shadow-md flex gap-4 items-start">
+    <div class="bg-amber-100 dark:bg-amber-900/50 rounded-lg p-2 text-amber-600 dark:text-amber-400 flex-shrink-0">
+      <i class="fas fa-magnifying-glass-chart text-xl"></i>
+    </div>
+    <div>
+      <div class="font-bold text-amber-800 dark:text-amber-300 text-sm mb-1">Identifikasi & Analisis Isu</div>
+      <p class="text-xs text-gray-600 dark:text-gray-400">Metode USG, Fishbone, penetapan isu terpilih</p>
+    </div>
+  </div>
+
+  <div v-click class="bg-white/80 dark:bg-slate-800/80 p-4 rounded-xl border-l-4 border-indigo-500 shadow-md flex gap-4 items-start">
+    <div class="bg-indigo-100 dark:bg-indigo-900/50 rounded-lg p-2 text-indigo-600 dark:text-indigo-400 flex-shrink-0">
+      <i class="fas fa-microchip text-xl"></i>
+    </div>
+    <div>
+      <div class="font-bold text-indigo-800 dark:text-indigo-300 text-sm mb-1">Gagasan Kreatif · SINTA Intel</div>
+      <p class="text-xs text-gray-600 dark:text-gray-400">Tujuan, manfaat, kondisi before/after, 7 fitur utama</p>
+    </div>
+  </div>
+
+  <div v-click class="bg-white/80 dark:bg-slate-800/80 p-4 rounded-xl border-l-4 border-green-500 shadow-md flex gap-4 items-start">
+    <div class="bg-green-100 dark:bg-green-900/50 rounded-lg p-2 text-green-600 dark:text-green-400 flex-shrink-0">
+      <i class="fas fa-list-check text-xl"></i>
+    </div>
+    <div>
+      <div class="font-bold text-green-800 dark:text-green-300 text-sm mb-1">Rencana Aktualisasi</div>
+      <p class="text-xs text-gray-600 dark:text-gray-400">5 kegiatan, jadwal 7 minggu, output & deliverables</p>
+    </div>
+  </div>
+
+</div>
+
+---
 layout: two-cols
 ---
 
@@ -223,7 +273,7 @@ Berdasarkan analisis situasi di unit kerja, ditemukan **3 isu aktual**:
    <div class="text-sm text-gray-500 ml-6 mb-4">Proses manual via berkas fisik; dokumen TA tidak terkelola dengan baik; admin kesulitan mengelola administrasi dan penjadwalan sidang.</div>
 
 2. <span class="text-red-600 font-bold">Pengelolaan Data Riset & Pengabdian Dosen Belum Terpusat dan Teranalisis</span>
-   <div class="text-sm text-gray-500 ml-6 mb-4">Data tersebar di SINTA, Scopus, GScholar tanpa agregasi. Peta riset tidak terbaca; nilai akreditasi BAN-PT terdampak langsung.</div>
+   <div class="text-sm text-gray-500 ml-6 mb-4">Data tersebar di SINTA, Scopus, GScholar tanpa agregasi. Peta riset tidak terbaca; nilai akreditasi prodi terdampak langsung.</div>
 
 3. **Umpan Balik Mahasiswa terhadap Layanan Akademik Belum Digital**
    <div class="text-sm text-gray-500 ml-6">Pengumpulan sporadis via kuesioner kertas yang tidak terintegrasi.</div>
@@ -365,28 +415,8 @@ layout: default
 
 # Kondisi Sebelum & Sesudah SINTA Intel
 
-<div class="grid grid-cols-2 gap-6 mt-8">
-  <div v-motion :initial="{ x: -50, opacity: 0 }" :enter="{ x: 0, opacity: 1, transition: { duration: 500 } }" class="bg-red-50 dark:bg-red-900/20 p-5 rounded-xl border border-red-200 dark:border-red-800 relative">
-    <div class="absolute -top-4 -left-4 bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl shadow-lg"><i class="fas fa-times"></i></div>
-    <h3 class="font-bold text-red-800 dark:text-red-400 mb-3 text-center border-b border-red-200 dark:border-red-800 pb-2">Kondisi Saat Ini (Before)</h3>
-    <ul class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
-      <li><i class="fas fa-file-excel text-red-500 mr-2"></i>Data riset terpencar di banyak <i>platform</i></li>
-      <li><i class="fas fa-clock text-red-500 mr-2"></i>Agregasi data manual memakan waktu berhari-hari</li>
-      <li><i class="fas fa-eye-slash text-red-500 mr-2"></i>Peta kompetensi dosen dan tren riset <i>blind-spot</i></li>
-      <li><i class="fas fa-exclamation-triangle text-red-500 mr-2"></i>Data borang akreditasi tidak <i>ready-to-use</i></li>
-    </ul>
-  </div>
-
-  <div v-click v-motion :initial="{ x: 50, opacity: 0 }" :enter="{ x: 0, opacity: 1, transition: { duration: 500 } }" class="bg-green-50 dark:bg-emerald-900/20 p-5 rounded-xl border border-green-200 dark:border-green-800 relative">
-    <div class="absolute -top-4 -right-4 bg-green-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-xl shadow-lg"><i class="fas fa-check"></i></div>
-    <h3 class="font-bold text-green-800 dark:text-emerald-400 mb-3 text-center border-b border-green-200 dark:border-green-800 pb-2">Kondisi Diharapkan (After)</h3>
-    <ul class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
-      <li><i class="fas fa-database text-green-500 mr-2"></i>Data terpusat otomatis menggunakan kapabilitas <i>Scraping</i></li>
-      <li><i class="fas fa-bolt text-green-500 mr-2"></i><i>Real-time update</i> & monitoring pendanaan riset</li>
-      <li><i class="fas fa-robot text-green-500 mr-2"></i>Pemetaan kolaborasi & topik otomatis dengan AI</li>
-      <li><i class="fas fa-file-contract text-green-500 mr-2"></i>Rasio data akreditasi terhitung otomatis secara matematis</li>
-    </ul>
-  </div>
+<div class="flex justify-center mt-4">
+  <img src="./kondisisebelumsesudah.png" alt="Kondisi Sebelum dan Sesudah SINTA Intel" class="max-h-[70vh] object-contain drop-shadow-xl rounded-xl" />
 </div>
 
 ---
@@ -503,9 +533,7 @@ layout: default
   </div>
 </div>
 
-<div class="mt-4 text-center text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-slate-800 p-2 rounded-lg" v-click>
-  <b>Nilai BerAKHLAK:</b> Berorientasi Pelayanan (menyediakan data) · Akuntabel (data terverifikasi) · Kompeten (Python/scraping) · Kolaboratif (koordinasi Kaprodi)
-</div>
+
 
 ---
 layout: default
@@ -576,24 +604,12 @@ layout: default
 </div>
 
 ---
-layout: center
+layout: image
+image: ./matriksberakhlak-kegiatan.png
+backgroundSize: contain
+class: 'bg-white'
 ---
 
-# Matriks BerAKHLAK & Kegiatan
-
-Nilai-nilai dasar **BerAKHLAK** diimplementasikan pada setiap kegiatan:
-
-<div class="text-sm bg-gray-50 dark:bg-slate-800 p-5 rounded-xl border dark:border-slate-700 mt-6 dark:text-gray-200">
-  <ul class="space-y-2 list-disc ml-6 text-gray-700 dark:text-gray-300">
-    <li><b>Berorientasi Pelayanan:</b> Otomasi data mempercepat pimpinan mendapat laporan akurat & real-time</li>
-    <li><b>Akuntabel:</b> Algoritma scraping & AI clustering dapat diverifikasi, diaudit, dan direproduksi</li>
-    <li><b>Kompeten:</b> Penggunaan Python, Vue.js & Machine Learning (TF-IDF, K-Means)</li>
-    <li><b>Harmonis:</b> Solusi mengakomodasi kebutuhan 2 prodi (SI & Bisnis Digital) secara adil</li>
-    <li><b>Loyal:</b> Berkontribusi langsung pada kesiapan akreditasi dari lembaga penjaminan mutu program studi</li>
-    <li><b>Adaptif:</b> Memanfaatkan AI/NLP untuk menyelesaikan masalah pendataan yang kompleks</li>
-    <li><b>Kolaboratif:</b> Bekerja sama dengan Kaprodi, Wakil Dekan, dan Tim Mutu FSTI</li>
-  </ul>
-</div>
 
 ---
 layout: default

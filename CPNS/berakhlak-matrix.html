@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matriks BerAKHLAK & Kegiatan — SINTA Intel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap"
+        rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f4f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 32px 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.12);
+            width: 1100px;
+            overflow: hidden;
+        }
+
+        /* ---- HEADER ---- */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 60%, #4f46e5 100%);
+            padding: 24px 36px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 0.3px;
+        }
+
+        .header-left p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.65);
+            margin-top: 3px;
+        }
+
+        .header-badge {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fef3c7;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ---- KEGIATAN HEADER ROW ---- */
+        .kegiatan-row {
+            display: grid;
+            grid-template-columns: 170px repeat(5, 1fr);
+            background: #1e3a8a;
+        }
+
+        .kegiatan-row>div {
+            padding: 10px 12px;
+            text-align: center;
+            font-size: 10.5px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9);
+            border-right: 1px solid rgba(255, 255, 255, 0.12);
+            letter-spacing: 0.2px;
+        }
+
+        .kegiatan-row>div:first-child {
+            text-align: left;
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 500;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .kegiatan-row>div .k-label {
+            display: block;
+            font-size: 9px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.55);
+            margin-top: 2px;
+        }
+
+        /* ---- TABLE BODY ---- */
+        .matrix-body {}
+
+        .matrix-row {
+            display: grid;
+            grid-template-columns: 170px repeat(5, 1fr);
+            border-bottom: 1px solid #e5e9f2;
+            transition: background 0.15s;
+        }
+
+        .matrix-row:last-child {
+            border-bottom: none;
+        }
+
+        .matrix-row:hover {
+            background: #f8faff;
+        }
+
+        .nilai-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-right: 1px solid #e5e9f2;
+            border-left: 4px solid transparent;
+        }
+
+        .nilai-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 12px;
+        }
+
+        .nilai-text {
+            font-size: 10.5px;
+            font-weight: 700;
+            line-height: 1.25;
+            color: #1e293b;
+        }
+
+        .nilai-text span {
+            display: block;
+            font-size: 9px;
+            font-weight: 400;
+            color: #64748b;
+            margin-top: 1px;
+        }
+
+        .desc-cell {
+            padding: 10px 11px 10px 13px;
+            font-size: 9.5px;
+            color: #475569;
+            line-height: 1.55;
+            border-right: 1px solid #e5e9f2;
+            vertical-align: top;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .desc-cell:last-child {
+            border-right: none;
+        }
+
+        /* Ghost icon watermark */
+        .desc-cell .ghost {
+            position: absolute;
+            right: -6px;
+            bottom: -6px;
+            font-size: 42px;
+            opacity: 0.055;
+            pointer-events: none;
+            line-height: 1;
+        }
+
+        /* Subtle top-right dot accent */
+        .desc-cell::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: currentColor;
+            opacity: 0.12;
+        }
+
+        /* Text sits above ghost */
+        .desc-cell>span.txt {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ---- COLOR SCHEMES ---- */
+        .row-b {
+            background: #eff6ff;
+        }
+
+        .row-b .nilai-cell {
+            border-left-color: #3b82f6;
+        }
+
+        .row-b .nilai-icon {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+
+        .row-b .nilai-text {
+            color: #1e40af;
+        }
+
+        .row-a1 {
+            background: #f5f3ff;
+        }
+
+        .row-a1 .nilai-cell {
+            border-left-color: #7c3aed;
+        }
+
+        .row-a1 .nilai-icon {
+            background: #ede9fe;
+            color: #6d28d9;
+        }
+
+        .row-a1 .nilai-text {
+            color: #5b21b6;
+        }
+
+        .row-k1 {
+            background: #f0fdfa;
+        }
+
+        .row-k1 .nilai-cell {
+            border-left-color: #0d9488;
+        }
+
+        .row-k1 .nilai-icon {
+            background: #ccfbf1;
+            color: #0f766e;
+        }
+
+        .row-k1 .nilai-text {
+            color: #0f766e;
+        }
+
+        .row-h {
+            background: #faf5ff;
+        }
+
+        .row-h .nilai-cell {
+            border-left-color: #9333ea;
+        }
+
+        .row-h .nilai-icon {
+            background: #f3e8ff;
+            color: #7e22ce;
+        }
+
+        .row-h .nilai-text {
+            color: #7e22ce;
+        }
+
+        .row-l {
+            background: #fdf2f8;
+        }
+
+        .row-l .nilai-cell {
+            border-left-color: #db2777;
+        }
+
+        .row-l .nilai-icon {
+            background: #fce7f3;
+            color: #be185d;
+        }
+
+        .row-l .nilai-text {
+            color: #be185d;
+        }
+
+        .row-a2 {
+            background: #fff7ed;
+        }
+
+        .row-a2 .nilai-cell {
+            border-left-color: #ea580c;
+        }
+
+        .row-a2 .nilai-icon {
+            background: #ffedd5;
+            color: #c2410c;
+        }
+
+        .row-a2 .nilai-text {
+            color: #c2410c;
+        }
+
+        .row-k2 {
+            background: #f0fdf4;
+        }
+
+        .row-k2 .nilai-cell {
+            border-left-color: #16a34a;
+        }
+
+        .row-k2 .nilai-icon {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .row-k2 .nilai-text {
+            color: #15803d;
+        }
+
+        /* ---- FOOTER ---- */
+        .footer {
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            padding: 12px 36px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer p {
+            font-size: 10.5px;
+            color: #94a3b8;
+        }
+
+        .footer strong {
+            color: #3b82f6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+
+        <!-- HEADER -->
+        <div class="header">
+            <div class="header-left">
+                <h2><i class="fa-solid fa-table-cells-large" style="margin-right:10px; opacity:0.8;"></i>Matriks
+                    BerAKHLAK &amp; Kegiatan</h2>
+                <p>Keterkaitan 7 nilai BerAKHLAK pada setiap kegiatan aktualisasi SINTA Intel</p>
+            </div>
+            <div class="header-badge"><i class="fa-solid fa-check-double" style="margin-right:6px;"></i>5 Kegiatan · 7
+                Nilai</div>
+        </div>
+
+        <!-- COLUMN HEADERS -->
+        <div class="kegiatan-row">
+            <div>Nilai BerAKHLAK</div>
+            <div>K1 · Pemetaan Data<span class="k-label">M1–M2 · Mar 2026</span></div>
+            <div>K2 · Pipeline Scraper<span class="k-label">M2–M3 · Mar 2026</span></div>
+            <div>K3 · Analytics &amp; AI<span class="k-label">M3–M5 · Mar–Apr</span></div>
+            <div>K4 · Akreditasi DTPS<span class="k-label">M4–M6 · Apr 2026</span></div>
+            <div>K5 · Deploy &amp; Evaluasi<span class="k-label">M6–M7 · Apr 2026</span></div>
+        </div>
+
+        <!-- MATRIX BODY -->
+        <div class="matrix-body">
+
+            <!-- Berorientasi Pelayanan -->
+            <div class="matrix-row row-b">
+                <div class="nilai-cell">
+                    <div class="nilai-icon"><i class="fa-solid fa-hands-holding-circle"></i></div>
+                    <div class="nilai-text">Berorientasi<br>Pelayanan<span>( B )</span></div>
+                </div>
+                <div class="desc-cell" style="color:#1d4ed8"><span class="txt">Menyediakan data dosen valid sebagai
+                        fondasi layanan informasi Tridharma bagi pimpinan &amp; tim akreditasi</span><i
+                        class="fa-solid fa-hands-holding-circle ghost"></i></div>
+                <div class="desc-cell" style="color:#1d4ed8"><span class="txt">Otomasi mempercepat ketersediaan info
+                        riset bagi pimpinan &amp; dosen secara cepat dan efisien</span><i
+                        class="fa-solid fa-hands-holding-circle ghost"></i></div>
+                <div class="desc-cell" style="color:#1d4ed8"><span class="txt">Antarmuka intuitif agar pimpinan akses
+                        info strategis Tridharma tanpa hambatan teknis</span><i
+                        class="fa-solid fa-hands-holding-circle ghost"></i></div>
+                <div class="desc-cell" style="color:#1d4ed8"><span class="txt">Alat bantu data DTPS &amp; pendanaan
+                        riset siap pakai sesuai standar akreditasi prodi</span><i
+                        class="fa-solid fa-hands-holding-circle ghost"></i></div>
+                <div class="desc-cell" style="color:#1d4ed8"><span class="txt">Panduan lengkap &amp; pelatihan langsung
+                        agar setiap pengguna optimalkan SINTA Intel secara optimal</span><i
+                        class="fa-solid fa-hands-holding-circle ghost"></i></div>
+            </div>
+
+            <!-- Akuntabel -->
+            <div class="matrix-row row-a1">
+                <div class="nilai-cell">
+                    <div class="nilai-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                    <div class="nilai-text">Akuntabel<span>( A )</span></div>
+                </div>
+                <div class="desc-cell" style="color:#6d28d9"><span class="txt">Proses transparan &amp; terdokumentasi:
+                        notulensi koordinasi, verifikasi, hingga lembar validasi</span><i
+                        class="fa-solid fa-scale-balanced ghost"></i></div>
+                <div class="desc-cell" style="color:#6d28d9"><span class="txt">Kode sumber pipeline terdokumentasi
+                        lengkap, dapat diaudit &amp; diverifikasi pihak terkait</span><i
+                        class="fa-solid fa-scale-balanced ghost"></i></div>
+                <div class="desc-cell" style="color:#6d28d9"><span class="txt">Algoritma ML transparan, hasil analisis
+                        dapat dipertanggungjawabkan secara ilmiah</span><i class="fa-solid fa-scale-balanced ghost"></i>
+                </div>
+                <div class="desc-cell" style="color:#6d28d9"><span class="txt">Kalkulasi rasio DTPS dapat ditelusuri
+                        &amp; diverifikasi oleh seluruh pemangku kepentingan</span><i
+                        class="fa-solid fa-scale-balanced ghost"></i></div>
+                <div class="desc-cell" style="color:#6d28d9"><span class="txt">Seluruh proses deploy, sosialisasi &amp;
+                        evaluasi terdokumentasi penuh &amp; dapat ditelusuri</span><i
+                        class="fa-solid fa-scale-balanced ghost"></i></div>
+            </div>
+
+            <!-- Kompeten -->
+            <div class="matrix-row row-k1">
+                <div class="nilai-cell">
+                    <div class="nilai-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div class="nilai-text">Kompeten<span>( K )</span></div>
+                </div>
+                <div class="desc-cell" style="color:#0f766e"><span class="txt">Pendekatan sistematis &amp; terstandar,
+                        basis data JSON terstruktur siap diolah secara digital</span><i
+                        class="fa-solid fa-graduation-cap ghost"></i></div>
+                <div class="desc-cell" style="color:#0f766e"><span class="txt">Pemrograman Python &amp; web scraping
+                        untuk solusi otomasi yang handal &amp; terstandar</span><i
+                        class="fa-solid fa-graduation-cap ghost"></i></div>
+                <div class="desc-cell" style="color:#0f766e"><span class="txt">ML (TF-IDF + K-Means) &amp; framework
+                        modern (Vue.js, Python) untuk fitur berkualitas tinggi</span><i
+                        class="fa-solid fa-graduation-cap ghost"></i></div>
+                <div class="desc-cell" style="color:#0f766e"><span class="txt">Menguasai standar LKPS secara mendalam
+                        untuk kalkulasi akurat sesuai regulasi terbaru</span><i
+                        class="fa-solid fa-graduation-cap ghost"></i></div>
+                <div class="desc-cell" style="color:#0f766e"><span class="txt">Deployment profesional &amp; pelatihan
+                        terstruktur untuk transfer knowledge yang efektif</span><i
+                        class="fa-solid fa-graduation-cap ghost"></i></div>
+            </div>
+
+            <!-- Harmonis -->
+            <div class="matrix-row row-h">
+                <div class="nilai-cell">
+                    <div class="nilai-icon"><i class="fa-solid fa-handshake"></i></div>
+                    <div class="nilai-text">Harmonis<span>( H )</span></div>
+                </div>
+                <div class="desc-cell" style="color:#7e22ce"><span class="txt">Koordinasi aktif dengan Kaprodi SI &amp;
+                        Bisdig, data sesuai kebutuhan kedua prodi</span><i class="fa-solid fa-handshake ghost"></i>
+                </div>
+                <div class="desc-cell" style="color:#7e22ce"><span class="txt">Pipeline dirancang mempertimbangkan
+                        kebutuhan 2 prodi secara adil &amp; proporsional</span><i
+                        class="fa-solid fa-handshake ghost"></i></div>
+                <div class="desc-cell" style="color:#7e22ce"><span class="txt">Fitur dikembangkan untuk 2 prodi secara
+                        berimbang, manfaat setara bagi setiap prodi</span><i class="fa-solid fa-handshake ghost"></i>
+                </div>
+                <div class="desc-cell" style="color:#7e22ce"><span class="txt">Fitur akreditasi mengakomodasi kekhususan
+                        kedua prodi dengan standar yang konsisten</span><i class="fa-solid fa-handshake ghost"></i>
+                </div>
+                <div class="desc-cell" style="color:#7e22ce"><span class="txt">Sosialisasi inklusif melibatkan 2 prodi,
+                        ruang dialog terbuka untuk semua pihak</span><i class="fa-solid fa-handshake ghost"></i></div>
+            </div>
+
+            <!-- Loyal -->
+            <div class="matrix-row row-l">
+                <div class="nilai-cell">
+                    <div class="nilai-icon"><i class="fa-solid fa-flag"></i></div>
+                    <div class="nilai-text">Loyal<span>( L )</span></div>
+                </div>
+                <div class="desc-cell" style="color:#be185d"><span class="txt">Membangun infrastruktur data strategis
+                        sebagai pondasi kesiapan akreditasi ITK</span><i class="fa-solid fa-flag ghost"></i></div>
+                <div class="desc-cell" style="color:#be185d"><span class="txt">Infrastruktur data jangka panjang sebagai
+                        aset strategis tata kelola akademik ITK</span><i class="fa-solid fa-flag ghost"></i></div>
+                <div class="desc-cell" style="color:#be185d"><span class="txt">Meningkatkan kapasitas analitik &amp;
+                        daya saing ITK di tingkat nasional</span><i class="fa-solid fa-flag ghost"></i></div>
+                <div class="desc-cell" style="color:#be185d"><span class="txt">Mendukung peningkatan peringkat
+                        akreditasi prodi dengan data valid &amp; terpercaya</span><i class="fa-solid fa-flag ghost"></i>
+                </div>
+                <div class="desc-cell" style="color:#be185d"><span class="txt">Kontribusi nyata pada efisiensi tata
+                        kelola akademik yang berkelanjutan bagi ITK</span><i class="fa-solid fa-flag ghost"></i></div>
+            </div>
+
+            <!-- Adaptif -->
+            <div class="matrix-row row-a2">
+                <div class="nilai-cell">
+                    <div class="nilai-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="nilai-text">Adaptif<span>( A )</span></div>
+                </div>
+                <div class="desc-cell" style="color:#c2410c"><span class="txt">Metode pengumpulan fleksibel,
+                        menyesuaikan kondisi &amp; ketersediaan info masing-masing prodi</span><i
+                        class="fa-solid fa-bolt ghost"></i></div>
+                <div class="desc-cell" style="color:#c2410c"><span class="txt">Adopsi teknologi terkini, siap
+                        menyesuaikan jika struktur SINTA berubah sewaktu-waktu</span><i
+                        class="fa-solid fa-bolt ghost"></i></div>
+                <div class="desc-cell" style="color:#c2410c"><span class="txt">Pendekatan AI/NLP terkini &amp;
+                        arsitektur modern yang dapat berkembang sesuai kebutuhan analisis</span><i
+                        class="fa-solid fa-bolt ghost"></i></div>
+                <div class="desc-cell" style="color:#c2410c"><span class="txt">Sistem kalkulasi fleksibel, dapat
+                        di-update mengikuti perubahan standar akreditasi prodi</span><i
+                        class="fa-solid fa-bolt ghost"></i></div>
+                <div class="desc-cell" style="color:#c2410c"><span class="txt">Pendekatan iteratif berbasis feedback
+                        pengguna, terus berinovasi &amp; menyempurnakan layanan</span><i
+                        class="fa-solid fa-bolt ghost"></i></div>
+            </div>
+
+            <!-- Kolaboratif -->
+            <div class="matrix-row row-k2">
+                <div class="nilai-cell">
+                    <div class="nilai-icon"><i class="fa-solid fa-people-group"></i></div>
+                    <div class="nilai-text">Kolaboratif<span>( K )</span></div>
+                </div>
+                <div class="desc-cell" style="color:#15803d"><span class="txt">Melibatkan Mentor, Kaprodi &amp; dosen
+                        dalam proses validasi dan verifikasi data</span><i class="fa-solid fa-people-group ghost"></i>
+                </div>
+                <div class="desc-cell" style="color:#15803d"><span class="txt">Diskusi aktif dengan Kaprodi &amp; Mentor
+                        untuk memastikan kebutuhan data setiap prodi</span><i
+                        class="fa-solid fa-people-group ghost"></i></div>
+                <div class="desc-cell" style="color:#15803d"><span class="txt">Koordinasi intensif Kaprodi &amp; dosen
+                        agar fitur relevan dengan kebutuhan pengguna akhir</span><i
+                        class="fa-solid fa-people-group ghost"></i></div>
+                <div class="desc-cell" style="color:#15803d"><span class="txt">Validasi DTPS bersama Wakil Dekan
+                        Akademik untuk akurasi &amp; kesesuaian data akreditasi</span><i
+                        class="fa-solid fa-people-group ghost"></i></div>
+                <div class="desc-cell" style="color:#15803d"><span class="txt">WD, Kaprodi, laboran &amp; dosen
+                        dilibatkan, membangun rasa kepemilikan bersama atas sistem</span><i
+                        class="fa-solid fa-people-group ghost"></i></div>
+            </div>
+
+        </div><!-- /matrix-body -->
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p><strong>SINTA Intel</strong> &mdash; Dashboard Analitik Tridharma &middot; Prodi SI FSTI ITK &middot;
+                Latsar CPNS 2026</p>
+            <p>Sumber: Laporan Rancangan Aktualisasi Bab IV</p>
+        </div>
+
+    </div>
+</body>
+
+</html>

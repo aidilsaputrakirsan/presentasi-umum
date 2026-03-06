@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kondisi Sebelum & Sesudah SINTA Intel</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #f8f5f0;
+      font-family: 'Caveat', cursive;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .canvas {
+      background: #fffef9;
+      border: 2px solid #d1cfc8;
+      border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.10), inset 0 0 0 1px #fff;
+      width: 960px;
+      padding: 44px 52px 48px;
+      position: relative;
+      /* Subtle grid paper lines */
+      background-image:
+        linear-gradient(rgba(180,170,150,0.10) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180,170,150,0.10) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 700;
+      color: #1e293b;
+      letter-spacing: 0.5px;
+      margin-bottom: 36px;
+      font-family: 'Caveat', cursive;
+    }
+
+    .title span {
+      color: #3b82f6;
+    }
+
+    .layout {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* ---- PANELS ---- */
+    .panel {
+      flex: 1;
+      border-radius: 14px;
+      padding: 24px 20px 20px;
+      position: relative;
+      border: 2.5px solid;
+    }
+
+    .panel-before {
+      background: #fff5f5;
+      border-color: #fca5a5;
+      /* Sketch pencil effect */
+      box-shadow: 3px 3px 0 0 #fca5a5;
+    }
+
+    .panel-after {
+      background: #f0fdf4;
+      border-color: #86efac;
+      box-shadow: 3px 3px 0 0 #86efac;
+    }
+
+    .panel-label {
+      position: absolute;
+      top: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 15px;
+      font-weight: 700;
+      padding: 3px 16px;
+      border-radius: 20px;
+      border: 2px solid;
+      white-space: nowrap;
+      font-family: 'Caveat', cursive;
+      letter-spacing: 0.3px;
+    }
+
+    .panel-before .panel-label {
+      background: #fef2f2;
+      color: #dc2626;
+      border-color: #fca5a5;
+    }
+
+    .panel-after .panel-label {
+      background: #f0fdf4;
+      color: #16a34a;
+      border-color: #86efac;
+    }
+
+    .panel-label i {
+      margin-right: 5px;
+    }
+
+    /* ---- NODES ---- */
+    .sources {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Caveat', cursive;
+    }
+
+    .node-box {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 13px;
+      border-radius: 8px;
+      border: 2px solid;
+      font-size: 13px;
+      font-weight: 600;
+      white-space: nowrap;
+      font-family: 'Caveat', cursive;
+      box-shadow: 2px 2px 0 0 currentColor;
+    }
+
+    .node-box i { font-size: 13px; }
+
+    /* Source chips */
+    .src { background: #fef9c3; border-color: #fbbf24; color: #92400e; }
+    .src i { color: #d97706; }
+
+    /* Process box — manual */
+    .proc-bad { background: #fee2e2; border-color: #ef4444; color: #991b1b; }
+    .proc-bad i { color: #dc2626; }
+
+    /* Outcome bad */
+    .out-bad { background: #fce7f3; border-color: #f472b6; color: #9d174d; }
+    .out-bad i { color: #db2777; }
+
+    /* Scraper */
+    .proc-good { background: #dbeafe; border-color: #60a5fa; color: #1e3a8a; }
+    .proc-good i { color: #2563eb; }
+
+    /* Outcome good */
+    .out-good { background: #dcfce7; border-color: #4ade80; color: #14532d; }
+    .out-good i { color: #16a34a; }
+
+    /* Arrows inside panels */
+    .arrow-down {
+      text-align: center;
+      color: #9ca3af;
+      font-size: 18px;
+      line-height: 1;
+      margin: 4px 0;
+    }
+
+    .arrows-merge {
+      text-align: center;
+      color: #9ca3af;
+      font-size: 22px;
+      margin: 4px 0;
+    }
+
+    .outcomes {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .outcomes-good {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    /* ---- MIDDLE ARROW ---- */
+    .connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .connector-label {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #1d4ed8;
+      font-family: 'Caveat', cursive;
+      background: #eff6ff;
+      border: 2px solid #93c5fd;
+      border-radius: 8px;
+      padding: 5px 12px;
+      box-shadow: 2px 2px 0 0 #93c5fd;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .connector-label i { margin-right: 4px; }
+
+    .arrow-right {
+      font-size: 30px;
+      color: #3b82f6;
+      line-height: 1;
+    }
+
+    /* ---- FOOTER NOTE ---- */
+    .footer-note {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 13.5px;
+      color: #64748b;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+    }
+
+    .footer-note b {
+      color: #1e40af;
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="title">Kondisi Sebelum &amp; Sesudah <span>SINTA Intel</span></div>
+
+    <div class="layout">
+
+      <!-- ===== BEFORE PANEL ===== -->
+      <div class="panel panel-before">
+        <div class="panel-label"><i class="fa-solid fa-xmark"></i> Kondisi Sebelum</div>
+
+        <!-- Source platforms -->
+        <div class="sources">
+          <div class="node-box src"><i class="fa-solid fa-database"></i> SINTA</div>
+          <div class="node-box src"><i class="fa-regular fa-file-lines"></i> Scopus</div>
+          <div class="node-box src"><i class="fa-brands fa-google"></i> GScholar</div>
+          <div class="node-box src"><i class="fa-solid fa-landmark"></i> BIMA</div>
+        </div>
+
+        <!-- Merge arrows -->
+        <div class="arrows-merge">
+          <i class="fa-solid fa-angles-down"></i>
+        </div>
+
+        <!-- Manual process -->
+        <div style="display:flex; justify-content:center; margin-bottom:6px;">
+          <div class="node-box proc-bad">
+            <i class="fa-solid fa-person-digging"></i>
+            Agregasi Manual &mdash; berhari-hari
+          </div>
+        </div>
+
+        <!-- Split to outcomes -->
+        <div class="arrow-down"><i class="fa-solid fa-angles-down"></i></div>
+
+        <div class="outcomes">
+          <div class="node-box out-bad">
+            <i class="fa-solid fa-eye-slash"></i>
+            Peta Riset Blind-spot
+          </div>
+          <div class="node-box out-bad">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            Borang Tidak Siap
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== MIDDLE CONNECTOR ===== -->
+      <div class="connector">
+        <div class="connector-label">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          SINTA Intel
+        </div>
+        <div class="arrow-right">
+          <i class="fa-solid fa-arrow-right"></i>
+        </div>
+      </div>
+
+      <!-- ===== AFTER PANEL ===== -->
+      <div class="panel panel-after">
+        <div class="panel-label"><i class="fa-solid fa-check"></i> Kondisi Sesudah</div>
+
+        <!-- Auto scraper -->
+        <div style="display:flex; justify-content:center; margin: 10px 0 6px;">
+          <div class="node-box proc-good">
+            <i class="fa-solid fa-robot"></i>
+            Auto Scraper Terjadwal
+          </div>
+        </div>
+
+        <!-- Down arrow -->
+        <div class="arrow-down"><i class="fa-solid fa-angles-down"></i></div>
+
+        <!-- Outcomes good -->
+        <div class="outcomes-good">
+          <div class="node-box out-good">
+            <i class="fa-solid fa-chart-line"></i>
+            Dashboard Real-time
+          </div>
+          <div class="node-box out-good">
+            <i class="fa-solid fa-brain"></i>
+            AI Clustering
+          </div>
+          <div class="node-box out-good">
+            <i class="fa-solid fa-graduation-cap"></i>
+            Rasio DTPS Otomatis
+          </div>
+        </div>
+
+        <!-- spacer to balance height -->
+        <div style="margin-top:18px; display:flex; justify-content:center;">
+          <div class="node-box out-good" style="opacity:0.7;">
+            <i class="fa-solid fa-file-shield"></i>
+            Borang Siap Pakai
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-note">
+      <b>SINTA Intel</b> &mdash; Dashboard Analitik Tridharma &middot; Prodi Sistem Informasi FSTI ITK &middot; Latsar CPNS 2026
+    </div>
+  </div>
+</body>
+</html>
