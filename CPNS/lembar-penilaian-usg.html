@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lembar Penilaian USG — Rancangan Aktualisasi CPNS</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background: #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 16px;
+            gap: 30px;
+        }
+
+        .page {
+            background: #fff;
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm 20mm 15mm 25mm;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* ---- KOP SURAT ---- */
+        .kop {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-bottom: 3px solid #1e3a8a;
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .kop img {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .kop-text {
+            flex: 1;
+        }
+
+        .kop-text .instansi {
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 0.3px;
+            line-height: 1.4;
+            color: #1e3a8a;
+        }
+
+        .kop-text .sub {
+            font-size: 10.5px;
+            color: #374151;
+            margin-top: 2px;
+        }
+
+        /* ---- JUDUL DOKUMEN ---- */
+        .doc-header {
+            text-align: center;
+            margin: 18px 0 14px;
+        }
+
+        .doc-header .judul {
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: underline;
+        }
+
+        .doc-header .subjudul {
+            font-size: 11.5px;
+            margin-top: 4px;
+        }
+
+        .doc-header .responden {
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 8px;
+            color: #1e3a8a;
+        }
+
+        /* ---- IDENTITAS RESPONDEN ---- */
+        .identitas {
+            font-size: 11px;
+            margin-bottom: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .identitas table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .identitas td {
+            padding: 5px 10px;
+            vertical-align: top;
+            font-size: 11px;
+        }
+
+        .identitas td:first-child {
+            width: 120px;
+            font-weight: bold;
+        }
+
+        .identitas td:nth-child(2) {
+            width: 10px;
+        }
+
+        .identitas tr:not(:last-child) td {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* ---- PENGANTAR ---- */
+        .pengantar {
+            font-size: 11px;
+            line-height: 1.6;
+            text-align: justify;
+            margin-bottom: 12px;
+        }
+
+        /* ---- TABEL ISU ---- */
+        .isu-table-wrap {
+            margin-bottom: 16px;
+            margin-top: 15px;
+        }
+
+        .isu-table-wrap .section-title {
+            font-size: 12px;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-bottom: 8px;
+        }
+
+        .isu-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        .isu-table th {
+            background: #1e3a8a;
+            color: white;
+            padding: 7px 8px;
+            text-align: center;
+            font-size: 11px;
+            border: 1px solid #1e3a8a;
+        }
+
+        .isu-table td {
+            padding: 8px 10px;
+            border: 1px solid #d1d5db;
+            vertical-align: middle;
+            line-height: 1.4;
+        }
+
+        .isu-table td.no {
+            text-align: center;
+            width: 30px;
+        }
+
+        .isu-table td.skor {
+            text-align: center;
+            width: 60px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .isu-table td.total {
+            text-align: center;
+            width: 60px;
+            font-weight: bold;
+            font-size: 12px;
+            background: #f3f4f6;
+        }
+
+        /* ---- SKALA ---- */
+        .skala {
+            font-size: 10px;
+            margin-bottom: 20px;
+        }
+
+        .skala table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .skala td {
+            border: 1px solid #d1d5db;
+            padding: 3px 6px;
+            text-align: center;
+        }
+
+        .skala th {
+            background: #f3f4f6;
+            border: 1px solid #d1d5db;
+            padding: 4px;
+            font-weight: bold;
+        }
+
+        /* ---- TANDA TANGAN ---- */
+        .ttd-section {
+            margin-top: 30px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .ttd-box {
+            text-align: center;
+            font-size: 11px;
+            width: 250px;
+        }
+
+        .ttd-box .tanggal {
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .ttd-box .jabatan {
+            font-size: 11px;
+            margin-bottom: 2px;
+        }
+
+        .ttd-box .space {
+            height: 70px;
+        }
+
+        .ttd-box .nama {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .ttd-box .nip {
+            font-size: 10.5px;
+            color: #4b5563;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .page {
+                box-shadow: none;
+                padding: 15mm;
+                margin: 0;
+                break-after: page;
+            }
+
+            .page:last-child {
+                break-after: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================== LEMBAR 1 ==================== -->
+    <div class="page">
+        <div class="kop">
+            <img src="./laporan/logoitk.png" alt="Logo ITK" onerror="this.style.display='none'" />
+            <div class="kop-text">
+                <div class="instansi">KEMENTERIAN PENDIDIKAN TINGGI, SAINS DAN TEKNOLOGI<br>
+                    INSTITUT TEKNOLOGI KALIMANTAN<br>
+                    FAKULTAS SAINS DAN TEKNOLOGI INFORMASI</div>
+                <div class="sub">Jl. Soekarno-Hatta KM. 15, Balikpapan, Kalimantan Timur 76127 &nbsp;·&nbsp; Telp.
+                    (0542) 8530400</div>
+            </div>
+        </div>
+
+        <div class="doc-header">
+            <div class="judul">Lembar Penilaian Analisis Isu<br>Metode USG</div>
+            <div class="subjudul">Rancangan Aktualisasi Latsar CPNS Angkatan VI Tahun 2026</div>
+            <div class="responden">LEMBAR RESPONDEN 1</div>
+        </div>
+
+        <div class="identitas">
+            <table>
+                <tr>
+                    <td>Nama Responden</td>
+                    <td>:</td>
+                    <td>Sri Rahayu Natasia, S.Komp., M.Si., M.Sc.</td>
+                </tr>
+                <tr>
+                    <td>NIP</td>
+                    <td>:</td>
+                    <td>199001082020122003</td>
+                </tr>
+                <tr>
+                    <td>Jabatan</td>
+                    <td>:</td>
+                    <td>Ketua Program Studi Sistem Informasi</td>
+                </tr>
+            </table>
+        </div>
+
+        <p class="pengantar">
+            Mohon kesediaan Bapak/Ibu untuk memberikan penilaian dengan skor 1-5 terhadap tiga isu aktual berikut
+            menggunakan metode <strong>USG (Urgency, Seriousness, Growth)</strong>.
+        </p>
+
+        <div class="skala">
+            <table>
+                <tr>
+                    <th>Skor</th>
+                    <th>5</th>
+                    <th>4</th>
+                    <th>3</th>
+                    <th>2</th>
+                    <th>1</th>
+                </tr>
+                <tr>
+                    <th>U / S / G</th>
+                    <td>Sangat Kuat</td>
+                    <td>Kuat</td>
+                    <td>Cukup</td>
+                    <td>Kurang</td>
+                    <td>Sangat Kurang</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="isu-table-wrap">
+            <table class="isu-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2" style="width:30px">No</th>
+                        <th rowspan="2">Isu Aktual</th>
+                        <th colspan="3">Skor (1–5)</th>
+                        <th rowspan="2" style="width:60px">Total</th>
+                    </tr>
+                    <tr>
+                        <th style="width:60px">U</th>
+                        <th style="width:60px">S</th>
+                        <th style="width:60px">G</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="no">1</td>
+                        <td>Pengelolaan Tugas Akhir/Skripsi Mahasiswa FSTI ITK Belum Efektif dan Terstandar</td>
+                        <td class="skor">4</td>
+                        <td class="skor">5</td>
+                        <td class="skor">3</td>
+                        <td class="total">12</td>
+                    </tr>
+                    <tr>
+                        <td class="no">2</td>
+                        <td><strong>Pengelolaan Data Riset dan Pengabdian Dosen di Lab Inovasi Digital Belum Terpusat
+                                dan Teranalisis</strong></td>
+                        <td class="skor">5</td>
+                        <td class="skor">5</td>
+                        <td class="skor">4</td>
+                        <td class="total">14</td>
+                    </tr>
+                    <tr>
+                        <td class="no">3</td>
+                        <td>Umpan Balik Mahasiswa terhadap Layanan Akademik Belum Terkumpul Secara Sistematis</td>
+                        <td class="skor">3</td>
+                        <td class="skor">4</td>
+                        <td class="skor">3</td>
+                        <td class="total">10</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="ttd-section">
+            <div class="ttd-box">
+                <div class="tanggal">Balikpapan, _________________ 2026</div>
+                <div class="jabatan">Ketua Program Studi Sistem Informasi</div>
+                <div class="space"></div>
+                <div class="nama">Sri Rahayu Natasia, S.Komp., M.Si., M.Sc.</div>
+                <div class="nip">NIP. 199001082020122003</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==================== LEMBAR 2 ==================== -->
+    <div class="page">
+        <div class="kop">
+            <img src="./laporan/logoitk.png" alt="Logo ITK" onerror="this.style.display='none'" />
+            <div class="kop-text">
+                <div class="instansi">KEMENTERIAN PENDIDIKAN TINGGI, SAINS DAN TEKNOLOGI<br>
+                    INSTITUT TEKNOLOGI KALIMANTAN<br>
+                    FAKULTAS SAINS DAN TEKNOLOGI INFORMASI</div>
+                <div class="sub">Jl. Soekarno-Hatta KM. 15, Balikpapan, Kalimantan Timur 76127 &nbsp;·&nbsp; Telp.
+                    (0542) 8530400</div>
+            </div>
+        </div>
+
+        <div class="doc-header">
+            <div class="judul">Lembar Penilaian Analisis Isu<br>Metode USG</div>
+            <div class="subjudul">Rancangan Aktualisasi Latsar CPNS Angkatan VI Tahun 2026</div>
+            <div class="responden">LEMBAR RESPONDEN 2</div>
+        </div>
+
+        <div class="identitas">
+            <table>
+                <tr>
+                    <td>Nama Responden</td>
+                    <td>:</td>
+                    <td>Deli Yansyah, S.E., M.Acc., Ak.</td>
+                </tr>
+                <tr>
+                    <td>NIP</td>
+                    <td>:</td>
+                    <td>.......................................................</td>
+                </tr>
+                <tr>
+                    <td>Jabatan</td>
+                    <td>:</td>
+                    <td>Ketua Program Studi Bisnis Digital</td>
+                </tr>
+            </table>
+        </div>
+
+        <p class="pengantar">
+            Mohon kesediaan Bapak/Ibu untuk memberikan penilaian dengan skor 1-5 terhadap tiga isu aktual berikut
+            menggunakan metode <strong>USG (Urgency, Seriousness, Growth)</strong>.
+        </p>
+
+        <div class="skala">
+            <table>
+                <tr>
+                    <th>Skor</th>
+                    <th>5</th>
+                    <th>4</th>
+                    <th>3</th>
+                    <th>2</th>
+                    <th>1</th>
+                </tr>
+                <tr>
+                    <th>U / S / G</th>
+                    <td>Sangat Kuat</td>
+                    <td>Kuat</td>
+                    <td>Cukup</td>
+                    <td>Kurang</td>
+                    <td>Sangat Kurang</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="isu-table-wrap">
+            <table class="isu-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2" style="width:30px">No</th>
+                        <th rowspan="2">Isu Aktual</th>
+                        <th colspan="3">Skor (1–5)</th>
+                        <th rowspan="2" style="width:60px">Total</th>
+                    </tr>
+                    <tr>
+                        <th style="width:60px">U</th>
+                        <th style="width:60px">S</th>
+                        <th style="width:60px">G</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="no">1</td>
+                        <td>Pengelolaan Tugas Akhir/Skripsi Mahasiswa FSTI ITK Belum Efektif dan Terstandar</td>
+                        <td class="skor">4</td>
+                        <td class="skor">4</td>
+                        <td class="skor">3</td>
+                        <td class="total">11</td>
+                    </tr>
+                    <tr>
+                        <td class="no">2</td>
+                        <td><strong>Pengelolaan Data Riset dan Pengabdian Dosen di Lab Inovasi Digital Belum Terpusat
+                                dan Teranalisis</strong></td>
+                        <td class="skor">5</td>
+                        <td class="skor">5</td>
+                        <td class="skor">4</td>
+                        <td class="total">14</td>
+                    </tr>
+                    <tr>
+                        <td class="no">3</td>
+                        <td>Umpan Balik Mahasiswa terhadap Layanan Akademik Belum Terkumpul Secara Sistematis</td>
+                        <td class="skor">3</td>
+                        <td class="skor">3</td>
+                        <td class="skor">3</td>
+                        <td class="total">9</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="ttd-section">
+            <div class="ttd-box">
+                <div class="tanggal">Balikpapan, _________________ 2026</div>
+                <div class="jabatan">Ketua Program Studi Bisnis Digital</div>
+                <div class="space"></div>
+                <div class="nama">Deli Yansyah, S.E., M.Acc., Ak.</div>
+                <div class="nip">NIP. ..............................................</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==================== LEMBAR 3 ==================== -->
+    <div class="page">
+        <div class="kop">
+            <img src="./laporan/logoitk.png" alt="Logo ITK" onerror="this.style.display='none'" />
+            <div class="kop-text">
+                <div class="instansi">KEMENTERIAN PENDIDIKAN TINGGI, SAINS DAN TEKNOLOGI<br>
+                    INSTITUT TEKNOLOGI KALIMANTAN<br>
+                    FAKULTAS SAINS DAN TEKNOLOGI INFORMASI</div>
+                <div class="sub">Jl. Soekarno-Hatta KM. 15, Balikpapan, Kalimantan Timur 76127 &nbsp;·&nbsp; Telp.
+                    (0542) 8530400</div>
+            </div>
+        </div>
+
+        <div class="doc-header">
+            <div class="judul">Lembar Penilaian Analisis Isu<br>Metode USG</div>
+            <div class="subjudul">Rancangan Aktualisasi Latsar CPNS Angkatan VI Tahun 2026</div>
+            <div class="responden">LEMBAR RESPONDEN 3</div>
+        </div>
+
+        <div class="identitas">
+            <table>
+                <tr>
+                    <td>Nama Responden</td>
+                    <td>:</td>
+                    <td>Irma Fitria, S.Si., M.Si</td>
+                </tr>
+                <tr>
+                    <td>NIP</td>
+                    <td>:</td>
+                    <td>199303232022032016</td>
+                </tr>
+                <tr>
+                    <td>Jabatan</td>
+                    <td>:</td>
+                    <td>Wakil Dekan Bidang Akademik & Kemahasiswaan / Mentor</td>
+                </tr>
+            </table>
+        </div>
+
+        <p class="pengantar">
+            Mohon kesediaan Bapak/Ibu untuk memberikan penilaian dengan skor 1-5 terhadap tiga isu aktual berikut
+            menggunakan metode <strong>USG (Urgency, Seriousness, Growth)</strong>.
+        </p>
+
+        <div class="skala">
+            <table>
+                <tr>
+                    <th>Skor</th>
+                    <th>5</th>
+                    <th>4</th>
+                    <th>3</th>
+                    <th>2</th>
+                    <th>1</th>
+                </tr>
+                <tr>
+                    <th>U / S / G</th>
+                    <td>Sangat Kuat</td>
+                    <td>Kuat</td>
+                    <td>Cukup</td>
+                    <td>Kurang</td>
+                    <td>Sangat Kurang</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="isu-table-wrap">
+            <table class="isu-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2" style="width:30px">No</th>
+                        <th rowspan="2">Isu Aktual</th>
+                        <th colspan="3">Skor (1–5)</th>
+                        <th rowspan="2" style="width:60px">Total</th>
+                    </tr>
+                    <tr>
+                        <th style="width:60px">U</th>
+                        <th style="width:60px">S</th>
+                        <th style="width:60px">G</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="no">1</td>
+                        <td>Pengelolaan Tugas Akhir/Skripsi Mahasiswa FSTI ITK Belum Efektif dan Terstandar</td>
+                        <td class="skor">4</td>
+                        <td class="skor">3</td>
+                        <td class="skor">3</td>
+                        <td class="total">10</td>
+                    </tr>
+                    <tr>
+                        <td class="no">2</td>
+                        <td><strong>Pengelolaan Data Riset dan Pengabdian Dosen di Lab Inovasi Digital Belum Terpusat
+                                dan Teranalisis</strong></td>
+                        <td class="skor">5</td>
+                        <td class="skor">5</td>
+                        <td class="skor">4</td>
+                        <td class="total">14</td>
+                    </tr>
+                    <tr>
+                        <td class="no">3</td>
+                        <td>Umpan Balik Mahasiswa terhadap Layanan Akademik Belum Terkumpul Secara Sistematis</td>
+                        <td class="skor">3</td>
+                        <td class="skor">2</td>
+                        <td class="skor">3</td>
+                        <td class="total">8</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="ttd-section">
+            <div class="ttd-box">
+                <div class="tanggal">Balikpapan, _________________ 2026</div>
+                <div class="jabatan">Wakil Dekan Bidang Akd. & Kemahasiswaan</div>
+                <div class="space"></div>
+                <div class="nama">Irma Fitria, S.Si., M.Si</div>
+                <div class="nip">NIP. 199303232022032016</div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ==================== REKAPITULASI ==================== -->
+    <div class="page">
+        <div class="kop">
+            <img src="./laporan/logoitk.png" alt="Logo ITK" onerror="this.style.display='none'" />
+            <div class="kop-text">
+                <div class="instansi">KEMENTERIAN PENDIDIKAN TINGGI, SAINS DAN TEKNOLOGI<br>
+                    INSTITUT TEKNOLOGI KALIMANTAN<br>
+                    FAKULTAS SAINS DAN TEKNOLOGI INFORMASI</div>
+                <div class="sub">Jl. Soekarno-Hatta KM. 15, Balikpapan, Kalimantan Timur 76127 &nbsp;·&nbsp; Telp.
+                    (0542) 8530400</div>
+            </div>
+        </div>
+
+        <div class="doc-header">
+            <div class="judul" style="font-size: 16px;">REKAPITULASI HASIL PENILAIAN ISU USG</div>
+            <div class="subjudul">Rancangan Aktualisasi Latsar CPNS Angkatan VI Tahun 2026</div>
+        </div>
+
+        <p style="text-align: center; font-size: 12px; margin-bottom: 15px;">
+            Nama Peserta: <strong>Aidil Saputra Kirsan, S.ST., M.Tr.Kom</strong> (NIP. 199403172025061004)
+        </p>
+
+        <div class="isu-table-wrap" style="margin-top: 30px;">
+            <table class="isu-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Isu Aktual</th>
+                        <th style="width: 70px;">Resp. 1</th>
+                        <th style="width: 70px;">Resp. 2</th>
+                        <th style="width: 70px;">Resp. 3</th>
+                        <th style="width: 70px;">Rata-rata</th>
+                        <th style="width: 60px;">Peringkat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="no">1</td>
+                        <td>Pengelolaan Tugas Akhir/Skripsi Mahasiswa FSTI ITK Belum Efektif dan Terstandar</td>
+                        <td class="skor">12</td>
+                        <td class="skor">11</td>
+                        <td class="skor">10</td>
+                        <td class="total">11</td>
+                        <td class="no">II</td>
+                    </tr>
+                    <tr>
+                        <td class="no">2</td>
+                        <td style="background: #e0f2fe;"><strong>Pengelolaan Data Riset dan Pengabdian Dosen di Lab
+                                Inovasi Digital Belum Terpusat dan Teranalisis</strong></td>
+                        <td class="skor" style="background: #e0f2fe;">14</td>
+                        <td class="skor" style="background: #e0f2fe;">14</td>
+                        <td class="skor" style="background: #e0f2fe;">14</td>
+                        <td class="total" style="background: #bae6fd; font-size: 14px;">14</td>
+                        <td class="skor" style="background: #e0f2fe;">I</td>
+                    </tr>
+                    <tr>
+                        <td class="no">3</td>
+                        <td>Umpan Balik Mahasiswa terhadap Layanan Akademik Belum Terkumpul Secara Sistematis</td>
+                        <td class="skor">10</td>
+                        <td class="skor">9</td>
+                        <td class="skor">8</td>
+                        <td class="total">9</td>
+                        <td class="no">III</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div
+            style="background: #f1f5f9; padding: 15px; border-left: 4px solid #1e3a8a; font-size: 12px; line-height: 1.5; margin-top: 30px;">
+            <strong>Kesimpulan Penetapan Isu:</strong><br><br>
+            Berdasarkan hasil penilaian metode USG dari tiga responden (Kaprodi Sistem Informasi, Kaprodi Bisnis
+            Digital, dan Wakil Dekan Akademik),
+            ditetapkan bahwa isu <strong>"Pengelolaan Data Riset dan Pengabdian Dosen di Lab Inovasi Digital Belum
+                Terpusat dan Teranalisis"</strong> merupakan isu prioritas (Peringkat I) dengan total skor tertinggi
+            (14).
+            Isu ini yang kemudian akan dipecahkan melalui gagasan kreatif <strong>SINTA Intel</strong>.
+        </div>
+
+        <div class="ttd-section" style="margin-top: 50px;">
+            <div class="ttd-box" style="width: 300px; text-align: center; margin: 0 auto;">
+                <div class="tanggal">Mengetahui,<br>Mentor / Wakil Dekan Akademik</div>
+                <div class="space" style="height: 80px;"></div>
+                <div class="nama">Irma Fitria, S.Si., M.Si</div>
+                <div class="nip">NIP. 199303232022032016</div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
