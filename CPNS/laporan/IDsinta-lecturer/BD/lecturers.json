@@ -1,0 +1,77 @@
+{
+  "name": "Bisnis Digital",
+  "code": "BD",
+  "jurusan": "Teknik Elektro, Informatika, dan Bisnis",
+  "lecturers": [
+    {
+      "name": "Agung Prabowo, S.E., M.M.",
+      "scholarId": "o26fKxsAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=o26fKxsAAAAJ",
+      "sintaId": "6803848",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6803848"
+    },
+    {
+      "name": "Bayu Nur Abdallah, S.T., M.T., CSCA.",
+      "scholarId": "B-X72lYAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=B-X72lYAAAAJ",
+      "sintaId": "6686868",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6686868"
+    },
+    {
+      "name": "Deli Yansyah, S.E., M.Acc., Ak.",
+      "scholarId": "iElKjmcAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=iElKjmcAAAAJ",
+      "sintaId": "6807445",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6807445"
+    },
+    {
+      "name": "Eka Krisna Santoso, S.Si., MBA.",
+      "scholarId": "Nf-D9bMAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=Nf-D9bMAAAAJ",
+      "sintaId": "6788207",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6788207"
+    },
+    {
+      "name": "Fegy Sukris Sri Andriany, M.Ak.",
+      "scholarId": "j7M59X0AAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=j7M59X0AAAAJ",
+      "sintaId": "6957012",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6957012"
+    },
+    {
+      "name": "Ir. Riovan Styx Roring, S.T., M.Kom.",
+      "scholarId": "fR2t1e8AAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=fR2t1e8AAAAJ",
+      "sintaId": "6958596",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6958596"
+    },
+    {
+      "name": "Khairunnisa Rahmah, S.E., M.M., CDMS.",
+      "scholarId": "N16pEisAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=N16pEisAAAAJ",
+      "sintaId": "6798949",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6798949"
+    },
+    {
+      "name": "Luh Made Wisnu Satyaninggrat, S.Kom., M.T.",
+      "scholarId": "0qUf3rAAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=0qUf3rAAAAAJ",
+      "sintaId": "6793011",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6793011"
+    },
+    {
+      "name": "Muhammad Ikhsan Alif S., S.E., M.Sc., CPEC., CHCM.",
+      "scholarId": "M92vSjMAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=M92vSjMAAAAJ",
+      "sintaId": "6780638",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6780638"
+    },
+    {
+      "name": "Prasis Damai Nursyam Hamijaya, S.P., M.M.",
+      "scholarId": "k537SLsAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=k537SLsAAAAJ",
+      "sintaId": "6790854",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6790854"
+    }
+  ]
+}

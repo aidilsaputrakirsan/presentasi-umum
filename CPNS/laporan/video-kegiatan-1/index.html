@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kegiatan 1 — Pemetaan & Pengumpulan Data Dosen | SITRIA CPNS</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #003366;
+      --navy-light: #1a5276;
+      --gold: #C8922A;
+      --gold-light: #F5C842;
+      --green: #1a7a4a;
+      --green-light: #e8f5e9;
+      --blue-light: #d6eaf8;
+      --text: #2c3e50;
+      --muted: #6b7280;
+      --border: #e2e8f0;
+      --bg: #f0f3f7;
+      --white: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, #001f4d 0%, #003366 50%, #1a5276 100%);
+      padding: 2.5rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '1';
+      position: absolute;
+      right: 3rem; top: -1rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 10rem;
+      font-weight: 900;
+      color: rgba(255,255,255,0.05);
+      line-height: 1;
+    }
+    .header-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.3rem 0.9rem;
+      border-radius: 3px;
+      margin-bottom: 0.8rem;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      color: white;
+      font-size: 1.9rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      position: relative;
+      z-index: 1;
+    }
+    header h1 span { color: var(--gold-light); }
+    .header-meta {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .header-meta span { display: flex; align-items: center; gap: 0.4rem; }
+    .header-stats {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    .header-stat {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 10px;
+      padding: 0.6rem 1.2rem;
+      text-align: center;
+    }
+    .header-stat .val {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--gold-light);
+    }
+    .header-stat .lbl {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── TAHAPAN CARD ── */
+    .tahapan-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .tahap-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    .tahap-head {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.4rem;
+      background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    }
+    .tahap-num {
+      width: 36px; height: 36px;
+      background: var(--gold);
+      color: white;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .tahap-head h3 {
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 700;
+      flex: 1;
+    }
+    .tahap-badge {
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.9);
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.25rem 0.7rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .tahap-badge.done {
+      background: rgba(26,122,74,0.3);
+      color: #86efac;
+      border: 1px solid rgba(134,239,172,0.3);
+    }
+
+    .tahap-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .tahap-col {
+      padding: 1.2rem 1.4rem;
+      border-right: 1px solid var(--border);
+    }
+    .tahap-col:last-child { border-right: none; }
+    .tahap-col h5 {
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      margin-bottom: 0.7rem;
+    }
+    .tahap-col p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+    .output-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--green-light);
+      color: #15803d;
+      border: 1px solid #a5d6a7;
+      border-radius: 6px;
+      padding: 0.35rem 0.7rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin-top: 0.3rem;
+    }
+
+    /* ── FOTO DOKUMENTASI ── */
+    .foto-section {
+      background: #fafbfc;
+      border-top: 1px solid var(--border);
+      padding: 1rem 1.4rem;
+    }
+    .foto-section h5 {
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .foto-grid {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .foto-slot {
+      width: 140px;
+      height: 100px;
+      border: 2px dashed #cbd5e0;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: white;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .foto-slot:hover {
+      border-color: var(--gold);
+      background: #fffbf0;
+    }
+    .foto-slot .slot-icon { font-size: 1.5rem; color: #94a3b8; }
+    .foto-slot .slot-label {
+      font-size: 0.65rem;
+      color: #94a3b8;
+      text-align: center;
+      padding: 0 0.5rem;
+      line-height: 1.3;
+    }
+    .foto-slot input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+    .foto-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+    }
+    .foto-slot .remove-btn {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: rgba(220,38,38,0.85);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      font-size: 0.65rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+    .foto-slot:hover .remove-btn { display: flex; }
+
+    /* ── VIDEO SECTION ── */
+    .video-section {
+      margin-top: 2rem;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 0.5rem;
+    }
+    .video-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .video-card-head {
+      background: linear-gradient(135deg, #1a1d2e, #2d3150);
+      padding: 0.9rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .video-card-head .v-icon {
+      width: 32px; height: 32px;
+      background: rgba(99,102,241,0.3);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: #a5b4fc;
+    }
+    .video-card-head h4 {
+      color: white;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+    .video-card-head small {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.68rem;
+      display: block;
+    }
+    .video-card-body { padding: 1rem 1.2rem; }
+    .video-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #1a1d2e;
+      margin-bottom: 0.8rem;
+      position: relative;
+    }
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .video-thumb .play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: white;
+      opacity: 0.8;
+    }
+    .video-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.6rem; }
+    .video-tag {
+      background: #ede9fe;
+      color: #7c3aed;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+    .video-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.6; }
+    .open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.8rem;
+      background: var(--navy);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.73rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .open-btn:hover { background: var(--navy-light); }
+
+    /* ── SIMPULAN BOX ── */
+    .simpulan-box {
+      background: linear-gradient(135deg, #001f4d, #003366);
+      border-radius: 16px;
+      padding: 1.8rem 2rem;
+      margin-top: 2rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .simpulan-box::before {
+      content: '"';
+      position: absolute;
+      right: 1.5rem;
+      top: -1rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 8rem;
+      color: rgba(255,255,255,0.05);
+      line-height: 1;
+    }
+    .simpulan-box h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--gold-light);
+      margin-bottom: 0.8rem;
+    }
+    .simpulan-box p {
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.8;
+      margin: 0;
+    }
+    .simpulan-berakhlak {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.2rem;
+    }
+    .berakhlak-pill {
+      background: rgba(200,146,42,0.2);
+      border: 1px solid rgba(200,146,42,0.4);
+      color: var(--gold-light);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+    }
+
+    /* ── SIGNATURE FOOTER ── */
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+    footer strong { color: var(--navy); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-badge">📋 Aktualisasi CPNS 2025</div>
+  <h1>Kegiatan 1 — <span>Pemetaan & Pengumpulan Data Dosen</span></h1>
+  <div class="header-meta">
+    <span><i class="fa-regular fa-calendar"></i> 7 – 20 Maret 2026 (M1–M2)</span>
+    <span><i class="fa-solid fa-user"></i> Aidil Saputra Kirsan, S.ST., M.Tr.Kom</span>
+    <span><i class="fa-solid fa-building-columns"></i> Prodi Sistem Informasi – FSTI ITK</span>
+  </div>
+  <div class="header-stats">
+    <div class="header-stat"><div class="val">5</div><div class="lbl">Tahapan</div></div>
+    <div class="header-stat"><div class="val">15</div><div class="lbl">Dosen SI</div></div>
+    <div class="header-stat"><div class="val">2</div><div class="lbl">Video Bukti</div></div>
+    <div class="header-stat"><div class="val">M1–M2</div><div class="lbl">Minggu Aktif</div></div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- TAHAPAN -->
+  <div class="section-label"><i class="fa-solid fa-list-check"></i> Tahapan Kegiatan & Bukti Fisik</div>
+
+  <div class="tahapan-list">
+
+    <!-- TAHAP 1 -->
+    <div class="tahap-card">
+      <div class="tahap-head">
+        <div class="tahap-num">1</div>
+        <h3>Koordinasi dengan Ketua Program Studi</h3>
+        <span class="tahap-badge done"><i class="fa-solid fa-check"></i> Selesai</span>
+      </div>
+      <div class="tahap-body">
+        <div class="tahap-col">
+          <h5>📌 Deskripsi Kegiatan</h5>
+          <p>Melakukan diskusi dan koordinasi dengan Ketua Program Studi Sistem Informasi mengenai rencana pembuatan sistem SITRIA, khususnya terkait pengumpulan data SINTA ID dan Google Scholar ID seluruh dosen prodi.</p>
+        </div>
+        <div class="tahap-col">
+          <h5>✅ Output / Bukti Fisik</h5>
+          <span class="output-badge"><i class="fa-solid fa-circle-check"></i> Notulensi / Catatan koordinasi Kaprodi</span>
+        </div>
+      </div>
+      <div class="foto-section">
+        <h5><i class="fa-solid fa-image"></i> Dokumentasi Foto</h5>
+        <div class="foto-grid" id="foto-tahap1">
+          <!-- Gambar ditarik langsung dari folder yang sama -->
+          <div class="foto-slot-static">
+            <span class="slot-label">Foto rapat / screenshot chat</span>
+            <img src="tahap1-foto1.jpg" alt="Tahap 1 Foto 1" onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
+          </div>
+          <div class="foto-slot-static">
+            <span class="slot-label">Foto notulensi / bukti koordinasi</span>
+            <img src="tahap1-foto2.jpg" alt="Tahap 1 Foto 2" onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAHAP 2 -->
+    <div class="tahap-card">
+      <div class="tahap-head">
+        <div class="tahap-num">2</div>
+        <h3>Pengumpulan Data SINTA ID & Scholar ID Dosen</h3>
+        <span class="tahap-badge done"><i class="fa-solid fa-check"></i> Selesai</span>
+      </div>
+      <div class="tahap-body">
+        <div class="tahap-col">
+          <h5>📌 Deskripsi Kegiatan</h5>
+          <p>Mengumpulkan data identitas akademik seluruh dosen Prodi SI, meliputi nama lengkap, SINTA ID, Google Scholar ID, beserta URL profil masing-masing dari portal resmi SINTA Kemdiktisaintek.</p>
+        </div>
+        <div class="tahap-col">
+          <h5>✅ Output / Bukti Fisik</h5>
+          <span class="output-badge"><i class="fa-solid fa-circle-check"></i> File <code>lecturers.json</code> prodi SI (15 dosen)</span>
+        </div>
+      </div>
+      <div class="foto-section">
+        <h5><i class="fa-solid fa-image"></i> Dokumentasi Foto</h5>
+        <div class="foto-grid" id="foto-tahap2">
+          <div class="foto-slot-static">
+            <span class="slot-label">Screenshot lecturers.json</span>
+            <img src="tahap2-foto1.jpg" alt="Tahap 2 Foto 1" onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
+          </div>
+          <div class="foto-slot-static">
+            <span class="slot-label">Tambahan Dokumentasi</span>
+            <img src="tahap2-foto2.jpg" alt="Tahap 2 Foto 2" onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
+          </div>
+        </div>
+        <p style="font-size:0.7rem;color:#94a3b8;margin-top:0.6rem;">
+          <i class="fa-solid fa-video" style="color:var(--gold);"></i> Lihat juga: <strong>Video 2</strong> di bawah — tampilan file JSON di viewer
+        </p>
+      </div>
+    </div>
+
+    <!-- TAHAP 3 -->
+    <div class="tahap-card">
+      <div class="tahap-head">
+        <div class="tahap-num">3</div>
+        <h3>Verifikasi Data di Portal SINTA & Google Scholar</h3>
+        <span class="tahap-badge done"><i class="fa-solid fa-check"></i> Selesai</span>
+      </div>
+      <div class="tahap-body">
+        <div class="tahap-col">
+          <h5>📌 Deskripsi Kegiatan</h5>
+          <p>Melakukan verifikasi silang data tiap dosen dengan membuka langsung profil SINTA di <code>sinta.kemdiktisaintek.go.id</code> dan profil Google Scholar untuk memastikan SINTA ID dan Scholar ID yang dikumpulkan valid dan akurat.</p>
+        </div>
+        <div class="tahap-col">
+          <h5>✅ Output / Bukti Fisik</h5>
+          <span class="output-badge"><i class="fa-solid fa-circle-check"></i> Data SINTA ID & Scholar ID terverifikasi valid</span>
+        </div>
+      </div>
+      <div class="foto-section">
+        <h5><i class="fa-solid fa-image"></i> Dokumentasi Foto</h5>
+        <div class="foto-grid" id="foto-tahap3">
+          <div class="foto-slot-static">
+            <span class="slot-label">Screenshot profil SINTA dosen</span>
+            <img src="tahap3-foto1.jpg" alt="Tahap 3 Foto 1" onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
+          </div>
+          <div class="foto-slot-static">
+            <span class="slot-label">Screenshot Google Scholar dosen</span>
+            <img src="tahap3-foto2.jpg" alt="Tahap 3 Foto 2" onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
+          </div>
+        </div>
+        <p style="font-size:0.7rem;color:#94a3b8;margin-top:0.6rem;">
+          <i class="fa-solid fa-video" style="color:var(--gold);"></i> Lihat juga: <strong>Video 1</strong> di bawah — screen recording verifikasi SINTA & Scholar
+        </p>
+      </div>
+    </div>
+
+    <!-- TAHAP 4 -->
+    <div class="tahap-card">
+      <div class="tahap-head">
+        <div class="tahap-num">4</div>
+        <h3>Penyusunan File <code style="font-size:0.8rem;background:rgba(255,255,255,0.15);padding:0 0.4rem;border-radius:4px;">lecturers.json</code></h3>
+        <span class="tahap-badge done"><i class="fa-solid fa-check"></i> Selesai</span>
+      </div>
+      <div class="tahap-body">
+        <div class="tahap-col">
+          <h5>📌 Deskripsi Kegiatan</h5>
+          <p>Menyusun dan menyimpan seluruh data dosen yang telah diverifikasi ke dalam format JSON terstruktur (<code>lecturers.json</code>) per program studi. File ini menjadi sumber data utama sistem SITRIA — memuat nama, SINTA ID, Scholar ID, dan URL profil tiap dosen.</p>
+        </div>
+        <div class="tahap-col">
+          <h5>✅ Output / Bukti Fisik</h5>
+          <span class="output-badge"><i class="fa-solid fa-circle-check"></i> File <code>IDsinta-lecturer/SI/lecturers.json</code> tersusun lengkap</span>
+        </div>
+      </div>
+      <div class="foto-section">
+        <h5><i class="fa-solid fa-image"></i> Dokumentasi Foto</h5>
+        <div class="foto-grid" id="foto-tahap4">
+          <div class="foto-slot-static">
+            <span class="slot-label">Screenshot isi file JSON di editor</span>
+            <img src="tahap4-foto1.jpg" alt="Tahap 4 Foto 1" onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
+          </div>
+          <div class="foto-slot-static">
+            <span class="slot-label">Screenshot struktur folder file</span>
+            <img src="tahap4-foto2.jpg" alt="Tahap 4 Foto 2" onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAHAP 5 -->
+    <div class="tahap-card">
+      <div class="tahap-head">
+        <div class="tahap-num">5</div>
+        <h3>Validasi Data oleh Ketua Program Studi</h3>
+        <span class="tahap-badge done"><i class="fa-solid fa-check"></i> Selesai</span>
+      </div>
+      <div class="tahap-body">
+        <div class="tahap-col">
+          <h5>📌 Deskripsi Kegiatan</h5>
+          <p>Menyampaikan hasil pengumpulan dan verifikasi data kepada Ketua Program Studi untuk mendapatkan persetujuan dan validasi bahwa data dosen yang terkumpul sudah lengkap, akurat, dan siap digunakan dalam sistem SITRIA.</p>
+        </div>
+        <div class="tahap-col">
+          <h5>✅ Output / Bukti Fisik</h5>
+          <span class="output-badge"><i class="fa-solid fa-circle-check"></i> Screenshot WA approval / Lembar tanda tangan Kaprodi</span>
+        </div>
+      </div>
+      <div class="foto-section">
+        <h5><i class="fa-solid fa-image"></i> Dokumentasi Foto</h5>
+        <div class="foto-grid" id="foto-tahap5">
+          <div class="foto-slot-static">
+            <span class="slot-label">Screenshot chat WA approval Kaprodi</span>
+            <img src="tahap5-foto1.jpg" alt="Tahap 5 Foto 1" onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
+          </div>
+          <div class="foto-slot-static">
+            <span class="slot-label">Foto lembar tanda tangan / berita acara</span>
+            <img src="tahap5-foto2.jpg" alt="Tahap 5 Foto 2" onerror="this.style.display='none'; this.previousElementSibling.style.display='block';">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tahapan-list -->
+
+  <!-- VIDEO BUKTI -->
+  <div class="video-section">
+    <div class="section-label" style="margin-top:2rem;"><i class="fa-solid fa-video"></i> Screen Recording — Bukti Digital</div>
+    <div class="video-grid">
+      <!-- VIDEO 1 -->
+      <div class="video-card">
+        <div class="video-card-head">
+          <div class="v-icon"><i class="fa-solid fa-play"></i></div>
+          <div>
+            <h4>Video 1 — Verifikasi SINTA & Google Scholar</h4>
+            <small>Bukti Tahap 3 · ~4 menit</small>
+          </div>
+        </div>
+        <div class="video-card-body">
+          <div class="video-thumb">
+            <img src="segmen1-verifikasi-sinta-scholar.webp" alt="Screen recording verifikasi SINTA"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="play-overlay" style="display:none;"><i class="fa-solid fa-play-circle"></i></div>
+          </div>
+          <div class="video-tags">
+            <span class="video-tag">SINTA</span>
+            <span class="video-tag">Google Scholar</span>
+            <span class="video-tag">Verifikasi</span>
+          </div>
+          <p class="video-desc">Proses membuka profil SINTA 3 dosen (Aidil, Yuyun, Arif) dan Google Scholar 2 dosen, membuktikan SINTA ID valid di URL dan halaman profil masing-masing.</p>
+          <a href="segmen1-verifikasi-sinta-scholar.webp" target="_blank" class="open-btn">
+            <i class="fa-solid fa-external-link-alt"></i> Buka Video
+          </a>
+        </div>
+      </div>
+      <!-- VIDEO 2 -->
+      <div class="video-card">
+        <div class="video-card-head">
+          <div class="v-icon"><i class="fa-solid fa-play"></i></div>
+          <div>
+            <h4>Video 2 — Tampilan JSON & Cross-check</h4>
+            <small>Bukti Tahap 2 & 4 · ~3 menit</small>
+          </div>
+        </div>
+        <div class="video-card-body">
+          <div class="video-thumb">
+            <img src="segmen2-json-viewer-crosscheck.webp" alt="Screen recording JSON viewer"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="play-overlay" style="display:none;"><i class="fa-solid fa-play-circle"></i></div>
+          </div>
+          <div class="video-tags">
+            <span class="video-tag">lecturers.json</span>
+            <span class="video-tag">Cross-check</span>
+            <span class="video-tag">15 Dosen SI</span>
+          </div>
+          <p class="video-desc">Tampilan viewer yang memperlihatkan 15 dosen Prodi SI beserta sintaId, scholarId dan URL-nya. Diakhiri cross-check ke profil SINTA untuk membuktikan data valid.</p>
+          <a href="segmen2-json-viewer-crosscheck.webp" target="_blank" class="open-btn">
+            <i class="fa-solid fa-external-link-alt"></i> Buka Video
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIMPULAN -->
+  <div class="simpulan-box">
+    <h4>📝 Simpulan Kegiatan 1</h4>
+    <p>
+      Kegiatan 1 berhasil diselesaikan dalam dua minggu pertama habituasi (M1–M2, 7–20 Maret 2026). 
+      Seluruh data SINTA ID dan Google Scholar ID dari <strong>15 dosen Prodi Sistem Informasi</strong> telah berhasil dikumpulkan, diverifikasi langsung melalui portal SINTA Kemdiktisaintek dan Google Scholar, 
+      serta disusun ke dalam file <code>lecturers.json</code> yang terstruktur. 
+      Data ini menjadi fondasi utama sistem SITRIA dalam mengambil dan memperbarui data publikasi dosen secara otomatis.
+      Kegiatan ini mencerminkan nilai <strong>Akuntabel</strong> (data valid & dapat diverifikasi), <strong>Kompeten</strong> (menggunakan sumber resmi), dan <strong>Kolaboratif</strong> (melibatkan Kaprodi dalam validasi akhir).
+    </p>
+    <div class="simpulan-berakhlak">
+      <span class="berakhlak-pill">Berorientasi Pelayanan</span>
+      <span class="berakhlak-pill">Akuntabel</span>
+      <span class="berakhlak-pill">Kompeten</span>
+      <span class="berakhlak-pill">Harmonis</span>
+      <span class="berakhlak-pill">Loyal</span>
+      <span class="berakhlak-pill">Adaptif</span>
+      <span class="berakhlak-pill">Kolaboratif</span>
+    </div>
+  </div>
+
+  <footer>
+    Dokumentasi Kegiatan 1 — Aktualisasi CPNS 2025 &nbsp;·&nbsp;
+    <strong>Aidil Saputra Kirsan, S.ST., M.Tr.Kom</strong> &nbsp;·&nbsp;
+    Prodi Sistem Informasi, FSTI – Institut Teknologi Kalimantan
+  </footer>
+
+</div>
+
+</body>
+</html>

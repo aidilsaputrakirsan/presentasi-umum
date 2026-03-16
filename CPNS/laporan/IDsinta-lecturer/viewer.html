@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SINTA Intel — Data Dosen Prodi SI</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d2e;
+      --card: #1e2235;
+      --border: #2d3150;
+      --accent: #6366f1;
+      --accent2: #22d3ee;
+      --green: #34d399;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --tag-bg: rgba(99,102,241,0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    header .badge {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 4px 14px;
+      border-radius: 99px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #6366f1, #22d3ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .stats {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .stat-card .value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent2);
+    }
+
+    .stat-card .label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.4rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--accent), var(--accent2));
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .card-number {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      padding-right: 3rem;
+      line-height: 1.4;
+    }
+
+    .field {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .field-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--accent);
+      background: var(--tag-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+      margin-top: 1px;
+      min-width: 70px;
+      text-align: center;
+    }
+
+    .field-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--muted);
+      word-break: break-all;
+    }
+
+    .field-value a {
+      color: var(--accent2);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .field-value a:hover { opacity: 0.7; }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0.75rem 0;
+    }
+
+    .json-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .json-block .json-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .json-block .json-header span {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #a5f3fc;
+      white-space: pre-wrap;
+      word-break: break-all;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    footer strong { color: var(--accent2); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="badge">📊 SINTA Intel — Aktualisasi CPNS</div>
+    <h1>Data Dosen Prodi Sistem Informasi</h1>
+    <p>File: <code style="color:#6366f1;">IDsinta-lecturer/SI/lecturers.json</code> — Bukti Tahap 2 & 4 Kegiatan 1</p>
+  </header>
+
+  <div class="stats" id="stats"></div>
+  <div class="grid" id="grid"></div>
+
+  <div class="json-block">
+    <div class="json-header">
+      📄 Raw JSON — <span>lecturers.json</span>
+    </div>
+    <pre id="raw-json"></pre>
+  </div>
+
+  <footer>
+    Dibuat sebagai bukti kegiatan SINTA Intel &mdash; <strong>Aidil Saputra Kirsan</strong> &mdash; CPNS 2025
+  </footer>
+
+  <script>
+    const data = {
+  "name": "Sistem Informasi",
+  "code": "SI",
+  "jurusan": "Teknik Elektro, Informatika, dan Bisnis",
+  "lecturers": [
+    { "name": "Yuyun Tri Wiranti", "scholarId": "-_VrWf0AAAAJ", "scholarUrl": "https://scholar.google.com/citations?user=-_VrWf0AAAAJ", "sintaId": "5978281", "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/5978281" },
+    { "name": "Aidil Saputra Kirsan", "scholarId": "lzQbWuEAAAAJ", "scholarUrl": "https://scholar.google.com/citations?user=lzQbWuEAAAAJ&hl", "sintaId": "6760340", "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6760340" },
+    { "name": "Arif Wicaksono Septyanto", "scholarId": "j9grU1wAAAAJ", "scholarUrl": "https://scholar.google.com/citations?user=j9grU1wAAAAJ", "sintaId": "6741019", "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6741019" },
+    { "name": "Henokh Lugo Hariyanto", "scholarId": "0-iFtfUAAAAJ", "scholarUrl": "https://scholar.google.com/citations?user=0-iFtfUAAAAJ", "sintaId": "6807418", "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6807418" },
+    { "name": "Lovinta Happy Atrinawati", "scholarId": "hoRXNb0AAAAJ", "scholarUrl": "https://scholar.google.com/citations?user=hoRXNb0AAAAJ", "sintaId": "5977894", "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/5977894" },
+    { "name": "Vika Fitratunnany Insanittaqwa", "scholarId": "KSbR3ScAAAAJ", "scholarUrl": "https://scholar.google.com/citations?user=KSbR3ScAAAAJ", "sintaId": "6784235", "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6784235" },
+    { "name": "Hendy Indrawan Sunardi", "scholarId": "GX3ZBk4AAAAJ", "scholarUrl": "https://scholar.google.com/citations?user=GX3ZBk4AAAAJ", "sintaId": "6784468", "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6784468" },
+    { "name": "Dwi Nur Amalia", "scholarId": "eJ1lzuIAAAAJ", "scholarUrl": "https://scholar.google.com/citations?user=eJ1lzuIAAAAJ", "sintaId": "6761367", "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6761367" },
+    { "name": "Dwi Arief Prambudi", "scholarId": "nLJNVHEAAAAJ", "scholarUrl": "https://scholar.google.com/citations?user=nLJNVHEAAAAJ", "sintaId": "6784358", "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6784358" },
+    { "name": "I Putu Deny Arthawan Sugih Prabowo", "scholarId": "asIeRU8AAAAJ", "scholarUrl": "https://scholar.google.com/citations?user=asIeRU8AAAAJ", "sintaId": "6701825", "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6701825" },
+    { "name": "M. Ihsan Alfani Putera", "scholarId": "UtyPlF4AAAAJ", "scholarUrl": "https://scholar.google.com/citations?user=UtyPlF4AAAAJ", "sintaId": "6681873", "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6681873" },
+    { "name": "Sri Rahayu Natasia", "scholarId": "wCiwTCQAAAAJ", "scholarUrl": "https://scholar.google.com/citations?user=wCiwTCQAAAAJ", "sintaId": "5983406", "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/5983406" },
+    { "name": "Nursanti Novi Arisa", "scholarId": "8qByKOIAAAAJ", "scholarUrl": "https://scholar.google.com/citations?hl=id&user=8qByKOIAAAAJ", "sintaId": "6757976", "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6757976" },
+    { "name": "Rosa Eliviani", "scholarId": "Mf5WlWgAAAAJ", "scholarUrl": "https://scholar.google.com/citations?user=Mf5WlWgAAAAJ", "sintaId": "6876629", "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6876629" },
+    { "name": "M. Gilvy Langgawan Putra", "scholarId": "6khCqswAAAAJ", "scholarUrl": "https://scholar.google.com/citations?hl=id&user=6khCqswAAAAJ", "sintaId": "6201079", "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6201079" }
+  ]
+};
+
+    // Stats
+    document.getElementById('stats').innerHTML = `
+      <div class="stat-card"><div class="value">${data.lecturers.length}</div><div class="label">Total Dosen</div></div>
+      <div class="stat-card"><div class="value">${data.lecturers.filter(l => l.sintaId).length}</div><div class="label">Punya SINTA ID</div></div>
+      <div class="stat-card"><div class="value">${data.lecturers.filter(l => l.scholarId !== '-').length}</div><div class="label">Punya Scholar ID</div></div>
+      <div class="stat-card"><div class="value">${data.code}</div><div class="label">Kode Prodi</div></div>
+    `;
+
+    // Cards
+    const grid = document.getElementById('grid');
+    data.lecturers.forEach((lec, i) => {
+      grid.innerHTML += `
+        <div class="card">
+          <div class="card-number">#${String(i+1).padStart(2,'0')}</div>
+          <h3>${lec.name}</h3>
+          <hr class="divider">
+          <div class="field">
+            <span class="field-label">sintaId</span>
+            <span class="field-value">${lec.sintaId}</span>
+          </div>
+          <div class="field">
+            <span class="field-label">scholarId</span>
+            <span class="field-value">${lec.scholarId}</span>
+          </div>
+          <div class="field">
+            <span class="field-label">sintaUrl</span>
+            <span class="field-value"><a href="${lec.sintaUrl}" target="_blank">${lec.sintaUrl}</a></span>
+          </div>
+          <div class="field">
+            <span class="field-label">scholarUrl</span>
+            <span class="field-value"><a href="${lec.scholarUrl}" target="_blank">${lec.scholarUrl.substring(0,50)}...</a></span>
+          </div>
+        </div>
+      `;
+    });
+
+    // Raw JSON
+    document.getElementById('raw-json').textContent = JSON.stringify(data, null, 2);
+  </script>
+</body>
+</html>

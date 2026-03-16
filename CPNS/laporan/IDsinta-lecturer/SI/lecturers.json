@@ -1,0 +1,112 @@
+{
+  "name": "Sistem Informasi",
+  "code": "SI",
+  "jurusan": "Teknik Elektro, Informatika, dan Bisnis",
+  "lecturers": [
+    {
+      "name": "Yuyun Tri Wiranti",
+      "scholarId": "-_VrWf0AAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=-_VrWf0AAAAJ",
+      "sintaId": "5978281",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/5978281"
+    },
+    {
+      "name": "Aidil Saputra Kirsan",
+      "scholarId": "lzQbWuEAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=lzQbWuEAAAAJ&hl",
+      "sintaId": "6760340",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6760340"
+    },
+    {
+      "name": "Arif Wicaksono Septyanto",
+      "scholarId": "j9grU1wAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=j9grU1wAAAAJ",
+      "sintaId": "6741019",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6741019"
+    },
+    {
+      "name": "Henokh Lugo Hariyanto",
+      "scholarId": "0-iFtfUAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=0-iFtfUAAAAJ",
+      "sintaId": "6807418",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6807418"
+    },
+    {
+      "name": "Lovinta Happy Atrinawati",
+      "scholarId": "hoRXNb0AAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=hoRXNb0AAAAJ",
+      "sintaId": "5977894",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/5977894"
+    },
+    {
+      "name": "Vika Fitratunnany Insanittaqwa",
+      "scholarId": "KSbR3ScAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=KSbR3ScAAAAJ",
+      "sintaId": "6784235",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6784235"
+    },
+    {
+      "name": "Hendy Indrawan Sunardi",
+      "scholarId": "GX3ZBk4AAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=GX3ZBk4AAAAJ",
+      "sintaId": "6784468",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6784468"
+    },
+    {
+      "name": "Dwi Nur Amalia",
+      "scholarId": "eJ1lzuIAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=eJ1lzuIAAAAJ",
+      "sintaId": "6761367",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6761367"
+    },
+    {
+      "name": "Dwi Arief Prambudi",
+      "scholarId": "nLJNVHEAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=nLJNVHEAAAAJ",
+      "sintaId": "6784358",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6784358"
+    },
+    {
+      "name": "I Putu Deny Arthawan Sugih Prabowo",
+      "scholarId": "asIeRU8AAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=asIeRU8AAAAJ",
+      "sintaId": "6701825",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6701825"
+    },
+    {
+      "name": "M. Ihsan Alfani Putera",
+      "scholarId": "UtyPlF4AAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=UtyPlF4AAAAJ",
+      "sintaId": "6681873",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6681873"
+    },
+    {
+      "name": "Sri Rahayu Natasia",
+      "scholarId": "wCiwTCQAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=wCiwTCQAAAAJ",
+      "sintaId": "5983406",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/5983406"
+    },
+    {
+      "name": "Nursanti Novi Arisa",
+      "scholarId": "8qByKOIAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?hl=id&user=8qByKOIAAAAJ",
+      "sintaId": "6757976",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6757976"
+    },
+    {
+      "name": "Rosa Eliviani",
+      "scholarId": "Mf5WlWgAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?user=Mf5WlWgAAAAJ",
+      "sintaId": "6876629",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6876629"
+    },
+    {
+      "name": "M. Gilvy Langgawan Putra",
+      "scholarId": "6khCqswAAAAJ",
+      "scholarUrl": "https://scholar.google.com/citations?hl=id&user=6khCqswAAAAJ",
+      "sintaId": "6201079",
+      "sintaUrl": "https://sinta.kemdiktisaintek.go.id/authors/profile/6201079"
+    }
+  ]
+}
