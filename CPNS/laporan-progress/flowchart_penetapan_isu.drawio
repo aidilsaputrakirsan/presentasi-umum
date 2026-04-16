@@ -1,0 +1,137 @@
+<mxfile host="app.diagrams.net" agent="Claude" pages="2">
+  <diagram name="Penetapan Isu" id="penetapan-isu">
+    <mxGraphModel dx="1652" dy="911" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontStyle=1;fontColor=#1B3A6B;" value="PROSES PENETAPAN ISU" vertex="1">
+          <mxGeometry height="32" width="627" x="100" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#2E86AB;" value="Identifikasi dan Analisis Isu Aktual di Lingkungan ITK — SITRIA" vertex="1">
+          <mxGeometry height="20" width="627" x="100" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="obs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1B3A6B;strokeColor=#0D2044;fontColor=#FFFFFF;fontSize=12;arcSize=10;shadow=1;" value="&lt;b&gt;OBSERVASI AWAL&lt;/b&gt;&lt;br&gt;&lt;font&gt;Pengamatan kondisi pengelolaan data&lt;br&gt;Tridharma di Institut Teknologi Kalimantan&lt;/font&gt;" vertex="1">
+          <mxGeometry height="65" width="300" x="264" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="a_obs" edge="1" parent="1" source="obs" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#1B3A6B;strokeWidth=2.5;endArrow=block;endFill=1;fontSize=12;" target="fork1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fork1" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;fontColor=#FFFFFF;fontSize=12;fontStyle=1;shadow=1;" value="3 Isu Teridentifikasi" vertex="1">
+          <mxGeometry height="60" width="150" x="339" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="a_f1" edge="1" parent="1" source="fork1" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#C9A84C;strokeWidth=2;endArrow=block;endFill=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;fontSize=12;" target="isu1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_f2" edge="1" parent="1" source="fork1" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#C9A84C;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=12;" target="isu2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_f3" edge="1" parent="1" source="fork1" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#C9A84C;strokeWidth=2;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=12;" target="isu3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="isu1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#2E86AB;fontColor=#1B3A6B;fontSize=12;fontStyle=1;arcSize=10;shadow=1;" value="&lt;b&gt;Isu A&lt;/b&gt;&lt;br&gt;&lt;font&gt;Data kinerja dosen tersebar&lt;br&gt;di banyak sistem berbeda,&lt;br&gt;sulit diakses terpadu&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="170" x="107" y="268" as="geometry" />
+        </mxCell>
+        <mxCell id="isu2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#2E86AB;fontColor=#1B3A6B;fontSize=12;fontStyle=1;arcSize=10;shadow=1;" value="&lt;b&gt;Isu B&lt;/b&gt;&lt;br&gt;&lt;font&gt;Pelaporan BKD masih manual,&lt;br&gt;membutuhkan waktu lama&lt;br&gt;dan rentan kesalahan&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="170" x="329" y="277" as="geometry" />
+        </mxCell>
+        <mxCell id="isu3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#2E86AB;fontColor=#1B3A6B;fontSize=12;fontStyle=1;arcSize=10;shadow=1;" value="&lt;b&gt;Isu C&lt;/b&gt;&lt;br&gt;&lt;font&gt;Tidak ada sistem monitoring&lt;br&gt;perkembangan publikasi&lt;br&gt;dosen secara real-time&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="170" x="541" y="277" as="geometry" />
+        </mxCell>
+        <mxCell id="a_i1" edge="1" parent="1" source="isu1" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#2E86AB;strokeWidth=2;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;fontSize=12;" target="usg" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="208" y="349" />
+              <mxPoint x="208" y="395" />
+              <mxPoint x="414" y="395" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a_i2" edge="1" parent="1" source="isu2" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#2E86AB;strokeWidth=2;endArrow=block;endFill=1;fontSize=12;" target="usg" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_i3" edge="1" parent="1" source="isu3" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#2E86AB;strokeWidth=2;endArrow=block;endFill=1;fontSize=12;" target="usg" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="618" y="398" />
+              <mxPoint x="414" y="398" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="usg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2E86AB;strokeColor=#1A6080;fontColor=#FFFFFF;fontSize=12;arcSize=10;shadow=1;" value="&lt;b&gt;ANALISIS USG&lt;/b&gt;&lt;br&gt;&lt;font&gt;&lt;b&gt;Urgency · Seriousness · Growth&lt;/b&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="52" width="300" x="264" y="432" as="geometry" />
+        </mxCell>
+        <mxCell id="usg1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6EAF8;strokeColor=#2E86AB;fontColor=#1B3A6B;fontSize=12;arcSize=12;" value="&lt;b&gt;Isu A&lt;/b&gt;&lt;br&gt;U:5 S:5 G:4&lt;br&gt;&lt;b&gt;Total: 14 ✓&lt;/b&gt;" vertex="1">
+          <mxGeometry height="55" width="120" x="100" y="508" as="geometry" />
+        </mxCell>
+        <mxCell id="usg2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6EAF8;strokeColor=#2E86AB;fontColor=#666666;fontSize=12;arcSize=12;" value="&lt;b&gt;Isu B&lt;/b&gt;&lt;br&gt;U:4 S:4 G:3&lt;br&gt;&lt;b&gt;Total: 11&lt;/b&gt;" vertex="1">
+          <mxGeometry height="55" width="120" x="354" y="508" as="geometry" />
+        </mxCell>
+        <mxCell id="usg3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6EAF8;strokeColor=#2E86AB;fontColor=#666666;fontSize=12;arcSize=12;" value="&lt;b&gt;Isu C&lt;/b&gt;&lt;br&gt;U:3 S:4 G:4&lt;br&gt;&lt;b&gt;Total: 11&lt;/b&gt;" vertex="1">
+          <mxGeometry height="55" width="120" x="608" y="508" as="geometry" />
+        </mxCell>
+        <mxCell id="a_u1" edge="1" parent="1" source="usg" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#2E86AB;strokeWidth=1.5;endArrow=open;endFill=0;fontSize=12;" target="usg1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_u2" edge="1" parent="1" source="usg" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#2E86AB;strokeWidth=1.5;endArrow=open;endFill=0;fontSize=12;" target="usg2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_u3" edge="1" parent="1" source="usg" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#2E86AB;strokeWidth=1.5;endArrow=open;endFill=0;fontSize=12;" target="usg3" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_win" edge="1" parent="1" source="usg1" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#1E8B4C;strokeWidth=2.5;endArrow=block;endFill=1;fontColor=#1E8B4C;fontSize=12;fontStyle=1;" target="isu_terpilih" value="Skor tertinggi">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="isu_terpilih" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E8B4C;strokeColor=#155E33;fontColor=#FFFFFF;fontSize=12;arcSize=10;shadow=1;" value="&lt;b&gt;ISU TERPILIH&lt;/b&gt;&lt;br&gt;&lt;font&gt;Data kinerja dosen tersebar di berbagai sistem,&lt;br&gt;belum ada platform terintegrasi untuk monitoring&lt;br&gt;dan pelaporan Tridharma secara efisien&lt;/font&gt;" vertex="1">
+          <mxGeometry height="75" width="460" x="184" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="a_it1" edge="1" parent="1" source="isu_terpilih" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#1E8B4C;strokeWidth=2.5;endArrow=block;endFill=1;fontSize=12;" target="faktor" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="faktor" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF8E7;strokeColor=#C9A84C;fontColor=#1B3A6B;fontSize=12;arcSize=10;shadow=1;" value="&lt;b&gt;ANALISIS FAKTOR PENYEBAB&lt;/b&gt;&lt;br&gt;&lt;font&gt;Belum ada sistem terpadu · Proses manual · Tidak ada notifikasi otomatis&lt;br&gt;Data tersebar di SINTA, SISTER, SIMPEG tanpa sinkronisasi&lt;/font&gt;" vertex="1">
+          <mxGeometry height="65" width="500" x="164" y="735" as="geometry" />
+        </mxCell>
+        <mxCell id="a_fg" edge="1" parent="1" source="faktor" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#C9A84C;strokeWidth=2.5;endArrow=block;endFill=1;fontSize=12;" target="gagasan" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="gagasan" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1B3A6B;strokeColor=#0D2044;fontColor=#FFFFFF;fontSize=12;arcSize=10;shadow=1;" value="&lt;b&gt;GAGASAN KREATIF: SITRIA&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;color: rgb(235, 245, 251);&quot;&gt;Sistem Informasi Tridharma Akademik&lt;/font&gt;&lt;br&gt;&lt;font&gt;Platform digital terintegrasi untuk monitoring kinerja dosen&lt;br&gt;dengan 7 fitur utama dan analitik berbasis AI&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="500" x="164" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="dampak" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0FAF4;strokeColor=#1E8B4C;fontColor=#1B3A6B;fontSize=12;arcSize=10;shadow=1;" value="&lt;b&gt;DAMPAK YANG DIHARAPKAN&lt;/b&gt;&lt;br&gt;&lt;font&gt;✓ Efisiensi pelaporan meningkat&lt;br&gt;✓ Data akurat &amp;amp; real-time&lt;br&gt;✓ Keputusan berbasis data&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="230" x="164" y="980" as="geometry" />
+        </mxCell>
+        <mxCell id="nilai" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#2E86AB;fontColor=#1B3A6B;fontSize=12;arcSize=10;shadow=1;" value="&lt;b&gt;NILAI BerAKHLAK&lt;/b&gt;&lt;br&gt;&lt;font&gt;Berorientasi Pelayanan&lt;br&gt;Kompeten · Adaptif&lt;br&gt;Kolaboratif&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="230" x="434" y="980" as="geometry" />
+        </mxCell>
+        <mxCell id="a_gd" edge="1" parent="1" source="gagasan" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#1B3A6B;strokeWidth=2;endArrow=block;endFill=1;fontSize=12;" target="dampak" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_gn" edge="1" parent="1" source="gagasan" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#1B3A6B;strokeWidth=2;endArrow=block;endFill=1;fontSize=12;" target="nilai" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;fontColor=#FFFFFF;fontSize=12;fontStyle=1;shadow=1;" value="01" vertex="1">
+          <mxGeometry height="30" width="30" x="55" y="104" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;fontColor=#FFFFFF;fontSize=12;fontStyle=1;shadow=1;" value="02" vertex="1">
+          <mxGeometry height="30" width="30" x="55" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#2E86AB;strokeColor=#1A6080;fontColor=#FFFFFF;fontSize=12;fontStyle=1;shadow=1;" value="03" vertex="1">
+          <mxGeometry height="30" width="30" x="55" y="446" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1E8B4C;strokeColor=#155E33;fontColor=#FFFFFF;fontSize=12;fontStyle=1;shadow=1;" value="04" vertex="1">
+          <mxGeometry height="30" width="30" x="55" y="625" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1B3A6B;strokeColor=#0D2044;fontColor=#FFFFFF;fontSize=12;fontStyle=1;shadow=1;" value="05" vertex="1">
+          <mxGeometry height="30" width="30" x="55" y="862" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="eYafVt7pixYPQWA2_yYV" name="Page-2">
+    <mxGraphModel dx="1404" dy="774" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

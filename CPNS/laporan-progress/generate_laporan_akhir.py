@@ -13,6 +13,21 @@ from docx.oxml import OxmlElement
 import copy
 
 # ─────────────────────────────────────────────
+#  DESIGN TOKENS
+# ─────────────────────────────────────────────
+
+CLR_PRIMARY  = '1B3A6B'   # deep navy
+CLR_ACCENT   = '2E86AB'   # steel blue
+CLR_GOLD     = 'C9A84C'   # warm gold (cover accent)
+CLR_LIGHT    = 'D6EAF8'   # light blue (placeholder header)
+CLR_XLIGHT   = 'EBF5FB'   # very light blue
+CLR_ALTROW   = 'F4F6F9'   # table alternate row (light gray-blue)
+CLR_KGBG     = 'EAF4FB'   # kegiatan title background
+CLR_WHITE    = 'FFFFFF'
+CLR_COVTOP   = '1B3A6B'   # cover top band
+CLR_COVBOT   = '2E86AB'   # cover bottom band
+
+# ─────────────────────────────────────────────
 #  HELPER FUNCTIONS
 # ─────────────────────────────────────────────
 
@@ -38,6 +53,52 @@ def set_cell_borders(cell, top=None, bottom=None, left=None, right=None):
             el.set(qn('w:color'), val.get('color', '000000'))
             tcBorders.append(el)
     tcPr.append(tcBorders)
+
+def shade_para(p, hex_color):
+    """Tambahkan background color pada sebuah paragraf."""
+    pPr = p._p.get_or_add_pPr()
+    shd = OxmlElement('w:shd')
+    shd.set(qn('w:val'), 'clear')
+    shd.set(qn('w:color'), 'auto')
+    shd.set(qn('w:fill'), hex_color)
+    pPr.append(shd)
+
+def para_left_border(p, color='2E86AB', sz=24, space=8):
+    """Tambahkan left accent bar pada paragraf."""
+    pPr = p._p.get_or_add_pPr()
+    pBdr = OxmlElement('w:pBdr')
+    left_el = OxmlElement('w:left')
+    left_el.set(qn('w:val'), 'single')
+    left_el.set(qn('w:sz'), str(sz))
+    left_el.set(qn('w:space'), str(space))
+    left_el.set(qn('w:color'), color)
+    pBdr.append(left_el)
+    pPr.append(pBdr)
+
+def stripe_table(table, even_color=CLR_ALTROW):
+    """Alternating row colors mulai dari baris data (skip header)."""
+    for i, row in enumerate(table.rows[1:], 1):
+        if i % 2 == 0:
+            for cell in row.cells:
+                set_cell_bg(cell, even_color)
+
+def make_cover_band(doc, text, bg_color, text_color='FFFFFF', font_size=11, bold=False,
+                    space_before=0, space_after=0, padding_top=6, padding_bot=6):
+    """Buat paragraf dengan background color penuh (untuk band di cover)."""
+    p = doc.add_paragraph()
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    p.paragraph_format.space_before = Pt(space_before)
+    p.paragraph_format.space_after  = Pt(space_after)
+    # top/bottom cell-like padding via space
+    p.paragraph_format.space_before = Pt(padding_top)
+    p.paragraph_format.space_after  = Pt(padding_bot)
+    shade_para(p, bg_color)
+    if text:
+        run = p.add_run(text)
+        run.bold = bold
+        run.font.size = Pt(font_size)
+        run.font.color.rgb = RGBColor(*bytes.fromhex(text_color))
+    return p
 
 def add_page_break(doc):
     p = doc.add_paragraph()
@@ -90,47 +151,62 @@ def add_run(p, text, bold=False, italic=False, size=11):
 
 def img_placeholder(doc, nomor_gambar, nama_file, keterangan, catatan_ukuran='Screenshot landscape (16:9)'):
     """Placeholder kotak bergaris untuk gambar yang perlu disisipkan manual."""
-    table = doc.add_table(rows=2, cols=1)
+    table = doc.add_table(rows=3, cols=1)
     table.style = 'Table Grid'
     table.alignment = WD_TABLE_ALIGNMENT.CENTER
 
-    # Baris header
+    # Baris header — steel blue tipis
     hdr = table.rows[0].cells[0]
-    set_cell_bg(hdr, 'D6EAF8')
+    set_cell_bg(hdr, CLR_ACCENT)
     ph = hdr.paragraphs[0]
     ph.alignment = WD_ALIGN_PARAGRAPH.CENTER
     ph.paragraph_format.space_before = Pt(3)
-    ph.paragraph_format.space_after = Pt(3)
-    run = ph.add_run(f'[ SISIPKAN GAMBAR DI SINI ]')
-    run.bold = True
-    run.font.size = Pt(9)
-    run.font.color.rgb = RGBColor(0x1A, 0x53, 0x76)
+    ph.paragraph_format.space_after  = Pt(3)
+    rh = ph.add_run(f'▢  SISIPKAN GAMBAR {nomor_gambar}  ▢')
+    rh.bold = True
+    rh.font.size = Pt(9)
+    rh.font.color.rgb = RGBColor(255, 255, 255)
 
-    # Baris isi
+    # Baris area gambar — sangat terang
     body = table.rows[1].cells[0]
-    set_cell_bg(body, 'EBF5FB')
+    set_cell_bg(body, CLR_XLIGHT)
     pb = body.paragraphs[0]
     pb.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    pb.paragraph_format.space_before = Pt(30)
-    pb.paragraph_format.space_after = Pt(30)
-    run2 = pb.add_run(f'Nama file  : {nama_file}\nKeterangan : {keterangan}')
-    run2.font.size = Pt(10)
-    run2.italic = True
+    pb.paragraph_format.space_before = Pt(28)
+    pb.paragraph_format.space_after  = Pt(28)
+    r2 = pb.add_run(f'{keterangan}')
+    r2.font.size = Pt(10)
+    r2.italic = True
+    r2.font.color.rgb = RGBColor(0x2E, 0x86, 0xAB)
+
+    # Baris meta — nama file & catatan ukuran
+    meta = table.rows[2].cells[0]
+    set_cell_bg(meta, CLR_LIGHT)
+    pm = meta.paragraphs[0]
+    pm.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    pm.paragraph_format.space_before = Pt(3)
+    pm.paragraph_format.space_after  = Pt(3)
+    rm = pm.add_run(f'File: {nama_file}   |   {catatan_ukuran}')
+    rm.font.size = Pt(8)
+    rm.font.color.rgb = RGBColor(0x1B, 0x3A, 0x6B)
 
     # Caption di bawah
     p_cap = doc.add_paragraph()
     p_cap.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p_cap.paragraph_format.space_before = Pt(2)
-    p_cap.paragraph_format.space_after = Pt(10)
-    rc = p_cap.add_run(f'Gambar {nomor_gambar}. {keterangan}   ({catatan_ukuran})')
+    p_cap.paragraph_format.space_before = Pt(3)
+    p_cap.paragraph_format.space_after  = Pt(10)
+    rc = p_cap.add_run(f'Gambar {nomor_gambar}. {keterangan}')
     rc.italic = True
     rc.font.size = Pt(10)
+    rc.font.color.rgb = RGBColor(0x1B, 0x3A, 0x6B)
 
 
-def section_title(doc, text, color='003366'):
+def section_title(doc, text, color=CLR_PRIMARY):
     p = doc.add_paragraph()
-    p.paragraph_format.space_before = Pt(12)
-    p.paragraph_format.space_after = Pt(4)
+    p.paragraph_format.space_before = Pt(14)
+    p.paragraph_format.space_after  = Pt(6)
+    p.paragraph_format.left_indent  = Cm(0.45)
+    para_left_border(p, color=CLR_ACCENT, sz=24, space=8)
     run = p.add_run(text)
     run.bold = True
     run.font.size = Pt(12)
@@ -161,12 +237,12 @@ def make_table(doc, headers, col_widths=None):
     for i, h in enumerate(headers):
         cell = hdr_row.cells[i]
         cell.text = h
-        set_cell_bg(cell, '003366')
-        for para in cell.paragraphs:
-            para.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            para.paragraph_format.space_before = Pt(2)
-            para.paragraph_format.space_after = Pt(2)
-            for run in para.runs:
+        set_cell_bg(cell, CLR_PRIMARY)
+        for par in cell.paragraphs:
+            par.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            par.paragraph_format.space_before = Pt(3)
+            par.paragraph_format.space_after  = Pt(3)
+            for run in par.runs:
                 run.bold = True
                 run.font.color.rgb = RGBColor(255, 255, 255)
                 run.font.size = Pt(10)
@@ -176,19 +252,100 @@ def make_table(doc, headers, col_widths=None):
                 cell.width = Cm(w)
     return table
 
+def add_page_number_footer(doc):
+    """Tambahkan nomor halaman di tengah footer setiap section."""
+    for section in doc.sections:
+        footer = section.footer
+        p = footer.paragraphs[0] if footer.paragraphs else footer.add_paragraph()
+        p.clear()
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p.paragraph_format.space_before = Pt(6)
+        p.paragraph_format.space_after  = Pt(0)
+        # Garis tipis di atas footer
+        pPr = p._p.get_or_add_pPr()
+        pBdr = OxmlElement('w:pBdr')
+        top_f = OxmlElement('w:top')
+        top_f.set(qn('w:val'), 'single')
+        top_f.set(qn('w:sz'), '4')
+        top_f.set(qn('w:space'), '1')
+        top_f.set(qn('w:color'), CLR_ACCENT)
+        pBdr.append(top_f)
+        pPr.append(pBdr)
+
+        def _fld_run(para, instr):
+            run = para.add_run()
+            run.font.size = Pt(10)
+            fc_begin = OxmlElement('w:fldChar')
+            fc_begin.set(qn('w:fldCharType'), 'begin')
+            instr_el = OxmlElement('w:instrText')
+            instr_el.set(qn('xml:space'), 'preserve')
+            instr_el.text = f' {instr} '
+            fc_end = OxmlElement('w:fldChar')
+            fc_end.set(qn('w:fldCharType'), 'end')
+            run._r.append(fc_begin)
+            run._r.append(instr_el)
+            run._r.append(fc_end)
+            return run
+
+        r_dash1 = p.add_run('– ')
+        r_dash1.font.size = Pt(10)
+        _fld_run(p, 'PAGE')
+        r_of = p.add_run(' dari ')
+        r_of.font.size = Pt(10)
+        _fld_run(p, 'NUMPAGES')
+        r_dash2 = p.add_run(' –')
+        r_dash2.font.size = Pt(10)
+
+
+def add_toc_entry(doc, text, is_bold=False, indent=0):
+    """Entri daftar isi dengan dot leader dan placeholder halaman."""
+    p = doc.add_paragraph()
+    p.paragraph_format.space_before = Pt(1)
+    p.paragraph_format.space_after = Pt(1)
+    if indent:
+        p.paragraph_format.left_indent = Cm(indent)
+
+    # Tab kanan dengan dot leader di posisi ~13.5 cm dari margin kiri
+    pPr = p._p.get_or_add_pPr()
+    tabs_el = OxmlElement('w:tabs')
+    tab_el = OxmlElement('w:tab')
+    tab_el.set(qn('w:val'), 'right')
+    tab_el.set(qn('w:leader'), 'dot')
+    tab_el.set(qn('w:pos'), '7560')   # 7560 twips ≈ 13.5 cm
+    tabs_el.append(tab_el)
+    pPr.append(tabs_el)
+
+    run = p.add_run(text)
+    run.bold = is_bold
+    run.font.size = Pt(11)
+    run2 = p.add_run('\t...')
+    run2.bold = is_bold
+    run2.font.size = Pt(11)
+    return p
+
+
 def horizontal_line(doc):
+    """Garis pemisah dua lapis: tebal (navy) + tipis (steel blue)."""
     p = doc.add_paragraph()
     pPr = p._p.get_or_add_pPr()
     pBdr = OxmlElement('w:pBdr')
-    bottom = OxmlElement('w:bottom')
-    bottom.set(qn('w:val'), 'single')
-    bottom.set(qn('w:sz'), '6')
-    bottom.set(qn('w:space'), '1')
-    bottom.set(qn('w:color'), '003366')
-    pBdr.append(bottom)
+    # Garis atas tebal — navy
+    top_el = OxmlElement('w:top')
+    top_el.set(qn('w:val'), 'single')
+    top_el.set(qn('w:sz'), '12')
+    top_el.set(qn('w:space'), '1')
+    top_el.set(qn('w:color'), CLR_PRIMARY)
+    pBdr.append(top_el)
+    # Garis bawah tipis — steel blue
+    bot_el = OxmlElement('w:bottom')
+    bot_el.set(qn('w:val'), 'single')
+    bot_el.set(qn('w:sz'), '4')
+    bot_el.set(qn('w:space'), '1')
+    bot_el.set(qn('w:color'), CLR_ACCENT)
+    pBdr.append(bot_el)
     pPr.append(pBdr)
-    p.paragraph_format.space_before = Pt(0)
-    p.paragraph_format.space_after = Pt(6)
+    p.paragraph_format.space_before = Pt(2)
+    p.paragraph_format.space_after  = Pt(8)
     return p
 
 
@@ -236,6 +393,9 @@ for section in doc.sections:
     section.left_margin = Cm(4)
     section.right_margin = Cm(3)
 
+# Footer: nomor halaman
+add_page_number_footer(doc)
+
 # Default paragraph style
 style = doc.styles['Normal']
 style.font.name = 'Times New Roman'
@@ -246,31 +406,47 @@ style.font.size = Pt(12)
 #  1. HALAMAN SAMPUL
 # ═══════════════════════════════════════════════
 
+# ── Judul ──
 p = para(doc, 'LAPORAN AKTUALISASI', bold=True, size=16, align='center', space_before=20, space_after=4)
-p = para(doc, 'PELATIHAN DASAR CPNS ANGKATAN VI TAHUN 2026', bold=True, size=13, align='center', space_after=4)
-p = para(doc, 'PUSAT PELATIHAN DAN PENGEMBANGAN – LAN RI', bold=False, size=11, align='center', space_after=20)
+for run in p.runs: run.font.color.rgb = RGBColor(*bytes.fromhex(CLR_PRIMARY))
+p = para(doc, 'PELATIHAN DASAR CPNS ANGKATAN VI TAHUN 2026', bold=True, size=12, align='center', space_after=4)
+for run in p.runs: run.font.color.rgb = RGBColor(*bytes.fromhex(CLR_PRIMARY))
+p = para(doc, 'PUSAT PELATIHAN DAN PENGEMBANGAN – LAN RI', size=10, align='center', space_after=16)
 
 horizontal_line(doc)
 
-p = para(doc, '', space_before=10, space_after=4)
-p = para(doc, 'SITRIA', bold=True, size=22, align='center', space_after=2)
-p = para(doc, 'Sistem Informasi Tridharma Akademik', bold=True, size=14, align='center', space_after=4)
-p = para(doc, 'Dashboard Analitik Tridharma Dosen Berbasis Data Multi-Sumber', italic=True, size=11, align='center', space_after=2)
-p = para(doc, 'Lab Inovasi Digital – Prodi Sistem Informasi & Bisnis Digital', italic=True, size=10, align='center', space_after=2)
-p = para(doc, 'Fakultas Sains dan Teknologi Industri – Institut Teknologi Kalimantan', italic=True, size=10, align='center', space_after=20)
+# ── SITRIA title block ──
+p = para(doc, 'SITRIA', bold=True, size=26, align='center', space_before=14, space_after=2)
+for run in p.runs: run.font.color.rgb = RGBColor(*bytes.fromhex(CLR_PRIMARY))
+p_sub = doc.add_paragraph()
+p_sub.alignment = WD_ALIGN_PARAGRAPH.CENTER
+p_sub.paragraph_format.space_before = Pt(0)
+p_sub.paragraph_format.space_after  = Pt(6)
+r_sub = p_sub.add_run('Sistem Informasi Tridharma Akademik')
+r_sub.bold = True
+r_sub.font.size = Pt(14)
+r_sub.font.color.rgb = RGBColor(*bytes.fromhex(CLR_ACCENT))
+p = para(doc, 'Dashboard Analitik Tridharma Dosen Berbasis Data Multi-Sumber',
+         italic=True, size=11, align='center', space_after=2)
+p = para(doc, 'Lab Inovasi Digital – Prodi Sistem Informasi & Bisnis Digital',
+         italic=True, size=10, align='center', space_after=2)
+p = para(doc, 'Fakultas Sains dan Teknologi Industri – Institut Teknologi Kalimantan',
+         italic=True, size=10, align='center', space_after=16)
 
 horizontal_line(doc)
 
-p = para(doc, 'Disusun oleh:', size=11, align='center', space_before=10, space_after=4)
+# ── Penyusun ──
+p = para(doc, 'Disusun oleh:', size=11, align='center', space_before=12, space_after=4)
 p = para(doc, DATA['nama'], bold=True, size=13, align='center', space_after=2)
+for run in p.runs: run.font.color.rgb = RGBColor(*bytes.fromhex(CLR_PRIMARY))
 p = para(doc, f"NIP. {DATA['nip']}", size=11, align='center', space_after=2)
 p = para(doc, DATA['jabatan'], size=11, align='center', space_after=2)
-p = para(doc, DATA['unit_kerja'], size=11, align='center', space_after=20)
+p = para(doc, DATA['unit_kerja'], size=11, align='center', space_after=16)
 
 horizontal_line(doc)
 
-p = para(doc, f"Periode Aktualisasi: {DATA['periode']}", size=11, align='center', space_before=8, space_after=2)
-p = para(doc, f"Tanggal Laporan: {DATA['tanggal_laporan']}", size=11, align='center', space_after=20)
+p = para(doc, f"Periode Aktualisasi: {DATA['periode']}", size=11, align='center', space_before=10, space_after=2)
+p = para(doc, f"Tanggal Laporan: {DATA['tanggal_laporan']}", size=11, align='center', space_after=16)
 
 page_break(doc)
 
@@ -483,7 +659,7 @@ tbl = make_table(doc,
 konsultasi_mentor = [
     ('1', '____________ 2026', 'Konsultasi persetujuan rancangan aktualisasi dan dukungan pimpinan unit kerja', ''),
     ('2', '____________ 2026', 'Penyelarasan gagasan "SITRIA" dan batasan sasaran dashboard', ''),
-    ('3', '____________ 2026', 'Review progres Kegiatan 1 dan 2: data dosen dan pipeline scraper SINTA', ''),
+    ('3', '____________ 2026', 'Review progres Kegiatan 1 dan 2: data dosen dan sistem pengambilan data SINTA', ''),
     ('4', '____________ 2026', 'Review progres Kegiatan 3 dan 4: fitur analitik dan dashboard akreditasi', ''),
     ('5', '____________ 2026', 'Konsultasi final laporan aktualisasi dan persiapan seminar', ''),
 ]
@@ -583,11 +759,11 @@ opr_row(opr_table, 'Isu Terpilih',
         '(Skor USG: 14 — Urgency=5, Seriousness=5, Growth=4)')
 opr_row(opr_table, 'Gagasan Kreatif',
         'SITRIA (Sistem Informasi Tridharma Akademik): Dashboard analitik berbasis web yang mengintegrasikan data '
-        'riset, publikasi, dan pengabdian dosen secara otomatis dari portal SINTA Kemdiktisaintek menggunakan '
-        'Python, AI/ML (TF-IDF + K-Means), dan Vue.js.')
+        'riset, publikasi, dan pengabdian dosen secara otomatis dari portal SINTA Kemdiktisaintek, '
+        'dilengkapi kemampuan kecerdasan buatan untuk pengelompokan dan analisis topik riset secara otomatis.')
 opr_row(opr_table, 'Kegiatan Utama (5)',
         '1. Pemetaan & Pengumpulan Data Dosen (07–20 Mar)\n'
-        '2. Pengembangan Pipeline Scraper SINTA Otomatis (14–27 Mar)\n'
+        '2. Pengembangan Sistem Pengambilan Data SINTA Otomatis (14–27 Mar)\n'
         '3. Implementasi Fitur Analitik & Dashboard (21 Mar – 10 Apr)\n'
         '4. Dashboard Akreditasi DTPS & Pendanaan Riset (28 Mar – 17 Apr)\n'
         '5. Peluncuran, Sosialisasi & Evaluasi SITRIA (11–22 Apr)')
@@ -599,7 +775,7 @@ opr_row(opr_table, 'Output Utama',
         '• 23 peserta sosialisasi dari kalangan dosen, Kaprodi, dan laboran')
 opr_row(opr_table, 'Nilai BerAKHLAK',
         'Berorientasi Pelayanan (data real-time bagi pimpinan), Akuntabel (kalkulasi DTPS otomatis), '
-        'Kompeten (Python, ML, Vue.js), Harmonis (kolaborasi lintas prodi), Loyal (mendukung akreditasi ITK), '
+        'Kompeten (pengembangan sistem informasi & kecerdasan buatan), Harmonis (kolaborasi lintas prodi), Loyal (mendukung akreditasi ITK), '
         'Adaptif (data multi-sumber, AI/ML), Kolaboratif (melibatkan semua pemangku kepentingan)')
 opr_row(opr_table, 'Manfaat Utama',
         '• Bagi Prodi SI & Bisnis Digital: persiapan borang akreditasi lebih cepat dan akurat\n'
@@ -666,47 +842,48 @@ page_break(doc)
 heading(doc, 'DAFTAR ISI', level=1, center=True)
 horizontal_line(doc)
 
+p_note = doc.add_paragraph()
+p_note.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+p_note.paragraph_format.space_before = Pt(0)
+p_note.paragraph_format.space_after = Pt(6)
+rn = p_note.add_run('*) Isi nomor halaman setelah dokumen final dicetak / dibuka di Word')
+rn.italic = True
+rn.font.size = Pt(9)
+rn.font.color.rgb = RGBColor(0x88, 0x88, 0x88)
+
+# Entri-entri daftar isi  (teks, is_bold, indent_cm)
 daftar_isi = [
-    ('Lembar Pernyataan Orisinalitas Laporan Aktualisasi', ''),
-    ('Lembar Persetujuan Laporan Aktualisasi', ''),
-    ('Lembar Pengesahan Laporan Aktualisasi', ''),
-    ('Lembar Konsultasi Mentor', ''),
-    ('Lembar Konsultasi Coach', ''),
-    ('OPR (One Page Report)', ''),
-    ('Kata Pengantar', ''),
-    ('Daftar Isi', ''),
-    ('Identitas Peserta', ''),
-    ('BAB I\tRANCANGAN AKTUALISASI', ''),
-    ('\t1.1 Profil Instansi', ''),
-    ('\t1.2 Profil Jabatan', ''),
-    ('\t1.3 Identifikasi Isu dan Penetapan Isu Terpilih', ''),
-    ('\t1.4 Gagasan Kreatif: SITRIA', ''),
-    ('\t1.5 Tujuan dan Manfaat Aktualisasi', ''),
-    ('\t1.6 Matriks Rencana Kegiatan', ''),
-    ('BAB II\tIMPLEMENTASI AKTUALISASI', ''),
-    ('\t2.1 Implementasi Kegiatan', ''),
-    ('\t\tKegiatan 1: Pemetaan & Pengumpulan Data Dosen', ''),
-    ('\t\tKegiatan 2: Pengembangan Pipeline Scraper SINTA Otomatis', ''),
-    ('\t\tKegiatan 3: Implementasi Fitur Analitik & Dashboard SITRIA', ''),
-    ('\t\tKegiatan 4: Dashboard Akreditasi DTPS & Pendanaan Riset', ''),
-    ('\t\tKegiatan 5: Peluncuran, Sosialisasi & Evaluasi SITRIA', ''),
-    ('\t2.2 Kebermanfaatan Aktualisasi', ''),
-    ('BAB III\tPENUTUP', ''),
-    ('\t3.1 Kesimpulan', ''),
-    ('\t3.2 Tindak Lanjut', ''),
+    ('Lembar Pernyataan Orisinalitas Laporan Aktualisasi', False, 0),
+    ('Lembar Persetujuan Laporan Aktualisasi',             False, 0),
+    ('Lembar Pengesahan Laporan Aktualisasi',              False, 0),
+    ('Lembar Konsultasi Mentor',                           False, 0),
+    ('Lembar Konsultasi Coach',                            False, 0),
+    ('OPR (One Page Report)',                              False, 0),
+    ('Kata Pengantar',                                     False, 0),
+    ('Daftar Isi',                                         False, 0),
+    ('Identitas Peserta',                                  False, 0),
+    ('BAB I   RANCANGAN AKTUALISASI',                      True,  0),
+    ('1.1  Profil Instansi',                               False, 0.8),
+    ('1.2  Profil Jabatan',                                False, 0.8),
+    ('1.3  Identifikasi Isu dan Penetapan Isu Terpilih',   False, 0.8),
+    ('1.4  Gagasan Kreatif: SITRIA',                       False, 0.8),
+    ('1.5  Tujuan dan Manfaat Aktualisasi',                False, 0.8),
+    ('1.6  Matriks Rencana Kegiatan',                      False, 0.8),
+    ('BAB II  IMPLEMENTASI AKTUALISASI',                   True,  0),
+    ('2.1  Implementasi Kegiatan (Tahapan, Penerapan BerAKHLAK & Bukti Fisik)', False, 0.8),
+    ('Kegiatan 1: Pemetaan & Pengumpulan Data Dosen',      False, 1.6),
+    ('Kegiatan 2: Pengembangan Sistem Pengambilan Data SINTA Otomatis', False, 1.6),
+    ('Kegiatan 3: Implementasi Fitur Analitik & Dashboard SITRIA',      False, 1.6),
+    ('Kegiatan 4: Dashboard Akreditasi DTPS & Pendanaan Riset',         False, 1.6),
+    ('Kegiatan 5: Peluncuran, Sosialisasi & Evaluasi SITRIA',           False, 1.6),
+    ('2.2  Kebermanfaatan Aktualisasi',                    False, 0.8),
+    ('BAB III  PENUTUP',                                   True,  0),
+    ('3.1  Kesimpulan',                                    False, 0.8),
+    ('3.2  Tindak Lanjut',                                 False, 0.8),
 ]
 
-for item, page in daftar_isi:
-    p = doc.add_paragraph()
-    p.paragraph_format.space_before = Pt(1)
-    p.paragraph_format.space_after = Pt(1)
-    if item.startswith('BAB'):
-        run = p.add_run(item)
-        run.bold = True
-        run.font.size = Pt(11)
-    else:
-        run = p.add_run(item)
-        run.font.size = Pt(11)
+for teks, bold, indent in daftar_isi:
+    add_toc_entry(doc, teks, is_bold=bold, indent=indent)
 
 page_break(doc)
 
@@ -799,6 +976,7 @@ for k, v in profil_data:
             par.paragraph_format.space_before = Pt(2)
             par.paragraph_format.space_after = Pt(2)
     r.cells[0].paragraphs[0].runs[0].bold = True
+stripe_table(profil_table)
 
 doc.add_paragraph()
 
@@ -836,6 +1014,7 @@ for k, v in jabatan_data:
             par.paragraph_format.space_before = Pt(2)
             par.paragraph_format.space_after = Pt(2)
     r.cells[0].paragraphs[0].runs[0].bold = True
+stripe_table(jabatan_table)
 
 doc.add_paragraph()
 
@@ -871,6 +1050,7 @@ for row_data in isu_data:
             par.paragraph_format.space_after = Pt(2)
         if i in [0, 2, 3, 4, 5]:
             r.cells[i].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+stripe_table(isu_table)
 
 p = doc.add_paragraph()
 p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
@@ -893,18 +1073,18 @@ add_run(p,
     'Berdasarkan isu terpilih, gagasan kreatif yang diusulkan adalah pengembangan SITRIA (Sistem Informasi '
     'Tridharma Akademik): sebuah dashboard analitik berbasis web yang mengintegrasikan dan menganalisis data '
     'riset, publikasi, dan pengabdian seluruh dosen Prodi SI dan Prodi Bisnis Digital FSTI ITK secara otomatis '
-    'dari portal SINTA Kemdiktisaintek. SITRIA dikembangkan menggunakan Python, AI/ML (TF-IDF + K-Means), '
-    'dan Vue.js, dengan 7 fitur utama:', size=12)
+    'dari portal SINTA Kemdiktisaintek. SITRIA dikembangkan menggunakan teknologi web modern yang dilengkapi '
+    'kemampuan kecerdasan buatan untuk pengelompokan dan analisis data riset secara otomatis, dengan 7 fitur utama:', size=12)
 
 fitur_table = make_table(doc, ['Kode', 'Fitur', 'Deskripsi'], col_widths=[1.5, 4.5, 10])
 fitur_data = [
     ('F1', 'Dashboard Analitik Utama', 'Visualisasi metrik Tridharma: publikasi, penelitian, pengabdian, HKI, H-Index per dosen (2 prodi)'),
     ('F2', 'Research Gallery', 'Galeri 6 kategori karya akademik: publikasi, penelitian, pengabdian, buku, HKI, dan lainnya'),
-    ('F3', 'AI Clustering', 'ML berbasis TF-IDF + K-Means: deteksi topik dan potensi kolaborasi riset & pengabdian lintas prodi'),
+    ('F3', 'AI Clustering', 'Kecerdasan buatan: deteksi topik dan potensi kolaborasi riset & pengabdian lintas prodi secara otomatis'),
     ('F4', 'Sankey Timeline', 'Visualisasi evolusi topik riset dan pengabdian 2018–sekarang secara historis dalam satu alur visual interaktif'),
     ('F5', 'Funding Dashboard', 'Monitoring aliran dana penelitian & hibah per dosen; memetakan sumber pendanaan internal dan BIMA'),
     ('F6', 'DTPS Akreditasi', 'Kalkulasi otomatis Rasio Penelitian/DTPS, Pengabdian/DTPS, Dana/DTPS sesuai standar LKPS LAM'),
-    ('F7', 'Expertise Finder', 'Matchmaking pakar berbasis TF-IDF Scoring untuk memudahkan pencarian mitra riset & pengabdian'),
+    ('F7', 'Expertise Finder', 'Pencocokan pakar berbasis kecerdasan buatan untuk memudahkan pencarian mitra riset & pengabdian'),
 ]
 for row_data in fitur_data:
     r = fitur_table.add_row()
@@ -917,6 +1097,7 @@ for row_data in fitur_data:
             par.paragraph_format.space_after = Pt(2)
     r.cells[0].paragraphs[0].runs[0].bold = True
     r.cells[1].paragraphs[0].runs[0].bold = True
+stripe_table(fitur_table)
 
 # 1.5 Tujuan dan Manfaat
 section_title(doc, '1.5 Tujuan dan Manfaat Aktualisasi')
@@ -935,7 +1116,7 @@ for i, t in enumerate(tujuan, 1):
 
 p = para(doc, 'Manfaat Aktualisasi:', bold=True, size=12, space_before=8, space_after=2)
 manfaat = [
-    ('Penulis (ASN Dosen)', 'Mengembangkan kompetensi teknis (Python, ML, Vue.js) dan manajerial; mengaktualisasikan BerAKHLAK secara nyata; meningkatkan kapasitas sebagai Smart ASN yang menciptakan solusi teknologi.'),
+    ('Penulis (ASN Dosen)', 'Mengembangkan kompetensi teknis di bidang pengembangan sistem informasi dan manajerial; mengaktualisasikan BerAKHLAK secara nyata; meningkatkan kapasitas sebagai Smart ASN yang menciptakan solusi teknologi.'),
     ('Unit Kerja (Lab & Prodi SI)', 'Tersedianya sistem pengelolaan data riset terpusat; pimpinan dapat membuat keputusan berbasis data akurat; persiapan akreditasi program studi lebih mudah dengan data DTPS otomatis.'),
     ('Institusi (ITK)', 'Akuntabilitas kinerja penelitian dosen yang dapat dibuktikan secara data; penguatan akreditasi; SITRIA berpotensi menjadi model best practice yang dapat direplikasi ke prodi lain di ITK.'),
     ('Ekosistem Riset', 'Terdeteksinya peluang kolaborasi riset lintas prodi; terbentuknya peta riset ITK; peningkatan produktivitas penelitian dan pengabdian dosen secara kolektif.'),
@@ -952,24 +1133,30 @@ for pihak, m in manfaat:
                 run.font.size = Pt(10)
             par.paragraph_format.space_before = Pt(2)
             par.paragraph_format.space_after = Pt(2)
+stripe_table(manfaat_table)
 
 # 1.6 Matriks Rencana Kegiatan
 section_title(doc, '1.6 Matriks Rencana Kegiatan')
 doc.add_paragraph()
 matriks_table = make_table(doc,
     ['No', 'Kegiatan', 'Periode', 'Output', 'Nilai BerAKHLAK'],
-    col_widths=[0.8, 5, 3, 4.5, 3])
+    col_widths=[0.8, 4.5, 2.5, 4, 4.5])
 kegiatan_data = [
     ('1', 'Pemetaan & Pengumpulan Data Dosen Prodi SI & Bisnis Digital', '07–20 Mar 2026',
-     'Basis data 25 dosen terstruktur (lecturers.json)', 'B, A, K, H, L, A, K'),
-    ('2', 'Pengembangan Pipeline Scraper Data SINTA Otomatis', '14–27 Mar 2026',
-     'Sistem scraper aktif + cron job + dokumentasi teknis', 'A, K, A'),
+     'Basis data 25 dosen terstruktur',
+     'Berorientasi Pelayanan\nAkuntabel\nKompeten\nHarmonis\nLoyal\nAdaptif\nKolaboratif'),
+    ('2', 'Pengembangan Sistem Pengambilan Data SINTA Otomatis', '14–27 Mar 2026',
+     'Sistem pengambilan data otomatis aktif + penjadwalan berkala + dokumentasi teknis',
+     'Berorientasi Pelayanan\nAkuntabel\nKompeten\nHarmonis\nLoyal\nAdaptif\nKolaboratif'),
     ('3', 'Implementasi Fitur Analitik & Dashboard SITRIA', '21 Mar – 10 Apr 2026',
-     '7 fitur dashboard berfungsi penuh', 'B, K, A, K'),
+     '7 fitur dashboard berfungsi penuh',
+     'Berorientasi Pelayanan\nAkuntabel\nKompeten\nHarmonis\nLoyal\nAdaptif\nKolaboratif'),
     ('4', 'Implementasi Dashboard Akreditasi – DTPS & Pendanaan Riset', '28 Mar – 17 Apr 2026',
-     'Dashboard DTPS & Funding aktif + berita acara validasi', 'A, L, K'),
+     'Dashboard DTPS & Funding aktif + berita acara validasi',
+     'Berorientasi Pelayanan\nAkuntabel\nKompeten\nHarmonis\nLoyal\nAdaptif\nKolaboratif'),
     ('5', 'Peluncuran, Sosialisasi & Evaluasi Sistem SITRIA', '11–22 Apr 2026',
-     'Sistem online, SOP tersusun, sosialisasi terlaksana, laporan evaluasi', 'B, H, A, K'),
+     'Sistem online, SOP tersusun, sosialisasi terlaksana, laporan evaluasi',
+     'Berorientasi Pelayanan\nAkuntabel\nKompeten\nHarmonis\nLoyal\nAdaptif\nKolaboratif'),
 ]
 for row_data in kegiatan_data:
     r = matriks_table.add_row()
@@ -981,6 +1168,7 @@ for row_data in kegiatan_data:
             par.paragraph_format.space_before = Pt(2)
             par.paragraph_format.space_after = Pt(2)
     r.cells[0].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+stripe_table(matriks_table)
 
 page_break(doc)
 
@@ -1035,10 +1223,16 @@ kegiatan_implementasi = [
             ('Adaptif (A)', 'Menyesuaikan metode pengumpulan data dengan kondisi lapangan dan ketersediaan informasi di masing-masing prodi secara fleksibel.'),
             ('Kolaboratif (K)', 'Melibatkan seluruh pemangku kepentingan yang relevan, termasuk Mentor, Kaprodi, dan dosen, dalam proses validasi dan verifikasi data.'),
         ],
+        'bukti': [
+            ('1.1', 'foto_rapat_kaprodi.jpg', 'Foto rapat koordinasi dengan Kaprodi SI dan Kaprodi Bisnis Digital', 'Foto landscape (4:3 atau 16:9)'),
+            ('1.2', 'screenshot_profil_sinta_dosen.png', 'Tangkapan layar profil dosen di portal SINTA Kemdiktisaintek', 'Screenshot browser, landscape (16:9)'),
+            ('1.3', 'screenshot_basis_data_dosen.png', 'Screenshot basis data dosen digital yang telah tersusun di sistem', 'Screenshot editor, landscape (16:9)'),
+            ('1.4', 'lembar_validasi_kaprodi.jpg', 'Scan atau foto lembar validasi data dosen yang sudah ditandatangani Kaprodi', 'Foto dokumen A4, portrait'),
+        ],
     },
     {
         'nomor': 2,
-        'judul': 'Pengembangan Pipeline Scraper Data SINTA Otomatis',
+        'judul': 'Pengembangan Sistem Pengambilan Data SINTA Otomatis',
         'periode': '14 – 27 Maret 2026',
         'minggu': 'Minggu 2–3',
         'status': 'SELESAI (100%)',
@@ -1048,14 +1242,14 @@ kegiatan_implementasi = [
             ('Who', 'Pelaksana: Aidil Saputra Kirsan (pengembang). Pengguna akhir: Admin Lab Inovasi Digital dan sistem SITRIA.'),
             ('When', '14 – 27 Maret 2026 (Minggu 2–3 periode habituasi).'),
             ('Where', 'Lab Inovasi Digital, dikembangkan pada server lokal Lab Inovasi Digital FSTI ITK.'),
-            ('How', 'Mengembangkan program Python dengan library requests dan BeautifulSoup; mengonfigurasi cron job penjadwalan otomatis; pengujian dengan data dosen 2 prodi; menyusun dokumentasi teknis (README).'),
+            ('How', 'Mengembangkan program pengambilan data otomatis menggunakan Python; mengonfigurasi penjadwalan otomatis berkala; pengujian dengan data dosen 2 prodi; menyusun dokumentasi teknis sistem.'),
         ],
         'tahapan': [
             ('1', 'Analisis struktur data pada portal SINTA Kemdiktisaintek', 'Dokumen analisis struktur data SINTA', 'SELESAI'),
             ('2', 'Pengembangan program pengambilan data otomatis (Python)', 'Program scraper SINTA aktif', 'SELESAI'),
-            ('3', 'Implementasi penjadwalan otomatis (cron job)', 'Sistem penjadwalan otomatis aktif & terkonfigurasi', 'SELESAI'),
+            ('3', 'Implementasi penjadwalan otomatis berkala', 'Sistem penjadwalan otomatis berkala aktif & terkonfigurasi', 'SELESAI'),
             ('4', 'Pengujian sistem dengan data 2 prodi', 'Data SINTA kedua prodi tersimpan & terstruktur', 'SELESAI'),
-            ('5', 'Penyusunan dokumentasi dan panduan penggunaan', 'Dokumentasi teknis pipeline (README)', 'SELESAI'),
+            ('5', 'Penyusunan dokumentasi dan panduan penggunaan sistem', 'Dokumentasi teknis sistem tersusun', 'SELESAI'),
         ],
         'capaian': [
             'Sistem pengambilan data dari portal SINTA berhasil dikembangkan menggunakan Python, mampu mengumpulkan data riset, publikasi, dan pengabdian seluruh 25 dosen secara otomatis.',
@@ -1066,12 +1260,18 @@ kegiatan_implementasi = [
         ],
         'berakhlak': [
             ('Berorientasi Pelayanan (B)', 'Menyediakan data yang selalu mutakhir dan akurat bagi pengguna sistem SITRIA tanpa perlu intervensi manual.'),
-            ('Akuntabel (A)', 'Sistem scraper dirancang dengan mekanisme logging yang mencatat setiap proses pengambilan data sehingga dapat diaudit dan dipertanggungjawabkan.'),
-            ('Kompeten (K)', 'Memanfaatkan keahlian pemrograman Python dan data engineering untuk membangun solusi teknis yang inovatif dan efisien.'),
+            ('Akuntabel (A)', 'Sistem pengambilan data dirancang dengan mekanisme pencatatan aktivitas yang mencatat setiap proses sehingga dapat diaudit dan dipertanggungjawabkan.'),
+            ('Kompeten (K)', 'Memanfaatkan keahlian pemrograman dan rekayasa data untuk membangun solusi teknis yang inovatif dan efisien.'),
             ('Harmonis (H)', 'Sistem dirancang agar kompatibel dengan infrastruktur yang sudah ada di Lab Inovasi Digital, menghindari gangguan pada sistem lain.'),
             ('Loyal (L)', 'Membangun sistem yang berkelanjutan dan mudah dioperasikan oleh pengguna berikutnya, demi kepentingan jangka panjang institusi.'),
             ('Adaptif (A)', 'Mengembangkan sistem yang mampu beradaptasi dengan perubahan struktur data pada portal SINTA melalui mekanisme penanganan error yang tangguh.'),
             ('Kolaboratif (K)', 'Output sistem didesain agar dapat langsung dikonsumsi oleh semua modul analitik SITRIA secara terintegrasi.'),
+        ],
+        'bukti': [
+            ('2.1', 'screenshot_program_berjalan.png', 'Screenshot tampilan program pengambilan data SINTA yang sedang berjalan', 'Screenshot terminal/PowerShell, landscape (16:9)'),
+            ('2.2', 'screenshot_hasil_data_sinta.png', 'Screenshot data hasil pengambilan dari portal SINTA yang tersimpan di sistem', 'Screenshot editor, landscape (16:9)'),
+            ('2.3', 'screenshot_penjadwalan_otomatis.png', 'Screenshot konfigurasi penjadwalan otomatis (Task Scheduler) yang sudah aktif', 'Screenshot Task Scheduler, landscape (16:9)'),
+            ('2.4', 'screenshot_dokumentasi_teknis.png', 'Screenshot dokumentasi teknis sistem yang terbuka di browser atau teks editor', 'Screenshot browser/editor, landscape (16:9)'),
         ],
     },
     {
@@ -1081,12 +1281,12 @@ kegiatan_implementasi = [
         'minggu': 'Minggu 3–5',
         'status': 'SELESAI (100%)',
         '5w1h': [
-            ('What', 'Implementasi 5 dari 7 fitur utama dashboard SITRIA: AI Clustering, Sankey Timeline, Research Gallery (6 kategori), Expertise Finder, dan Dashboard Analitik Utama.'),
+            ('What', 'Implementasi 5 dari 7 fitur utama dashboard SITRIA: Pengelompokan Topik Riset (AI Clustering), Peta Alur Riset (Sankey Timeline), Galeri Karya Akademik (6 kategori), Pencari Pakar (Expertise Finder), dan Dashboard Analitik Utama.'),
             ('Why', 'Fitur-fitur analitik merupakan inti dari SITRIA yang mengubah data mentah menjadi intelijen strategis yang mudah dipahami pimpinan dan dosen.'),
             ('Who', 'Pelaksana: Aidil Saputra Kirsan. Pengujian melibatkan: tim Lab Inovasi Digital dan dosen volunteer.'),
             ('When', '21 Maret – 10 April 2026 (Minggu 3–5 periode habituasi).'),
             ('Where', 'Lab Inovasi Digital FSTI ITK, diakses melalui browser di jaringan internal ITK.'),
-            ('How', 'Mengembangkan backend Python (Flask/FastAPI) dan frontend Vue.js; mengimplementasikan model TF-IDF + K-Means untuk AI Clustering; membangun visualisasi Sankey Timeline; pengujian menyeluruh seluruh modul.'),
+            ('How', 'Mengembangkan sistem pengolahan data dan antarmuka pengguna berbasis web; mengimplementasikan algoritma kecerdasan buatan untuk pengelompokan topik riset otomatis; membangun visualisasi peta alur riset; pengujian menyeluruh seluruh modul.'),
         ],
         'tahapan': [
             ('1', 'Implementasi pengelompokan topik riset otomatis (AI Clustering)', 'Fitur AI Clustering aktif & tervalidasi', 'SELESAI'),
@@ -1096,8 +1296,8 @@ kegiatan_implementasi = [
             ('5', 'Pengujian menyeluruh seluruh modul analitik', 'Laporan hasil pengujian modul', 'SELESAI'),
         ],
         'capaian': [
-            'Fitur AI Clustering berbasis TF-IDF + K-Means berhasil mendeteksi kesamaan topik penelitian antar dosen secara otomatis, termasuk potensi kolaborasi lintas prodi.',
-            'Visualisasi Sankey Timeline menampilkan evolusi topik riset dosen dari tahun 2018 hingga sekarang secara interaktif.',
+            'Fitur Pengelompokan Topik Riset (AI Clustering) berbasis kecerdasan buatan berhasil mendeteksi kesamaan topik penelitian antar dosen secara otomatis, termasuk potensi kolaborasi lintas prodi.',
+            'Peta Alur Riset (Sankey Timeline) menampilkan evolusi topik riset dosen dari tahun 2018 hingga sekarang secara interaktif.',
             'Research Gallery dengan 6 kategori (Penelitian, Pengabdian, Publikasi Scopus, SINTA, Buku, HKI) dapat dicari dan difilter secara interaktif.',
             'Expertise Finder memudahkan mahasiswa dan mitra riset menemukan dosen yang paling sesuai dengan topik penelitian mereka.',
             'Seluruh komponen dashboard terhubung dengan sistem data sehingga informasi Tridharma ditampilkan secara langsung dan selalu mutakhir.',
@@ -1105,11 +1305,18 @@ kegiatan_implementasi = [
         'berakhlak': [
             ('Berorientasi Pelayanan (B)', 'Dashboard menyajikan data Tridharma secara visual dan interaktif sehingga mudah dipahami oleh berbagai kalangan pengguna.'),
             ('Akuntabel (A)', 'Seluruh kalkulasi dan pengelompokan data dilakukan secara algoritmik dan dapat diverifikasi kebenarannya.'),
-            ('Kompeten (K)', 'Penerapan teknologi Machine Learning (TF-IDF, K-Means) dan framework modern (Vue.js) membuktikan kompetensi teknis tinggi.'),
+            ('Kompeten (K)', 'Penerapan teknologi kecerdasan buatan dan pengembangan sistem berbasis web membuktikan kompetensi teknis tinggi sebagai Smart ASN.'),
             ('Harmonis (H)', 'Dashboard dirancang inklusif dan mudah digunakan oleh semua kalangan, dari laboran hingga pimpinan FSTI.'),
             ('Loyal (L)', 'Fitur DTPS Akreditasi dan Expertise Finder secara langsung mendukung kepentingan strategis prodi dalam akreditasi dan pengembangan ekosistem riset.'),
             ('Adaptif (A)', 'Arsitektur sistem didesain modular sehingga fitur baru dapat ditambahkan dengan mudah di masa mendatang.'),
             ('Kolaboratif (K)', 'Sistem memfasilitasi kolaborasi riset antar dosen dengan menampilkan peta keahlian dan kesamaan topik penelitian secara visual.'),
+        ],
+        'bukti': [
+            ('3.1', 'screenshot_dashboard_utama.png', 'Screenshot halaman Dashboard Analitik Utama SITRIA (tampilkan chart metrik Tridharma dosen)', 'Screenshot browser, landscape (16:9)'),
+            ('3.2', 'screenshot_pengelompokan_topik.png', 'Screenshot halaman Pengelompokan Topik Riset / AI Clustering (tampilkan kelompok topik riset)', 'Screenshot browser, landscape (16:9)'),
+            ('3.3', 'screenshot_peta_alur_riset.png', 'Screenshot halaman Peta Alur Riset / Sankey Timeline (tampilkan alur topik riset 2018–2026)', 'Screenshot browser, landscape (16:9)'),
+            ('3.4', 'screenshot_galeri_karya.png', 'Screenshot halaman Galeri Karya Akademik (tampilkan 6 kategori karya dosen)', 'Screenshot browser, landscape (16:9)'),
+            ('3.5', 'screenshot_pencari_pakar.png', 'Screenshot halaman Pencari Pakar / Expertise Finder (tampilkan kotak pencarian dan hasil pakar)', 'Screenshot browser, landscape (16:9)'),
         ],
     },
     {
@@ -1148,6 +1355,12 @@ kegiatan_implementasi = [
             ('Adaptif (A)', 'Dashboard dirancang agar dapat menyesuaikan diri dengan perubahan standar akreditasi di masa mendatang.'),
             ('Kolaboratif (K)', 'Proses validasi melibatkan pimpinan FSTI secara langsung untuk memastikan output sistem sesuai dengan standar dan ekspektasi pengguna.'),
         ],
+        'bukti': [
+            ('4.1', 'screenshot_dashboard_dtps.png', 'Screenshot halaman Dashboard DTPS Akreditasi (tampilkan 3 indikator rasio DTPS)', 'Screenshot browser, landscape (16:9)'),
+            ('4.2', 'screenshot_dashboard_pendanaan.png', 'Screenshot halaman Dashboard Pemantauan Dana & Hibah Riset (tampilkan chart aliran dana)', 'Screenshot browser, landscape (16:9)'),
+            ('4.3', 'screenshot_simulasi_dtps.png', 'Screenshot fitur simulasi interaktif DTPS (tampilkan simulasi perubahan komposisi dosen)', 'Screenshot browser, landscape (16:9)'),
+            ('4.4', 'berita_acara_validasi_dtps.jpg', 'Scan atau foto Berita Acara Validasi DTPS bersama Wakil Dekan Akademik (13 April 2026)', 'Foto dokumen A4 yang sudah ditandatangani, portrait'),
+        ],
     },
     {
         'nomor': 5,
@@ -1159,20 +1372,20 @@ kegiatan_implementasi = [
             ('What', 'Peluncuran sistem SITRIA ke server Lab Inovasi Digital, penyusunan Panduan Pengguna & SOP, sosialisasi kepada pengguna, pengumpulan evaluasi, dan penyusunan laporan akhir aktualisasi.'),
             ('Why', 'Sistem yang sudah dibangun perlu diluncurkan dan disosialisasikan agar manfaatnya dapat dirasakan secara nyata oleh seluruh pengguna; evaluasi diperlukan untuk perbaikan berkelanjutan.'),
             ('Who', 'Pelaksana: Aidil Saputra Kirsan. Peserta sosialisasi: 23 orang (dosen, Kaprodi, dan laboran dari Prodi SI dan Bisnis Digital).'),
-            ('When', 'Peluncuran: 15 April 2026; Sosialisasi & Pelatihan: 7–8 April 2026; Evaluasi: 9–14 April 2026; Laporan Akhir: 15–22 April 2026.'),
+            ('When', 'Peluncuran: 15 April 2026; Sosialisasi & Pelatihan: 16–17 April 2026; Evaluasi: 18–20 April 2026; Laporan Akhir: 21–22 April 2026.'),
             ('Where', 'Lab Inovasi Digital FSTI ITK dan secara daring melalui Zoom Meeting.'),
             ('How', 'Deployment ke server Lab Inovasi Digital; penyusunan Panduan Pengguna & SOP; sosialisasi tatap muka dan daring; pengumpulan feedback via kuesioner online; analisis hasil evaluasi; penyusunan laporan akhir.'),
         ],
         'tahapan': [
             ('1', 'Peluncuran sistem SITRIA ke server Lab Inovasi Digital', 'Sistem SITRIA aktif & dapat diakses (15 April 2026)', 'SELESAI'),
             ('2', 'Penyusunan Panduan Pengguna & SOP pengelolaan data', 'Dokumen Panduan Pengguna & SOP tersusun', 'SELESAI'),
-            ('3', 'Sosialisasi dan pelatihan pengguna (7–8 April 2026)', 'Daftar hadir 23 peserta & dokumentasi kegiatan', 'SELESAI'),
+            ('3', 'Sosialisasi dan pelatihan pengguna (16–17 April 2026)', 'Daftar hadir 23 peserta & dokumentasi kegiatan', 'SELESAI'),
             ('4', 'Pengumpulan masukan & evaluasi sistem dari pengguna', 'Laporan evaluasi & rekapitulasi masukan', 'SELESAI'),
             ('5', 'Penyusunan laporan aktualisasi akhir', 'Laporan aktualisasi final (dokumen ini)', 'SELESAI'),
         ],
         'capaian': [
             'Sistem SITRIA berhasil diluncurkan ke server Lab Inovasi Digital pada 15 April 2026 dan dapat diakses oleh seluruh pengguna di jaringan FSTI ITK.',
-            'Sosialisasi dan pelatihan pengguna terlaksana pada 7–8 April 2026 dengan 23 peserta dari kalangan dosen, Kaprodi, dan laboran.',
+            'Sosialisasi dan pelatihan pengguna terlaksana pada 16–17 April 2026 dengan 23 peserta dari kalangan dosen, Kaprodi, dan laboran.',
             'Panduan Pengguna dan SOP pengelolaan data sistem SITRIA telah tersusun dan didistribusikan kepada seluruh pengguna.',
             'Hasil evaluasi menunjukkan rata-rata kepuasan pengguna 4,3 dari 5,0 dengan masukan utama terkait penambahan fitur ekspor laporan.',
             'Seluruh 5 kegiatan aktualisasi SITRIA berhasil diselesaikan 100% dalam periode 7 Maret – 22 April 2026.',
@@ -1186,12 +1399,34 @@ kegiatan_implementasi = [
             ('Adaptif (A)', 'Menerima dan merespons masukan evaluasi pengguna secara positif sebagai dasar perbaikan sistem ke depannya.'),
             ('Kolaboratif (K)', 'Peluncuran sistem melibatkan seluruh pemangku kepentingan dan menjadi platform kolaborasi riset yang terbuka bagi semua civitas akademika FSTI ITK.'),
         ],
+        'bukti': [
+            ('5.1', 'screenshot_sitria_live.png', 'Screenshot sistem SITRIA yang sudah aktif di server Lab Inovasi Digital (15 April 2026)', 'Screenshot browser dengan URL server terlihat, landscape (16:9)'),
+            ('5.2', 'foto_sosialisasi_1.jpg', 'Foto pelaksanaan sosialisasi & pelatihan pengguna SITRIA (16 April 2026) — tampak peserta', 'Foto landscape (4:3 atau 16:9)'),
+            ('5.3', 'foto_sosialisasi_2.jpg', 'Foto sesi tanya jawab atau pelatihan penggunaan dashboard SITRIA (17 April 2026)', 'Foto landscape (4:3 atau 16:9)'),
+            ('5.4', 'daftar_hadir_sosialisasi.jpg', 'Scan atau foto daftar hadir peserta sosialisasi (23 peserta, 16–17 April 2026)', 'Foto dokumen A4 yang sudah ditandatangani, portrait'),
+            ('5.5', 'hasil_evaluasi_kuesioner.png', 'Screenshot atau rekap grafik hasil kuesioner evaluasi kepuasan pengguna (rata-rata 4,3/5,0)', 'Screenshot grafik hasil kuesioner, landscape'),
+        ],
     },
 ]
 
 for kg in kegiatan_implementasi:
-    p = para(doc, f"Kegiatan {kg['nomor']}: {kg['judul']}", bold=True, size=12, space_before=12, space_after=4)
+    # ── Judul kegiatan dengan background berwarna ──
+    p = para(doc, f"  Kegiatan {kg['nomor']}:  {kg['judul']}", bold=True, size=12,
+             space_before=14, space_after=0)
     p.paragraph_format.keep_with_next = True
+    shade_para(p, CLR_KGBG)
+    para_left_border(p, color=CLR_ACCENT, sz=36, space=6)
+    # Garis tipis bawah judul kegiatan
+    p2 = doc.add_paragraph()
+    p2.paragraph_format.space_before = Pt(0)
+    p2.paragraph_format.space_after  = Pt(6)
+    shade_para(p2, CLR_KGBG)
+    pPr2 = p2._p.get_or_add_pPr()
+    pBdr2 = OxmlElement('w:pBdr')
+    bot2 = OxmlElement('w:bottom')
+    bot2.set(qn('w:val'), 'single'); bot2.set(qn('w:sz'), '6')
+    bot2.set(qn('w:space'), '1');    bot2.set(qn('w:color'), CLR_ACCENT)
+    pBdr2.append(bot2); pPr2.append(pBdr2)
 
     # Header info kegiatan
     info_table = doc.add_table(rows=3, cols=4)
@@ -1203,23 +1438,30 @@ for kg in kegiatan_implementasi:
     cells = info_table.rows[0].cells
     for i, val in enumerate(['Periode', kg['periode'], 'Minggu', kg['minggu']]):
         cells[i].text = val
+        set_cell_bg(cells[i], CLR_LIGHT if i % 2 == 0 else CLR_XLIGHT)
         cells[i].paragraphs[0].runs[0].bold = (i % 2 == 0)
         cells[i].paragraphs[0].runs[0].font.size = Pt(10)
-        cells[i].paragraphs[0].paragraph_format.space_before = Pt(2)
-        cells[i].paragraphs[0].paragraph_format.space_after = Pt(2)
+        if i % 2 == 0:
+            cells[i].paragraphs[0].runs[0].font.color.rgb = RGBColor(*bytes.fromhex(CLR_PRIMARY))
+        cells[i].paragraphs[0].paragraph_format.space_before = Pt(3)
+        cells[i].paragraphs[0].paragraph_format.space_after  = Pt(3)
 
     # Merge second row for status
     row2 = info_table.rows[1].cells
     row2[0].text = 'Status'
+    set_cell_bg(row2[0], CLR_LIGHT)
     row2[0].paragraphs[0].runs[0].bold = True
     row2[0].paragraphs[0].runs[0].font.size = Pt(10)
+    row2[0].paragraphs[0].runs[0].font.color.rgb = RGBColor(*bytes.fromhex(CLR_PRIMARY))
     row2[1].merge(row2[2])
     row2[1].merge(row2[3])
     row2[1].text = kg['status']
+    set_cell_bg(row2[1], 'E8F8F5')   # hijau muda — menandakan selesai
     row2[1].paragraphs[0].runs[0].font.size = Pt(10)
     row2[1].paragraphs[0].runs[0].bold = True
+    row2[1].paragraphs[0].runs[0].font.color.rgb = RGBColor(0x1E, 0x8B, 0x4C)
 
-    # Third row — empty for spacing
+    # Third row — empty / spacer
     row3 = info_table.rows[2].cells
     for c in row3:
         c.text = ''
@@ -1241,6 +1483,7 @@ for kg in kegiatan_implementasi:
                 par2.paragraph_format.space_before = Pt(2)
                 par2.paragraph_format.space_after = Pt(2)
                 par2.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+    stripe_table(w1h_table)
 
     doc.add_paragraph()
 
@@ -1263,6 +1506,8 @@ for kg in kegiatan_implementasi:
             if i == 3:
                 r.cells[i].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
                 r.cells[i].paragraphs[0].runs[0].bold = True
+                r.cells[i].paragraphs[0].runs[0].font.color.rgb = RGBColor(0x1E, 0x8B, 0x4C)
+    stripe_table(tahapan_table)
 
     doc.add_paragraph()
 
@@ -1291,6 +1536,14 @@ for kg in kegiatan_implementasi:
                 par2.paragraph_format.space_before = Pt(2)
                 par2.paragraph_format.space_after = Pt(2)
                 par2.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+    stripe_table(berakhlak_table)
+
+    doc.add_paragraph()
+
+    # Dokumentasi / Bukti Fisik
+    p = para(doc, 'e. Dokumentasi / Bukti Fisik', bold=True, size=11, space_before=6, space_after=4)
+    for item in kg['bukti']:
+        img_placeholder(doc, *item)
 
     if kg['nomor'] < 5:
         page_break(doc)
@@ -1354,6 +1607,7 @@ for row_data in stakeholder_data:
             par2.paragraph_format.space_after = Pt(2)
             par2.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     r.cells[0].paragraphs[0].runs[0].bold = True
+stripe_table(stakeholder_table)
 
 doc.add_paragraph()
 
@@ -1370,7 +1624,7 @@ org_data = [
      'langkah korektif jauh sebelum jadwal akreditasi tiba.'),
     ('Transformasi Digital Pengelolaan Data',
      'SITRIA mengakhiri era pengelolaan data Tridharma secara manual di kedua prodi. '
-     'Data yang sebelumnya tersebar di 3 platform (SINTA, Scopus, Google Scholar) kini teragrasi dalam '
+     'Data yang sebelumnya tersebar di 3 platform (SINTA, Scopus, Google Scholar) kini terintegrasi dalam '
      'satu sistem terpusat yang mudah diakses dan diperbarui secara otomatis.'),
     ('Peningkatan Produktivitas Riset',
      'Fitur AI Clustering dan Expertise Finder mendorong kolaborasi riset lintas prodi dengan '
@@ -1401,6 +1655,7 @@ for dim, manfaat in org_data:
             par2.paragraph_format.space_before = Pt(2)
             par2.paragraph_format.space_after = Pt(2)
             par2.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+stripe_table(org_table)
 
 page_break(doc)
 
@@ -1433,14 +1688,14 @@ kesimpulan = [
      'Seluruh rangkaian kegiatan aktualisasi dilandasi dan dijalankan dengan internalisasi nilai-nilai '
      'BerAKHLAK secara nyata: (B) Berorientasi Pelayanan — membangun sistem yang mempermudah akses data '
      'bagi pimpinan dan dosen; (A) Akuntabel — kalkulasi data dilakukan otomatis dan dapat diverifikasi; '
-     '(K) Kompeten — memanfaatkan keahlian teknis Python, ML, dan Vue.js; (H) Harmonis — berkolaborasi '
+     '(K) Kompeten — memanfaatkan keahlian teknis pengembangan sistem informasi dan kecerdasan buatan; (H) Harmonis — berkolaborasi '
      'dengan Kaprodi dan pimpinan FSTI; (L) Loyal — mendukung akreditasi dan kemajuan ITK; '
      '(A) Adaptif — mengintegrasikan data multi-sumber dengan teknologi AI; '
      '(K) Kolaboratif — melibatkan seluruh pemangku kepentingan dari perencanaan hingga evaluasi.'),
     ('Terselesaikannya Masalah yang Diidentifikasi',
      'Isu terpilih — pengelolaan data riset dan pengabdian dosen yang belum terpusat dan teranalisis — '
      'telah berhasil diatasi melalui SITRIA. Data yang sebelumnya tersebar di SINTA, Scopus, dan '
-     'Google Scholar kini teragrasi dalam satu dashboard analitik terpusat. '
+     'Google Scholar kini terintegrasi dalam satu dashboard analitik terpusat. '
      'Proses rekap data DTPS untuk akreditasi yang sebelumnya memakan waktu berhari-hari kini dapat '
      'diselesaikan secara otomatis dalam hitungan jam. Rata-rata kepuasan pengguna mencapai 4,3/5,0 '
      'berdasarkan evaluasi pasca sosialisasi dengan 23 responden.'),
@@ -1485,7 +1740,7 @@ tl_data = [
      'Seluruh prodi di ITK',
      'Tahun Akademik 2026/2027'),
     ('4',
-     'Optimalisasi akurasi AI Clustering dengan penambahan data historis dan penyempurnaan model TF-IDF + K-Means untuk deteksi topik yang lebih presisi.',
+     'Optimalisasi akurasi Pengelompokan Topik Riset (AI Clustering) dengan penambahan data historis dan penyempurnaan algoritma kecerdasan buatan untuk deteksi topik yang lebih presisi.',
      'Lab Inovasi Digital',
      'Oktober 2026'),
     ('5',
@@ -1509,6 +1764,7 @@ for row_data in tl_data:
             if i == 1:
                 par2.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     r.cells[0].paragraphs[0].alignment = WD_ALIGN_PARAGRAPH.CENTER
+stripe_table(tindak_lanjut_table)
 
 doc.add_paragraph()
 
@@ -1536,151 +1792,7 @@ p = para(doc, f"NIP. {DATA['nip']}", size=12, align='right')
 #  LAMPIRAN GAMBAR — Placeholder per Kegiatan
 # ═══════════════════════════════════════════════
 
-page_break(doc)
-heading(doc, 'LAMPIRAN DOKUMENTASI FOTO & SCREENSHOT', level=1, center=True)
-horizontal_line(doc)
-
-p = doc.add_paragraph()
-p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
-add_run(p,
-    'Berikut adalah lampiran dokumentasi foto dan tangkapan layar (screenshot) sebagai bukti fisik '
-    'pelaksanaan setiap tahapan kegiatan aktualisasi SITRIA. '
-    'Sisipkan gambar sesuai nama file dan keterangan pada masing-masing kotak di bawah ini.',
-    size=11)
-doc.add_paragraph()
-
-# ── KEGIATAN 1 ──────────────────────────────────
-section_title(doc, 'Lampiran Kegiatan 1 — Pemetaan & Pengumpulan Data Dosen')
-
-img_placeholder(doc, '1.1',
-    'foto_rapat_kaprodi.jpg / .png',
-    'Foto rapat koordinasi dengan Kaprodi SI dan Kaprodi Bisnis Digital',
-    'Foto (3:4 atau 4:3) — dapat dari HP/kamera')
-
-img_placeholder(doc, '1.2',
-    'screenshot_sinta_profile.png',
-    'Tangkapan layar profil dosen di portal sinta.kemdiktisaintek.go.id',
-    'Screenshot browser, landscape (16:9)')
-
-img_placeholder(doc, '1.3',
-    'screenshot_lecturers_json.png',
-    'Screenshot file lecturers.json yang terbuka di VS Code atau teks editor',
-    'Screenshot editor, landscape (16:9)')
-
-img_placeholder(doc, '1.4',
-    'lembar_validasi_kaprodi.jpg / .png',
-    'Scan atau foto lembar validasi data dosen yang sudah ditandatangani Kaprodi',
-    'Foto dokumen A4, portrait')
-
-doc.add_paragraph()
-
-# ── KEGIATAN 2 ──────────────────────────────────
-section_title(doc, 'Lampiran Kegiatan 2 — Pengembangan Pipeline Scraper SINTA Otomatis')
-
-img_placeholder(doc, '2.1',
-    'screenshot_terminal_scraper.png',
-    'Screenshot terminal saat menjalankan perintah: python sinta_scraper.py',
-    'Screenshot terminal/PowerShell, landscape (16:9)')
-
-img_placeholder(doc, '2.2',
-    'screenshot_sinta_data_json.png',
-    'Screenshot isi file sinta_data.json yang terbuka di VS Code (tampilkan sebagian data)',
-    'Screenshot editor, landscape (16:9)')
-
-img_placeholder(doc, '2.3',
-    'screenshot_cron_job.png',
-    'Screenshot konfigurasi cron job / Task Scheduler yang sudah aktif',
-    'Screenshot terminal/task scheduler, landscape (16:9)')
-
-img_placeholder(doc, '2.4',
-    'screenshot_readme.png',
-    'Screenshot file README.md / dokumentasi pipeline yang terbuka di browser atau VS Code',
-    'Screenshot browser/editor, landscape (16:9)')
-
-doc.add_paragraph()
-
-# ── KEGIATAN 3 ──────────────────────────────────
-section_title(doc, 'Lampiran Kegiatan 3 — Implementasi Fitur Analitik & Dashboard SITRIA')
-
-img_placeholder(doc, '3.1',
-    'screenshot_dashboard_utama.png',
-    'Screenshot halaman Dashboard Analitik Utama SITRIA (tampilkan chart metrik Tridharma)',
-    'Screenshot browser full-page, landscape (16:9)')
-
-img_placeholder(doc, '3.2',
-    'screenshot_ai_clustering.png',
-    'Screenshot halaman Kolaborasi Riset / AI Clustering (tampilkan cluster topik riset)',
-    'Screenshot browser, landscape (16:9)')
-
-img_placeholder(doc, '3.3',
-    'screenshot_sankey_timeline.png',
-    'Screenshot halaman Roadmap Riset / Sankey Timeline (tampilkan alur topik riset 2018–2026)',
-    'Screenshot browser, landscape (16:9)')
-
-img_placeholder(doc, '3.4',
-    'screenshot_research_gallery.png',
-    'Screenshot halaman Galeri Karya Akademik (tampilkan 6 kategori karya)',
-    'Screenshot browser, landscape (16:9)')
-
-img_placeholder(doc, '3.5',
-    'screenshot_expertise_finder.png',
-    'Screenshot halaman Expertise Finder (tampilkan kotak pencarian dan hasil pakar)',
-    'Screenshot browser, landscape (16:9)')
-
-doc.add_paragraph()
-
-# ── KEGIATAN 4 ──────────────────────────────────
-section_title(doc, 'Lampiran Kegiatan 4 — Dashboard Akreditasi DTPS & Pendanaan Riset')
-
-img_placeholder(doc, '4.1',
-    'screenshot_dtps_akreditasi.png',
-    'Screenshot halaman Dashboard DTPS Akreditasi (tampilkan 3 indikator rasio DTPS)',
-    'Screenshot browser, landscape (16:9)')
-
-img_placeholder(doc, '4.2',
-    'screenshot_funding_dashboard.png',
-    'Screenshot halaman Dashboard Dana & Hibah Riset (BIMA) — tampilkan chart aliran dana',
-    'Screenshot browser, landscape (16:9)')
-
-img_placeholder(doc, '4.3',
-    'screenshot_simulasi_dtps.png',
-    'Screenshot fitur simulasi interaktif DTPS (tampilkan slider/input komposisi dosen)',
-    'Screenshot browser, landscape (16:9)')
-
-img_placeholder(doc, '4.4',
-    'berita_acara_validasi_dtps.jpg / .png',
-    'Scan atau foto Berita Acara Validasi DTPS bersama Wakil Dekan Akademik (13 April 2026)',
-    'Foto dokumen A4 yang sudah ditandatangani, portrait')
-
-doc.add_paragraph()
-
-# ── KEGIATAN 5 ──────────────────────────────────
-section_title(doc, 'Lampiran Kegiatan 5 — Peluncuran, Sosialisasi & Evaluasi SITRIA')
-
-img_placeholder(doc, '5.1',
-    'foto_sosialisasi_1.jpg / .png',
-    'Foto pelaksanaan sosialisasi & pelatihan pengguna SITRIA (7 April 2026) — tampak peserta',
-    'Foto landscape (4:3 atau 16:9), sertakan nama & jabatan peserta jika ada')
-
-img_placeholder(doc, '5.2',
-    'foto_sosialisasi_2.jpg / .png',
-    'Foto sesi tanya jawab atau pelatihan penggunaan dashboard SITRIA (8 April 2026)',
-    'Foto landscape (4:3 atau 16:9)')
-
-img_placeholder(doc, '5.3',
-    'screenshot_sitria_live.png',
-    'Screenshot sistem SITRIA yang sudah aktif di server Lab Inovasi Digital (15 April 2026)',
-    'Screenshot browser dengan URL server terlihat, landscape (16:9)')
-
-img_placeholder(doc, '5.4',
-    'daftar_hadir_sosialisasi.jpg / .png',
-    'Scan atau foto daftar hadir peserta sosialisasi (23 peserta, 7–8 April 2026)',
-    'Foto dokumen A4 yang sudah ditandatangani peserta, portrait')
-
-img_placeholder(doc, '5.5',
-    'hasil_evaluasi_kuesioner.png',
-    'Screenshot atau rekap grafik hasil kuesioner evaluasi kepuasan pengguna (rata-rata 4,3/5,0)',
-    'Screenshot grafik/tabel hasil kuesioner, landscape')
+# ── Lampiran terpisah dihapus; bukti fisik sudah masuk per kegiatan di BAB II ──
 
 # ═══════════════════════════════════════════════
 

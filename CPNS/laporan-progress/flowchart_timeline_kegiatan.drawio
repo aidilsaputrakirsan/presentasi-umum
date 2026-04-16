@@ -1,0 +1,215 @@
+<mxfile host="app.diagrams.net" agent="Claude">
+  <diagram name="Timeline Kegiatan" id="timeline-kegiatan">
+    <mxGraphModel dx="1478" dy="815" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontStyle=1;fontColor=#1B3A6B;" value="TIMELINE PELAKSANAAN AKTUALISASI" vertex="1">
+          <mxGeometry height="34" width="1010" x="80" y="18" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=13;fontColor=#2E86AB;" value="SITRIA — Institut Teknologi Kalimantan · Pelatihan Dasar CPNS Angkatan VI 2026 · Periode: Maret – April 2026" vertex="1">
+          <mxGeometry height="20" width="1010" x="80" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="spine" edge="1" parent="1" style="endArrow=block;endFill=1;endSize=10;strokeColor=#1B3A6B;strokeWidth=4;fillColor=#1B3A6B;fontSize=13;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="95" y="420" as="sourcePoint" />
+            <mxPoint x="1090" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="m1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#FFFFFF;fillColor=#2E86AB;" value="MARET 2026" vertex="1">
+          <mxGeometry height="24" width="370" x="95" y="408" as="geometry" />
+        </mxCell>
+        <mxCell id="m1bg" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#2E86AB;strokeColor=none;opacity=20;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="24" width="370" x="95" y="408" as="geometry" />
+        </mxCell>
+        <mxCell id="m1lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#FFFFFF;" value="MARET 2026" vertex="1">
+          <mxGeometry height="24" width="370" x="95" y="408" as="geometry" />
+        </mxCell>
+        <mxCell id="m2bg" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1B3A6B;strokeColor=none;opacity=20;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="24" width="560" x="465" y="408" as="geometry" />
+        </mxCell>
+        <mxCell id="m2lbl" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=1;fontColor=#FFFFFF;" value="APRIL 2026" vertex="1">
+          <mxGeometry height="24" width="560" x="465" y="408" as="geometry" />
+        </mxCell>
+        <mxCell id="dot1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;strokeWidth=3;shadow=1;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="20" width="20" x="168" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="dot2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;strokeWidth=3;shadow=1;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="20" width="20" x="360" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="dot3" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;strokeWidth=3;shadow=1;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="20" width="20" x="554" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="dot4" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;strokeWidth=3;shadow=1;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="20" width="20" x="748" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="dot5" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;strokeWidth=3;shadow=1;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="20" width="20" x="938" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="c1" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#1B3A6B;strokeWidth=2;endArrow=none;exitX=0.5;exitY=0;exitDx=0;exitDy=0;fontSize=13;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="178" y="410" as="sourcePoint" />
+            <mxPoint x="178" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c2" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#1B3A6B;strokeWidth=2;endArrow=none;fontSize=13;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="432" as="sourcePoint" />
+            <mxPoint x="370" y="510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c3" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#1B3A6B;strokeWidth=2;endArrow=none;fontSize=13;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="564" y="410" as="sourcePoint" />
+            <mxPoint x="564" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c4" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#1B3A6B;strokeWidth=2;endArrow=none;fontSize=13;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="758" y="432" as="sourcePoint" />
+            <mxPoint x="758" y="510" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c5" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#1B3A6B;strokeWidth=2;endArrow=none;fontSize=13;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="948" y="410" as="sourcePoint" />
+            <mxPoint x="948" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="k1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1B3A6B;strokeColor=#0D2044;arcSize=10;shadow=1;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="220" width="190" x="83" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="k1num" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" value="01" vertex="1">
+          <mxGeometry height="36" width="36" x="168" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="k1t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#FFFFFF;fontStyle=1;" value="&lt;b&gt;Pemetaan &amp;amp;&amp;nbsp;&lt;/b&gt;&lt;div&gt;&lt;b&gt;Pengumpulan Data&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="31" width="163" x="106" y="149" as="geometry" />
+        </mxCell>
+        <mxCell id="k1d" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#C9A84C;" value="📅 1–9 Maret 2026" vertex="1">
+          <mxGeometry height="18" width="176" x="90" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="k1s" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=13;" value="&lt;font style=&quot;color: rgb(214, 234, 248);&quot;&gt;• Rapat koordinasi Kaprodi&lt;br&gt;• Pemetaan data dari SINTA&lt;br&gt;• Inventarisasi kebutuhan&lt;br&gt;• Laporan hasil pemetaan&lt;/font&gt;" vertex="1">
+          <mxGeometry height="68" width="168" x="94" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="k1out" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;fontColor=#FFFFFF;fontSize=13;arcSize=20;" value="📄 Dokumen Kebutuhan" vertex="1">
+          <mxGeometry height="22" width="160" x="98" y="272" as="geometry" />
+        </mxCell>
+        <mxCell id="k2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2E86AB;strokeColor=#1A6080;arcSize=10;shadow=1;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="220" width="190" x="275" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="k2num" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" value="02" vertex="1">
+          <mxGeometry height="36" width="36" x="360" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="k2t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#FFFFFF;fontStyle=1;" value="&lt;b&gt;Perancangan&amp;nbsp;&lt;/b&gt;&lt;div&gt;&lt;b&gt;Sistem SITRIA&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="32" width="176" x="282" y="558" as="geometry" />
+        </mxCell>
+        <mxCell id="k2d" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#C9A84C;" value="📅 10–20 Maret 2026" vertex="1">
+          <mxGeometry height="18" width="176" x="282" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="k2s" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=13;" value="&lt;font style=&quot;color: rgb(235, 245, 251);&quot;&gt;• Desain basis data&lt;br&gt;• Rancangan antarmuka&lt;br&gt;• Diagram alur data&lt;br&gt;• Validasi rancangan&lt;/font&gt;" vertex="1">
+          <mxGeometry height="68" width="168" x="286" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="k2out" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;fontColor=#FFFFFF;fontSize=13;arcSize=20;" value="📐 Dokumen Desain Sistem" vertex="1">
+          <mxGeometry height="22" width="177" x="282" y="682" as="geometry" />
+        </mxCell>
+        <mxCell id="k3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1B3A6B;strokeColor=#0D2044;arcSize=10;shadow=1;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="220" width="190" x="469" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="k3num" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" value="03" vertex="1">
+          <mxGeometry height="36" width="36" x="554" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="k3t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#FFFFFF;fontStyle=1;" value="&lt;b&gt;Pembangunan Sistem&amp;nbsp;&lt;/b&gt;&lt;div&gt;&lt;b&gt;SITRIA&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="32" width="176" x="476" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="k3d" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#C9A84C;" value="📅 21 Maret – 7 April 2026" vertex="1">
+          <mxGeometry height="18" width="176" x="476" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="k3s" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=13;" value="&lt;font style=&quot;color: rgb(214, 234, 248);&quot;&gt;• Pengembangan backend&lt;br&gt;• Pembuatan antarmuka&lt;br&gt;• Integrasi portal SINTA&lt;br&gt;• Pengujian modul awal&lt;/font&gt;" vertex="1">
+          <mxGeometry height="68" width="168" x="480" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="k3out" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;fontColor=#FFFFFF;fontSize=13;arcSize=20;" value="💻 Sistem SITRIA v1.0" vertex="1">
+          <mxGeometry height="22" width="160" x="484" y="272" as="geometry" />
+        </mxCell>
+        <mxCell id="k4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2E86AB;strokeColor=#1A6080;arcSize=10;shadow=1;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="220" width="190" x="663" y="510" as="geometry" />
+        </mxCell>
+        <mxCell id="k4num" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" value="04" vertex="1">
+          <mxGeometry height="36" width="36" x="748" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="k4t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#FFFFFF;fontStyle=1;" value="&lt;b&gt;Pengujian &amp;amp;&amp;nbsp;&lt;/b&gt;&lt;div&gt;&lt;b&gt;Evaluasi Sistem&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="32" width="176" x="670" y="558" as="geometry" />
+        </mxCell>
+        <mxCell id="k4d" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#C9A84C;" value="📅 8–14 April 2026" vertex="1">
+          <mxGeometry height="18" width="176" x="670" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="k4s" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=13;" value="&lt;font style=&quot;color: rgb(235, 245, 251);&quot;&gt;• Pengujian fungsional&lt;br&gt;• UAT bersama dosen&lt;br&gt;• Perbaikan bug&lt;br&gt;• Dokumentasi pengujian&lt;/font&gt;" vertex="1">
+          <mxGeometry height="68" width="168" x="674" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="k4out" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;fontColor=#FFFFFF;fontSize=13;arcSize=20;" value="✅ Laporan Pengujian" vertex="1">
+          <mxGeometry height="22" width="160" x="678" y="682" as="geometry" />
+        </mxCell>
+        <mxCell id="k5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1E8B4C;strokeColor=#155E33;arcSize=10;shadow=1;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="220" width="210" x="853" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="k5num" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;fontColor=#FFFFFF;fontSize=13;fontStyle=1;" value="05" vertex="1">
+          <mxGeometry height="36" width="36" x="938" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="k5t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#FFFFFF;fontStyle=1;" value="&lt;b&gt;Peluncuran &amp;amp;&amp;nbsp;&lt;/b&gt;&lt;div&gt;&lt;b&gt;Sosialisasi SITRIA&lt;/b&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="32" width="196" x="860" y="148" as="geometry" />
+        </mxCell>
+        <mxCell id="k5d" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#C9A84C;" value="📅 15–22 April 2026" vertex="1">
+          <mxGeometry height="18" width="196" x="860" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="k5s" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontSize=13;" value="&lt;font style=&quot;color: rgb(240, 250, 244);&quot;&gt;• Peluncuran 15 April&lt;br&gt;• Sosialisasi 16–17 April&lt;br&gt;• Evaluasi 18–20 April&lt;br&gt;• Laporan akhir 21–22 April&lt;/font&gt;" vertex="1">
+          <mxGeometry height="68" width="188" x="864" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="k5out" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C9A84C;strokeColor=#A07830;fontColor=#FFFFFF;fontSize=13;arcSize=20;" value="🚀 SITRIA Siap Digunakan" vertex="1">
+          <mxGeometry height="22" width="175" x="868" y="272" as="geometry" />
+        </mxCell>
+        <mxCell id="d1" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#1B3A6B;fontStyle=1;" value="1 Mar" vertex="1">
+          <mxGeometry height="16" width="40" x="158" y="436" as="geometry" />
+        </mxCell>
+        <mxCell id="d2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#1B3A6B;fontStyle=1;" value="10 Mar" vertex="1">
+          <mxGeometry height="16" width="44" x="348" y="436" as="geometry" />
+        </mxCell>
+        <mxCell id="d3" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#1B3A6B;fontStyle=1;" value="21 Mar" vertex="1">
+          <mxGeometry height="16" width="44" x="544" y="436" as="geometry" />
+        </mxCell>
+        <mxCell id="d4" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#1B3A6B;fontStyle=1;" value="8 Apr" vertex="1">
+          <mxGeometry height="16" width="44" x="738" y="436" as="geometry" />
+        </mxCell>
+        <mxCell id="d5" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontColor=#1B3A6B;fontStyle=1;" value="15 Apr" vertex="1">
+          <mxGeometry height="16" width="44" x="928" y="436" as="geometry" />
+        </mxCell>
+        <mxCell id="legbg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F9F9F9;strokeColor=#CCCCCC;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="50" width="1003" x="83" y="755" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1c" parent="1" style="rounded=1;fillColor=#1B3A6B;strokeColor=#1B3A6B;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="14" width="14" x="103" y="769" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=13;" value="Kegiatan Inti (Pemetaan, Pembangunan)" vertex="1">
+          <mxGeometry height="16" width="220" x="122" y="768" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2c" parent="1" style="rounded=1;fillColor=#2E86AB;strokeColor=#2E86AB;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="14" width="14" x="373" y="769" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=13;" value="Kegiatan Analitis (Perancangan, Pengujian)" vertex="1">
+          <mxGeometry height="16" width="230" x="392" y="768" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3c" parent="1" style="rounded=1;fillColor=#1E8B4C;strokeColor=#1E8B4C;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="14" width="14" x="653" y="769" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=13;" value="Kegiatan Akhir (Peluncuran &amp;amp; Sosialisasi)" vertex="1">
+          <mxGeometry height="16" width="230" x="672" y="768" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4c" parent="1" style="ellipse;fillColor=#C9A84C;strokeColor=#A07830;fontSize=13;" value="" vertex="1">
+          <mxGeometry height="14" width="14" x="930" y="769" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=13;" value="Hasil / Output" vertex="1">
+          <mxGeometry height="16" width="120" x="949" y="768" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
