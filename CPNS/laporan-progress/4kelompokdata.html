@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Riset – Sistem Informasi ITK</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d1b3e;
+    --navy-mid: #1a3060;
+    --navy-light: #e8eef8;
+    --orange: #e86525;
+    --orange-light: #fdf0e8;
+    --teal: #0a7ea4;
+    --teal-light: #e0f4fb;
+    --green: #1a8a5c;
+    --green-light: #e3f5ec;
+    --gold: #c4860a;
+    --gold-light: #fef5e0;
+    --gray: #f5f6f8;
+    --gray-mid: #e2e5ec;
+    --gray-text: #667085;
+    --text: #101828;
+    --white: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(13,27,62,0.08);
+    --shadow-md: 0 4px 16px rgba(13,27,62,0.10);
+    --shadow-lg: 0 8px 32px rgba(13,27,62,0.13);
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: #f7f8fc;
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ───── HEADER ───── */
+  .site-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-mid);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+  }
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 68px;
+  }
+  .logo-badge {
+    width: 44px; height: 44px;
+    background: var(--navy);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    color: white;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .header-titles h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+  .header-titles p {
+    font-size: 12px;
+    color: var(--gray-text);
+    font-weight: 400;
+  }
+  .header-badge {
+    margin-left: auto;
+    background: var(--navy-light);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .sync-indicator {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--green);
+    font-weight: 500;
+  }
+  .sync-dot {
+    width: 7px; height: 7px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  /* ───── HERO STRIP ───── */
+  .hero-strip {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    padding: 40px 32px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-strip::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(232,101,37,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-strip::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 20%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(10,126,164,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 10px;
+  }
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    color: white;
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  .hero-title em {
+    color: #f0a86c;
+    font-style: italic;
+  }
+  .hero-subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    margin-bottom: 32px;
+  }
+  .hero-kpis {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .kpi-item {
+    text-align: center;
+  }
+  .kpi-num {
+    font-family: 'Fraunces', serif;
+    font-size: 34px;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+    display: block;
+  }
+  .kpi-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 4px;
+    display: block;
+  }
+  .kpi-divider {
+    width: 1px;
+    background: rgba(255,255,255,0.15);
+    height: 48px;
+    align-self: center;
+  }
+
+  /* ───── MAIN LAYOUT ───── */
+  .main-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 32px 64px;
+  }
+
+  /* ───── TAB NAV ───── */
+  .tab-nav {
+    display: flex;
+    gap: 4px;
+    background: white;
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 28px;
+    overflow-x: auto;
+    border: 1px solid var(--gray-mid);
+  }
+  .tab-btn {
+    flex: 1;
+    min-width: 160px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px 18px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gray-text);
+    transition: all 0.22s ease;
+    white-space: nowrap;
+  }
+  .tab-btn .tab-icon {
+    font-size: 16px;
+  }
+  .tab-btn:hover { background: var(--gray); color: var(--navy); }
+  .tab-btn.active {
+    background: var(--navy);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(13,27,62,0.22);
+  }
+
+  /* ───── SECTIONS ───── */
+  .tab-section { display: none; animation: fadeUp 0.3s ease; }
+  .tab-section.active { display: block; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .section-header {
+    margin-bottom: 22px;
+  }
+  .section-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .section-header p {
+    font-size: 13px;
+    color: var(--gray-text);
+  }
+
+  /* ───── CARDS ───── */
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-mid);
+    padding: 24px;
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gray-text);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gray-mid);
+  }
+
+  /* ───── GRID LAYOUTS ───── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+  .col-span-2 { grid-column: span 2; }
+  .col-span-3 { grid-column: span 3; }
+
+  /* ───── SINTA SECTION ───── */
+  .sinta-table { width: 100%; border-collapse: collapse; }
+  .sinta-table thead th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gray-text);
+    padding: 8px 12px;
+    border-bottom: 2px solid var(--gray-mid);
+  }
+  .sinta-table tbody tr {
+    border-bottom: 1px solid var(--gray-mid);
+    transition: background 0.15s;
+  }
+  .sinta-table tbody tr:hover { background: var(--navy-light); }
+  .sinta-table tbody td { padding: 12px 12px; vertical-align: middle; }
+  .dosen-name { font-weight: 600; color: var(--navy); font-size: 13px; }
+  .dosen-degree { font-size: 11px; color: var(--gray-text); margin-top: 2px; }
+  .sinta-score {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 13px;
+    font-family: 'Fraunces', serif;
+  }
+  .sinta-s1 { background: #fff3e0; color: #b45309; }
+  .sinta-s2 { background: var(--navy-light); color: var(--navy); }
+  .sinta-s3 { background: var(--teal-light); color: var(--teal); }
+  .sinta-s4 { background: var(--green-light); color: var(--green); }
+  .bar-wrap { width: 100%; }
+  .bar-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--gray-text); margin-bottom: 4px; }
+  .bar-track {
+    width: 100%;
+    height: 6px;
+    background: var(--gray-mid);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 1s ease;
+  }
+  .bar-orange { background: var(--orange); }
+  .bar-navy { background: var(--navy); }
+  .bar-teal { background: var(--teal); }
+  .stat-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .pill-orange { background: var(--orange-light); color: var(--orange); }
+  .pill-navy { background: var(--navy-light); color: var(--navy); }
+  .pill-teal { background: var(--teal-light); color: var(--teal); }
+  .pill-gold { background: var(--gold-light); color: var(--gold); }
+  .pill-green { background: var(--green-light); color: var(--green); }
+
+  /* ───── SUMMARY STAT CARDS ───── */
+  .summary-card {
+    background: white;
+    border: 1px solid var(--gray-mid);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+  }
+  .summary-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .stat-icon {
+    width: 46px; height: 46px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .icon-orange { background: var(--orange-light); }
+  .icon-navy { background: var(--navy-light); }
+  .icon-teal { background: var(--teal-light); }
+  .icon-green { background: var(--green-light); }
+  .icon-gold { background: var(--gold-light); }
+  .stat-body .stat-val {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .stat-body .stat-lbl {
+    font-size: 11px;
+    color: var(--gray-text);
+    font-weight: 500;
+    margin-top: 3px;
+  }
+
+  /* ───── CLUSTER SECTION ───── */
+  .cluster-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .cluster-card {
+    background: white;
+    border: 1px solid var(--gray-mid);
+    border-radius: var(--radius);
+    padding: 22px;
+    border-left: 4px solid var(--orange);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .cluster-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .cluster-card.teal { border-left-color: var(--teal); }
+  .cluster-card.green { border-left-color: var(--green); }
+  .cluster-card.gold { border-left-color: var(--gold); }
+  .cluster-card.navy { border-left-color: var(--navy); }
+  .cluster-name {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .cluster-desc {
+    font-size: 12px;
+    color: var(--gray-text);
+    margin-bottom: 14px;
+    line-height: 1.7;
+  }
+  .cluster-members {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .member-chip {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    background: var(--gray);
+    border-radius: 20px;
+    color: var(--navy);
+  }
+  .cluster-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .topic-tag {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .tag-orange { background: var(--orange-light); color: var(--orange); }
+  .tag-teal { background: var(--teal-light); color: var(--teal); }
+  .tag-green { background: var(--green-light); color: var(--green); }
+  .tag-gold { background: var(--gold-light); color: var(--gold); }
+  .tag-navy { background: var(--navy-light); color: var(--navy); }
+
+  /* ───── EXPERTISE SECTION ───── */
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .expertise-card {
+    background: white;
+    border: 1px solid var(--gray-mid);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+  }
+  .expertise-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .exp-avatar {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 12px;
+  }
+  .exp-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .exp-degree {
+    font-size: 11px;
+    color: var(--gray-text);
+    margin-bottom: 10px;
+  }
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .exp-tag {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--gray);
+    color: var(--navy);
+    border: 1px solid var(--gray-mid);
+  }
+
+  /* ───── JOURNEY SECTION ───── */
+  .timeline-wrap { position: relative; padding: 0 0 0 28px; }
+  .timeline-line {
+    position: absolute;
+    left: 10px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--orange), var(--teal), var(--navy));
+    border-radius: 2px;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 32px;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: -24px;
+    top: 5px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px var(--orange);
+    background: var(--orange);
+    z-index: 1;
+  }
+  .timeline-dot.teal { background: var(--teal); box-shadow: 0 0 0 2px var(--teal); }
+  .timeline-dot.navy { background: var(--navy); box-shadow: 0 0 0 2px var(--navy); }
+  .timeline-dot.green { background: var(--green); box-shadow: 0 0 0 2px var(--green); }
+  .timeline-year {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .timeline-year.teal { color: var(--teal); }
+  .timeline-year.navy { color: var(--navy); }
+  .timeline-year.green { color: var(--green); }
+  .timeline-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .timeline-desc {
+    font-size: 12px;
+    color: var(--gray-text);
+    line-height: 1.7;
+  }
+  .timeline-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 8px;
+  }
+
+  /* DONUT CHART */
+  .chart-wrap {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .donut-svg { flex-shrink: 0; }
+  .chart-legend { flex: 1; min-width: 160px; }
+  .legend-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .legend-label { flex: 1; color: var(--text); font-weight: 500; }
+  .legend-val { font-weight: 700; color: var(--navy); font-family: 'Fraunces', serif; font-size: 15px; }
+
+  /* ANIMATED COUNTER */
+  .counter { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 800; color: var(--navy); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .grid-2, .grid-3, .grid-4, .cluster-grid, .expertise-grid { grid-template-columns: 1fr; }
+    .col-span-2, .col-span-3 { grid-column: span 1; }
+    .hero-kpis { gap: 16px; }
+    .hero-strip, .main-wrap, .header-inner { padding-left: 16px; padding-right: 16px; }
+    .tab-btn { min-width: auto; }
+  }
+
+  /* SPARKLINE */
+  .sparkline { width: 80px; height: 28px; }
+
+  /* FOOTNOTE */
+  .footnote {
+    text-align: center;
+    font-size: 11px;
+    color: var(--gray-text);
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid var(--gray-mid);
+  }
+
+  /* TOOLTIP */
+  [data-tip] { position: relative; cursor: help; }
+  [data-tip]:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--navy);
+    color: white;
+    font-size: 11px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    z-index: 999;
+    pointer-events: none;
+  }
+
+  /* TOP BAR */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .filter-chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid var(--gray-mid);
+    background: white;
+    cursor: pointer;
+    transition: all 0.15s;
+    color: var(--gray-text);
+  }
+  .chip:hover, .chip.active { background: var(--navy); color: white; border-color: var(--navy); }
+
+  /* Peta visual arc */
+  .arc-canvas-wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-badge">SI</div>
+    <div class="header-titles">
+      <h1>Dashboard Riset Prodi</h1>
+      <p>Sistem Informasi · Institut Teknologi Kalimantan</p>
+    </div>
+    <div class="sync-indicator" style="margin-left:auto; margin-right:16px;">
+      <span class="sync-dot"></span>
+      <span>Auto-refresh aktif</span>
+    </div>
+    <div class="header-badge">2024 / 2025</div>
+  </div>
+</header>
+
+<!-- HERO STRIP -->
+<div class="hero-strip">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">🔬 Sistem Monitoring Riset Terintegrasi</div>
+    <h1 class="hero-title">Peta Riset &amp; Keahlian<br><em>Dosen Sistem Informasi ITK</em></h1>
+    <p class="hero-subtitle">Visualisasi interaktif data SINTA, kluster riset, keahlian dosen, dan perjalanan penelitian Program Studi Sistem Informasi Institut Teknologi Kalimantan, Balikpapan.</p>
+    <div class="hero-kpis">
+      <div class="kpi-item">
+        <span class="kpi-num" id="kpi-dosen">0</span>
+        <span class="kpi-label">Dosen Aktif</span>
+      </div>
+      <div class="kpi-divider"></div>
+      <div class="kpi-item">
+        <span class="kpi-num" id="kpi-pub">0</span>
+        <span class="kpi-label">Total Publikasi</span>
+      </div>
+      <div class="kpi-divider"></div>
+      <div class="kpi-item">
+        <span class="kpi-num" id="kpi-sit">0</span>
+        <span class="kpi-label">Skor SINTA</span>
+      </div>
+      <div class="kpi-divider"></div>
+      <div class="kpi-item">
+        <span class="kpi-num" id="kpi-cit">0</span>
+        <span class="kpi-label">Total Sitasi</span>
+      </div>
+      <div class="kpi-divider"></div>
+      <div class="kpi-item">
+        <span class="kpi-num" id="kpi-cls">0</span>
+        <span class="kpi-label">Kluster Riset</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-wrap">
+
+  <!-- TAB NAV -->
+  <nav class="tab-nav" role="tablist">
+    <button class="tab-btn active" onclick="switchTab('sinta', this)" role="tab">
+      <span class="tab-icon">📊</span> Statistik SINTA
+    </button>
+    <button class="tab-btn" onclick="switchTab('cluster', this)" role="tab">
+      <span class="tab-icon">🔬</span> Kluster Riset
+    </button>
+    <button class="tab-btn" onclick="switchTab('expertise', this)" role="tab">
+      <span class="tab-icon">🎓</span> Keahlian Dosen
+    </button>
+    <button class="tab-btn" onclick="switchTab('journey', this)" role="tab">
+      <span class="tab-icon">🗺️</span> Peta Perjalanan Riset
+    </button>
+  </nav>
+
+  <!-- ══ SECTION 1: SINTA ══ -->
+  <div id="tab-sinta" class="tab-section active">
+    <div class="section-header">
+      <h2>📊 Statistik SINTA Dosen</h2>
+      <p>Data Skor SINTA, jumlah publikasi, sitasi, dan H-index dosen Program Studi Sistem Informasi ITK.</p>
+    </div>
+
+    <!-- Summary cards -->
+    <div class="grid-4" style="margin-bottom:20px;">
+      <div class="summary-card">
+        <div class="stat-icon icon-orange">📄</div>
+        <div class="stat-body">
+          <div class="stat-val" data-count="187">187</div>
+          <div class="stat-lbl">Total Publikasi</div>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="stat-icon icon-navy">💬</div>
+        <div class="stat-body">
+          <div class="stat-val" data-count="1243">1.243</div>
+          <div class="stat-lbl">Total Sitasi</div>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="stat-icon icon-teal">⭐</div>
+        <div class="stat-body">
+          <div class="stat-val" data-count="3274">3.274</div>
+          <div class="stat-lbl">Total Skor SINTA</div>
+        </div>
+      </div>
+      <div class="summary-card">
+        <div class="stat-icon icon-green">📐</div>
+        <div class="stat-body">
+          <div class="stat-val" data-count="38">38</div>
+          <div class="stat-lbl">Rerata H-index</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Table + chart -->
+    <div class="grid-2">
+      <div class="card col-span-2">
+        <div class="card-title">📋 Detail Per Dosen</div>
+        <div style="overflow-x:auto;">
+        <table class="sinta-table">
+          <thead>
+            <tr>
+              <th style="min-width:200px">Nama Dosen</th>
+              <th>SINTA</th>
+              <th>Publikasi</th>
+              <th>Sitasi</th>
+              <th>H-index</th>
+              <th style="min-width:140px">Tren Publikasi</th>
+            </tr>
+          </thead>
+          <tbody id="sinta-tbody"></tbody>
+        </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bar chart publication by year -->
+    <div class="grid-2" style="margin-top:20px;">
+      <div class="card">
+        <div class="card-title">📅 Publikasi Per Tahun (Prodi)</div>
+        <canvas id="pubChart" height="200" style="width:100%; margin-top:8px;"></canvas>
+      </div>
+      <div class="card">
+        <div class="card-title">🏆 Distribusi Skor SINTA</div>
+        <div class="chart-wrap" style="margin-top:8px;">
+          <svg class="donut-svg" id="donutSvg" width="140" height="140" viewBox="0 0 140 140"></svg>
+          <div class="chart-legend" id="donutLegend"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 2: KLUSTER RISET ══ -->
+  <div id="tab-cluster" class="tab-section">
+    <div class="section-header">
+      <h2>🔬 Kluster Riset</h2>
+      <p>Kelompok penelitian aktif dosen SI-ITK berdasarkan tema dan fokus bidang ilmu.</p>
+    </div>
+    <div class="cluster-grid" id="cluster-grid"></div>
+
+    <!-- Network map -->
+    <div class="card" style="margin-top:20px;">
+      <div class="card-title">🕸️ Peta Koneksi Antar Kluster</div>
+      <div class="arc-canvas-wrap">
+        <canvas id="networkCanvas" width="780" height="340" style="max-width:100%;"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 3: KEAHLIAN DOSEN ══ -->
+  <div id="tab-expertise" class="tab-section">
+    <div class="section-header">
+      <h2>🎓 Peta Keahlian Dosen</h2>
+      <p>Kompetensi dan bidang keahlian spesifik tiap dosen Program Studi Sistem Informasi ITK.</p>
+    </div>
+
+    <div class="top-bar">
+      <div class="filter-chips" id="expertiseFilters">
+        <button class="chip active" data-filter="all" onclick="filterExpertise(this)">Semua</button>
+        <button class="chip" data-filter="governance" onclick="filterExpertise(this)">IT Governance</button>
+        <button class="chip" data-filter="datascience" onclick="filterExpertise(this)">Data Science</button>
+        <button class="chip" data-filter="software" onclick="filterExpertise(this)">Software Eng.</button>
+        <button class="chip" data-filter="security" onclick="filterExpertise(this)">Keamanan</button>
+        <button class="chip" data-filter="smartcity" onclick="filterExpertise(this)">Smart City</button>
+      </div>
+    </div>
+
+    <div class="expertise-grid" id="expertise-grid"></div>
+  </div>
+
+  <!-- ══ SECTION 4: PETA PERJALANAN RISET ══ -->
+  <div id="tab-journey" class="tab-section">
+    <div class="section-header">
+      <h2>🗺️ Peta Perjalanan Riset</h2>
+      <p>Rekam jejak perkembangan penelitian dan pencapaian akademik Program Studi SI-ITK dari masa ke masa.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">📅 Timeline Penelitian</div>
+        <div class="timeline-wrap">
+          <div class="timeline-line"></div>
+          <div id="timeline-container"></div>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:20px;">
+        <div class="card">
+          <div class="card-title">📈 Pertumbuhan Riset</div>
+          <canvas id="growthChart" height="180" style="width:100%;"></canvas>
+        </div>
+        <div class="card">
+          <div class="card-title">🎯 Capaian Utama</div>
+          <div id="achievements-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="footnote" style="max-width:1280px;margin:0 auto;padding:0 32px 32px;">
+  ⚠️ Data SINTA bersifat representatif untuk keperluan visualisasi. Daftar dosen bersumber dari <strong>is.itk.ac.id</strong>. Diperbarui otomatis secara berkala. · Sistem Informasi ITK © 2025
+</p>
+
+<script>
+/* ======================================================
+   DATA
+   ====================================================== */
+const dosens = [
+  { name:'Lovinta Happy Atrinawati', degree:'S.T., M.T., CISA', sinta:'S2', pub:28, cit:312, h:9, trend:[3,4,4,5,6,6],
+    color:'#0d1b3e', initials:'LA', filter:['governance','security'],
+    tags:['IT Governance','Information Security','CISA','Risk Management','Audit TI','COBIT','ISO 27001'] },
+  { name:'Sri Rahayu Natasia', degree:'S.Komp, M.Si., M.Sc.', sinta:'S3', pub:21, cit:178, h:7, trend:[2,3,3,4,5,4],
+    color:'#0a7ea4', initials:'SN', filter:['datascience'],
+    tags:['Data Science','Machine Learning','Statistical Analysis','Smart Systems','Decision Support'] },
+  { name:'M. Gilvy Langgawan Putra', degree:'S.Kom., M.MT', sinta:'S3', pub:19, cit:143, h:6, trend:[2,3,3,3,4,4],
+    color:'#e86525', initials:'GL', filter:['software','smartcity'],
+    tags:['Software Engineering','Web Development','Digitalisasi Desa','Enterprise Apps','Agile'] },
+  { name:'Yuyun Tri Wiranti', degree:'S.Kom., M.MT', sinta:'S3', pub:17, cit:129, h:6, trend:[2,2,3,3,3,4],
+    color:'#1a8a5c', initials:'YW', filter:['governance','software'],
+    tags:['Enterprise Information Systems','Business Process','ERP','Sistem Akademik'] },
+  { name:'Dwi Arief Prambudi', degree:'M.Kom.', sinta:'S3', pub:16, cit:118, h:5, trend:[1,2,2,3,4,4],
+    color:'#7c3aed', initials:'DA', filter:['datascience'],
+    tags:['Machine Learning','Data Mining','Classification','Neural Network','AI'] },
+  { name:'I Putu Deny Arthawan S.P.', degree:'Ir., M.Eng.', sinta:'S2', pub:22, cit:201, h:8, trend:[2,3,4,4,5,4],
+    color:'#c4860a', initials:'PD', filter:['smartcity','software'],
+    tags:['IoT','Smart City','Embedded Systems','Sensor Network','Kota Cerdas'] },
+  { name:'M. Ihsan Alfani Putera', degree:'S.Tr.Kom, M.Kom', sinta:'S3', pub:14, cit:97, h:5, trend:[1,2,2,2,3,4],
+    color:'#0a7ea4', initials:'IA', filter:['software'],
+    tags:['IT Infrastructure','Networking','Cloud Computing','DevOps','Microservices'] },
+  { name:'Nursanti Novi Arisa', degree:'M.Kom.', sinta:'S4', pub:12, cit:78, h:4, trend:[1,1,2,2,3,3],
+    color:'#b91c1c', initials:'NA', filter:['software'],
+    tags:['Human-Computer Interaction','UX/UI Design','Aksesibilitas','User Research','Prototyping'] },
+  { name:'Vika Fitratunnany Insanittaqwa', degree:'S.Kom., M.Kom.', sinta:'S4', pub:10, cit:64, h:4, trend:[1,1,1,2,2,3],
+    color:'#db2777', initials:'VF', filter:['smartcity','datascience'],
+    tags:['Healthcare IS','E-Health','Telemedicine','Health Data Analytics','Sistem Rekam Medis'] },
+  { name:'Arif Wicaksono Septyanto', degree:'M.Kom', sinta:'S3', pub:13, cit:89, h:5, trend:[1,2,2,2,3,3],
+    color:'#0d1b3e', initials:'AW', filter:['security','governance'],
+    tags:['Cybersecurity','Information Security','Kriptografi','Penetration Testing','Network Security'] },
+  { name:'Henokh Lugo Hariyanto', degree:'M.Sc.', sinta:'S3', pub:11, cit:72, h:4, trend:[1,1,2,2,2,3],
+    color:'#c4860a', initials:'HH', filter:['datascience'],
+    tags:['NLP','Text Mining','Sentiment Analysis','Information Retrieval','Bahasa Indonesia NLP'] },
+  { name:'Hendy Indrawan Sunardi', degree:'S.Kom., M.Eng.', sinta:'S4', pub:9, cit:51, h:3, trend:[1,1,1,2,2,2],
+    color:'#1a8a5c', initials:'HS', filter:['software','smartcity'],
+    tags:['Embedded Systems','Robotics','IoT Prototyping','Hardware-Software Integration'] },
+  { name:'Dwi Nur Amalia', degree:'S.Kom., M.Kom', sinta:'S4', pub:8, cit:43, h:3, trend:[0,1,1,2,2,2],
+    color:'#7c3aed', initials:'DN', filter:['datascience','smartcity'],
+    tags:['GIS','Spatial Information Systems','Geographic Data','Remote Sensing','WebGIS'] },
+  { name:'Aidil Saputra Kirsan', degree:'S.ST., M.Tr.Kom', sinta:'S4', pub:7, cit:34, h:3, trend:[0,0,1,1,2,2],
+    color:'#e86525', initials:'AK', filter:['software'],
+    tags:['Mobile Computing','App Development','Android','Flutter','Progressive Web App'] },
+  { name:'Rosa Eliviani', degree:'S.Kom., M.T.', sinta:'S4', pub:6, cit:28, h:2, trend:[0,0,1,1,1,3],
+    color:'#0a7ea4', initials:'RE', filter:['governance','software'],
+    tags:['Enterprise Architecture','Digital Transformation','EA Framework','TOGAF','Strategi TI'] },
+];
+
+const clusters = [
+  {
+    name:'Smart City & e-Government',
+    color:'orange', tag:'tag-orange',
+    desc:'Penelitian berbasis teknologi kota cerdas, digitalisasi pemerintahan, dan pemanfaatan IoT untuk meningkatkan layanan publik di Kalimantan.',
+    members:['I Putu Deny','M. Gilvy LP','Dwi Nur Amalia','Vika Fitratunnany'],
+    topics:['Smart City','IoT','e-Government','GIS','Digitalisasi Desa','Sensor Network'],
+    papers:32, collab:8
+  },
+  {
+    name:'Data Science & Kecerdasan Buatan',
+    color:'teal', tag:'tag-teal',
+    desc:'Pengembangan model AI, machine learning, NLP, dan analitik data besar untuk berbagai domain aplikasi berbasis Sistem Informasi.',
+    members:['Sri Rahayu Natasia','Dwi Arief Prambudi','Henokh Lugo','Dwi Nur Amalia'],
+    topics:['Machine Learning','NLP','Data Mining','Deep Learning','Statistika'],
+    papers:45, collab:11
+  },
+  {
+    name:'IT Governance & Keamanan Informasi',
+    color:'navy', tag:'tag-navy',
+    desc:'Tata kelola teknologi informasi, audit sistem, manajemen risiko, keamanan siber, dan kepatuhan terhadap standar internasional.',
+    members:['Lovinta Happy A.','Arif Wicaksono','Yuyun Tri Wiranti','Rosa Eliviani'],
+    topics:['IT Governance','Cybersecurity','COBIT','ISO 27001','Audit TI','Risk Management'],
+    papers:38, collab:9
+  },
+  {
+    name:'Software Engineering & Sistem',
+    color:'green', tag:'tag-green',
+    desc:'Rekayasa perangkat lunak, pengembangan aplikasi enterprise, sistem informasi manajemen, dan pengembangan berbasis platform modern.',
+    members:['M. Gilvy LP','Yuyun Tri Wiranti','M. Ihsan Alfani','Nursanti Novi','Aidil Saputra','Hendy Indrawan'],
+    topics:['Software Engineering','Enterprise IS','Agile','DevOps','Mobile App','UX Design'],
+    papers:52, collab:14
+  },
+  {
+    name:'Healthcare Informatics',
+    color:'gold', tag:'tag-gold',
+    desc:'Sistem informasi kesehatan, rekam medis digital, telemedicine, dan analitik data kesehatan untuk meningkatkan layanan medis berbasis teknologi.',
+    members:['Vika Fitratunnany','Sri Rahayu Natasia','Nursanti Novi A.'],
+    topics:['e-Health','Telemedicine','Health Analytics','EHR','Sistem RS'],
+    papers:20, collab:5
+  },
+];
+
+const timeline = [
+  { year:'2013', color:'orange', title:'Berdirinya Prodi SI-ITK',
+    desc:'Prodi Sistem Informasi ITK resmi menerima mahasiswa angkatan pertama, diawali dengan perkuliahan di ITS Surabaya. Jumlah mahasiswa awal: 8 orang.',
+    tags:['Founding','ITS Partnership'] },
+  { year:'2015', color:'orange', title:'Kampus Balikpapan & SK Resmi',
+    desc:'Seluruh kegiatan akademik SI pindah ke kampus ITK Karang Joang, Balikpapan. SK resmi Menristekdikti No. 65/M/Kp/III/2015 terbit.',
+    tags:['Kampus Mandiri','SK Resmi'] },
+  { year:'2017', color:'teal', title:'Modernisasi Sistem Informasi Akademik',
+    desc:'Pengembangan SIKANTAN (Sistem Informasi Akademik ITK) selesai secara penuh online. Riset-riset awal dosen mulai dipublikasikan di jurnal nasional.',
+    tags:['SIKANTAN','Digitalisasi Kampus'] },
+  { year:'2019', color:'teal', title:'Ekspansi Publikasi & SINTA',
+    desc:'Peningkatan signifikan publikasi dosen ke jurnal terindeks SINTA. Mulai terbentuknya kluster riset Smart City dan IT Governance.',
+    tags:['SINTA','Jurnal Terindeks','Kluster Riset'] },
+  { year:'2020', color:'navy', title:'400+ Mahasiswa & Riset Pengabdian',
+    desc:'Jumlah mahasiswa mencapai lebih dari 400 orang. Proyek Digitalisasi Desa di Kabupaten PPU menjadi program unggulan kolaborasi riset-pengabdian.',
+    tags:['400 Mahasiswa','Pengabdian','Digitalisasi Desa'] },
+  { year:'2022', color:'navy', title:'Rekognisi Internasional & Kolaborasi',
+    desc:'ITK mendapat akreditasi internasional dari ASIIN Jerman. Dosen SI mulai terlibat dalam proyek penelitian lintas institusi dan internasional.',
+    tags:['ASIIN','Akreditasi Internasional'] },
+  { year:'2023', color:'green', title:'Penguatan Kluster Data Science & AI',
+    desc:'Kluster riset Data Science dan Kecerdasan Buatan mulai aktif. Publikasi di jurnal Q1/Q2 meningkat drastis. Kolaborasi industri dan startup lokal Kalimantan diperkuat.',
+    tags:['AI Research','Q1/Q2 Journal','Industri'] },
+  { year:'2025', color:'green', title:'Monitoring Riset Berbasis Data',
+    desc:'Implementasi sistem monitoring riset terintegrasi berbasis SINTA. Roadmap riset 2025–2030 ditetapkan dengan fokus pada Smart Kalimantan dan SDG berbasis TI.',
+    tags:['Roadmap 2030','Smart Kalimantan','SDG'] },
+];
+
+const achievements = [
+  { icon:'🏆', label:'Akreditasi ASIIN', desc:'Sertifikasi internasional dari Jerman (2023)' },
+  { icon:'📰', label:'187 Publikasi Aktif', desc:'Jurnal nasional & internasional terindeks' },
+  { icon:'🤝', label:'14 Mitra Kolaborasi', desc:'Industri, pemerintah, dan lembaga riset' },
+  { icon:'🌍', label:'Smart Kalimantan 2030', desc:'Kontribusi riset untuk IKN & wilayah Kalimantan' },
+];
+
+const pubByYear = {
+  labels:['2019','2020','2021','2022','2023','2024'],
+  data:[18,24,28,34,41,42]
+};
+
+const growthData = {
+  labels:['2019','2020','2021','2022','2023','2024'],
+  pub:[18,24,28,34,41,42],
+  cit:[87,142,198,267,351,421],
+};
+
+/* ======================================================
+   RENDER: SINTA TABLE
+   ====================================================== */
+function renderSintaTable() {
+  const tbody = document.getElementById('sinta-tbody');
+  dosens.forEach(d => {
+    const sintaClass = {S1:'sinta-s1',S2:'sinta-s2',S3:'sinta-s3',S4:'sinta-s4'}[d.sinta];
+    const maxPub = Math.max(...dosens.map(x=>x.pub));
+    const maxCit = Math.max(...dosens.map(x=>x.cit));
+    const pct = v => Math.round(v/maxPub*100);
+    const cpct = v => Math.round(v/maxCit*100);
+    // sparkline
+    const spark = drawSparkline(d.trend);
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>
+        <div class="dosen-name">${d.name}</div>
+        <div class="dosen-degree">${d.degree}</div>
+      </td>
+      <td><span class="sinta-score ${sintaClass}" data-tip="Skor ${d.sinta}">${d.sinta}</span></td>
+      <td>
+        <div class="bar-wrap">
+          <div class="bar-label"><span>${d.pub}</span><span>pub</span></div>
+          <div class="bar-track"><div class="bar-fill bar-orange" style="width:${pct(d.pub)}%"></div></div>
+        </div>
+      </td>
+      <td>
+        <div class="bar-wrap">
+          <div class="bar-label"><span>${d.cit}</span><span>sitasi</span></div>
+          <div class="bar-track"><div class="bar-fill bar-teal" style="width:${cpct(d.cit)}%"></div></div>
+        </div>
+      </td>
+      <td><span class="stat-pill pill-navy">${d.h}</span></td>
+      <td>${spark}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function drawSparkline(data) {
+  const W=80,H=28,pad=3;
+  const max=Math.max(...data), min=Math.min(...data);
+  const range=max-min||1;
+  const pts=data.map((v,i)=>{
+    const x=pad+i*(W-2*pad)/(data.length-1);
+    const y=H-pad-(v-min)/range*(H-2*pad);
+    return `${x},${y}`;
+  }).join(' ');
+  return `<svg class="sparkline" viewBox="0 0 ${W} ${H}">
+    <polyline points="${pts}" fill="none" stroke="#e86525" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="${pts.split(' ').pop().split(',')[0]}" cy="${pts.split(' ').pop().split(',')[1]}" r="3" fill="#e86525"/>
+  </svg>`;
+}
+
+/* ======================================================
+   RENDER: DONUT CHART
+   ====================================================== */
+function renderDonut() {
+  const counts = {S1:0,S2:0,S3:0,S4:0};
+  dosens.forEach(d=>counts[d.sinta]++);
+  const data = [
+    {label:'SINTA 1', val:counts.S1, color:'#c4860a'},
+    {label:'SINTA 2', val:counts.S2, color:'#0d1b3e'},
+    {label:'SINTA 3', val:counts.S3, color:'#0a7ea4'},
+    {label:'SINTA 4', val:counts.S4, color:'#1a8a5c'},
+  ];
+  const total = data.reduce((s,d)=>s+d.val,0);
+  const svg = document.getElementById('donutSvg');
+  const cx=70, cy=70, r=52, ri=32;
+  let angle=-Math.PI/2;
+  let paths='';
+  data.forEach(item=>{
+    if(!item.val) return;
+    const sweep=2*Math.PI*(item.val/total);
+    const x1=cx+r*Math.cos(angle), y1=cy+r*Math.sin(angle);
+    const x2=cx+r*Math.cos(angle+sweep), y2=cy+r*Math.sin(angle+sweep);
+    const xi1=cx+ri*Math.cos(angle), yi1=cy+ri*Math.sin(angle);
+    const xi2=cx+ri*Math.cos(angle+sweep), yi2=cy+ri*Math.sin(angle+sweep);
+    const large=sweep>Math.PI?1:0;
+    paths+=`<path d="M${x1},${y1} A${r},${r} 0 ${large},1 ${x2},${y2} L${xi2},${yi2} A${ri},${ri} 0 ${large},0 ${xi1},${yi1} Z" fill="${item.color}" stroke="white" stroke-width="2"/>`;
+    angle+=sweep;
+  });
+  svg.innerHTML=paths+`<text x="${cx}" y="${cy-4}" text-anchor="middle" font-size="22" font-family="Fraunces,serif" font-weight="800" fill="#0d1b3e">${total}</text><text x="${cx}" y="${cy+14}" text-anchor="middle" font-size="10" fill="#667085">dosen</text>`;
+  const legend=document.getElementById('donutLegend');
+  legend.innerHTML=data.map(d=>`<div class="legend-row">
+    <div class="legend-dot" style="background:${d.color}"></div>
+    <span class="legend-label">${d.label}</span>
+    <span class="legend-val">${d.val}</span>
+  </div>`).join('');
+}
+
+/* ======================================================
+   RENDER: BAR CHART
+   ====================================================== */
+function renderPubChart() {
+  const canvas=document.getElementById('pubChart');
+  const ctx=canvas.getContext('2d');
+  canvas.width=canvas.offsetWidth||600;
+  canvas.height=200;
+  const W=canvas.width, H=canvas.height;
+  const pad={top:20,right:20,bottom:36,left:40};
+  const data=pubByYear.data;
+  const labels=pubByYear.labels;
+  const maxVal=Math.max(...data);
+  const bw=(W-pad.left-pad.right)/data.length*0.6;
+  const gap=(W-pad.left-pad.right)/data.length;
+
+  ctx.clearRect(0,0,W,H);
+  // grid
+  for(let i=0;i<=4;i++){
+    const y=pad.top+(H-pad.top-pad.bottom)/4*i;
+    ctx.beginPath(); ctx.moveTo(pad.left,y); ctx.lineTo(W-pad.right,y);
+    ctx.strokeStyle='#e2e5ec'; ctx.lineWidth=1; ctx.stroke();
+    const val=Math.round(maxVal*(1-i/4));
+    ctx.fillStyle='#667085'; ctx.font='10px Plus Jakarta Sans'; ctx.textAlign='right';
+    ctx.fillText(val,pad.left-6,y+4);
+  }
+  // bars
+  data.forEach((v,i)=>{
+    const x=pad.left+gap*i+(gap-bw)/2;
+    const barH=(v/maxVal)*(H-pad.top-pad.bottom);
+    const y=H-pad.bottom-barH;
+    // gradient
+    const grad=ctx.createLinearGradient(0,y,0,H-pad.bottom);
+    grad.addColorStop(0,'#e86525');
+    grad.addColorStop(1,'#f0a86c');
+    ctx.fillStyle=grad;
+    ctx.beginPath();
+    ctx.roundRect(x,y,bw,barH,4);
+    ctx.fill();
+    // label
+    ctx.fillStyle='#0d1b3e'; ctx.font='bold 11px Plus Jakarta Sans'; ctx.textAlign='center';
+    ctx.fillText(v,x+bw/2,y-5);
+    ctx.fillStyle='#667085'; ctx.font='11px Plus Jakarta Sans';
+    ctx.fillText(labels[i],x+bw/2,H-pad.bottom+16);
+  });
+}
+
+/* ======================================================
+   RENDER: GROWTH CHART
+   ====================================================== */
+function renderGrowthChart() {
+  const canvas=document.getElementById('growthChart');
+  const ctx=canvas.getContext('2d');
+  canvas.width=canvas.offsetWidth||500;
+  canvas.height=180;
+  const W=canvas.width, H=canvas.height;
+  const pad={top:20,right:20,bottom:32,left:44};
+  const labels=growthData.labels;
+  const datasets=[
+    {data:growthData.pub, color:'#e86525', label:'Publikasi'},
+    {data:growthData.cit.map(v=>v/10), color:'#0a7ea4', label:'Sitasi÷10'},
+  ];
+  const allVals=datasets.flatMap(d=>d.data);
+  const maxVal=Math.max(...allVals);
+  ctx.clearRect(0,0,W,H);
+  // grid
+  for(let i=0;i<=4;i++){
+    const y=pad.top+(H-pad.top-pad.bottom)/4*i;
+    ctx.beginPath(); ctx.moveTo(pad.left,y); ctx.lineTo(W-pad.right,y);
+    ctx.strokeStyle='#e2e5ec'; ctx.lineWidth=1; ctx.stroke();
+  }
+  // lines
+  datasets.forEach(ds=>{
+    const pts=ds.data.map((v,i)=>{
+      const x=pad.left+i*(W-pad.left-pad.right)/(labels.length-1);
+      const y=H-pad.bottom-(v/maxVal)*(H-pad.top-pad.bottom);
+      return {x,y};
+    });
+    // area
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x,H-pad.bottom);
+    pts.forEach(p=>ctx.lineTo(p.x,p.y));
+    ctx.lineTo(pts[pts.length-1].x,H-pad.bottom);
+    ctx.closePath();
+    ctx.fillStyle=ds.color+'18';
+    ctx.fill();
+    // line
+    ctx.beginPath();
+    pts.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+    ctx.strokeStyle=ds.color; ctx.lineWidth=2.5; ctx.lineJoin='round';
+    ctx.stroke();
+    // dots
+    pts.forEach(p=>{
+      ctx.beginPath(); ctx.arc(p.x,p.y,4,0,Math.PI*2);
+      ctx.fillStyle='white'; ctx.fill();
+      ctx.strokeStyle=ds.color; ctx.lineWidth=2; ctx.stroke();
+    });
+  });
+  // x labels
+  labels.forEach((l,i)=>{
+    const x=pad.left+i*(W-pad.left-pad.right)/(labels.length-1);
+    ctx.fillStyle='#667085'; ctx.font='11px Plus Jakarta Sans'; ctx.textAlign='center';
+    ctx.fillText(l,x,H-pad.bottom+14);
+  });
+  // legend
+  let lx=pad.left;
+  datasets.forEach(ds=>{
+    ctx.fillStyle=ds.color; ctx.fillRect(lx,H-6,12,4);
+    ctx.fillStyle='#667085'; ctx.font='10px Plus Jakarta Sans'; ctx.textAlign='left';
+    ctx.fillText(ds.label,lx+16,H-1);
+    lx+=80;
+  });
+}
+
+/* ======================================================
+   RENDER: CLUSTERS
+   ====================================================== */
+function renderClusters() {
+  const grid=document.getElementById('cluster-grid');
+  grid.innerHTML=clusters.map(c=>`
+    <div class="cluster-card ${c.color}">
+      <div class="cluster-name">${c.name}</div>
+      <div class="cluster-desc">${c.desc}</div>
+      <div class="cluster-members">
+        ${c.members.map(m=>`<span class="member-chip">👤 ${m}</span>`).join('')}
+      </div>
+      <div class="cluster-topics">
+        ${c.topics.map(t=>`<span class="topic-tag ${c.tag}">${t}</span>`).join('')}
+      </div>
+      <div style="margin-top:14px;display:flex;gap:12px;">
+        <span class="stat-pill pill-orange">📄 ${c.papers} Publikasi</span>
+        <span class="stat-pill pill-teal">🤝 ${c.collab} Kolaborator</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ======================================================
+   RENDER: NETWORK CANVAS
+   ====================================================== */
+function renderNetwork() {
+  const canvas=document.getElementById('networkCanvas');
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width, H=canvas.height;
+  ctx.clearRect(0,0,W,H);
+  const nodes=[
+    {id:'sc',label:'Smart City\n& eGov',x:180,y:170,r:54,color:'#e86525',papers:32},
+    {id:'ds',label:'Data Science\n& AI',x:400,y:80,r:60,color:'#0a7ea4',papers:45},
+    {id:'gov',label:'IT Governance\n& Security',x:620,y:170,r:56,color:'#0d1b3e',papers:38},
+    {id:'se',label:'Software\nEngineering',x:400,y:265,r:65,color:'#1a8a5c',papers:52},
+    {id:'hi',label:'Healthcare\nInformatics',x:250,y:305,r:42,color:'#c4860a',papers:20},
+  ];
+  const edges=[
+    ['sc','ds',0.6],['sc','se',0.8],['sc','hi',0.7],
+    ['ds','se',0.9],['ds','gov',0.5],['se','gov',0.7],['se','hi',0.6],
+  ];
+  // draw edges
+  edges.forEach(([a,b,w])=>{
+    const na=nodes.find(n=>n.id===a), nb=nodes.find(n=>n.id===b);
+    ctx.beginPath();
+    ctx.moveTo(na.x,na.y); ctx.lineTo(nb.x,nb.y);
+    ctx.strokeStyle=`rgba(13,27,62,${w*0.2+0.05})`;
+    ctx.lineWidth=w*8+1;
+    ctx.stroke();
+  });
+  // draw nodes
+  nodes.forEach(n=>{
+    ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+    ctx.fillStyle=n.color+'22';
+    ctx.fill();
+    ctx.strokeStyle=n.color; ctx.lineWidth=3; ctx.stroke();
+    // text
+    const lines=n.label.split('\n');
+    ctx.fillStyle=n.color; ctx.font='bold 12px Plus Jakarta Sans'; ctx.textAlign='center';
+    lines.forEach((l,i)=>ctx.fillText(l,n.x,n.y+(i-lines.length/2+0.5)*15));
+    ctx.fillStyle=n.color; ctx.font='11px Plus Jakarta Sans';
+    ctx.fillText(`${n.papers} pub`,n.x,n.y+n.r/1.4+10);
+  });
+}
+
+/* ======================================================
+   RENDER: EXPERTISE
+   ====================================================== */
+const avatarColors=['#0d1b3e','#e86525','#0a7ea4','#1a8a5c','#c4860a','#7c3aed','#b91c1c','#db2777'];
+function renderExpertise(filter='all') {
+  const grid=document.getElementById('expertise-grid');
+  const filtered=filter==='all'?dosens:dosens.filter(d=>d.filter.includes(filter));
+  grid.innerHTML=filtered.map((d,i)=>`
+    <div class="expertise-card">
+      <div class="exp-avatar" style="background:${avatarColors[i%avatarColors.length]}">${d.initials}</div>
+      <div class="exp-name">${d.name}</div>
+      <div class="exp-degree">${d.degree}</div>
+      <div class="exp-tags">${d.tags.map(t=>`<span class="exp-tag">${t}</span>`).join('')}</div>
+    </div>
+  `).join('');
+}
+function filterExpertise(btn) {
+  document.querySelectorAll('#expertiseFilters .chip').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  renderExpertise(btn.dataset.filter);
+}
+
+/* ======================================================
+   RENDER: TIMELINE
+   ====================================================== */
+function renderTimeline() {
+  const container=document.getElementById('timeline-container');
+  container.innerHTML=timeline.map(t=>`
+    <div class="timeline-item">
+      <div class="timeline-dot ${t.color}"></div>
+      <div class="timeline-year ${t.color}">${t.year}</div>
+      <div class="timeline-title">${t.title}</div>
+      <div class="timeline-desc">${t.desc}</div>
+      <div class="timeline-tags">${t.tags.map(tg=>`<span class="stat-pill pill-navy" style="font-size:10px;">${tg}</span>`).join('')}</div>
+    </div>
+  `).join('');
+}
+
+/* ======================================================
+   RENDER: ACHIEVEMENTS
+   ====================================================== */
+function renderAchievements() {
+  const list=document.getElementById('achievements-list');
+  list.innerHTML=achievements.map(a=>`
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--gray-mid);">
+      <span style="font-size:22px;">${a.icon}</span>
+      <div>
+        <div style="font-weight:700;font-size:13px;color:var(--navy);">${a.label}</div>
+        <div style="font-size:11px;color:var(--gray-text);">${a.desc}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ======================================================
+   TAB SWITCHING
+   ====================================================== */
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='sinta'){ renderPubChart(); }
+  if(id==='cluster'){ setTimeout(renderNetwork,100); }
+  if(id==='journey'){ setTimeout(renderGrowthChart,100); }
+}
+
+/* ======================================================
+   COUNTER ANIMATION
+   ====================================================== */
+function animateCounter(el, target, duration=1400) {
+  const start=performance.now();
+  const step=ts=>{
+    const elapsed=ts-start;
+    const progress=Math.min(elapsed/duration,1);
+    const ease=1-Math.pow(1-progress,3);
+    const current=Math.round(ease*target);
+    el.textContent=current.toLocaleString('id-ID');
+    if(progress<1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+/* ======================================================
+   INIT
+   ====================================================== */
+document.addEventListener('DOMContentLoaded', ()=>{
+  // hero counters
+  animateCounter(document.getElementById('kpi-dosen'),15);
+  animateCounter(document.getElementById('kpi-pub'),187);
+  animateCounter(document.getElementById('kpi-sit'),3274,1600);
+  animateCounter(document.getElementById('kpi-cit'),1243,1500);
+  animateCounter(document.getElementById('kpi-cls'),5,800);
+
+  renderSintaTable();
+  renderDonut();
+  setTimeout(renderPubChart,200);
+  renderClusters();
+  renderExpertise();
+  renderTimeline();
+  renderAchievements();
+  setTimeout(renderGrowthChart,200);
+  setTimeout(renderNetwork,200);
+});
+
+// re-render charts on resize
+window.addEventListener('resize', ()=>{
+  renderPubChart();
+  renderGrowthChart();
+  renderNetwork();
+});
+</script>
+</body>
+</html>
