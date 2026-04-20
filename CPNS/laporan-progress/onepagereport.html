@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPR — SITRIA | Aidil Saputra Kirsan</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0B0F1A;
+    --surface: #111827;
+    --surface2: #1A2236;
+    --accent: #38BDF8;
+    --accent2: #818CF8;
+    --accent3: #34D399;
+    --accent4: #F59E0B;
+    --accent5: #F472B6;
+    --text: #E2E8F0;
+    --text-dim: #94A3B8;
+    --text-bright: #F8FAFC;
+    --border: rgba(148,163,184,0.12);
+  }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    line-height: 1.4;
+  }
+  
+  /* UKURAN KERTAS A4 & PEMBATAS HALAMAN */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto;
+    padding: 10mm 12mm 10mm 12mm;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .page::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: radial-gradient(circle at 15% 10%, rgba(56,189,248,0.06) 0%, transparent 50%),
+                      radial-gradient(circle at 85% 85%, rgba(129,140,248,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .page::after {
+    content: ''; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(148,163,184,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(148,163,184,0.03) 1px, transparent 1px);
+    background-size: 18px 18px; pointer-events: none;
+  }
+
+  /* === HEADER === */
+  .header {
+    display: flex; align-items: stretch; gap: 12px;
+    margin-bottom: 12px; position: relative; z-index: 1; flex-shrink: 0;
+  }
+  .profile-photo {
+    width: 75px; height: 95px; border-radius: 10px; overflow: hidden;
+    border: 2px solid rgba(56,189,248,0.3); flex-shrink: 0;
+  }
+  .profile-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .header-center { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: linear-gradient(135deg, rgba(56,189,248,0.15), rgba(129,140,248,0.15));
+    border: 1px solid rgba(56,189,248,0.25); border-radius: 20px;
+    padding: 3px 10px; font-size: 7.5pt; font-weight: 700; color: var(--accent);
+    letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 4px; width: max-content;
+  }
+  .badge .dot { width: 4.5px; height: 4.5px; background: var(--accent3); border-radius: 50%; }
+  .title-main {
+    font-size: 20pt; font-weight: 800; letter-spacing: -0.5px; line-height: 1.1;
+    background: linear-gradient(135deg, var(--text-bright) 0%, var(--accent) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 3px;
+  }
+  .title-sub { font-size: 9pt; color: var(--text-dim); font-weight: 400; line-height: 1.4; }
+  .title-sub strong { color: var(--text); font-weight: 600; }
+  .header-right { flex-shrink: 0; }
+  .name-block {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 14px; min-width: 190px; height: 100%; display: flex; flex-direction: column; justify-content: center;
+  }
+  .name-block .name { font-size: 9.5pt; font-weight: 700; color: var(--text-bright); margin-bottom: 3px; }
+  .name-block .meta { font-size: 7.5pt; color: var(--text-dim); line-height: 1.5; }
+  .name-block .meta span { color: var(--accent); font-weight: 600; font-family: 'JetBrains Mono', monospace; font-size: 7pt; }
+
+  .divider { height: 1px; background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3), transparent); margin-bottom: 12px; opacity: 0.5; flex-shrink: 0; }
+
+  /* === MAIN CONTENT FLEX-GRID === */
+  .content-wrapper {
+    display: flex; gap: 12px; flex: 1; min-height: 0; 
+    position: relative; z-index: 1;
+  }
+  .column { display: flex; flex-direction: column; gap: 8px; flex: 1; min-height: 0; }
+
+  /* === CARDS === */
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 12px; position: relative; overflow: hidden;
+    display: flex; flex-direction: column; min-height: max-content;
+  }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 10px 10px 0 0; }
+  .card-blue::before { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+  .card-green::before { background: linear-gradient(90deg, var(--accent3), #2DD4BF); }
+  .card-purple::before { background: linear-gradient(90deg, var(--accent2), var(--accent5)); }
+  .card-amber::before { background: linear-gradient(90deg, var(--accent4), #FB923C); }
+  .card-pink::before { background: linear-gradient(90deg, var(--accent5), #E879F9); }
+  .card-cyan::before { background: linear-gradient(90deg, #22D3EE, var(--accent)); }
+
+  .card-title {
+    font-size: 8.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;
+    margin-bottom: 8px; display: flex; align-items: center; gap: 6px; flex-shrink: 0;
+  }
+  .card-blue .card-title { color: var(--accent); }
+  .card-green .card-title { color: var(--accent3); }
+  .card-purple .card-title { color: var(--accent2); }
+  .card-amber .card-title { color: var(--accent4); }
+  .card-pink .card-title { color: var(--accent5); }
+  .card-cyan .card-title { color: #22D3EE; }
+  .card-title svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* ISU & GAGASAN */
+  .isu-box {
+    background: rgba(244,114,182,0.06); border: 1px solid rgba(244,114,182,0.15); border-radius: 6px;
+    padding: 8px 10px; margin-bottom: 6px;
+  }
+  .isu-label { font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.5px; color: var(--accent5); font-weight: 700; margin-bottom: 3px; }
+  .isu-text { font-size: 8pt; color: var(--text); line-height: 1.3; }
+  .usg-pills { display: flex; gap: 5px; margin-top: 4px; }
+  .usg-pill {
+    font-size: 7pt; font-family: 'JetBrains Mono', monospace;
+    background: rgba(244,114,182,0.1); border: 1px solid rgba(244,114,182,0.2); border-radius: 4px;
+    padding: 2px 6px; color: var(--accent5); font-weight: 600;
+  }
+  .gagasan-box {
+    background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.15); border-radius: 6px; padding: 8px 10px;
+  }
+  .gagasan-label { font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.5px; color: var(--accent); font-weight: 700; margin-bottom: 3px; }
+  .gagasan-text { font-size: 8pt; color: var(--text); line-height: 1.3; }
+
+  /* TIMELINE */
+  .timeline { display: flex; flex-direction: column; gap: 6px; flex: 1;}
+  .tl-item { display: grid; grid-template-columns: 18px 1fr; gap: 8px; align-items: start; }
+  .tl-marker {
+    width: 18px; height: 18px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8pt; font-weight: 800; color: var(--bg); flex-shrink: 0; position: relative; z-index: 2;
+  }
+  .tl-item:not(:last-child) .tl-marker::after {
+    content: ''; position: absolute; top: 18px; left: 50%;
+    transform: translateX(-50%); width: 1.5px; height: calc(100% + 6px); background: var(--surface2); z-index: -1;
+  }
+  .tl-item:nth-child(1) .tl-marker { background: var(--accent); }
+  .tl-item:nth-child(2) .tl-marker { background: var(--accent2); }
+  .tl-item:nth-child(3) .tl-marker { background: var(--accent3); }
+  .tl-item:nth-child(4) .tl-marker { background: var(--accent4); }
+  .tl-item:nth-child(5) .tl-marker { background: var(--accent5); }
+  .tl-title { font-size: 8pt; font-weight: 700; color: var(--text-bright); line-height: 1.2; margin-bottom: 1px; }
+  .tl-date { font-size: 7pt; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+
+  /* STATS */
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .stat-item { background: var(--surface2); border-radius: 6px; padding: 8px 6px; text-align: center; }
+  .stat-number { font-size: 16pt; font-weight: 800; line-height: 1; margin-bottom: 4px; }
+  .stat-item:nth-child(1) .stat-number { color: var(--accent); }
+  .stat-item:nth-child(2) .stat-number { color: var(--accent3); }
+  .stat-item:nth-child(3) .stat-number { color: var(--accent4); }
+  .stat-item:nth-child(4) .stat-number { color: var(--accent2); }
+  .stat-label { font-size: 6pt; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; line-height: 1.2; }
+
+  /* FITUR */
+  .fitur-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+  .fitur-item {
+    display: flex; align-items: center; gap: 5px;
+    padding: 5px 8px; background: var(--surface2); border-radius: 5px;
+    font-size: 7.5pt; color: var(--text); font-weight: 500;
+  }
+  .fitur-dot { width: 4.5px; height: 4.5px; border-radius: 50%; flex-shrink: 0; }
+  .fitur-item:nth-child(1) .fitur-dot { background: var(--accent); }
+  .fitur-item:nth-child(2) .fitur-dot { background: var(--accent2); }
+  .fitur-item:nth-child(3) .fitur-dot { background: var(--accent3); }
+  .fitur-item:nth-child(4) .fitur-dot { background: var(--accent4); }
+  .fitur-item:nth-child(5) .fitur-dot { background: var(--accent5); }
+  .fitur-item:nth-child(6) .fitur-dot { background: #22D3EE; }
+  .fitur-item:nth-child(7) .fitur-dot { background: #A78BFA; }
+  .fitur-item.span-full { grid-column: 1 / -1; }
+
+  /* BENEFIT */
+  .benefit-list { display: flex; flex-direction: column; gap: 6px; }
+  .benefit-item { display: grid; grid-template-columns: auto 1fr; gap: 8px; align-items: center; }
+  .benefit-icon {
+    width: 22px; height: 22px; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center; font-size: 10pt; flex-shrink: 0;
+  }
+  .benefit-item:nth-child(1) .benefit-icon { background: rgba(56,189,248,0.15); }
+  .benefit-item:nth-child(2) .benefit-icon { background: rgba(52,211,153,0.15); }
+  .benefit-item:nth-child(3) .benefit-icon { background: rgba(245,158,11,0.15); }
+  .benefit-item:nth-child(4) .benefit-icon { background: rgba(129,140,248,0.15); }
+  .benefit-target { font-size: 8pt; font-weight: 700; color: var(--text-bright); margin-bottom: 1px; }
+  .benefit-desc { font-size: 7pt; color: var(--text-dim); line-height: 1.2; }
+
+  /* AKHLAK */
+  .akhlak-grid { display: flex; flex-wrap: wrap; gap: 4px; }
+  .akhlak-item {
+    display: flex; align-items: center; gap: 4px;
+    padding: 4px 8px; border-radius: 4px; font-size: 7.5pt; font-weight: 600;
+  }
+  .akhlak-item .letter { font-size: 9pt; font-weight: 800; font-family: 'JetBrains Mono', monospace; }
+  .ak-b  { background: rgba(56,189,248,0.1); color: var(--accent); }
+  .ak-a  { background: rgba(129,140,248,0.1); color: var(--accent2); }
+  .ak-k  { background: rgba(52,211,153,0.1); color: var(--accent3); }
+  .ak-h  { background: rgba(245,158,11,0.1); color: var(--accent4); }
+  .ak-l  { background: rgba(244,114,182,0.1); color: var(--accent5); }
+  .ak-ad { background: rgba(34,211,238,0.1); color: #22D3EE; }
+  .ak-ko { background: rgba(167,139,250,0.1); color: #A78BFA; }
+
+  /* MENTOR */
+  .mentor-row { display: flex; gap: 8px; }
+  .mentor-box { flex: 1; background: var(--surface2); border-radius: 6px; padding: 6px 10px; }
+  .mentor-label { font-size: 6pt; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; margin-bottom: 2px; }
+  .mentor-name { font-size: 8pt; color: var(--text-bright); font-weight: 600; }
+
+  /* EVIDENCE PHOTOS - GRID 2 BARIS */
+  .evidence-container { flex: 1; display: flex; flex-direction: column; }
+  .evidence-grid {
+    display: grid; 
+    grid-template-columns: repeat(6, 1fr); 
+    grid-template-rows: repeat(2, 1fr); 
+    gap: 6px; flex: 1; min-height: 0; 
+  }
+  
+  .evidence-item:nth-child(1), 
+  .evidence-item:nth-child(2), 
+  .evidence-item:nth-child(3) { grid-column: span 2; }
+  
+  .evidence-item:nth-child(4), 
+  .evidence-item:nth-child(5) { grid-column: span 3; }
+  
+  .evidence-item {
+    border-radius: 6px; overflow: hidden; border: 1px solid var(--border);
+    position: relative; display: flex; flex: 1; min-height: 0;
+  }
+  .evidence-item img { width: 100%; height: 100%; object-fit: cover; }
+  .evidence-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    padding: 15px 4px 4px 4px; font-size: 6.5pt; color: #fff; font-weight: 600; text-align: center; line-height: 1.2;
+  }
+
+  /* PROGRESS BAR */
+  .progress-wrapper {
+    margin-top: 8px; flex-shrink: 0; padding: 10px 14px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px; position: relative;
+  }
+  .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .progress-label { font-size: 8pt; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .progress-value { font-size: 11pt; font-weight: 800; color: var(--accent3); font-family: 'JetBrains Mono', monospace; }
+  .progress-bar { height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; width: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--accent3), #2DD4BF, var(--accent)); }
+  .status-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(52,211,153,0.12); border: 1px solid rgba(52,211,153,0.3);
+    border-radius: 5px; padding: 2px 8px;
+    font-size: 7.5pt; font-weight: 700; color: var(--accent3); font-family: 'JetBrains Mono', monospace;
+  }
+  .status-badge .dot { width: 5px; height: 5px; background: var(--accent3); border-radius: 50%; }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 10px; display: flex; justify-content: space-between; align-items: center;
+    position: relative; z-index: 1; flex-shrink: 0;
+  }
+  .footer-left { font-size: 7.5pt; color: var(--text-dim); }
+  .footer-left strong { color: var(--text); }
+  .footer-right { font-size: 7.5pt; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+
+  @media print {
+    body { background: var(--bg); }
+    .page { margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ====== HEADER ====== -->
+  <div class="header">
+    <div class="profile-photo">
+      <!-- GANTI: Replace photos/profil.jpg dengan foto profil Anda -->
+      <img src="photos/profil.jpg" alt="Foto Profil">
+    </div>
+    <div class="header-center">
+      <div class="badge"><span class="dot"></span> ONE PAGE REPORT — AKTUALISASI LATSAR CPNS 2026</div>
+      <div class="title-main">SITRIA</div>
+      <div class="title-sub">
+        <strong>Sistem Informasi Tridharma Akademik</strong> — Dashboard Analitik Tridharma<br>
+        Berbasis Data Multi-Sumber pada Lab Inovasi Digital FSTI ITK
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="name-block">
+        <div class="name">Aidil Saputra Kirsan, S.ST., M.Tr.Kom</div>
+        <div class="meta">
+          NIP <span>199403172025061004</span><br>
+          Dosen Asisten Ahli / Ka. Lab Inovasi Digital<br>
+          Prodi Sistem Informasi — FSTI ITK<br>
+          Angkatan VI / Kelompok I
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ====== MAIN CONTENT FLEX-GRID ====== -->
+  <div class="content-wrapper">
+
+    <!-- ====== LEFT COLUMN ====== -->
+    <div class="column">
+
+      <!-- ISU & GAGASAN -->
+      <div class="card card-pink">
+        <div class="card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Isu & Gagasan Kreatif
+        </div>
+        <div class="isu-box">
+          <div class="isu-label">Isu Terpilih</div>
+          <div class="isu-text">Pengelolaan data riset dan pengabdian dosen di Lab Inovasi Digital belum terpusat dan teranalisis</div>
+          <div class="usg-pills">
+            <span class="usg-pill">U=5</span>
+            <span class="usg-pill">S=5</span>
+            <span class="usg-pill">G=4</span>
+            <span class="usg-pill">TOTAL=14</span>
+          </div>
+        </div>
+        <div class="gagasan-box">
+          <div class="gagasan-label">Gagasan — SITRIA</div>
+          <div class="gagasan-text">Dashboard analitik web yang mengintegrasikan data riset, publikasi, dan pengabdian dosen secara otomatis dari SINTA Kemdiktisaintek, dilengkapi AI untuk pengelompokan dan analisis topik riset.</div>
+        </div>
+      </div>
+
+      <!-- KEGIATAN -->
+      <div class="card card-blue" style="flex:1;">
+        <div class="card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          Kegiatan Utama
+        </div>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-marker">1</div>
+            <div class="tl-content">
+              <div class="tl-title">Pemetaan & Pengumpulan Data Dosen</div>
+              <div class="tl-date">07 – 20 Mar 2026</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-marker">2</div>
+            <div class="tl-content">
+              <div class="tl-title">Pengembangan Sistem Pengambilan Data SINTA</div>
+              <div class="tl-date">14 – 27 Mar 2026</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-marker">3</div>
+            <div class="tl-content">
+              <div class="tl-title">Implementasi Fitur Analitik & Dashboard</div>
+              <div class="tl-date">21 Mar – 10 Apr 2026</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-marker">4</div>
+            <div class="tl-content">
+              <div class="tl-title">Dashboard Akreditasi DTPS & Pendanaan Riset</div>
+              <div class="tl-date">28 Mar – 17 Apr 2026</div>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-marker">5</div>
+            <div class="tl-content">
+              <div class="tl-title">Peluncuran, Sosialisasi & Evaluasi</div>
+              <div class="tl-date">11 – 22 Apr 2026</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MANFAAT -->
+      <div class="card card-amber">
+        <div class="card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Manfaat Utama
+        </div>
+        <div class="benefit-list">
+          <div class="benefit-item">
+            <div class="benefit-icon">📋</div>
+            <div>
+              <div class="benefit-target">Prodi SI & Bisnis Digital</div>
+              <div class="benefit-desc">Persiapan borang akreditasi lebih cepat dan akurat</div>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">📊</div>
+            <div>
+              <div class="benefit-target">Pimpinan FSTI</div>
+              <div class="benefit-desc">Monitoring kinerja Tridharma dosen secara real-time</div>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">🔬</div>
+            <div>
+              <div class="benefit-target">Dosen</div>
+              <div class="benefit-desc">Visibilitas profil riset & deteksi peluang kolaborasi</div>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">🏛️</div>
+            <div>
+              <div class="benefit-target">Institusi ITK</div>
+              <div class="benefit-desc">Model best practice, berpotensi replikasi ke prodi lain</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BERAKHLAK -->
+      <div class="card card-cyan">
+        <div class="card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Nilai BerAKHLAK
+        </div>
+        <div class="akhlak-grid">
+          <div class="akhlak-item ak-b"><span class="letter">B</span>erorientasi Pelayanan</div>
+          <div class="akhlak-item ak-a"><span class="letter">A</span>kuntabel</div>
+          <div class="akhlak-item ak-k"><span class="letter">K</span>ompeten</div>
+          <div class="akhlak-item ak-h"><span class="letter">H</span>armonis</div>
+          <div class="akhlak-item ak-l"><span class="letter">L</span>oyal</div>
+          <div class="akhlak-item ak-ad"><span class="letter">A</span>daptif</div>
+          <div class="akhlak-item ak-ko"><span class="letter">K</span>olaboratif</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ====== RIGHT COLUMN ====== -->
+    <div class="column">
+
+      <!-- OUTPUT KUNCI -->
+      <div class="card card-green">
+        <div class="card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+          Output Kunci
+        </div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">25</div>
+            <div class="stat-label">Dosen<br>Terdata</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">7</div>
+            <div class="stat-label">Fitur<br>Dashboard</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">23</div>
+            <div class="stat-label">Peserta<br>Sosialisasi</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">2</div>
+            <div class="stat-label">Prodi<br>Tercakup</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FITUR DASHBOARD -->
+      <div class="card card-purple">
+        <div class="card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          7 Fitur Dashboard
+        </div>
+        <div class="fitur-grid">
+          <div class="fitur-item"><div class="fitur-dot"></div>Analitik Utama</div>
+          <div class="fitur-item"><div class="fitur-dot"></div>Research Gallery</div>
+          <div class="fitur-item"><div class="fitur-dot"></div>AI Clustering</div>
+          <div class="fitur-item"><div class="fitur-dot"></div>Sankey Timeline</div>
+          <div class="fitur-item"><div class="fitur-dot"></div>Funding Dashboard</div>
+          <div class="fitur-item"><div class="fitur-dot"></div>DTPS Akreditasi</div>
+          <div class="fitur-item span-full"><div class="fitur-dot"></div>Expertise Finder</div>
+        </div>
+      </div>
+
+      <!-- BUKTI KEGIATAN (FOTO) -->
+      <div class="card card-green evidence-container">
+        <div class="card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          Dokumentasi Kegiatan
+        </div>
+        <div class="evidence-grid">
+          <div class="evidence-item">
+            <img src="photos/bukti_1.jpg" alt="Bukti Kegiatan 1">
+            <div class="evidence-label">Pemetaan<br>Data</div>
+          </div>
+          <div class="evidence-item">
+            <img src="photos/bukti_2.jpg" alt="Bukti Kegiatan 2">
+            <div class="evidence-label">Sistem<br>SINTA</div>
+          </div>
+          <div class="evidence-item">
+            <img src="photos/bukti_3.jpg" alt="Bukti Kegiatan 3">
+            <div class="evidence-label">Analitik &<br>Dashboard</div>
+          </div>
+          <div class="evidence-item">
+            <img src="photos/bukti_4.jpg" alt="Bukti Kegiatan 4">
+            <div class="evidence-label">DTPS &<br>Pendanaan</div>
+          </div>
+          <div class="evidence-item">
+            <img src="photos/bukti_5.jpg" alt="Bukti Kegiatan 5">
+            <div class="evidence-label">Sosialisasi<br>& Evaluasi</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MENTOR & COACH -->
+      <div class="card card-cyan">
+        <div class="mentor-row">
+          <div class="mentor-box">
+            <div class="mentor-label">Mentor</div>
+            <div class="mentor-name">Irma Fitria, S.Si., M.Si</div>
+          </div>
+          <div class="mentor-box">
+            <div class="mentor-label">Coach</div>
+            <div class="mentor-name">Mustari Kurniawati, S.IP., MPA</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ====== FULL WIDTH: PROGRESS ====== -->
+  <div class="progress-wrapper card-green::before">
+    <div style="position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 10px 10px 0 0; background: linear-gradient(90deg, var(--accent3), #2DD4BF);"></div>
+    <div class="progress-header">
+      <div class="progress-label">Status Penyelesaian — 5 Kegiatan / 25 Tahapan</div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <div class="progress-value">100%</div>
+        <div class="status-badge"><span class="dot"></span>SELESAI</div>
+      </div>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+  </div>
+
+  <!-- ====== FOOTER ====== -->
+  <div class="footer">
+    <div class="footer-left">
+      <strong>Institut Teknologi Kalimantan</strong> · Lab Inovasi Digital, FSTI · Periode 7 Maret – 22 April 2026
+    </div>
+    <div class="footer-right">
+      LATSAR CPNS GOL. III · ANGKATAN VI · 2026
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
