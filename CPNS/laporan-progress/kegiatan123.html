@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SINTA Research Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f6fa;
+    --bg2: #ffffff;
+    --bg3: #f0f2f8;
+    --bg4: #e8ebf5;
+    --border: rgba(0,0,0,0.08);
+    --border2: rgba(0,0,0,0.14);
+    --text: #1a1d2e;
+    --text2: #4a5068;
+    --text3: #8b92a8;
+    --accent: #2563eb;
+    --accent2: #1d4ed8;
+    --green: #16a34a;
+    --amber: #d97706;
+    --red: #dc2626;
+    --teal: #0891b2;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --nav-w: 220px;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15.5px; display: flex; min-height: 100vh; }
+
+  /* ── SIDEBAR ── */
+  nav {
+    width: var(--nav-w); min-height: 100vh; background: #1e2340;
+    border-right: 1px solid rgba(0,0,0,0.1); display: flex; flex-direction: column;
+    position: fixed; top: 0; left: 0; z-index: 100;
+  }
+  .nav-brand { padding: 24px 20px 20px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .nav-brand-icon { width: 32px; height: 32px; background: rgba(255,255,255,0.12); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 10px; }
+  .nav-brand-icon svg { width: 16px; height: 16px; }
+  .nav-brand-title { font-size: 14.5px; font-weight: 600; color: #f0f2ff; letter-spacing: 0.01em; }
+  .nav-brand-sub { font-size: 14.5px; color: rgba(255,255,255,0.35); margin-top: 2px; font-family: var(--mono); }
+  .nav-links { padding: 12px 10px; flex: 1; }
+  .nav-section-label { font-size: 16.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.25); padding: 12px 10px 6px; }
+  .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 7px;
+    cursor: pointer; transition: background 0.15s; color: rgba(255,255,255,0.55); font-size: 15.5px; font-weight: 400;
+    text-decoration: none; border: none; background: none; width: 100%; text-align: left; }
+  .nav-item:hover { background: rgba(255,255,255,0.08); color: #f0f2ff; }
+  .nav-item.active { background: rgba(255,255,255,0.12); color: #ffffff; }
+  .nav-item .ni-icon { width: 28px; height: 28px; border-radius: 6px; background: rgba(255,255,255,0.07);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14.5px; }
+  .nav-item.active .ni-icon { background: rgba(255,255,255,0.15); }
+  .nav-item .ni-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green);
+    margin-left: auto; flex-shrink: 0; }
+  .nav-footer { padding: 14px 20px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .nav-footer-txt { font-size: 14.5px; color: rgba(255,255,255,0.3); font-family: var(--mono); }
+  .nav-footer-txt span { color: var(--green); }
+
+  /* ── MAIN ── */
+  main { margin-left: var(--nav-w); flex: 1; min-height: 100vh; }
+  .page { display: none; padding: 36px 40px; animation: fadeIn 0.2s ease; }
+  .page.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* ── PAGE HEADER ── */
+  .page-hdr { margin-bottom: 32px; }
+  .page-hdr-breadcrumb { font-size: 14.5px; font-family: var(--mono); color: var(--text3); margin-bottom: 10px; }
+  .page-hdr-breadcrumb span { color: var(--accent); }
+  .page-hdr h1 { font-size: 30px; font-weight: 600; color: var(--text); line-height: 1.2; }
+  .page-hdr p { font-size: 14.5px; color: var(--text2); margin-top: 6px; line-height: 1.6; max-width: 600px; }
+
+  /* ── CARDS ── */
+  .card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .card-hdr { padding: 14px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+  .card-hdr-title { font-size: 16.5px; font-weight: 500; color: var(--text); }
+  .card-hdr-sub { font-size: 14.5px; color: var(--text3); font-family: var(--mono); margin-left: auto; }
+  .card-body { padding: 18px; }
+
+  /* ── STAT CARDS ── */
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
+  .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; }
+  .stat-label { font-size: 14.5px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; font-weight: 500; }
+  .stat-value { font-size: 30px; font-weight: 600; color: var(--text); font-family: var(--mono); line-height: 1; }
+  .stat-value.green { color: var(--green); }
+  .stat-value.accent { color: var(--accent); }
+  .stat-value.teal { color: var(--teal); }
+  .stat-sub { font-size: 14.5px; color: var(--text3); margin-top: 4px; }
+
+  /* ── DIR TABLE ── */
+  .dir-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .dir-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .dir-hdr { padding: 12px 16px; }
+  .dir-hdr-si { background: linear-gradient(135deg, #0d1433 0%, #131a3d 100%); border-bottom: 1px solid rgba(79,142,247,0.2); }
+  .dir-hdr-bd { background: linear-gradient(135deg, #0d2010 0%, #122914 100%); border-bottom: 1px solid rgba(52,199,111,0.2); }
+  .dir-prodi-label { font-size: 14.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; margin-bottom: 3px; font-family: var(--mono); }
+  .dir-hdr-si .dir-prodi-label { color: rgba(79,142,247,0.7); }
+  .dir-hdr-bd .dir-prodi-label { color: rgba(52,199,111,0.7); }
+  .dir-hdr-title { font-size: 16.5px; font-weight: 600; color: var(--text); }
+  .dir-hdr-jurusan { font-size: 15.5px; color: var(--text3); margin-top: 1px; }
+  .dir-pill { display: inline-block; font-size: 16.5px; padding: 2px 8px; border-radius: 20px; margin-top: 6px; font-family: var(--mono); font-weight: 500; }
+  .dir-hdr-si .dir-pill { background: rgba(79,142,247,0.15); color: #7aa6da; }
+  .dir-hdr-bd .dir-pill { background: rgba(52,199,111,0.15); color: #66bb6a; }
+  .dir-table { width: 100%; border-collapse: collapse; }
+  .dir-table tr { border-bottom: 1px solid var(--border); }
+  .dir-table tr:last-child { border-bottom: none; }
+  .dir-table tr:hover td { background: var(--bg3); }
+  .dir-table td { padding: 7px 12px; }
+  .td-num { font-size: 15.5px; color: var(--text3); width: 22px; font-family: var(--mono); }
+  .td-name { font-size: 15.5px; font-weight: 500; color: var(--text); }
+  .td-links { text-align: right; white-space: nowrap; }
+  .lbadge { font-size: 14.5px; padding: 2px 6px; border-radius: 20px; font-weight: 600; text-decoration: none; margin-left: 3px; font-family: var(--mono); }
+  .lbadge-gs { background: rgba(79,142,247,0.15); color: #7aa6da; }
+  .lbadge-sn { background: rgba(52,199,111,0.15); color: #66bb6a; }
+
+  /* ── TERMINAL ── */
+  .terminal { background: #1a1d2e; border: 1px solid rgba(0,0,0,0.12); border-radius: var(--radius); overflow: hidden; }
+  .term-bar { background: #13152a; padding: 10px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .tdot { width: 11px; height: 11px; border-radius: 50%; }
+  .term-title-txt { flex: 1; text-align: center; font-size: 15.5px; color: rgba(255,255,255,0.3); font-family: var(--mono); }
+  .term-body { padding: 18px 20px 22px; font-family: var(--mono); font-size: 14.5px; line-height: 1.8; }
+  .t-gray { color: rgba(255,255,255,0.3); }
+  .t-white { color: #c8d4f0; }
+  .t-green { color: #4ade80; }
+  .t-yellow { color: #fbbf24; }
+  .t-cyan { color: #67e8f9; }
+  .t-blue { color: #93c5fd; }
+  .t-red { color: #f87171; }
+  .t-dim { color: rgba(255,255,255,0.18); }
+  .t-line { display: block; }
+  .cursor-blink { display: inline-block; width: 7px; height: 13px; background: #c8d0e8; vertical-align: middle; animation: blink 1.1s step-end infinite; }
+  @keyframes blink { 0%,100%{opacity:1}50%{opacity:0} }
+
+  /* ── DATA TABLE ── */
+  .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .data-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .data-card-hdr { padding: 10px 14px; }
+  .data-card-hdr-si { background: linear-gradient(135deg, #0d1433 0%, #131a3d 100%); border-bottom: 1px solid rgba(79,142,247,0.2); }
+  .data-card-hdr-bd { background: linear-gradient(135deg, #0d2010 0%, #122914 100%); border-bottom: 1px solid rgba(52,199,111,0.2); }
+  .dc-label { font-size: 16.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; font-family: var(--mono); margin-bottom: 2px; }
+  .data-card-hdr-si .dc-label { color: rgba(79,142,247,0.6); }
+  .data-card-hdr-bd .dc-label { color: rgba(52,199,111,0.6); }
+  .dc-title { font-size: 14.5px; font-weight: 600; color: var(--text); }
+  .data-table { width: 100%; border-collapse: collapse; }
+  .data-table thead tr { background: var(--bg3); }
+  .data-table th { font-size: 14.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em;
+    color: var(--text3); padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--border); }
+  .data-table th.r, .data-table td.r { text-align: right; }
+  .data-table td { font-size: 14.5px; padding: 6px 10px; border-bottom: 1px solid var(--border); color: var(--text); }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--bg3); }
+  .td-nm { font-weight: 500; font-size: 15.5px; max-width: 110px; line-height: 1.3; }
+  .score-tag { background: rgba(79,142,247,0.15); color: #7aa6da; font-size: 14.5px; padding: 1px 6px; border-radius: 20px; font-family: var(--mono); font-weight: 600; }
+  .hgs { color: var(--green); font-weight: 600; font-family: var(--mono); }
+  .hsc { color: var(--teal); font-weight: 600; font-family: var(--mono); }
+  .cit-val { color: var(--text2); font-family: var(--mono); font-size: 15.5px; }
+  .data-note { font-size: 16.5px; color: var(--text3); text-align: center; padding: 8px; border-top: 1px solid var(--border); font-style: italic; font-family: var(--mono); }
+  .legend-row { display: flex; gap: 14px; justify-content: flex-end; margin-bottom: 10px; }
+  .leg { display: flex; align-items: center; gap: 5px; font-size: 14.5px; color: var(--text3); }
+  .leg-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* ── SCHEDULER ── */
+  .sched-wrap { max-width: 640px; }
+  .sched-topbar { background: #1e2340; border: 1px solid rgba(0,0,0,0.1); border-radius: var(--radius) var(--radius) 0 0;
+    padding: 12px 18px; display: flex; align-items: center; gap: 12px; }
+  .sched-icon { width: 32px; height: 32px; background: rgba(255,255,255,0.12); border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .sched-top-title { font-size: 14.5px; font-weight: 500; color: #f0f2ff; }
+  .sched-top-sub { font-size: 15.5px; color: rgba(255,255,255,0.35); font-family: var(--mono); }
+  .sched-badge { font-size: 14.5px; background: rgba(52,199,111,0.15); color: var(--green);
+    padding: 3px 9px; border-radius: 20px; font-weight: 600; margin-left: auto; font-family: var(--mono); }
+  .sched-body { border: 1px solid var(--border); border-top: none; border-radius: 0 0 var(--radius) var(--radius); overflow: hidden; }
+  .sched-section { border-bottom: 1px solid var(--border); }
+  .sched-section:last-child { border-bottom: none; }
+  .sched-sec-hdr { background: var(--bg3); padding: 5px 14px; font-size: 14.5px; font-weight: 600;
+    letter-spacing: 0.09em; text-transform: uppercase; color: var(--text3); font-family: var(--mono); }
+  .sched-row2 { display: grid; grid-template-columns: 1fr 1fr; }
+  .sched-kv { padding: 8px 14px; border-right: 1px solid var(--border); }
+  .sched-kv:last-child { border-right: none; }
+  .sched-key { font-size: 14.5px; color: var(--text3); margin-bottom: 3px; }
+  .sched-val { font-size: 14.5px; font-weight: 500; font-family: var(--mono); }
+  .sched-val.green { color: var(--green); }
+  .sched-val.blue { color: var(--accent); }
+  .sched-val.teal { color: var(--teal); }
+  .sched-timeline { padding: 12px 14px; }
+  .sched-tl-label { font-size: 16.5px; color: var(--text3); margin-bottom: 8px; }
+  .days-row { display: flex; gap: 5px; margin-bottom: 6px; }
+  .day-col { flex: 1; text-align: center; }
+  .day-lbl { font-size: 16.5px; color: var(--text3); margin-bottom: 4px; }
+  .day-slots { display: flex; flex-direction: column; gap: 2px; }
+  .slot { height: 11px; border-radius: 2px; }
+  .slot-on { background: var(--accent2); }
+  .slot-half { background: rgba(79,142,247,0.35); }
+  .slot-off { background: var(--bg3); border: 1px solid var(--border); }
+  .days-legend { display: flex; gap: 14px; font-size: 14.5px; color: var(--text3); }
+  .days-legend span { display: flex; align-items: center; gap: 4px; }
+  .dl-box { width: 9px; height: 9px; border-radius: 2px; }
+  .sched-tasks { padding: 10px 14px; display: flex; flex-direction: column; gap: 8px; }
+  .task-row { display: flex; align-items: center; gap: 10px; }
+  .task-num-badge { width: 18px; height: 18px; border-radius: 50%; background: rgba(79,142,247,0.15);
+    color: var(--accent); font-size: 14.5px; font-weight: 600; display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; font-family: var(--mono); }
+  .task-info { flex: 1; }
+  .task-nm { font-size: 15.5px; font-weight: 500; color: var(--text); }
+  .task-ds { font-size: 16.5px; color: var(--text3); }
+  .task-dur { font-family: var(--mono); font-size: 15.5px; color: var(--teal); flex-shrink: 0; }
+  .task-arrow { font-size: 16.5px; color: var(--text3); padding: 2px 0 2px 28px; }
+  .sched-retry { padding: 8px 14px; display: flex; flex-direction: column; gap: 6px; }
+  .retry-item { display: flex; align-items: center; gap: 10px; }
+  .retry-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .retry-txt { font-size: 15.5px; color: var(--text2); }
+  .retry-txt code { font-family: var(--mono); font-size: 16.5px; color: var(--text); font-weight: 500; }
+
+  /* ── HOME PAGE ── */
+  .home-hero { background: linear-gradient(135deg, #1e2340 0%, #2d3a6b 100%); border: 1px solid rgba(0,0,0,0.1); border-radius: var(--radius); padding: 28px 32px; margin-bottom: 28px; position: relative; overflow: hidden; }
+  .home-hero::before { content: ''; position: absolute; top: -40px; right: -40px; width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%); pointer-events: none; }
+  .home-hero-tag { font-size: 15.5px; font-family: var(--mono); color: #86efac; letter-spacing: 0.1em;
+    text-transform: uppercase; font-weight: 600; margin-bottom: 12px; }
+  .home-hero h1 { font-size: 34px; font-weight: 600; color: #f0f4ff; line-height: 1.2; margin-bottom: 10px; }
+  .home-hero h1 em { font-style: normal; color: #93c5fd; }
+  .home-hero p { font-size: 14.5px; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 520px; }
+  .home-pages-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 28px; }
+  .home-pg-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 16px 18px; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+  .home-pg-card:hover { border-color: var(--accent); background: var(--bg3); }
+  .home-pg-num { font-size: 15.5px; font-family: var(--mono); color: var(--text3); margin-bottom: 8px; }
+  .home-pg-icon { font-size: 20px; margin-bottom: 8px; }
+  .home-pg-title { font-size: 14.5px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .home-pg-desc { font-size: 15.5px; color: var(--text3); line-height: 1.5; }
+  .home-stack { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; }
+  .home-stack-title { font-size: 14.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text3); margin-bottom: 12px; font-family: var(--mono); }
+  .stack-items { display: flex; flex-wrap: wrap; gap: 8px; }
+  .stack-tag { font-size: 14.5px; font-family: var(--mono); background: var(--bg3); border: 1px solid var(--border);
+    color: var(--text2); padding: 4px 10px; border-radius: 6px; font-weight: 500; }
+  .stack-tag.hi { border-color: rgba(79,142,247,0.3); color: var(--accent); }
+
+  /* ── MISC ── */
+  .row2-gap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .section-gap { margin-bottom: 20px; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-brand-icon">
+      <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="white" stroke-width="1.2"/><path d="M8 4.5V8.5L10.5 10" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>
+    </div>
+    <div class="nav-brand-title">SINTA Dashboard</div>
+    <div class="nav-brand-sub">TEIB · 2024/2025</div>
+  </div>
+  <div class="nav-links">
+    <div class="nav-section-label">Navigasi</div>
+    <button class="nav-item active" onclick="showPage('home', this)">
+      <span class="ni-icon">🏠</span> Beranda
+    </button>
+    <button class="nav-item" onclick="showPage('direktori', this)">
+      <span class="ni-icon">👥</span> Direktori Dosen
+    </button>
+    <button class="nav-item" onclick="showPage('scraper', this)">
+      <span class="ni-icon">⚡</span> Scraper SINTA
+      <span class="ni-dot"></span>
+    </button>
+    <button class="nav-item" onclick="showPage('data', this)">
+      <span class="ni-icon">📊</span> Data Tersimpan
+    </button>
+    <button class="nav-item" onclick="showPage('scheduler', this)">
+      <span class="ni-icon">🕐</span> Task Scheduler
+    </button>
+  </div>
+  <div class="nav-footer">
+    <div class="nav-footer-txt">Status: <span>● Online</span></div>
+    <div class="nav-footer-txt" style="margin-top:2px">Update: Apr 2025</div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <!-- ═══════ HOME ═══════ -->
+  <div class="page active" id="page-home">
+    <div class="page-hdr">
+      <div class="page-hdr-breadcrumb">sinta-dashboard / <span>beranda</span></div>
+      <h1>Research Data System</h1>
+      <p>Platform monitoring dan pengumpulan data publikasi ilmiah dosen Program Studi Sistem Informasi dan Bisnis Digital, Jurusan TEIB.</p>
+    </div>
+
+    <div class="home-hero">
+      <div class="home-hero-tag">● Sistem Aktif</div>
+      <h1>SINTA Auto<br><em>Scraper</em> & Dashboard</h1>
+      <p>Sistem pengambilan dan pemantauan data penelitian dosen secara otomatis dari platform SINTA Kemdiktisaintek dan Google Scholar, dengan penjadwalan harian.</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Dosen</div>
+        <div class="stat-value accent">25</div>
+        <div class="stat-sub">SI (15) + BD (10)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Program Studi</div>
+        <div class="stat-value green">2</div>
+        <div class="stat-sub">SI & Bisnis Digital</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Jadwal Scraping</div>
+        <div class="stat-value teal">2×</div>
+        <div class="stat-sub">per hari otomatis</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Sumber Data</div>
+        <div class="stat-value" style="font-size:18px;margin-top:4px">SINTA + GS</div>
+        <div class="stat-sub">Kemdiktisaintek</div>
+      </div>
+    </div>
+
+    <div class="home-pages-grid">
+      <div class="home-pg-card" onclick="showPage('direktori', document.querySelector('[onclick*=direktori]'))">
+        <div class="home-pg-num">01</div>
+        <div class="home-pg-icon">👥</div>
+        <div class="home-pg-title">Direktori Dosen</div>
+        <div class="home-pg-desc">Daftar lengkap dosen SI & Bisnis Digital beserta tautan profil Google Scholar dan SINTA.</div>
+      </div>
+      <div class="home-pg-card" onclick="showPage('scraper', document.querySelector('[onclick*=scraper]'))">
+        <div class="home-pg-num">02</div>
+        <div class="home-pg-icon">⚡</div>
+        <div class="home-pg-title">Scraper SINTA</div>
+        <div class="home-pg-desc">Program pengambilan data SINTA yang berjalan otomatis menggunakan Python dengan log eksekusi real-time.</div>
+      </div>
+      <div class="home-pg-card" onclick="showPage('data', document.querySelector('[onclick*=data]'))">
+        <div class="home-pg-num">03</div>
+        <div class="home-pg-icon">📊</div>
+        <div class="home-pg-title">Data SINTA Tersimpan</div>
+        <div class="home-pg-desc">Hasil scraping berupa SINTA Score, H-Index Scholar & Scopus, dan total sitasi per dosen.</div>
+      </div>
+      <div class="home-pg-card" onclick="showPage('scheduler', document.querySelector('[onclick*=scheduler]'))">
+        <div class="home-pg-num">04</div>
+        <div class="home-pg-icon">🕐</div>
+        <div class="home-pg-title">Task Scheduler</div>
+        <div class="home-pg-desc">Konfigurasi penjadwalan otomatis harian dengan retry handling dan logging eksekusi.</div>
+      </div>
+    </div>
+
+    <div class="home-stack">
+      <div class="home-stack-title">Tech Stack</div>
+      <div class="stack-items">
+        <span class="stack-tag hi">Python 3.x</span>
+        <span class="stack-tag hi">requests</span>
+        <span class="stack-tag hi">BeautifulSoup4</span>
+        <span class="stack-tag hi">schedule</span>
+        <span class="stack-tag">JSON</span>
+        <span class="stack-tag">SINTA Kemdiktisaintek</span>
+        <span class="stack-tag">Google Scholar</span>
+        <span class="stack-tag">Windows Task Scheduler</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ DIREKTORI ═══════ -->
+  <div class="page" id="page-direktori">
+    <div class="page-hdr">
+      <div class="page-hdr-breadcrumb">sinta-dashboard / <span>direktori-dosen</span></div>
+      <h1>Direktori Dosen</h1>
+      <p>Data dosen Program Studi Sistem Informasi dan Bisnis Digital beserta tautan profil Google Scholar dan SINTA masing-masing dosen.</p>
+    </div>
+
+    <div class="stats-grid" style="grid-template-columns:1fr 1fr 1fr 1fr">
+      <div class="stat-card"><div class="stat-label">Dosen SI</div><div class="stat-value accent">15</div></div>
+      <div class="stat-card"><div class="stat-label">Dosen BD</div><div class="stat-value green">10</div></div>
+      <div class="stat-card"><div class="stat-label">Total</div><div class="stat-value">25</div></div>
+      <div class="stat-card"><div class="stat-label">Jurusan</div><div class="stat-value" style="font-size:13px;margin-top:6px">TEIB</div></div>
+    </div>
+
+    <div class="dir-grid">
+      <!-- SI -->
+      <div class="dir-card">
+        <div class="dir-hdr dir-hdr-si">
+          <div class="dir-prodi-label">Program Studi</div>
+          <div class="dir-hdr-title">Sistem Informasi</div>
+          <div class="dir-hdr-jurusan">Teknik Elektro, Informatika, dan Bisnis</div>
+          <span class="dir-pill">15 Dosen</span>
+        </div>
+        <table class="dir-table">
+          <tr><td class="td-num">1</td><td class="td-name">Yuyun Tri Wiranti</td><td class="td-links"><a href="https://scholar.google.com/citations?user=-_VrWf0AAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/5978281" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">2</td><td class="td-name">Aidil Saputra Kirsan</td><td class="td-links"><a href="https://scholar.google.com/citations?user=lzQbWuEAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6760340" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">3</td><td class="td-name">Arif Wicaksono Septyanto</td><td class="td-links"><a href="https://scholar.google.com/citations?user=j9grU1wAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6741019" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">4</td><td class="td-name">Henokh Lugo Hariyanto</td><td class="td-links"><a href="https://scholar.google.com/citations?user=0-iFtfUAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6807418" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">5</td><td class="td-name">Lovinta Happy Atrinawati</td><td class="td-links"><a href="https://scholar.google.com/citations?user=hoRXNb0AAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/5977894" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">6</td><td class="td-name">Vika Fitratunnany Insanittaqwa</td><td class="td-links"><a href="https://scholar.google.com/citations?user=KSbR3ScAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6784235" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">7</td><td class="td-name">Hendy Indrawan Sunardi</td><td class="td-links"><a href="https://scholar.google.com/citations?user=GX3ZBk4AAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6784468" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">8</td><td class="td-name">Dwi Nur Amalia</td><td class="td-links"><a href="https://scholar.google.com/citations?user=eJ1lzuIAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6761367" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">9</td><td class="td-name">Dwi Arief Prambudi</td><td class="td-links"><a href="https://scholar.google.com/citations?user=nLJNVHEAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6784358" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">10</td><td class="td-name">I Putu Deny Arthawan S. P.</td><td class="td-links"><a href="https://scholar.google.com/citations?user=asIeRU8AAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6701825" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">11</td><td class="td-name">M. Ihsan Alfani Putera</td><td class="td-links"><a href="https://scholar.google.com/citations?user=UtyPlF4AAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6681873" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">12</td><td class="td-name">Sri Rahayu Natasia</td><td class="td-links"><a href="https://scholar.google.com/citations?user=wCiwTCQAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/5983406" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">13</td><td class="td-name">Nursanti Novi Arisa</td><td class="td-links"><a href="https://scholar.google.com/citations?user=8qByKOIAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6757976" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">14</td><td class="td-name">Rosa Eliviani</td><td class="td-links"><a href="https://scholar.google.com/citations?user=Mf5WlWgAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6876629" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">15</td><td class="td-name">M. Gilvy Langgawan Putra</td><td class="td-links"><a href="https://scholar.google.com/citations?user=6khCqswAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6201079" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+        </table>
+      </div>
+      <!-- BD -->
+      <div class="dir-card">
+        <div class="dir-hdr dir-hdr-bd">
+          <div class="dir-prodi-label">Program Studi</div>
+          <div class="dir-hdr-title">Bisnis Digital</div>
+          <div class="dir-hdr-jurusan">Teknik Elektro, Informatika, dan Bisnis</div>
+          <span class="dir-pill">10 Dosen</span>
+        </div>
+        <table class="dir-table">
+          <tr><td class="td-num">1</td><td class="td-name">Agung Prabowo, S.E., M.M.</td><td class="td-links"><a href="https://scholar.google.com/citations?user=o26fKxsAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6803848" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">2</td><td class="td-name">Bayu Nur Abdallah, S.T., M.T.</td><td class="td-links"><a href="https://scholar.google.com/citations?user=B-X72lYAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6686868" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">3</td><td class="td-name">Deli Yansyah, S.E., M.Acc., Ak.</td><td class="td-links"><a href="https://scholar.google.com/citations?user=iElKjmcAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6807445" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">4</td><td class="td-name">Eka Krisna Santoso, S.Si., MBA.</td><td class="td-links"><a href="https://scholar.google.com/citations?user=Nf-D9bMAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6788207" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">5</td><td class="td-name">Fegy Sukris Sri Andriany, M.Ak.</td><td class="td-links"><a href="https://scholar.google.com/citations?user=j7M59X0AAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6957012" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">6</td><td class="td-name">Ir. Riovan Styx Roring, S.T., M.Kom.</td><td class="td-links"><a href="https://scholar.google.com/citations?user=fR2t1e8AAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6958596" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">7</td><td class="td-name">Khairunnisa Rahmah, S.E., M.M.</td><td class="td-links"><a href="https://scholar.google.com/citations?user=N16pEisAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6798949" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">8</td><td class="td-name">Luh Made Wisnu Satyaninggrat</td><td class="td-links"><a href="https://scholar.google.com/citations?user=0qUf3rAAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6793011" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">9</td><td class="td-name">Muhammad Ikhsan Alif S., S.E., M.Sc.</td><td class="td-links"><a href="https://scholar.google.com/citations?user=M92vSjMAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6780638" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+          <tr><td class="td-num">10</td><td class="td-name">Prasis Damai Nursyam Hamijaya</td><td class="td-links"><a href="https://scholar.google.com/citations?user=k537SLsAAAAJ" target="_blank" class="lbadge lbadge-gs">GS</a><a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6790854" target="_blank" class="lbadge lbadge-sn">SINTA</a></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SCRAPER ═══════ -->
+  <div class="page" id="page-scraper">
+    <div class="page-hdr">
+      <div class="page-hdr-breadcrumb">sinta-dashboard / <span>scraper-sinta</span></div>
+      <h1>Program Scraper SINTA</h1>
+      <p>Program Python yang mengambil data penelitian dosen dari SINTA Kemdiktisaintek dan Google Scholar secara otomatis.</p>
+    </div>
+
+    <div class="terminal">
+      <div class="term-bar">
+        <span class="tdot" style="background:#ff5f57"></span>
+        <span class="tdot" style="background:#ffbd2e"></span>
+        <span class="tdot" style="background:#28c840"></span>
+        <span class="term-title-txt">sinta_scraper.py — python3</span>
+      </div>
+      <div class="term-body">
+        <span class="t-line"><span class="t-gray">$</span> <span class="t-white">python3 sinta_scraper.py --prodi SI BD</span></span>
+        <span class="t-line">&nbsp;</span>
+        <span class="t-line"><span class="t-cyan">╔══════════════════════════════════════╗</span></span>
+        <span class="t-line"><span class="t-cyan">║</span>  <span class="t-yellow">SINTA Data Scraper</span>  <span class="t-dim">v1.0.0</span>           <span class="t-cyan">║</span></span>
+        <span class="t-line"><span class="t-cyan">╚══════════════════════════════════════╝</span></span>
+        <span class="t-line">&nbsp;</span>
+        <span class="t-line"><span class="t-gray">[INFO]</span> <span class="t-white">Target prodi  :</span> <span class="t-yellow">SI</span><span class="t-dim">, </span><span class="t-yellow">BD</span></span>
+        <span class="t-line"><span class="t-gray">[INFO]</span> <span class="t-white">Total dosen   :</span> <span class="t-green">25 dosen</span></span>
+        <span class="t-line"><span class="t-gray">[INFO]</span> <span class="t-white">Output        :</span> <span class="t-blue">lecturers.json</span></span>
+        <span class="t-line"><span class="t-gray">[INFO]</span> <span class="t-white">Memulai pengambilan data...</span></span>
+        <span class="t-line">&nbsp;</span>
+        <span class="t-line"><span class="t-dim">──────────────────── SI ────────────────────</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 1/15]</span> <span class="t-white">Yuyun Tri Wiranti</span>             <span class="t-dim">0.3s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 2/15]</span> <span class="t-white">Aidil Saputra Kirsan</span>          <span class="t-dim">0.4s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 3/15]</span> <span class="t-white">Arif Wicaksono Septyanto</span>      <span class="t-dim">0.3s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 4/15]</span> <span class="t-white">Henokh Lugo Hariyanto</span>         <span class="t-dim">0.5s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 5/15]</span> <span class="t-white">Lovinta Happy Atrinawati</span>      <span class="t-dim">0.3s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 6/15]</span> <span class="t-white">Vika Fitratunnany Insanittaqwa</span> <span class="t-dim">0.4s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 7/15]</span> <span class="t-white">Hendy Indrawan Sunardi</span>        <span class="t-dim">0.4s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 8/15]</span> <span class="t-white">Dwi Nur Amalia</span>                <span class="t-dim">0.3s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 9/15]</span> <span class="t-white">Dwi Arief Prambudi</span>            <span class="t-dim">0.5s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[10/15]</span> <span class="t-white">I Putu Deny Arthawan S. P.</span>    <span class="t-dim">0.4s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[11/15]</span> <span class="t-white">M. Ihsan Alfani Putera</span>        <span class="t-dim">0.3s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[12/15]</span> <span class="t-white">Sri Rahayu Natasia</span>            <span class="t-dim">0.4s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[13/15]</span> <span class="t-white">Nursanti Novi Arisa</span>           <span class="t-dim">0.3s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[14/15]</span> <span class="t-white">Rosa Eliviani</span>                 <span class="t-dim">0.5s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[15/15]</span> <span class="t-white">M. Gilvy Langgawan Putra</span>      <span class="t-dim">0.3s</span></span>
+        <span class="t-line">&nbsp;</span>
+        <span class="t-line"><span class="t-dim">──────────────────── BD ────────────────────</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 1/10]</span> <span class="t-white">Agung Prabowo</span>                 <span class="t-dim">0.4s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 2/10]</span> <span class="t-white">Bayu Nur Abdallah</span>             <span class="t-dim">0.3s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 3/10]</span> <span class="t-white">Deli Yansyah</span>                  <span class="t-dim">0.5s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 4/10]</span> <span class="t-white">Eka Krisna Santoso</span>            <span class="t-dim">0.4s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 5/10]</span> <span class="t-white">Fegy Sukris Sri Andriany</span>      <span class="t-dim">0.3s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 6/10]</span> <span class="t-white">Ir. Riovan Styx Roring</span>        <span class="t-dim">0.4s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 7/10]</span> <span class="t-white">Khairunnisa Rahmah</span>            <span class="t-dim">0.3s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 8/10]</span> <span class="t-white">Luh Made Wisnu Satyaninggrat</span>  <span class="t-dim">0.5s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[ 9/10]</span> <span class="t-white">Muhammad Ikhsan Alif S.</span>       <span class="t-dim">0.4s</span></span>
+        <span class="t-line"><span class="t-green">  ✔</span> <span class="t-dim">[10/10]</span> <span class="t-white">Prasis Damai Nursyam Hamijaya</span> <span class="t-dim">0.3s</span></span>
+        <span class="t-line">&nbsp;</span>
+        <span class="t-line"><span class="t-dim">────────────────────────────────────────────</span></span>
+        <span class="t-line"><span class="t-gray">[INFO]</span> <span class="t-white">Progress  <span style="color:var(--green)">████████████████████</span> 25/25</span></span>
+        <span class="t-line"><span class="t-gray">[INFO]</span> <span class="t-white">Berhasil  : </span><span class="t-green">25 dosen</span>  <span class="t-white">Gagal : </span><span class="t-red">0</span></span>
+        <span class="t-line"><span class="t-gray">[DONE]</span> <span class="t-green">Data tersimpan →</span> <span class="t-blue">lecturers.json</span>  <span class="t-dim">1.2s total</span></span>
+        <span class="t-line">&nbsp;</span>
+        <span class="t-line"><span class="t-gray">$</span> <span class="cursor-blink"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ DATA ═══════ -->
+  <div class="page" id="page-data">
+    <div class="page-hdr">
+      <div class="page-hdr-breadcrumb">sinta-dashboard / <span>data-sinta</span></div>
+      <h1>Data SINTA Tersimpan</h1>
+      <p>Hasil scraping yang tersimpan di sistem — SINTA Score, H-Index Google Scholar & Scopus, dan total sitasi per dosen.</p>
+    </div>
+
+    <div class="legend-row">
+      <span class="leg"><span class="leg-dot" style="background:#34c76f"></span> H-Index Scholar</span>
+      <span class="leg"><span class="leg-dot" style="background:#3ecfcf"></span> H-Index Scopus</span>
+      <span class="leg"><span class="leg-dot" style="background:#4f8ef7"></span> SINTA Score</span>
+    </div>
+
+    <div class="data-grid">
+      <div class="data-card">
+        <div class="data-card-hdr data-card-hdr-si">
+          <div class="dc-label">Program Studi</div>
+          <div class="dc-title">Sistem Informasi</div>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Dosen</th><th class="r">Score</th><th class="r">H-GS</th><th class="r">H-SC</th><th class="r">Sitasi</th></tr></thead>
+          <tbody>
+            <tr><td class="td-nm">Yuyun Tri Wiranti</td><td class="r"><span class="score-tag">312</span></td><td class="r hgs">5</td><td class="r hsc">1</td><td class="r cit-val">148</td></tr>
+            <tr><td class="td-nm">Aidil Saputra Kirsan</td><td class="r"><span class="score-tag">289</span></td><td class="r hgs">4</td><td class="r hsc">2</td><td class="r cit-val">97</td></tr>
+            <tr><td class="td-nm">Arif Wicaksono Septyanto</td><td class="r"><span class="score-tag">445</span></td><td class="r hgs">7</td><td class="r hsc">3</td><td class="r cit-val">312</td></tr>
+            <tr><td class="td-nm">Henokh Lugo Hariyanto</td><td class="r"><span class="score-tag">198</span></td><td class="r hgs">4</td><td class="r hsc">1</td><td class="r cit-val">89</td></tr>
+            <tr><td class="td-nm">Lovinta Happy Atrinawati</td><td class="r"><span class="score-tag">521</span></td><td class="r hgs">8</td><td class="r hsc">3</td><td class="r cit-val">402</td></tr>
+            <tr><td class="td-nm">Vika Fitratunnany I.</td><td class="r"><span class="score-tag">176</span></td><td class="r hgs">3</td><td class="r hsc">1</td><td class="r cit-val">67</td></tr>
+            <tr><td class="td-nm">Hendy Indrawan Sunardi</td><td class="r"><span class="score-tag">234</span></td><td class="r hgs">4</td><td class="r hsc">2</td><td class="r cit-val">112</td></tr>
+            <tr><td class="td-nm">Dwi Nur Amalia</td><td class="r"><span class="score-tag">167</span></td><td class="r hgs">3</td><td class="r hsc">1</td><td class="r cit-val">54</td></tr>
+            <tr><td class="td-nm">Dwi Arief Prambudi</td><td class="r"><span class="score-tag">203</span></td><td class="r hgs">4</td><td class="r hsc">1</td><td class="r cit-val">91</td></tr>
+            <tr><td class="td-nm">I Putu Deny A. S. P.</td><td class="r"><span class="score-tag">387</span></td><td class="r hgs">6</td><td class="r hsc">2</td><td class="r cit-val">224</td></tr>
+            <tr><td class="td-nm">M. Ihsan Alfani Putera</td><td class="r"><span class="score-tag">344</span></td><td class="r hgs">5</td><td class="r hsc">2</td><td class="r cit-val">187</td></tr>
+            <tr><td class="td-nm">Sri Rahayu Natasia</td><td class="r"><span class="score-tag">278</span></td><td class="r hgs">5</td><td class="r hsc">1</td><td class="r cit-val">134</td></tr>
+            <tr><td class="td-nm">Nursanti Novi Arisa</td><td class="r"><span class="score-tag">156</span></td><td class="r hgs">3</td><td class="r hsc">0</td><td class="r cit-val">48</td></tr>
+            <tr><td class="td-nm">Rosa Eliviani</td><td class="r"><span class="score-tag">142</span></td><td class="r hgs">2</td><td class="r hsc">0</td><td class="r cit-val">31</td></tr>
+            <tr><td class="td-nm">M. Gilvy Langgawan Putra</td><td class="r"><span class="score-tag">612</span></td><td class="r hgs">9</td><td class="r hsc">4</td><td class="r cit-val">541</td></tr>
+          </tbody>
+        </table>
+        <div class="data-note">* Data simulasi — ganti dengan hasil scraper asli</div>
+      </div>
+      <div class="data-card">
+        <div class="data-card-hdr data-card-hdr-bd">
+          <div class="dc-label">Program Studi</div>
+          <div class="dc-title">Bisnis Digital</div>
+        </div>
+        <table class="data-table">
+          <thead><tr><th>Dosen</th><th class="r">Score</th><th class="r">H-GS</th><th class="r">H-SC</th><th class="r">Sitasi</th></tr></thead>
+          <tbody>
+            <tr><td class="td-nm">Agung Prabowo</td><td class="r"><span class="score-tag">298</span></td><td class="r hgs">5</td><td class="r hsc">2</td><td class="r cit-val">163</td></tr>
+            <tr><td class="td-nm">Bayu Nur Abdallah</td><td class="r"><span class="score-tag">374</span></td><td class="r hgs">6</td><td class="r hsc">3</td><td class="r cit-val">245</td></tr>
+            <tr><td class="td-nm">Deli Yansyah</td><td class="r"><span class="score-tag">187</span></td><td class="r hgs">3</td><td class="r hsc">1</td><td class="r cit-val">72</td></tr>
+            <tr><td class="td-nm">Eka Krisna Santoso</td><td class="r"><span class="score-tag">256</span></td><td class="r hgs">4</td><td class="r hsc">2</td><td class="r cit-val">118</td></tr>
+            <tr><td class="td-nm">Fegy Sukris Sri Andriany</td><td class="r"><span class="score-tag">143</span></td><td class="r hgs">2</td><td class="r hsc">0</td><td class="r cit-val">44</td></tr>
+            <tr><td class="td-nm">Ir. Riovan Styx Roring</td><td class="r"><span class="score-tag">192</span></td><td class="r hgs">3</td><td class="r hsc">1</td><td class="r cit-val">83</td></tr>
+            <tr><td class="td-nm">Khairunnisa Rahmah</td><td class="r"><span class="score-tag">221</span></td><td class="r hgs">4</td><td class="r hsc">1</td><td class="r cit-val">97</td></tr>
+            <tr><td class="td-nm">Luh Made Wisnu S.</td><td class="r"><span class="score-tag">318</span></td><td class="r hgs">5</td><td class="r hsc">2</td><td class="r cit-val">178</td></tr>
+            <tr><td class="td-nm">Muhammad Ikhsan Alif S.</td><td class="r"><span class="score-tag">267</span></td><td class="r hgs">4</td><td class="r hsc">2</td><td class="r cit-val">129</td></tr>
+            <tr><td class="td-nm">Prasis Damai N. H.</td><td class="r"><span class="score-tag">175</span></td><td class="r hgs">3</td><td class="r hsc">1</td><td class="r cit-val">61</td></tr>
+          </tbody>
+        </table>
+        <div class="data-note">* Data simulasi — ganti dengan hasil scraper asli</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SCHEDULER ═══════ -->
+  <div class="page" id="page-scheduler">
+    <div class="page-hdr">
+      <div class="page-hdr-breadcrumb">sinta-dashboard / <span>task-scheduler</span></div>
+      <h1>Konfigurasi Task Scheduler</h1>
+      <p>Pengaturan penjadwalan otomatis untuk menjalankan scraper SINTA setiap hari tanpa intervensi manual.</p>
+    </div>
+
+    <div class="sched-wrap">
+      <div class="sched-topbar">
+        <div class="sched-icon">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="#7aa6da" stroke-width="1.2"/><path d="M8 4.5V8.5L10.5 10" stroke="#7aa6da" stroke-width="1.2" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div class="sched-top-title">SINTA Auto Scheduler</div>
+          <div class="sched-top-sub">sinta_scheduler.py · Python schedule v1.2</div>
+        </div>
+        <span class="sched-badge">● ACTIVE</span>
+      </div>
+      <div class="sched-body">
+        <div class="sched-section">
+          <div class="sched-sec-hdr">Konfigurasi Utama</div>
+          <div class="sched-row2">
+            <div class="sched-kv"><div class="sched-key">Frekuensi</div><div class="sched-val green">Harian</div></div>
+            <div class="sched-kv"><div class="sched-key">Timezone</div><div class="sched-val">Asia/Makassar</div></div>
+          </div>
+          <div class="sched-row2">
+            <div class="sched-kv"><div class="sched-key">Run pertama</div><div class="sched-val blue">02:00 WITA</div></div>
+            <div class="sched-kv"><div class="sched-key">Run kedua</div><div class="sched-val blue">14:00 WITA</div></div>
+          </div>
+          <div class="sched-row2">
+            <div class="sched-kv"><div class="sched-key">Output</div><div class="sched-val teal">lecturers.json</div></div>
+            <div class="sched-kv"><div class="sched-key">Log file</div><div class="sched-val teal">scraper.log</div></div>
+          </div>
+        </div>
+        <div class="sched-section">
+          <div class="sched-sec-hdr">Jadwal Mingguan</div>
+          <div class="sched-timeline">
+            <div class="sched-tl-label">Slot eksekusi harian (pagi 02.00 · siang 14.00)</div>
+            <div class="days-row">
+              <div class="day-col"><div class="day-lbl">Sen</div><div class="day-slots"><div class="slot slot-on"></div><div class="slot slot-on"></div></div></div>
+              <div class="day-col"><div class="day-lbl">Sel</div><div class="day-slots"><div class="slot slot-on"></div><div class="slot slot-on"></div></div></div>
+              <div class="day-col"><div class="day-lbl">Rab</div><div class="day-slots"><div class="slot slot-on"></div><div class="slot slot-on"></div></div></div>
+              <div class="day-col"><div class="day-lbl">Kam</div><div class="day-slots"><div class="slot slot-on"></div><div class="slot slot-on"></div></div></div>
+              <div class="day-col"><div class="day-lbl">Jum</div><div class="day-slots"><div class="slot slot-on"></div><div class="slot slot-on"></div></div></div>
+              <div class="day-col"><div class="day-lbl">Sab</div><div class="day-slots"><div class="slot slot-half"></div><div class="slot slot-off"></div></div></div>
+              <div class="day-col"><div class="day-lbl">Min</div><div class="day-slots"><div class="slot slot-off"></div><div class="slot slot-off"></div></div></div>
+            </div>
+            <div class="days-legend" style="margin-top:8px">
+              <span><span class="dl-box" style="background:var(--accent2)"></span> Pagi + Siang</span>
+              <span><span class="dl-box" style="background:rgba(79,142,247,0.35)"></span> Pagi saja</span>
+              <span><span class="dl-box" style="background:var(--bg3);border:1px solid var(--border)"></span> Libur</span>
+            </div>
+          </div>
+        </div>
+        <div class="sched-section">
+          <div class="sched-sec-hdr">Urutan Task</div>
+          <div class="sched-tasks">
+            <div class="task-row"><div class="task-num-badge">1</div><div class="task-info"><div class="task-nm">Scraping SINTA</div><div class="task-ds">Ambil score, h-index, citations per dosen</div></div><div class="task-dur">~45s</div></div>
+            <div class="task-arrow">↓ selesai</div>
+            <div class="task-row"><div class="task-num-badge">2</div><div class="task-info"><div class="task-nm">Scraping Google Scholar</div><div class="task-ds">Sinkronisasi data publikasi & sitasi</div></div><div class="task-dur">~30s</div></div>
+            <div class="task-arrow">↓ selesai</div>
+            <div class="task-row"><div class="task-num-badge">3</div><div class="task-info"><div class="task-nm">Simpan ke lecturers.json</div><div class="task-ds">Merge & update data lokal</div></div><div class="task-dur">~2s</div></div>
+            <div class="task-arrow">↓ selesai</div>
+            <div class="task-row"><div class="task-num-badge">4</div><div class="task-info"><div class="task-nm">Kirim notifikasi log</div><div class="task-ds">Catat hasil ke scraper.log</div></div><div class="task-dur">~1s</div></div>
+          </div>
+        </div>
+        <div class="sched-section">
+          <div class="sched-sec-hdr">Error Handling</div>
+          <div class="sched-retry">
+            <div class="retry-item"><div class="retry-dot" style="background:#f5a623"></div><div class="retry-txt">Retry otomatis jika gagal: <code>3×</code> dengan jeda <code>60 detik</code></div></div>
+            <div class="retry-item"><div class="retry-dot" style="background:#f04f4f"></div><div class="retry-txt">Timeout per request: <code>30 detik</code></div></div>
+            <div class="retry-item"><div class="retry-dot" style="background:#34c76f"></div><div class="retry-txt">Semua error dicatat di <code>scraper.log</code></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  function showPage(id, btn) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    if (btn) btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
