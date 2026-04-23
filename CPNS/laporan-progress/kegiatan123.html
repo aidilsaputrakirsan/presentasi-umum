@@ -61,9 +61,25 @@
 
   /* ── MAIN ── */
   main { margin-left: var(--nav-w); flex: 1; min-height: 100vh; }
-  .page { display: none; padding: 36px 40px; animation: fadeIn 0.2s ease; }
+  .page { display: none; padding: 36px 40px; }
   .page.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  /* ── easing reference: cubic-bezier(0.16,1,0.3,1) = snappy spring (industry standard) ── */
+  @keyframes fadeUp     { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:none; } }
+  @keyframes fadeIn     { from { opacity:0; } to { opacity:1; } }
+  @keyframes popIn      { from { opacity:0; transform:scale(0.82) translateY(10px); } to { opacity:1; transform:scale(1) translateY(0); } }
+  @keyframes slideRight { from { opacity:0; transform:translateX(-20px); } to { opacity:1; transform:none; } }
+  @keyframes termLine   { from { opacity:0; transform:translateX(-10px); } to { opacity:1; transform:none; } }
+  @keyframes pulseDot   { 0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:0.4} }
+  @keyframes heroReveal { from { opacity:0; transform:translateY(28px) scale(0.98); } to { opacity:1; transform:none; } }
+
+  /* duration: 0.65s for larger elements, 0.5s for small — easeOut spring */
+  .anim-fadeup  { opacity:0; animation:fadeUp  0.65s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .anim-fadein  { opacity:0; animation:fadeIn  0.55s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .anim-popin   { opacity:0; animation:popIn   0.65s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+  .anim-right   { opacity:0; animation:slideRight 0.55s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .anim-term    { opacity:0; animation:termLine  0.35s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .anim-hero    { opacity:0; animation:heroReveal 0.8s cubic-bezier(0.16,1,0.3,1) forwards; }
+  .ni-dot { animation:pulseDot 2s ease-in-out infinite; }
 
   /* ── PAGE HEADER ── */
   .page-hdr { margin-bottom: 32px; }
@@ -240,6 +256,74 @@
   /* ── MISC ── */
   .row2-gap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .section-gap { margin-bottom: 20px; }
+
+  /* ── HOME PAGE REDESIGN ── */
+  .h-hero { background: linear-gradient(135deg, #1e2340 0%, #2a3a6e 100%); border-radius: var(--radius); padding: 28px 32px; margin-bottom: 16px; display: flex; align-items: center; gap: 32px; }
+  .h-hero-left { flex: 1; }
+  .h-hero-tag { font-size: 11px; font-family: var(--mono); color: #86efac; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 10px; }
+  .h-hero-title { font-size: 28px; font-weight: 600; color: #f0f4ff; line-height: 1.25; margin-bottom: 10px; }
+  .h-hero-sub { font-size: 12.5px; color: rgba(255,255,255,0.55); line-height: 1.65; max-width: 480px; }
+  .h-hero-chips { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 14px; }
+  .h-chip { font-size: 10.5px; font-family: var(--mono); padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+  .chip-blue { background: rgba(79,142,247,0.2); color: #93c5fd; }
+  .chip-green { background: rgba(74,222,128,0.15); color: #86efac; }
+  .h-hero-right { display: flex; flex-direction: column; gap: 0; background: rgba(255,255,255,0.05); border-radius: 10px; padding: 10px 20px; border: 1px solid rgba(255,255,255,0.08); min-width: 140px; }
+  .h-mini-stat { text-align: center; padding: 10px 0; }
+  .h-mini-num { display: block; font-size: 26px; font-weight: 600; font-family: var(--mono); color: #93c5fd; line-height: 1; }
+  .h-mini-lbl { display: block; font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 3px; }
+  .h-mini-divider { height: 1px; background: rgba(255,255,255,0.08); }
+  .h-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .h-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .h-card-hdr { padding: 11px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--bg3); }
+  .h-card-title { font-size: 12.5px; font-weight: 600; color: var(--text); }
+  .h-card-sub { font-size: 10.5px; color: var(--text3); font-family: var(--mono); }
+  .h-card-body { padding: 16px; }
+  .h-prodi-top { display: flex; justify-content: space-between; margin-bottom: 7px; }
+  .h-prodi-name { font-size: 12.5px; font-weight: 600; color: var(--text); }
+  .h-prodi-count { font-size: 12px; font-family: var(--mono); font-weight: 600; }
+  .accent-c { color: var(--accent); }
+  .green-c { color: var(--green); }
+  .h-bar-bg { background: var(--bg3); border-radius: 20px; height: 9px; overflow: hidden; }
+  .h-bar-fill { height: 100%; border-radius: 20px; transition: width 1.4s cubic-bezier(0.16,1,0.3,1); }
+  .h-bar-si { background: linear-gradient(90deg, var(--accent), #60a5fa); }
+  .h-bar-bd { background: linear-gradient(90deg, var(--green), #4ade80); }
+  .h-prodi-tags { display: flex; gap: 6px; margin-top: 7px; }
+  .h-ptag { font-size: 9.5px; background: var(--bg3); border: 1px solid var(--border); color: var(--text3); padding: 2px 8px; border-radius: 20px; }
+  .h-data-fields { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .h-field-title { font-size: 10px; font-weight: 600; color: var(--text3); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 10px; }
+  .h-fields-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+  .h-field { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--text2); }
+  .h-fdot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .h-pipeline { display: flex; align-items: flex-start; gap: 5px; margin-bottom: 16px; }
+  .h-pipe-group { display: flex; flex-direction: column; gap: 5px; flex: 1; }
+  .h-pipe-label { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); text-align: center; margin-bottom: 4px; font-family: var(--mono); }
+  .h-pipe-nodes { display: flex; flex-direction: column; gap: 5px; }
+  .h-pipe-node { border-radius: 8px; padding: 8px 6px; text-align: center; border: 1px solid transparent; }
+  .h-pn-icon { font-size: 15px; margin-bottom: 3px; }
+  .h-pn-name { font-size: 10px; font-weight: 600; }
+  .h-pn-sub { font-size: 8.5px; opacity: 0.65; margin-top: 1px; font-family: var(--mono); }
+  .node-blue   { background: rgba(37,99,235,0.1); border-color: rgba(37,99,235,0.25); color: #1d4ed8; }
+  .node-green  { background: rgba(22,163,74,0.1); border-color: rgba(22,163,74,0.25); color: #15803d; }
+  .node-amber  { background: rgba(217,119,6,0.1); border-color: rgba(217,119,6,0.25); color: #b45309; }
+  .node-purple { background: rgba(139,92,246,0.1); border-color: rgba(139,92,246,0.25); color: #7c3aed; }
+  .node-teal   { background: rgba(8,145,178,0.1); border-color: rgba(8,145,178,0.25); color: #0e7490; }
+  .h-pipe-arrow { font-size: 18px; color: var(--text3); align-self: center; margin-top: 14px; opacity: 0; transition: opacity 0.5s ease; flex-shrink: 0; }
+  .h-pipe-arrow.visible { opacity: 1; }
+  .h-schedule-strip { background: var(--bg3); border-radius: 8px; padding: 10px 14px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .h-sched-label { font-size: 10px; color: var(--text3); font-weight: 500; white-space: nowrap; }
+  .h-sched-days { display: flex; gap: 4px; }
+  .h-sday { font-size: 9.5px; font-family: var(--mono); padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+  .h-sday.on   { background: rgba(37,99,235,0.15); color: var(--accent); }
+  .h-sday.half { background: rgba(37,99,235,0.07); color: var(--text3); }
+  .h-sday.off  { background: var(--bg4); color: var(--text3); opacity: 0.5; }
+  .h-sched-times { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+  .h-stime { font-family: var(--mono); font-size: 10.5px; color: var(--accent); font-weight: 600; }
+  .h-stime-sep { color: var(--text3); }
+  .h-nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--border); cursor: pointer; transition: all 0.15s; }
+  .h-nav-item:hover { border-color: var(--accent); background: rgba(37,99,235,0.04); }
+  .h-nav-txt { flex: 1; font-size: 12px; font-weight: 500; color: var(--text); }
+  .h-nav-arr { font-size: 14px; color: var(--text3); transition: transform 0.2s; }
+  .h-nav-item:hover .h-nav-arr { transform: translateX(4px); color: var(--accent); }
 </style>
 </head>
 <body>
@@ -283,81 +367,150 @@
 
   <!-- ═══════ HOME ═══════ -->
   <div class="page active" id="page-home">
-    <div class="page-hdr">
-      <div class="page-hdr-breadcrumb">sinta-dashboard / <span>beranda</span></div>
-      <h1>Research Data System</h1>
-      <p>Platform monitoring dan pengumpulan data publikasi ilmiah dosen Program Studi Sistem Informasi dan Bisnis Digital, Jurusan TEIB.</p>
-    </div>
 
-    <div class="home-hero">
-      <div class="home-hero-tag">● Sistem Aktif</div>
-      <h1>SINTA Auto<br><em>Scraper</em> & Dashboard</h1>
-      <p>Sistem pengambilan dan pemantauan data penelitian dosen secara otomatis dari platform SINTA Kemdiktisaintek dan Google Scholar, dengan penjadwalan harian.</p>
-    </div>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-label">Total Dosen</div>
-        <div class="stat-value accent">25</div>
-        <div class="stat-sub">SI (15) + BD (10)</div>
+    <div class="h-hero">
+      <div class="h-hero-left">
+        <div class="h-hero-tag">● Sistem Aktif — Jurusan TEIB</div>
+        <h1 class="h-hero-title">Pemetaan &amp; Pengumpulan<br>Data Dosen</h1>
+        <p class="h-hero-sub">Sistem otomatis berbasis web scraping untuk mengumpulkan, memetakan, dan memantau data penelitian dosen dari SINTA Kemdiktisaintek &amp; Google Scholar.</p>
+        <div class="h-hero-chips">
+          <span class="h-chip chip-blue">Python 3.x</span>
+          <span class="h-chip chip-blue">BeautifulSoup4</span>
+          <span class="h-chip chip-green">SINTA</span>
+          <span class="h-chip chip-green">Google Scholar</span>
+        </div>
       </div>
-      <div class="stat-card">
-        <div class="stat-label">Program Studi</div>
-        <div class="stat-value green">2</div>
-        <div class="stat-sub">SI & Bisnis Digital</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Jadwal Scraping</div>
-        <div class="stat-value teal">2×</div>
-        <div class="stat-sub">per hari otomatis</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Sumber Data</div>
-        <div class="stat-value" style="font-size:18px;margin-top:4px">SINTA + GS</div>
-        <div class="stat-sub">Kemdiktisaintek</div>
+      <div class="h-hero-right">
+        <div class="h-mini-stat"><span class="h-mini-num">25</span><span class="h-mini-lbl">Total Dosen</span></div>
+        <div class="h-mini-divider"></div>
+        <div class="h-mini-stat"><span class="h-mini-num" style="color:#4ade80">2</span><span class="h-mini-lbl">Program Studi</span></div>
+        <div class="h-mini-divider"></div>
+        <div class="h-mini-stat"><span class="h-mini-num" style="color:#67e8f9">2×</span><span class="h-mini-lbl">Scraping/Hari</span></div>
       </div>
     </div>
 
-    <div class="home-pages-grid">
-      <div class="home-pg-card" onclick="showPage('direktori', document.querySelector('[onclick*=direktori]'))">
-        <div class="home-pg-num">01</div>
-        <div class="home-pg-icon">👥</div>
-        <div class="home-pg-title">Direktori Dosen</div>
-        <div class="home-pg-desc">Daftar lengkap dosen SI & Bisnis Digital beserta tautan profil Google Scholar dan SINTA.</div>
+    <div class="h-row2">
+      <div class="h-card" id="h-prodi-card">
+        <div class="h-card-hdr">
+          <div class="h-card-title">Sebaran Dosen per Prodi</div>
+          <div class="h-card-sub">Jurusan TEIB · 25 total</div>
+        </div>
+        <div class="h-card-body">
+          <div class="h-prodi-item">
+            <div class="h-prodi-top">
+              <span class="h-prodi-name">Sistem Informasi</span>
+              <span class="h-prodi-count accent-c">15 dosen</span>
+            </div>
+            <div class="h-bar-bg"><div class="h-bar-fill h-bar-si" style="width:0%" data-w="60%"></div></div>
+            <div class="h-prodi-tags">
+              <span class="h-ptag">SINTA terverifikasi</span>
+              <span class="h-ptag">Google Scholar</span>
+            </div>
+          </div>
+          <div class="h-prodi-item" style="margin-top:20px">
+            <div class="h-prodi-top">
+              <span class="h-prodi-name">Bisnis Digital</span>
+              <span class="h-prodi-count green-c">10 dosen</span>
+            </div>
+            <div class="h-bar-bg"><div class="h-bar-fill h-bar-bd" style="width:0%" data-w="40%"></div></div>
+            <div class="h-prodi-tags">
+              <span class="h-ptag">SINTA terverifikasi</span>
+              <span class="h-ptag">Google Scholar</span>
+            </div>
+          </div>
+          <div class="h-data-fields">
+            <div class="h-field-title">Data yang dikumpulkan:</div>
+            <div class="h-fields-grid">
+              <div class="h-field"><span class="h-fdot" style="background:var(--accent)"></span>SINTA Score</div>
+              <div class="h-field"><span class="h-fdot" style="background:var(--green)"></span>H-Index Scholar</div>
+              <div class="h-field"><span class="h-fdot" style="background:var(--teal)"></span>H-Index Scopus</div>
+              <div class="h-field"><span class="h-fdot" style="background:var(--amber)"></span>Total Sitasi</div>
+              <div class="h-field"><span class="h-fdot" style="background:#8b5cf6"></span>Jumlah Artikel</div>
+              <div class="h-field"><span class="h-fdot" style="background:#ec4899"></span>Scholar ID</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="home-pg-card" onclick="showPage('scraper', document.querySelector('[onclick*=scraper]'))">
-        <div class="home-pg-num">02</div>
-        <div class="home-pg-icon">⚡</div>
-        <div class="home-pg-title">Scraper SINTA</div>
-        <div class="home-pg-desc">Program pengambilan data SINTA yang berjalan otomatis menggunakan Python dengan log eksekusi real-time.</div>
-      </div>
-      <div class="home-pg-card" onclick="showPage('data', document.querySelector('[onclick*=data]'))">
-        <div class="home-pg-num">03</div>
-        <div class="home-pg-icon">📊</div>
-        <div class="home-pg-title">Data SINTA Tersimpan</div>
-        <div class="home-pg-desc">Hasil scraping berupa SINTA Score, H-Index Scholar & Scopus, dan total sitasi per dosen.</div>
-      </div>
-      <div class="home-pg-card" onclick="showPage('scheduler', document.querySelector('[onclick*=scheduler]'))">
-        <div class="home-pg-num">04</div>
-        <div class="home-pg-icon">🕐</div>
-        <div class="home-pg-title">Task Scheduler</div>
-        <div class="home-pg-desc">Konfigurasi penjadwalan otomatis harian dengan retry handling dan logging eksekusi.</div>
+
+      <div class="h-card">
+        <div class="h-card-hdr">
+          <div class="h-card-title">Alur Pengumpulan Data</div>
+          <div class="h-card-sub">Otomatis · 2× sehari</div>
+        </div>
+        <div class="h-card-body">
+          <div class="h-pipeline">
+            <div class="h-pipe-group" id="hpg-0">
+              <div class="h-pipe-label">Sumber</div>
+              <div class="h-pipe-nodes">
+                <div class="h-pipe-node node-blue"><div class="h-pn-icon">🎓</div><div class="h-pn-name">SINTA</div><div class="h-pn-sub">Kemdiktisaintek</div></div>
+                <div class="h-pipe-node node-green"><div class="h-pn-icon">📚</div><div class="h-pn-name">Google Scholar</div><div class="h-pn-sub">scholar.google.com</div></div>
+              </div>
+            </div>
+            <div class="h-pipe-arrow" id="hpa-0">→</div>
+            <div class="h-pipe-group" id="hpg-1">
+              <div class="h-pipe-label">Proses</div>
+              <div class="h-pipe-nodes">
+                <div class="h-pipe-node node-amber" style="width:100%"><div class="h-pn-icon">⚡</div><div class="h-pn-name">Web Scraper</div><div class="h-pn-sub">Python · BS4</div></div>
+              </div>
+            </div>
+            <div class="h-pipe-arrow" id="hpa-1">→</div>
+            <div class="h-pipe-group" id="hpg-2">
+              <div class="h-pipe-label">Simpan</div>
+              <div class="h-pipe-nodes">
+                <div class="h-pipe-node node-purple" style="width:100%"><div class="h-pn-icon">💾</div><div class="h-pn-name">lecturers.json</div><div class="h-pn-sub">25 dosen · 6 field</div></div>
+              </div>
+            </div>
+            <div class="h-pipe-arrow" id="hpa-2">→</div>
+            <div class="h-pipe-group" id="hpg-3">
+              <div class="h-pipe-label">Output</div>
+              <div class="h-pipe-nodes">
+                <div class="h-pipe-node node-teal" style="width:100%"><div class="h-pn-icon">📊</div><div class="h-pn-name">Dashboard</div><div class="h-pn-sub">Visualisasi data</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="h-schedule-strip">
+            <div class="h-sched-label">Jadwal otomatis:</div>
+            <div class="h-sched-days">
+              <span class="h-sday on">Sen</span><span class="h-sday on">Sel</span><span class="h-sday on">Rab</span>
+              <span class="h-sday on">Kam</span><span class="h-sday on">Jum</span>
+              <span class="h-sday half">Sab</span><span class="h-sday off">Min</span>
+            </div>
+            <div class="h-sched-times">
+              <span class="h-stime">02:00 WITA</span>
+              <span class="h-stime-sep">·</span>
+              <span class="h-stime">14:00 WITA</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="home-stack">
-      <div class="home-stack-title">Tech Stack</div>
-      <div class="stack-items">
-        <span class="stack-tag hi">Python 3.x</span>
-        <span class="stack-tag hi">requests</span>
-        <span class="stack-tag hi">BeautifulSoup4</span>
-        <span class="stack-tag hi">schedule</span>
-        <span class="stack-tag">JSON</span>
-        <span class="stack-tag">SINTA Kemdiktisaintek</span>
-        <span class="stack-tag">Google Scholar</span>
-        <span class="stack-tag">Windows Task Scheduler</span>
+    <div class="h-row2" style="margin-top:14px">
+      <div class="h-card">
+        <div class="h-card-hdr"><div class="h-card-title">Tech Stack</div></div>
+        <div class="h-card-body" style="display:flex;flex-wrap:wrap;gap:8px">
+          <span class="stack-tag hi">Python 3.x</span>
+          <span class="stack-tag hi">requests</span>
+          <span class="stack-tag hi">BeautifulSoup4</span>
+          <span class="stack-tag hi">schedule</span>
+          <span class="stack-tag">JSON</span>
+          <span class="stack-tag">SINTA Kemdiktisaintek</span>
+          <span class="stack-tag">Google Scholar</span>
+          <span class="stack-tag">Windows Task Scheduler</span>
+        </div>
+      </div>
+      <div class="h-card">
+        <div class="h-card-hdr"><div class="h-card-title">Halaman Dashboard</div></div>
+        <div class="h-card-body" style="display:flex;flex-direction:column;gap:8px">
+          <div class="h-nav-item" onclick="showPage('direktori', document.querySelector('[onclick*=direktori]'))"><span>👥</span><span class="h-nav-txt">Direktori Dosen</span><span class="h-nav-arr">→</span></div>
+          <div class="h-nav-item" onclick="showPage('scraper', document.querySelector('[onclick*=scraper]'))"><span>⚡</span><span class="h-nav-txt">Scraper SINTA</span><span class="h-nav-arr">→</span></div>
+          <div class="h-nav-item" onclick="showPage('data', document.querySelector('[onclick*=data]'))"><span>📊</span><span class="h-nav-txt">Data SINTA Tersimpan</span><span class="h-nav-arr">→</span></div>
+          <div class="h-nav-item" onclick="showPage('scheduler', document.querySelector('[onclick*=scheduler]'))"><span>🕐</span><span class="h-nav-txt">Task Scheduler</span><span class="h-nav-arr">→</span></div>
+        </div>
       </div>
     </div>
+
   </div>
 
   <!-- ═══════ DIREKTORI ═══════ -->
@@ -641,12 +794,209 @@
 </main>
 
 <script>
-  function showPage(id, btn) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-    document.getElementById('page-' + id).classList.add('active');
-    if (btn) btn.classList.add('active');
+  function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  function animEl(el, cls, delayMs) {
+    el.style.animationDelay = delayMs + 'ms';
+    el.classList.add(cls);
   }
+
+  // Counter — 1400ms for screen recording, easeOut feel
+  function countUp(el, target, duration) {
+    if (isNaN(parseInt(target))) { el.textContent = target; return; }
+    const end = parseInt(target);
+    const startTime = performance.now();
+    const tick = (now) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // easeOut cubic
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(ease * end);
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  const animations = {
+
+    home: async () => {
+      // hero banner
+      const hero = document.querySelector('#page-home .h-hero');
+      if (hero) animEl(hero, 'anim-hero', 0);
+
+      // mini stats in hero (counter)
+      const miniNums = document.querySelectorAll('#page-home .h-mini-num');
+      miniNums.forEach((n, i) => {
+        const orig = n.getAttribute('data-orig') || n.textContent.trim();
+        n.textContent = '0';
+        setTimeout(() => countUp(n, orig, 1200), 400 + i * 200);
+      });
+
+      // row 1 cards
+      const hCards = document.querySelectorAll('#page-home .h-card');
+      hCards.forEach((c, i) => animEl(c, 'anim-fadeup', 500 + i * 180));
+
+      // progress bars — animate after card appears
+      setTimeout(() => {
+        document.querySelectorAll('#page-home .h-bar-fill').forEach(bar => {
+          bar.style.width = bar.getAttribute('data-w');
+        });
+      }, 900);
+
+      // data fields fade in
+      const fields = document.querySelectorAll('#page-home .h-field');
+      fields.forEach((f, i) => animEl(f, 'anim-fadein', 1100 + i * 90));
+
+      // pipeline: nodes pop in group by group, then arrows appear
+      const pipeGroups = document.querySelectorAll('#page-home .h-pipe-group');
+      pipeGroups.forEach((g, i) => animEl(g, 'anim-popin', 800 + i * 220));
+
+      // arrows appear after each group
+      const arrows = document.querySelectorAll('#page-home .h-pipe-arrow');
+      arrows.forEach((a, i) => {
+        setTimeout(() => a.classList.add('visible'), 1050 + i * 220);
+      });
+
+      // schedule days pop in
+      const days = document.querySelectorAll('#page-home .h-sday');
+      days.forEach((d, i) => animEl(d, 'anim-popin', 1800 + i * 80));
+
+      // nav items
+      const navItems = document.querySelectorAll('#page-home .h-nav-item');
+      navItems.forEach((n, i) => animEl(n, 'anim-right', 1200 + i * 130));
+
+      // stack tags
+      const tags = document.querySelectorAll('#page-home .stack-tag');
+      tags.forEach((t, i) => animEl(t, 'anim-fadein', 1400 + i * 70));
+    },
+
+    direktori: async () => {
+      const stats = document.querySelectorAll('#page-direktori .stat-card');
+      stats.forEach((c, i) => animEl(c, 'anim-popin', i * 130));
+
+      // dir headers
+      const hdrs = document.querySelectorAll('#page-direktori .dir-hdr');
+      hdrs.forEach((h, i) => animEl(h, 'anim-fadeup', 200 + i * 180));
+
+      // rows: 80ms stagger — feels like data "loading in"
+      const tables = document.querySelectorAll('#page-direktori .dir-table');
+      tables.forEach((tbl, ti) => {
+        tbl.querySelectorAll('tr').forEach((r, i) =>
+          animEl(r, 'anim-right', 500 + ti * 100 + i * 80)
+        );
+      });
+    },
+
+    scraper: async () => {
+      const term = document.querySelector('#page-scraper .terminal');
+      if (term) animEl(term, 'anim-fadeup', 0);
+
+      // terminal lines: 130ms stagger — like real typing speed
+      const lines = document.querySelectorAll('#page-scraper .t-line');
+      lines.forEach((l, i) => animEl(l, 'anim-term', 280 + i * 130));
+    },
+
+    data: async () => {
+      const leg = document.querySelector('#page-data .legend-row');
+      if (leg) animEl(leg, 'anim-fadein', 0);
+
+      const hdrs = document.querySelectorAll('#page-data .data-card-hdr');
+      hdrs.forEach((h, i) => animEl(h, 'anim-fadeup', 150 + i * 180));
+
+      const tables = document.querySelectorAll('#page-data .data-table tbody');
+      tables.forEach((tbody, ti) => {
+        tbody.querySelectorAll('tr').forEach((r, i) => {
+          const d = 380 + ti * 80 + i * 80;
+          animEl(r, 'anim-right', d);
+
+          const tag = r.querySelector('.score-tag');
+          if (tag) {
+            const orig = tag.getAttribute('data-orig') || tag.textContent.trim();
+            tag.textContent = '0';
+            setTimeout(() => countUp(tag, orig, 1200), d + 80);
+          }
+          ['.hgs', '.hsc', '.cit-val'].forEach(sel => {
+            const cell = r.querySelector(sel);
+            if (cell) {
+              const orig = cell.getAttribute('data-orig') || cell.textContent.trim();
+              cell.textContent = '0';
+              setTimeout(() => countUp(cell, orig, 1000), d + 100);
+            }
+          });
+        });
+      });
+    },
+
+    scheduler: async () => {
+      const top = document.querySelector('#page-scheduler .sched-topbar');
+      if (top) animEl(top, 'anim-fadeup', 0);
+
+      // sections appear with 220ms between groups
+      const secs = document.querySelectorAll('#page-scheduler .sched-section');
+      secs.forEach((s, i) => animEl(s, 'anim-fadeup', 200 + i * 220));
+
+      // kv pairs: 90ms stagger
+      const kvs = document.querySelectorAll('#page-scheduler .sched-kv');
+      kvs.forEach((k, i) => animEl(k, 'anim-fadein', 400 + i * 90));
+
+      // day slots: fill one by one with 100ms gap — very visible
+      const slots = document.querySelectorAll('#page-scheduler .slot');
+      slots.forEach((s, i) => {
+        s.style.opacity = '0';
+        s.style.transform = 'scaleY(0)';
+        s.style.transformOrigin = 'top';
+        setTimeout(() => {
+          s.style.transition = 'opacity 0.4s cubic-bezier(0.16,1,0.3,1), transform 0.4s cubic-bezier(0.16,1,0.3,1)';
+          s.style.opacity = '1';
+          s.style.transform = 'scaleY(1)';
+        }, 750 + i * 100);
+      });
+
+      // task rows: 200ms stagger — slow and deliberate
+      const tasks = document.querySelectorAll('#page-scheduler .task-row, #page-scheduler .task-arrow');
+      tasks.forEach((t, i) => animEl(t, 'anim-right', 1100 + i * 200));
+
+      // retry: 150ms stagger
+      const retries = document.querySelectorAll('#page-scheduler .retry-item');
+      retries.forEach((r, i) => animEl(r, 'anim-fadein', 2000 + i * 150));
+    }
+  };
+
+  function showPage(id, btn) {
+    document.querySelectorAll('.page').forEach(p => {
+      p.classList.remove('active');
+      p.querySelectorAll('.anim-fadeup,.anim-fadein,.anim-popin,.anim-right,.anim-term,.anim-hero').forEach(el => {
+        el.classList.remove('anim-fadeup','anim-fadein','anim-popin','anim-right','anim-term','anim-hero');
+        el.style.animationDelay = '';
+        el.style.opacity = '';
+      });
+      p.querySelectorAll('.slot').forEach(s => {
+        s.style.transition = '';
+        s.style.opacity = '';
+        s.style.transform = '';
+        s.style.transformOrigin = '';
+      });
+    });
+
+    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+    const page = document.getElementById('page-' + id);
+    page.classList.add('active');
+    if (btn) btn.classList.add('active');
+
+    // restore original values before re-animating
+    page.querySelectorAll('[data-orig]').forEach(el => {
+      el.textContent = el.getAttribute('data-orig');
+    });
+
+    if (animations[id]) animations[id]();
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.stat-value, .score-tag, .hgs, .hsc, .cit-val, .h-mini-num').forEach(el => {
+      el.setAttribute('data-orig', el.textContent.trim());
+    });
+    showPage('home', document.querySelector('.nav-item'));
+  });
 </script>
 </body>
 </html>
